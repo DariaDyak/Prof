@@ -1,74 +1,74 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Building2, 
-  ShoppingCart, 
-  GraduationCap, 
-  Heart, 
-  Car, 
-  Gamepad2,
-  TrendingUp,
-  Shield
-} from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Server as BuildingInfo,
+  BarChart3 as Analiz,
+  Settings as Paperwork,
+  FileText as Registration,
+  Users as Study,
+  Headphones as Support,
+  ClipboardCheck as Audit,
+  Package as PO,
+} from "lucide-react";
 
 export default function DirectionsSection() {
   const directions = [
     {
-      icon: Building2,
-      title: 'Корпоративные решения',
-      description: 'ERP системы, CRM, системы документооборота и автоматизации бизнес-процессов для крупных и средних предприятий.',
-      technologies: ['SAP', 'Microsoft Dynamics', '1C', 'Custom ERP'],
-      projects: '25+ проектов'
+      icon: BuildingInfo,
+      title: "Проектирование информационных технологий",
+      description:
+        "Создание комплексных IT-инфраструктур и систем кибербезопасности, включая сети, серверы и контроля доступа.",
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
-      icon: ShoppingCart,
-      title: 'E-commerce',
-      description: 'Интернет-магазины, маркетплейсы, системы онлайн-платежей и интеграции с системами учета.',
-      technologies: ['Shopify', 'WooCommerce', 'Magento', 'Custom'],
-      projects: '40+ проектов'
+      icon: Analiz,
+      title: "Анализ и оценка информационной безопасности",
+      description:
+        "Выявление уязвимостей, тестирование на проникновение и разработка рекомендаций по усилению защиты данных и систем.",
+      gradient: "from-green-500 to-emerald-500",
     },
     {
-      icon: GraduationCap,
-      title: 'Образование',
-      description: 'Платформы дистанционного обучения, LMS системы, образовательные мобильные приложения.',
-      technologies: ['Moodle', 'Canvas', 'Custom LMS', 'Mobile Apps'],
-      projects: '15+ проектов'
+      icon: Audit,
+      title: "Аудит информационных технологий",
+      description:
+        "Комплексная проверка IT-инфраструктуры на соответствие стандартам, эффективность и безопасность.",
+      gradient: "from-purple-500 to-pink-500",
     },
     {
-      icon: Heart,
-      title: 'Здравоохранение',
-      description: 'Медицинские информационные системы, телемедицина, системы записи к врачам.',
-      technologies: ['HL7 FHIR', 'DICOM', 'Telemedicine', 'EMR'],
-      projects: '10+ проектов'
+      icon: PO,
+      title: "Поставка оборудования и программного обеспечения",
+      description:
+        "Подбор, закупка и внедрение серверов, сетевого оборудования, лицензионного ПО и средств защиты.",
+      gradient: "from-orange-500 to-red-500",
     },
     {
-      icon: Car,
-      title: 'Транспорт и логистика',
-      description: 'Системы управления транспортом, логистические платформы, GPS-мониторинг.',
-      technologies: ['GPS Tracking', 'Route Optimization', 'Fleet Management'],
-      projects: '20+ проектов'
+      icon: Paperwork,
+      title: "Сопровождение 1С",
+      description:
+        "Обслуживание, обновление и настройка платформы 1С для автоматизации бизнес-процессов предприятия.",
+      gradient: "from-indigo-500 to-blue-500",
     },
     {
-      icon: TrendingUp,
-      title: 'Финтех',
-      description: 'Банковские системы, платежные сервисы, инвестиционные платформы, криптовалютные решения.',
-      technologies: ['Blockchain', 'Payment Gateway', 'Trading Systems'],
-      projects: '12+ проектов'
+      icon: Registration,
+      title: "Разработка документации",
+      description:
+        "Создание технических заданий, регламентов, инструкций и политик безопасности для IT-систем и процессов.",
+      gradient: "from-teal-500 to-green-500",
     },
     {
-      icon: Gamepad2,
-      title: 'Развлечения',
-      description: 'Игровые платформы, стриминговые сервисы, социальные сети и мобильные игры.',
-      technologies: ['Unity', 'Unreal Engine', 'WebRTC', 'Social APIs'],
-      projects: '8+ проектов'
+      icon: Study,
+      title: "Обучение сотрудников",
+      description:
+        "Проведение тренингов по кибербезопасности, работе с ПО и соблюдению корпоративных IT-стандартов.",
+      gradient: "from-amber-500 to-orange-500",
     },
     {
-      icon: Shield,
-      title: 'Кибербезопасность',
-      description: 'Системы защиты информации, мониторинг безопасности, аудит и тестирование на проникновение.',
-      technologies: ['SIEM', 'Penetration Testing', 'Compliance', 'Monitoring'],
-      projects: '18+ проектов'
-    }
+      icon: Support,
+      title: "Техническая поддержка",
+      description:
+        "Оперативное решение проблем пользователей, обслуживание оборудования и программного обеспечения.",
+      gradient: "from-slate-600 to-slate-700",
+    },
   ];
 
   const handleDirectionClick = (title: string) => {
@@ -76,85 +76,84 @@ export default function DirectionsSection() {
   };
 
   return (
-    <section id="directions" className="py-24 bg-muted/30">
+    <section id="directions" className="pt-20 pb-16 bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-slate-900 dark:to-slate-800/50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+          <div className="
+  inline-flex 
+  items-center 
+  gap-2 
+  px-4 
+  py-2 
+  transition-all 
+  duration-300 
+  ease-in-out 
+  rounded-full 
+  bg-blue-500/10 
+  border 
+  border-blue-500/20 
+  text-blue-600 
+  dark:text-blue-400 
+  text-sm 
+  font-medium 
+  mb-8 
+  backdrop-blur-sm
+  hover:scale-105
+">
+  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+  Наши услуги
+</div>
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
             Направления деятельности
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Мы работаем с различными отраслями и имеем глубокую экспертизу 
-            в создании специализированных решений для каждой сферы
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Мы работаем с различными отраслями и имеем глубокую экспертизу в
+            создании специализированных решений для каждой сферы
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {directions.map((direction, index) => (
             <Card 
-              key={index} 
-              className="group hover-elevate transition-all duration-300 cursor-pointer h-full"
+              key={index}
+              className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm cursor-pointer"
               onClick={() => handleDirectionClick(direction.title)}
               data-testid={`card-direction-${index}`}
             >
-              <CardHeader className="pb-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <direction.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <Badge variant="secondary" className="text-xs">
-                    {direction.projects}
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg leading-tight">
-                  {direction.title}
-                </CardTitle>
-              </CardHeader>
+              {/* Анимированный градиентный фон */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${direction.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
               
-              <CardContent className="space-y-4">
-                <p className="text-sm text-muted-foreground leading-relaxed">
+              {/* Эффект свечения при наведении */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${direction.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-all duration-500 scale-150 group-hover:scale-100`}></div>
+              
+              <CardContent className="p-6 relative z-10 flex flex-col h-full">
+                {/* Иконка с градиентом */}
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${direction.gradient} flex items-center justify-center text-white mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <direction.icon className="h-6 w-6" />
+                </div>
+
+                {/* Заголовок */}
+                <h3 className="text-lg font-bold text-foreground mb-4 leading-tight flex-grow">
+                  {direction.title}
+                </h3>
+
+                {/* Описание */}
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                   {direction.description}
                 </p>
+
                 
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-xs text-foreground">Технологии:</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {direction.technologies.map((tech, idx) => (
-                      <span 
-                        key={idx}
-                        className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded-md"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </CardContent>
+
+              {/* Эффект границы при наведении */}
+              <div className={`absolute inset-0 rounded-lg bg-gradient-to-br ${direction.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}>
+                <div className="absolute inset-[1px] rounded-lg bg-white dark:bg-slate-800"></div>
+              </div>
             </Card>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="bg-card border rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              Не нашли свою отрасль?
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Мы адаптируемся под любые требования и готовы разработать 
-              индивидуальное решение для вашего бизнеса
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Badge variant="outline" className="px-4 py-2 text-sm">
-                💡 Индивидуальный подход
-              </Badge>
-              <Badge variant="outline" className="px-4 py-2 text-sm">
-                🚀 Быстрая разработка MVP
-              </Badge>
-              <Badge variant="outline" className="px-4 py-2 text-sm">
-                🔧 Полная техническая поддержка
-              </Badge>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
   );

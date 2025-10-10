@@ -83,6 +83,7 @@ export default {
         },
       },
       fontFamily: {
+        Montserrat:['Montserrat', 'sans-serif'],
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],

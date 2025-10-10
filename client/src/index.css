@@ -58,7 +58,7 @@
 
   --muted: 220 12% 89%;
 
-  --muted-foreground: 220 25% 40%;
+  --muted-foreground: 220 25% 20%;
 
   --accent: 220 18% 87%;
 
@@ -325,4 +325,18 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
