@@ -28,43 +28,40 @@ export default function ApproachSection() {
 
   return (
     <section className="py-20 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Пошаговая методология внедрения <span className="block text-blue-600 dark:text-blue-400">комплексных IT-решений</span>
-          </h2>
-          <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Процесс оценки текущего состояния ИТ-инфраструктуры компании включает анализ всех аспектов 
-            информационных технологий: аппаратное и программное обеспечение, сети, безопасность и базы данных.
-          </p>
-          
-        </div>
-          
-          
-        </div>
+  <div className="container mx-auto px-4 lg:px-8">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+        Пошаговая методология внедрения <span className="block text-blue-600 dark:text-blue-400">комплексных IT-решений</span>
+      </h2>
+      <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+        Процесс оценки текущего состояния ИТ-инфраструктуры компании включает анализ всех аспектов 
+        информационных технологий: аппаратное и программное обеспечение, сети, безопасность и базы данных.
+      </p>
+    </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-4 md:px-6">
-  {steps.map((step, index) => (
-    <Card key={index} className="bg-blue-50 group hover:shadow-lg transition-all duration-300 border-0">
-      <CardContent className="p-8">
-        <div className="flex items-start gap-6">
-          <div className="flex-shrink-0 w-16 h-16 bg-primary/10 text-primary rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-            {step.icon}
-          </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-foreground mb-3">
-              {step.title}
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              {step.description}
-            </p>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+      {steps.map((step, index) => (
+        <div 
+          key={index}
+          className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer"
+        >
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0 text-white w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              {step.icon}
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                {step.title}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {step.description}
+              </p>
+            </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
-  ))}
-</div>
-      
-    </section>
+      ))}
+    </div>
+  </div>
+</section>
   );
 }

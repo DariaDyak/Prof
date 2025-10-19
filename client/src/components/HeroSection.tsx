@@ -129,26 +129,24 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
   className="
     relative
     overflow-hidden
-    text-base px-5 py-3
     inline-flex items-center gap-2 px-4 py-2 rounded-full
     bg-gradient-to-r from-blue-800 to-blue-900
-    
     text-white
     transition-all duration-300 ease-in-out
     hover:scale-105 hover:shadow-xl
-    inline-flex items-center
     whitespace-nowrap
     group
+    outline-none focus:outline-none
   "
 >
-              {/* Бегущий луч */}
-              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-              
-              <span className="relative z-10 font-medium transition-all duration-300 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-                О компании
-              </span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}" />
-            </Button>
+  {/* Бегущий луч */}
+  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+  
+  <span className="relative z-10 font-medium transition-all duration-300 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}">
+    О компании
+  </span>
+  <ArrowRight className="ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}" />
+</Button>
           </div>
         </div>
       </div>

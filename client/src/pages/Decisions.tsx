@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
 import ItDecisions from "@/components/ItDecisions";
 import ApproachSection from "@/components/ApproachSection";
+import BusinessImpactSection from "@/components/BusinessImpactSection";
 import { useEffect } from "react";
 
 export default function Decisions() {
@@ -50,6 +51,8 @@ export default function Decisions() {
 
         <ApproachSection />
       </main>
+      {/* Новый блок: Бизнес-эффект */}
+        <BusinessImpactSection />
 
       <Footer />
     </div>
