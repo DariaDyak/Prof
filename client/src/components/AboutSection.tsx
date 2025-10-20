@@ -1,4 +1,4 @@
-import Image_1 from "@assets/generated_images/image_1.jpeg";
+import Image_1 from '@/assets/generated_images/background-B09EPi58.jpg';
 
 export default function AboutSection() {
   return (

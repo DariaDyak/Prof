@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield } from 'lucide-react';
-import heroImage from '@assets/generated_images/background.png';
+//import heroImage from '@/assets/generated_images/background-B09EPi58.jpg';
 import { useEffect, useState } from 'react';
 
 interface HeroSectionProps {
@@ -28,7 +28,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
       {/* Background Image with Enhanced Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={heroImage} 
+          //src={heroImage} 
           alt="IT Solutions Background"
           className="w-full h-full object-cover scale-80 group-hover:scale-100 transition-transform duration-3000 ease-out"
         />

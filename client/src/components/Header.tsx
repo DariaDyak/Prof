@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import logo from '@assets/generated_images/logo.png';
+//import logo from '@assets/generated_images/logo.png';
 
 interface HeaderProps {
   onNavigate?: (section: string) => void;
@@ -31,7 +31,7 @@ export default function Header({ onNavigate }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           {/* Логотип */}
           <div className="flex items-center space-x-2">
-            <img src={logo} alt="Prof it Logo" className="w-7 h-7 object-cover" />
+            
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">ПРОФ ИТ</span>
           </div>
 

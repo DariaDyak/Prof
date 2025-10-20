@@ -1,7 +1,7 @@
 // components/HeroSection.tsx
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import heroImage from '@assets/generated_images/background.jpg';
+import heroImage from '@/assets/generated_images/background.jpg';
 import { Button } from "@/components/ui/button";
 
 interface ItDecisionsProps {

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import logo from "@assets/generated_images/logo.png";
+import logo from "@/assets/generated_images/logo.png";
 
 import {
   Mail,
