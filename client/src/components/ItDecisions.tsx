@@ -102,7 +102,7 @@ export default function ItDecisions({
               onClick={handleBadgeClick}
               className="
                 text-xs px-2 py-2
-                transition-transform duration-200 ease-in-out
+                transition-transform duration-105 ease-in-out
                 inline-flex items-center
                 mb-10 my-4
                 hover:scale-105

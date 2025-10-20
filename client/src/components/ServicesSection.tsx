@@ -89,14 +89,13 @@ export default function ServicesSection() {
     relative 
     overflow-hidden 
     transition-all 
-    duration-300 
     ease-in-out 
-    hover:scale-105 
     hover:shadow-lg 
-    bg-gradient-to-r from-indigo-600 to-blue-600 
-    hover:from-indigo-700 hover:to-blue-700 
+    bg-gradient-to-r from-blue-500 to-purple-500
     text-white 
     group
+    border-0
+    rounded-full 
   "
   onClick={() => handleLearnMore(service.link)}
   disabled={!service.link || service.link === "#"}

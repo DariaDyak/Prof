@@ -30,7 +30,7 @@ export default function ApproachSection() {
     <section className="py-20 bg-background">
   <div className="container mx-auto px-4 lg:px-8">
     <div className="text-center mb-16">
-      <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+      <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
         Пошаговая методология внедрения <span className="block text-blue-600 dark:text-blue-400">комплексных IT-решений</span>
       </h2>
       <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
@@ -39,7 +39,7 @@ export default function ApproachSection() {
       </p>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+    <div className="grid grid-cols-2 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
       {steps.map((step, index) => (
         <div 
           key={index}
@@ -50,7 +50,7 @@ export default function ApproachSection() {
               {step.icon}
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-blue-600 transition-colors duration-300">
+              <h3 className="text-xl font-bold text-foreground  group-hover:text-blue-600 transition-colors duration-300">
                 {step.title}
               </h3>
               <p className="text-muted-foreground leading-relaxed">

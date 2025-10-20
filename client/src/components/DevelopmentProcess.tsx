@@ -42,7 +42,7 @@ const processSteps = [
 
 export default function DevelopmentProcess() {
   return (
-    <section className="bg-gradient-to-br from-slate-50 to-purple-50/30 dark:from-slate-900 dark:to-purple-900/10">
+    <section className=" dark:from-slate-900 dark:to-purple-900/10 ">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">

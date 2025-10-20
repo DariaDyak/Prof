@@ -26,31 +26,31 @@ export default function CSupportPage() {
   };
 
   return (
-      <div className="min-h-screen bg-background text-foreground">
-        <div className="fixed top-4 right-4 z-50">
-          <ThemeToggle />
-        </div>
-  
-        <Header onNavigate={scrollToSection} />
-  
-        <main className="space-y-20"> {/* Добавлено равномерное расстояние */}
-          {/* ItDecisions с кастомным контентом для страницы решений */}
-          <ItDecisions 
-            badgeText="1С сопровождение"
-            title="Превращаем вашу 1С в конкурентное преимущество"
-            description="Мы обеспечиваем стабильность и надежность работы ИТ-систем, а также оказываем поддержку на всех этапах использования 1С системы"
-            showBackButton={true}
-            backButtonText="Назад к главной"
-            onLearnMore={() => console.log('Детали IT-решений')}
-            titleSize="xl"
-            alignment="left"
-            minHeight="lg"
-          />
+      <div className="min-h-screen text-foreground">
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
+      <Header onNavigate={scrollToSection} />
+
+      <main className="space-y-20">
+        {/* Hero секция с ItDecisions */}
+        <ItDecisions 
+          badgeText="1С сопровождение"
+          title="Превращаем вашу 1С в конкурентное преимущество"
+          description="Мы обеспечиваем стабильность и надежность работы ИТ-систем, а также оказываем поддержку на всех этапах использования 1С системы"
+          showBackButton={true}
+          backButtonText="Назад к главной"
+          onLearnMore={() => console.log('Детали IT-решений')}
+          titleSize="xl"
+          alignment="left"
+          minHeight="lg"
+        />
           
     
 
-        {/* Hexagon Services */}
-        <section ref={sectionRefs.services} className="">
+        {/* Секция услуг в формате гексагонов */}
+        <section ref={sectionRefs.services} className="scroll-mt-20">
           <HexagonServices />
         </section>
       </main>

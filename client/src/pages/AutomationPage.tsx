@@ -5,6 +5,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import ItDecisions from "@/components/ItDecisions";
 import AutomationSection from "@/components/AutomationSection";
 import { useEffect } from "react";
+import AutomationBenefits from "@/components/AutomationBenefits ";
 
 export default function AutomationPage() {
   useEffect(() => {
@@ -48,6 +49,7 @@ export default function AutomationPage() {
         />
         
         <AutomationSection/>
+        <AutomationBenefits/>
       
       </main>
 

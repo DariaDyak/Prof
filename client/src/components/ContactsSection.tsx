@@ -50,7 +50,7 @@ export default function ContactsSection() {
   ];
 
   return (
-    <section id="contacts" className="py-20">
+    <section id="contacts">
       <div className="container mx-auto px-4 lg:px-8">
         
 
@@ -65,11 +65,11 @@ export default function ContactsSection() {
 
         <div className="grid lg:grid-cols-2 gap-10 mb-16 ">
           {/* Contact Form */}
-          <Card className="h-fit min-h-[200px]">
+          <Card className="h-fit min-h-[200px] rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer">
             {" "}
             {/* Добавлены классы высоты */}
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 ">
                 <MessageSquare className="h-5 w-5 text-primary" />
                 Обратная связь
               </CardTitle>
@@ -85,7 +85,7 @@ export default function ContactsSection() {
                 {/* Flex для формы */}
                 <div className="grid sm:grid-cols-2 gap-2">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">
+                    <label className="text-sm font-medium text-foreground mb-1 block ">
                       Имя *
                     </label>
                     <Input
@@ -167,7 +167,7 @@ export default function ContactsSection() {
             {/* Contact Cards */}
             <div className="grid gap-4">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="hover-elevate">
+                <Card key={index} className="hover-elevate border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">

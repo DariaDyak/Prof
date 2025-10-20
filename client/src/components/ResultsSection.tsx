@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function ResultsSection() {
   return (
-    <section className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800">
+    <section className=" dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4 lg:px-8">
         <Card className="border-0 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/10 dark:to-purple-900/10 mb-20">
           <CardContent className="p-8">

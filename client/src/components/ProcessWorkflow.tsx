@@ -30,7 +30,7 @@ export default function ProcessWorkflow() {
           {processSteps.map((step, index) => (
             <div
               key={index}
-              className="flex items-start space-x-4 p-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-slate-700/30 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300"
+              className="flex items-start space-x-4 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer"
             >
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-2">

@@ -47,11 +47,13 @@ export default function BusinessImpactSection() {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Заголовок */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mb-6">
-            <Zap className="w-4 h-4" />
-            <span className="text-sm font-medium">Бизнес-трансформация</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mb-6 mt-8 ">
+            <Shield className="h-4 w-4  transition-transform duration-500 delay-300 ${isVisible ? 'scale-100' : 'scale-50'}" />
+            <span className="transition-all text-bold duration-700 delay-100 ${isVisible ? 'opacity-100' : 'opacity-0'}">
+              Бизнес трансформация
+            </span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Стратегическое <span className="text-blue-600">преимущество</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -76,7 +78,7 @@ export default function BusinessImpactSection() {
             <Target className="w-6 h-6 text-white" />
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-bold mb-2 text-blue-600 transition-colors duration-300">
+            <h3 className="text-xl font-bold mb-2 text-blue-600 transition-colors">
               Комплексный подход к развитию
             </h3>
             <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
@@ -109,11 +111,11 @@ export default function BusinessImpactSection() {
   {metrics.map((metric, index) => (
     <div 
       key={metric.label}
-      className="group bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 text-center hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
+      className="group bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 text-center  transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
     >
-      <metric.icon className="w-6 h-6 text-blue-600 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
-      <div className="text-2xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300">{metric.value}</div>
-      <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">{metric.label}</div>
+      <metric.icon className="w-6 h-6 text-blue-600 mx-auto mb-2 group-hover:scale-110 transition-transform " />
+      <div className="text-2xl font-bold text-foreground group-hover:text-blue-600 transition-colors">{metric.value}</div>
+      <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors ">{metric.label}</div>
     </div>
   ))}
 </div>
@@ -126,7 +128,7 @@ export default function BusinessImpactSection() {
             {features.map((feature, index) => (
               <div 
                 key={feature.title}
-                className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer"
+                className="group bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer"
                 
               >
                 <div className="flex items-start gap-4">
@@ -149,7 +151,7 @@ export default function BusinessImpactSection() {
         </div>
 
         {/* CTA блок */}
-        <div className={`max-w-4xl mx-auto transition-all duration-700 delay-500 ${
+        <div className={`max-w-4xl mx-auto transition-all duration-700 delay-500 mb-20 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}>
           <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 rounded-3xl p-8 lg:p-12 text-white text-center overflow-hidden">
@@ -166,7 +168,7 @@ export default function BusinessImpactSection() {
                 Наши эксперты готовы провести комплексный аудит и предложить оптимальные решения.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button className="group bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2">
+                <button className="group bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 shadow-lg hover:shadow-xl flex items-center gap-2">
                   Запросить консультацию
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
