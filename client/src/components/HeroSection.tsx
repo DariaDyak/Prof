@@ -127,22 +127,18 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
             <Button
   onClick={handleLearnMore}
   className="
-    relative
-    overflow-hidden
-    inline-flex items-center gap-2 px-4 py-2 rounded-full
-    bg-gradient-to-r from-blue-800 to-blue-900
-    text-white
-    transition-all duration-300 ease-in-out
-    hover:scale-105 hover:shadow-xl
-    whitespace-nowrap
-    group
-    outline-none focus:outline-none
+    inline-flex items-center gap-2 px-4 py-2 rounded-full 
+            bg-blue-500/10 border border-blue-800/20 
+            text-blue-600 dark:text-blue-400 text-sm font-bold mb-8 
+            backdrop-blur-sm
+            transition-all duration-1000 ease-out
+            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8
   "
 >
   {/* Бегущий луч */}
   <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
   
-  <span className="relative z-10 font-medium transition-all duration-300 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}">
+  <span className="transition-all delay-100 ${isVisible ? 'opacity-100' : 'opacity-0'}">
     О компании
   </span>
   <ArrowRight className="ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}" />
