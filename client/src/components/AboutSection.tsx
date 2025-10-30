@@ -1,60 +1,74 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Image_1 from "@assets/generated_images/image_1.jpeg";
 
 export default function AboutSection() {
+  const services = [
+    "проектирование и сопровождение компьютерных систем",
+    "сервисное обслуживание компьютерного оборудования",
+    "реализация комплекса мероприятий по обеспечению защиты информации",
+    "разработка программного обеспечения"
+  ];
+
   return (
-    <section id="about" className="py-24">
+    <section id="about" className="py-20 bg-muted/50">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="font-Montserrat text-3xl lg:text-4xl font-bold text-foreground mb-6">
-              О компании
-            </h2>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-            <div className="font-Montserrat text-base text-muted-foreground mb-8 leading-relaxed text-justify">
-              <p className="mb-4">
-                <strong>ООО «ПРОФ ИТ»</strong> — профильная компания,
-                предоставляющая спектр ИТ-услуг, таких как:
-              </p>
-
-              <ul className="list-disc pl-5 mb-4 space-y-2">
-                <li>проектирование и сопровождение компьютерных систем</li>
-                <li>сервисное обслуживание компьютерного оборудования</li>
-                <li>
-                  реализация комплекса мероприятий по обеспечению защиты
-                  информации
-                </li>
-                <li>разработка программного обеспечения.</li>
-              </ul>
-
-              <p className="mb-4">
-                Наши специалисты смогут подобрать оптимальные решения для
-                автоматизации и развития Вашего бизнеса, не зависимо от
-                направления деятельности и размера компании.
-              </p>
-
-              <p>
-                Компания имеет действующую{" "}
-                <strong>государственную аккредитацию</strong> в области
-                информационных технологий.
-              </p>
+          {/* Текстовый контент */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold tracking-tight">
+                О КОМПАНИИ
+              </h2>
             </div>
+
+            <Card>
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-muted-foreground leading-relaxed">
+                  <strong>ООО «ПРОФ ИТ»</strong> — профильная компания,
+                  предоставляющая спектр ИТ-услуг:
+                </p>
+
+                <ul className="space-y-3">
+                  {services.map((service, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{service}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="space-y-3 pt-2">
+                  <p className="text-muted-foreground leading-relaxed">
+                    Наши специалисты смогут подобрать оптимальные решения для
+                    автоматизации и развития Вашего бизнеса, не зависимо от
+                    направления деятельности и размера компании.
+                  </p>
+
+                  <div className="flex items-center gap-2 pt-2">
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      Государственная аккредитация
+                    </Badge>
+
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
-          {/* Image */}
+          {/* Изображение с использованием Card */}
           <div className="lg:order-last">
-            <div className="relative group">
-              <img
-                src={Image_1}
-                alt="Компьютерный офис"
-                className="w-full h-[500px] object-cover rounded-lg shadow-lg 
-               transition-transform duration-300 ease-in-out
-               group-hover:scale-105"
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t to-transparent rounded-lg 
-                   opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              />
-            </div>
+            <Card className="overflow-hidden border-0 shadow-lg">
+              <div className="relative group">
+                <img
+                  src={Image_1}
+                  alt="Компьютерный офис компании ПРОФ ИТ"
+                  className="w-full h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </Card>
           </div>
         </div>
       </div>

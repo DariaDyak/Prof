@@ -45,10 +45,10 @@ export default function DevelopmentProcess() {
     <section className=" dark:from-slate-900 dark:to-purple-900/10 ">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+          <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
             Процесс разработки
           </h2>
-          <p className="text-base text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Четко структурированный подход к созданию программного обеспечения, 
             обеспечивающий качество и соблюдение сроков
           </p>

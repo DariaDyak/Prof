@@ -47,10 +47,10 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 bg-muted/80">
+    <section id="services" className="py-10 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 ">
         <div className="text-center mb-16">
-          <h2 className="font-Montserrat text-3xl lg:text-4xl font-bold text-foreground mb-6">
+          <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
             Наши услуги
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -63,7 +63,7 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="group hover-elevate transition-all duration-300 overflow-hidden"
+              className="group transition-all duration-300 overflow-hidden flex flex-col"
             >
               <div className="aspect-video relative overflow-hidden">
                 <img
@@ -79,34 +79,37 @@ export default function ServicesSection() {
                 <CardTitle className="text-xl">{service.title}</CardTitle>
               </CardHeader>
 
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">
+              <CardContent className="space-y-4 flex flex-col flex-grow">
+                <p className="leading-relaxed flex-grow">
                   {service.description}
                 </p>
 
                 <Button
-  className="
-    relative 
-    overflow-hidden 
-    transition-all 
-    ease-in-out 
-    hover:shadow-lg 
-    bg-gradient-to-r from-blue-500 to-purple-500
-    text-white 
-    group
-    border-0
-    rounded-full 
-  "
-  onClick={() => handleLearnMore(service.link)}
-  disabled={!service.link || service.link === "#"}
-  data-testid={`button-service-${index}`}
->
-  {/* Бегущий луч */}
-  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-  
-  <span className="relative z-10 font-medium">Узнать больше</span>
-  <ArrowRight className="ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
-</Button>
+                  className="
+            relative
+            overflow-hidden
+            inline-flex items-center gap-2 px-4 py-2 rounded-full 
+            bg-blue-500/20 border border-blue-800/30 
+            text-blue-600 dark:text-blue-400 text-sm font-bold
+            backdrop-blur-sm
+            transition-all duration-1000 ease-out
+            group
+            mt-auto
+            self-start
+          "
+                  onClick={() => handleLearnMore(service.link)}
+                  disabled={!service.link || service.link === "#"}
+                  data-testid={`button-service-${index}`}
+                >
+
+                  {/* Бегущий луч */}
+                  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+                  <span className="relative z-10 transition-all delay-100">
+                    Узнать больше
+                  </span>
+                  <ArrowRight className="relative z-10 ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400" />
+                </Button>
               </CardContent>
             </Card>
           ))}

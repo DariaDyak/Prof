@@ -79,13 +79,13 @@ export default function DirectionsSection() {
     <section id="directions" className="pt-20 pb-16 bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-slate-900 dark:to-slate-800/50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
-          
-  
 
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+
+
+          <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
             Направления деятельности
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Мы работаем с различными отраслями и имеем глубокую экспертизу в
             создании специализированных решений для каждой сферы
           </p>
@@ -93,7 +93,7 @@ export default function DirectionsSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {directions.map((direction, index) => (
-            <Card 
+            <Card
               key={index}
               className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm cursor-pointer"
               onClick={() => handleDirectionClick(direction.title)}
@@ -101,8 +101,8 @@ export default function DirectionsSection() {
             >
               {/* Анимированный градиентный фон */}
               <div className={`absolute inset-0 bg-gradient-to-br ${direction.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-              
-              
+
+
               <CardContent className="p-6 relative z-10 flex flex-col h-full">
                 {/* Иконка с градиентом */}
                 <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${direction.gradient} flex items-center justify-center text-white mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
@@ -119,7 +119,7 @@ export default function DirectionsSection() {
                   {direction.description}
                 </p>
 
-                
+
               </CardContent>
 
               {/* Эффект границы при наведении */}
@@ -130,7 +130,7 @@ export default function DirectionsSection() {
           ))}
         </div>
 
-        
+
       </div>
     </section>
   );

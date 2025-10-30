@@ -27,15 +27,15 @@ export default function ApproachSection() {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-16 bg-background">
   <div className="container mx-auto px-4 lg:px-8">
     <div className="text-center mb-16">
-      <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+      <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
         Пошаговая методология внедрения <span className="block text-blue-600 dark:text-blue-400">комплексных IT-решений</span>
       </h2>
-      <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+      <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
         Процесс оценки текущего состояния ИТ-инфраструктуры компании включает анализ всех аспектов 
-        информационных технологий: аппаратное и программное обеспечение, сети, безопасность и базы данных.
+        информационных технологий
       </p>
     </div>
 

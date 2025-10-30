@@ -8,10 +8,10 @@ export default function InteractiveSupportSection() {
       <section className="py-8 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
               Надежное сопровождение <span className="block text-blue-600 dark:text-blue-400">вашей системы 1С</span>
             </h2>
-            <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-5xl mx-auto">
               1С сопровождение — это услуга, которая позволяет компаниям поддерживать работоспособность и эффективность системы управления и автоматизации бизнес-процессов в 1С.
             </p>
           </div>
