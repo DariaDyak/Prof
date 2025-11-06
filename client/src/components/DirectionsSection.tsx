@@ -22,7 +22,7 @@ export default function DirectionsSection() {
     },
     {
       icon: Analiz,
-      title: "Анализ и оценка информационной безопасности",
+      title: "Анализ информационной безопасности",
       description:
         "Выявление уязвимостей, тестирование на проникновение и разработка рекомендаций по усилению защиты данных и систем.",
       gradient: "from-blue-500 to-purple-500",
@@ -76,13 +76,10 @@ export default function DirectionsSection() {
   };
 
   return (
-    <section id="directions" className="pt-20 pb-16 bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-slate-900 dark:to-slate-800/50">
+    <section id="directions" className="pt-10 pb-16 bg-white dark:from-slate-900 dark:to-slate-800/50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
-
-
-
-          <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-6">
             Направления деятельности
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -95,8 +92,8 @@ export default function DirectionsSection() {
           {directions.map((direction, index) => (
             <Card
               key={index}
-              className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm cursor-pointer"
-              onClick={() => handleDirectionClick(direction.title)}
+  className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm cursor-pointer min-h-[260px] flex flex-col"
+
               data-testid={`card-direction-${index}`}
             >
               {/* Анимированный градиентный фон */}
@@ -105,7 +102,7 @@ export default function DirectionsSection() {
 
               <CardContent className="p-6 relative z-10 flex flex-col h-full">
                 {/* Иконка с градиентом */}
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${direction.gradient} flex items-center justify-center text-white mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${direction.gradient} flex items-center justify-center text-white mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
                   <direction.icon className="h-6 w-6" />
                 </div>
 

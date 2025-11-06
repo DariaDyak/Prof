@@ -336,7 +336,13 @@
     opacity: 1;
   }
 }
-
+/* Включить плавную прокрутку для всего сайта */
+#about,
+#services,
+#directions,
+#contacts {
+  scroll-margin-top: 80px;
+}
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }

@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground font-Montserrat">
       {/* Fixed Theme Toggle */}
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />

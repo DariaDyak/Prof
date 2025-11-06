@@ -19,14 +19,29 @@ export default function Header({ onNavigate }: HeaderProps) {
   ];
 
   const handleNavClick = (id: string) => {
-    setActiveId(id);
-    console.log(`Navigation to ${id} triggered`);
-    onNavigate?.(id);
-    setIsMobileMenuOpen(false);
-  };
+  setActiveId(id);
+  
+  const element = document.getElementById(id);
+  if (element) {
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    
+    // Рассчитываем позицию с учетом высоты header
+    const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementTop - headerHeight;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+  
+  onNavigate?.(id);
+  setIsMobileMenuOpen(false);
+};
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b">
+    <header className="sticky top-0 z-50 bg-card/85 backdrop-blur border-b">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Логотип */}
@@ -46,9 +61,9 @@ export default function Header({ onNavigate }: HeaderProps) {
                   className={`
                     px-3 py-2 
                     border-b-2 border-transparent
-                    ${isActive ? 'border-current' : 'hover:border-current'}
-                    transition-colors duration-300 ease-in-out
-                    text-muted-foreground
+                    ${isActive ? 'border-blue-600 text-blue-600' : 'hover:border-blue-400 hover:text-blue-400 text-muted-foreground'}
+                    transition-all duration-300 ease-in-out
+                    font-medium
                     focus:outline-none
                   `}
                   data-testid={`nav-${item.id}`}
@@ -84,11 +99,11 @@ export default function Header({ onNavigate }: HeaderProps) {
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
                     className={`
-                      text-left px-3 py-2 rounded-md
-                      border-b-2 border-transparent
-                      ${isActive ? 'border-current' : 'hover:border-current'}
-                      transition-colors duration-300 ease-in-out
-                      text-muted-foreground
+                      text-left px-3 py-3 rounded-md
+                      border-l-4 border-transparent
+                      ${isActive ? 'border-blue-600 text-blue-600 bg-blue-50' : 'hover:border-blue-400 hover:text-blue-400 text-muted-foreground'}
+                      transition-all duration-300 ease-in-out
+                      font-medium
                       focus:outline-none
                     `}
                     data-testid={`nav-mobile-${item.id}`}
