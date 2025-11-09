@@ -10,6 +10,7 @@ import Decisions from "@/pages/Decisions";
 import AutomationPage from "@/pages/AutomationPage";
 import СSupportPage from "@/pages/СSupportPage";
 import DevelopmentPage from "@/pages/DevelopmentPage";
+import './index.css'
 
 
 function Router() {

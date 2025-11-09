@@ -123,91 +123,91 @@ export default function ContactsSection() {
         </h3>
 
         <Card className="rounded-2xl border-0 shadow-xl bg-white/80 dark:bg-slate-800/80">
-          <CardContent className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">
-                    Имя *
-                  </label>
-                  <Input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
-                    placeholder="Ваше имя"
-                    required
-                    className="h-12 rounded-lg border-slate-200 dark:border-slate-700 focus:border-slate-300 focus:ring-slate-300 transition-all duration-300"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">
-                    Телефон
-                  </label>
-                  <Input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    placeholder="+7 (000) 000-00-00"
-                    className="h-12 rounded-lg border-slate-200 dark:border-slate-700 focus:border-slate-300 focus:ring-slate-300 transition-all duration-300"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">
-                  Email *
-                </label>
-                <Input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  placeholder="your@email.com"
-                  required
-                  className="h-12 rounded-lg border-slate-200 dark:border-slate-700 focus:border-slate-300 focus:ring-slate-300 transition-all duration-300"/>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">
-                  Сообщение *
-                </label>
-                <Textarea
-                  value={formData.message}
-                  onChange={(e) => handleInputChange("message", e.target.value)}
-                  placeholder="Расскажите о вашем проекте, задачах и целях..."
-                  rows={5}
-                  className="rounded-lg border-slate-200 dark:border-slate-700 focus:border-slate-300 focus:ring-slate-300 transition-all duration-300 resize-none min-h-[120px]"
-                  required
-                />
-              </div>
-              
-              <div className="pt-2">
-                <Button
-                  type="submit"
-                  className="
-                    relative
-                    overflow-hidden
-                    inline-flex items-center gap-2 px-4 py-2 rounded-full 
-                    bg-blue-500/20 border border-blue-800/30 
-                    text-blue-600 dark:text-blue-400 text-sm font-bold
-                    backdrop-blur-sm
-                    transition-all duration-1000 ease-out
-                    group
-                    mt-auto
-                    self-start
-                  "
-                >
-                  {/* Бегущий луч */}
-                  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+  <CardContent className="p-8">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+  <label className="text-sm font-medium text-foreground">
+    Имя *
+  </label>
+  <Input
+    type="text"
+    value={formData.name}
+    onChange={(e) => handleInputChange("name", e.target.value)}
+    placeholder="Ваше имя"
+    required
+    className="h-12 rounded-lg border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-0 focus:border-slate-200 dark:focus:border-slate-700 transition-all duration-300"/>
+</div>
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-foreground">
+            Телефон
+          </label>
+          <Input
+            type="tel"
+            value={formData.phone}
+            onChange={(e) => handleInputChange("phone", e.target.value)}
+            placeholder="+7 (000) 000-00-00"
+            className="h-12 rounded-lg border-slate-200 dark:border-slate-700 focus:border-blue-500 focus:ring-0 focus:outline-none transition-all duration-300"
+          />
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-foreground">
+          Email *
+        </label>
+        <Input
+          type="email"
+          value={formData.email}
+          onChange={(e) => handleInputChange("email", e.target.value)}
+          placeholder="your@email.com"
+          required
+          className="h-12 rounded-lg border-slate-200 dark:border-slate-700 focus:border-blue-500 focus:ring-0 focus:outline-none transition-all duration-300"
+        />
+      </div>
+      
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-foreground">
+          Сообщение *
+        </label>
+        <Textarea
+          value={formData.message}
+          onChange={(e) => handleInputChange("message", e.target.value)}
+          placeholder="Расскажите о вашем проекте, задачах и целях..."
+          rows={5}
+          className="rounded-lg border-slate-200 dark:border-slate-700 focus:border-blue-500 focus:ring-0 focus:outline-none transition-all duration-300 resize-none min-h-[120px]"
+          required
+        />
+      </div>
+      
+      <div className="pt-2">
+        <Button
+          type="submit"
+          className="
+            relative
+            overflow-hidden
+            inline-flex items-center gap-2 px-4 py-2 rounded-full 
+            bg-blue-500/20 border border-blue-800/30 
+            text-blue-600 dark:text-blue-400 text-sm font-bold
+            backdrop-blur-sm
+            transition-all duration-1000 ease-out
+            group
+            mt-auto
+            self-start
+          "
+        >
+          {/* Бегущий луч */}
+          <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
 
-                  <span className="relative z-10 transition-all delay-100">
-                    Отправить заявку 
-                  </span>
-                  <ArrowRight className="relative z-10 ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400" />
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+          <span className="relative z-10 transition-all delay-100">
+            Отправить заявку 
+          </span>
+          <ArrowRight className="relative z-10 ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400" />
+        </Button>
+      </div>
+    </form>
+  </CardContent>
+</Card>
       </div>
 
             {/* Слайдер с картинками - справа */}

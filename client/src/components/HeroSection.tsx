@@ -1,55 +1,73 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Shield } from 'lucide-react';
-import heroImage from '@assets/generated_images/background.png';
-import { useEffect, useState } from 'react';
+import { ArrowRight, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState, useCallback } from 'react';
+import Service1 from "@assets/generated_images/Service1.jpg";
+import Service3 from "@assets/generated_images/Service2.jpg";
+import Service2 from "@assets/generated_images/Service4.jpg";
 
 interface HeroSectionProps {
   onLearnMore?: () => void;
 }
 
+const slides = [
+  {
+    image: Service1,
+  },
+  {
+    image: Service2,
+  },
+  {
+    image: Service3,
+  }
+];
+
 export default function HeroSection({ onLearnMore }: HeroSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
-
     return () => clearTimeout(timer);
   }, []);
+
+  // Автоплей слайдера
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
   const handleLearnMore = () => {
     console.log('Learn more button clicked');
     onLearnMore?.();
   };
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const handleMouseEnter = () => setIsAutoPlaying(false);
+  const handleMouseLeave = () => setIsAutoPlaying(true);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Enhanced Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="IT Solutions Background"
-          className="w-full h-full object-cover scale-80 group-hover:scale-100 transition-transform duration-3000 ease-out"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
-
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
-        </div>
-      </div>
-
-      {/* Floating Elements */}
-      <div className="absolute inset-0 z-5 overflow-hidden">
-        <div className="absolute top-1/4 left-10 w-6 h-6 bg-blue-500/20 rounded-full blur-xl animate-float"></div>
-        <div className="absolute top-1/3 right-20 w-8 h-8 bg-indigo-500/15 rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-1/4 left-1/4 w-10 h-10 bg-cyan-500/10 rounded-full blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
-      </div>
-
-      {/* Центрированный контент */}
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      {/* Центрированный контент - ПЕРЕД слайдером */}
+      <div className="container mx-auto px-4 lg:px-8 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
 
           {/* Badge с анимацией появления */}
@@ -59,10 +77,10 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
             text-blue-600 dark:text-blue-400 text-sm font-medium mb-8 
             backdrop-blur-sm
             transition-all duration-1000 ease-out
-            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+            ${isVisible ? 'opacity-100 translate-y-0 delay-100' : 'opacity-0 translate-y-8'}
           `}>
-            <Shield className="h-4 w-4 transition-transform duration-500 delay-300 ${isVisible ? 'scale-100' : 'scale-50'}" />
-            <span className="transition-all duration-700 delay-100 ${isVisible ? 'opacity-100' : 'opacity-0'}">
+            <Shield className={`h-4 w-4`} />
+            <span className={`transition-all duration-700 ${isVisible ? 'opacity-100 delay-200' : 'opacity-0'}`}>
               Ваш надежный ИТ-партнер
             </span>
           </div>
@@ -72,31 +90,31 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
             <h1 className={`
               font-Montserrat text-4xl sm:text-5xl lg:text-6xl 
               font-bold text-foreground mb-4 leading-tight
-              transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+              transition-all duration-700 ease-out
+              ${isVisible ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-8'}
             `}>
-              <span className="transition-all duration-800 delay-200 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-                ООО
-              </span>
-              {' '}
               <span className={`
-                
-                transition-all duration-800 delay-400
-                ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+                inline-block transition-all duration-800 ease-out
+                ${isVisible ? 'opacity-100 translate-y-0 delay-400' : 'opacity-0 translate-y-4'}
               `}>
-                «ПРОФ ИТ»
+                ООО «ПРОФ ИТ»
               </span>
             </h1>
 
             <div className={`
-              flex items-center justify-center gap-3 mb-4
-              transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-            `}>
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-border transition-all duration-800 delay-600 ${isVisible ? 'opacity-100 w-12' : 'opacity-0 w-0'}" />
-              <span className="font-Montserrat text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground/80 transition-all duration-800 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-                Эффективность через автоматизацию
-              </span>
-              <div className="h-px w-12 bg-gradient-to-r from-border to-transparent transition-all duration-800 delay-600 ${isVisible ? 'opacity-100 w-12' : 'opacity-0 w-0'}" />
-            </div>
+  flex items-center justify-center gap-3 mb-4
+  transition-all duration-700 ease-out
+  ${isVisible ? 'opacity-100 translate-y-0 delay-500' : 'opacity-0 translate-y-10'}
+`}>
+  <span className={`
+    font-Montserrat text-xl sm:text-2xl lg:text-3xl 
+    font-semibold text-foreground/80 
+    transition-all duration-900 ease-out
+    ${isVisible ? 'opacity-100 delay-700' : 'opacity-0'}
+  `}>
+    Эффективность через автоматизацию
+  </span>
+</div>
           </div>
 
           {/* Description с анимацией */}
@@ -105,42 +123,104 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
             text-muted-foreground mb-12 leading-relaxed 
             max-w-3xl mx-auto
             transition-all duration-1000 ease-out
-            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+            ${isVisible ? 'opacity-100 translate-y-0 delay-800' : 'opacity-0 translate-y-8'}
           `}>
-            <span className="transition-all duration-700 delay-800 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-              Комплексные{' '}
-              <span className="text-foreground font-semibold transition-all duration-500 delay-900 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-                ИТ-решения
-              </span>
-              {' '}для цифровой трансформации вашего бизнеса.{' '}
-            </span>
-            <span className="transition-all duration-700 delay-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-              От автоматизации процессов до полного цикла разработки — повышаем эффективность{' '}
-            </span>
-            <span className="transition-all duration-700 delay-1200 ${isVisible ? 'opacity-100' : 'opacity-0'}">
+            <span className={`
+              inline-block transition-all duration-800 ease-out
+              ${isVisible ? 'opacity-100 delay-900' : 'opacity-0'}
+            `}>
+              Комплексные ИТ-решения для цифровой трансформации вашего бизнеса. 
+              От автоматизации процессов до полного цикла разработки — повышаем эффективность 
               и создаем конкурентные преимущества.
             </span>
           </p>
 
-          {/* CTA Button */}
-          <div className="flex justify-center">
-            <Button
-              onClick={handleLearnMore}
-              className="
-    inline-flex items-center gap-2 px-4 py-2 rounded-full 
-    bg-blue-500/10 border border-blue-800/20 
-    text-blue-600 dark:text-blue-400 text-sm font-bold mb-8 
-    backdrop-blur-sm
-    transition-all duration-1000 ease-out
-    ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-  "
-            >
-              <span className="transition-all delay-100 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-                О компании
-              </span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}" />
-            </Button>
+          
+            {/* CTA Button */}
+<div className="flex justify-center">
+  <Button
+    onClick={() => {
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }}
+    className={`
+      relative
+      overflow-hidden
+      inline-flex items-center gap-2 px-4 py-2 rounded-full 
+      bg-blue-500/20 border border-blue-800/30 
+      text-blue-600 dark:text-blue-400 text-base font-bold
+      backdrop-blur-sm
+      transition-all duration-1000 ease-out
+      group
+      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+      hover:border-blue-400 hover:bg-blue-500/30
+    `}
+  >
+    {/* Бегущий луч */}
+    <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+    <span className="relative z-10 transition-all duration-300">
+      О компании
+    </span>
+    <ArrowRight className="relative z-10 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
+  </Button>
+
+</div>
+        </div>
+      </div>
+
+      {/* Слайдер на фоне - ПОСЛЕ контента */}
+      <div className="absolute inset-0 z-10">
+        <div 
+          className="relative h-full w-full overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div 
+            className="absolute inset-0 flex transition-transform duration-1000 ease-in-out"
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+          {slides.map((slide, index) => (
+  <div key={index} className="w-full h-full flex-shrink-0 relative">
+    <img 
+      src={slide.image} 
+      className="w-full h-full object-cover brightness-120 opacity-40" // Макс. яркость + прозрачность
+      alt={`Slide ${index + 1}`}
+    />
+    {/* Белый фон */}
+    <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]" />
+  </div>
+))}
           </div>
+
+         {/* Полоса состояния с градиентом */}
+<div className="absolute top-0 left-0 right-0 z-30 h-1 bg-white/10">
+  <div 
+    className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-1000 ease-out"
+    style={{ 
+      width: `${((currentSlide + 1) / slides.length) * 100}%` 
+    }}
+  />
+</div>
+
+          {/* Кнопки навигации */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button 
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </section>

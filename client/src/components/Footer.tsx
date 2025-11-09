@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import logo from "@assets/generated_images/logo.png";
+import { Link, useLocation } from 'react-router-dom';
 
 import {
   Mail,
@@ -15,6 +16,9 @@ export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+// В компоненте:
+const location = useLocation();
+const isActive = location.pathname === '/privacy-policy'; // или ваш путь
 
   const links = {
     services: [
@@ -24,10 +28,11 @@ export default function Footer() {
       { name: "Разработка ПО", href: "#" },
     ],
     company: [
+      { name: "Главная", href: "#home" },
       { name: "О компании", href: "#about" },
-      { name: "Услуги", href: "#" },
-      { name: "Направления", href: "#" },
-      { name: "Контакты", href: "#" },
+      { name: "Услуги", href: "#services" },
+      { name: "Направления", href: "#directions" },
+      { name: "Контакты", href: "#contacts" },
     ],
   };
 
@@ -175,25 +180,62 @@ export default function Footer() {
                 © 2025 ООО "ПРОФ ИТ". Все права защищены.
               </span>
               <div className="hidden sm:block w-px h-4 bg-border/50" />
-              <a 
-                href="#" 
-                className="hover:text-foreground transition-colors duration-300 hover:underline decoration-blue-400"
-              >
-                Политика конфиденциальности
-              </a>
+              <Link 
+  to="/privacy-policy"
+  className={`
+    relative px-1 py-2
+    transition-all duration-300 ease-out
+    font-medium
+    focus:outline-none focus:text-blue-600 
+    group
+    ${isActive 
+      ? 'text-blue-600' 
+      : 'text-muted-foreground hover:text-blue-600'
+    }
+  `}
+  data-testid="privacy-policy-link"
+>
+  Политика конфиденциальности
+  {/* Подчеркивание для активного элемента */}
+  <div className={`
+    absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
+    transition-all duration-300 ease-out
+    ${isActive 
+      ? 'opacity-100 transform scale-100' 
+      : 'opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100'
+    }
+  `} />
+</Link>
             </div>
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={scrollToTop}
-            className="order-1 lg:order-2 hover-elevate bg-background/50 backdrop-blur-sm border-border/50 hover:border-blue-300 transition-all duration-300 group"
-            data-testid="button-scroll-top"
-          >
-            <ArrowUp className="h-4 w-4 mr-2 group-hover:animate-bounce" />
-            Наверх
-          </Button>
+         <Button
+  variant="outline"
+  size="sm"
+  onClick={scrollToTop}
+  className="
+    relative
+    overflow-hidden
+    inline-flex items-center gap-2 px-4 py-2 rounded-full 
+    border border-blue-800/30 
+    text-blue-600 dark:text-blue-400 text-sm font-bold
+    backdrop-blur-sm
+    transition-all duration-1000 ease-out
+    group
+    order-1 lg:order-2 hover-elevate
+    hover:border-blue-300
+    hover:text-blue-600 dark:hover:text-blue-400  /* Добавьте эту строку */
+  "
+  data-testid="button-scroll-top"
+>
+  {/* Бегущий луч */}
+  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+  <ArrowUp className="relative z-10 h-4 w-4 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
+  <span className="relative z-10 transition-all">
+    Наверх
+  </span>
+</Button>
         </div>
       </div>
     </footer>
