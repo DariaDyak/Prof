@@ -42,7 +42,7 @@ const processSteps = [
 
 export default function DevelopmentProcess() {
   return (
-    <section className=" dark:from-slate-900 dark:to-purple-900/10 ">
+    <section className="pt-8 pb-16 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
@@ -54,23 +54,23 @@ export default function DevelopmentProcess() {
           </p>
         </div>
 
-        <div className="pb-20 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {processSteps.map((item, index) => (
             <Card 
               key={index} 
-              className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm"
+              className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
             >
               <CardContent className="p-6 relative z-10">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center space-x-2">
-                    <div className="w-6 h-6 rounded-full bg-blue-500 text-white text-xs flex items-center justify-center font-bold">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white text-xs flex items-center justify-center font-bold">
                       {index + 1}
                     </div>
                     <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">
                       {item.step}
                     </span>
                   </div>
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
                     {item.icon}
                   </div>
                 </div>

@@ -21,7 +21,7 @@ const processSteps = [
 
 export default function ProcessWorkflow() {
   return (
-    <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-800 dark:to-blue-900/20">
+    <Card className="bg-white border-blue-300 transition-all duration-300 shadow-lg dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
       <CardContent className="p-8">
         <h3 className="text-2xl font-bold text-foreground mb-6">Наш подход к работе</h3>
         
@@ -30,7 +30,7 @@ export default function ProcessWorkflow() {
           {processSteps.map((step, index) => (
             <div
               key={index}
-              className="flex items-start space-x-4 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer"
+              className="flex items-start space-x-4 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg"
             >
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-2">

@@ -5,17 +5,16 @@ import ResultsSection from "./ResultsSection";
 export default function InteractiveSupportSection() {
   return (
     <>
-      <section className="py-8 bg-background">
+      <section className="pt-20 pb-16  bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
-              Надежное сопровождение <span className="block text-blue-600 dark:text-blue-400">вашей системы 1С</span>
+          <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-6">
+            Надежное сопровождение <span className="block text-blue-600 dark:text-blue-400">вашей системы 1С</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-5xl mx-auto">
-              1С сопровождение — это услуга, которая позволяет компаниям поддерживать работоспособность и эффективность системы управления и автоматизации бизнес-процессов в 1С.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Позволяет компаниям поддерживать работоспособность и эффективность системы управления и автоматизации бизнес-процессов в 1С
             </p>
-          </div>
-
+        </div>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             
             {/* Левая колонка - Процесс работы */}

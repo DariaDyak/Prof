@@ -27,14 +27,14 @@ export default function AutomationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground font-Montserrat">
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
 
       <Header onNavigate={scrollToSection} />
 
-      <main className="space-y-20"> {/* Добавлено равномерное расстояние */}
+      <main> {/* Добавлено равномерное расстояние */}
         {/* ItDecisions с кастомным контентом для страницы решений */}
         <ItDecisions 
           badgeText="Автоматизация процессов"

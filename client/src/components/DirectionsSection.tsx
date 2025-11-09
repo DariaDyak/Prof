@@ -89,43 +89,37 @@ export default function DirectionsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {directions.map((direction, index) => (
-            <Card
-              key={index}
-  className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm cursor-pointer min-h-[260px] flex flex-col"
-
-              data-testid={`card-direction-${index}`}
-            >
-              {/* Анимированный градиентный фон */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${direction.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-
-
-              <CardContent className="p-6 relative z-10 flex flex-col h-full">
-                {/* Иконка с градиентом */}
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${direction.gradient} flex items-center justify-center text-white mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
-                  <direction.icon className="h-6 w-6" />
-                </div>
-
-                {/* Заголовок */}
-                <h3 className="text-lg font-bold text-foreground mb-4 leading-tight flex-grow">
-                  {direction.title}
-                </h3>
-
-                {/* Описание */}
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  {direction.description}
-                </p>
-
-
-              </CardContent>
-
-              {/* Эффект границы при наведении */}
-              <div className={`absolute inset-0 rounded-lg bg-gradient-to-br ${direction.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}>
-                <div className="absolute inset-[2px] rounded-lg bg-white dark:bg-slate-800"></div>
-              </div>
-            </Card>
-          ))}
+  {directions.map((direction, index) => (
+    <Card
+      key={index}
+      className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+      data-testid={`card-direction-${index}`}
+    >
+      <div className="flex flex-col h-full">
+        {/* Иконка со статичным фоном */}
+        <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center mb-4">
+          {/* Фоновый квадратик */}
+          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+            {/* Иконка */}
+            <div className="text-white">
+              <direction.icon className="h-6 w-6" />
+            </div>
+          </div>
         </div>
+        
+        {/* Контент */}
+        <div className="flex-1">
+          <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-blue-600 transition-colors duration-300">
+            {direction.title}
+          </h3>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            {direction.description}
+          </p>
+        </div>
+      </div>
+    </Card>
+  ))}
+</div>
 
 
       </div>

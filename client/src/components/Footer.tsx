@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import logo from "@assets/generated_images/logo.png";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import {
   Mail,
@@ -16,24 +16,94 @@ export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-// В компоненте:
-const location = useLocation();
-const isActive = location.pathname === '/privacy-policy'; // или ваш путь
+
+  const handleNavigation = (link: { href: string; type?: string }) => {
+    // Если ссылка ведет на другую страницу (начинается с /)
+    if (link.href.startsWith('/')) {
+      navigate(link.href);
+    } 
+    // Если это якорная ссылка на главной странице
+    else if (link.type === 'anchor') {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          scrollToElement(link.href);
+        }, 100);
+      } else {
+        scrollToElement(link.href);
+      }
+    }
+    
+  };
+
+  const scrollToElement = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isActive = location.pathname === '/privacy-policy';
 
   const links = {
     services: [
-      { name: "Разработка IT-решений", href: "#" },
-      { name: "Автоматизация бизнес-процессов", href: "#" },
-      { name: "1С сопровождение", href: "#" },
-      { name: "Разработка ПО", href: "#" },
+      { 
+        name: "Разработка IT-решений", 
+        href: "/Decisions",
+        type: "page" 
+      },
+      { 
+        name: "Автоматизация бизнес-процессов", 
+        href: "/AutomationPage",
+        type: "page" 
+      },
+      { 
+        name: "1С сопровождение", 
+        href: "/CSupportPage",
+        type: "page" 
+      },
+      { 
+        name: "Разработка ПО", 
+        href: "/DevelopmentPage",
+        type: "page" 
+      },
     ],
     company: [
-      { name: "Главная", href: "#home" },
-      { name: "О компании", href: "#about" },
-      { name: "Услуги", href: "#services" },
-      { name: "Направления", href: "#directions" },
-      { name: "Контакты", href: "#contacts" },
-    ],
+      { 
+        name: "Главная", 
+        href: "home", 
+        type: "anchor" 
+      },
+      { 
+        name: "О компании", 
+        href: "about", 
+        type: "anchor" 
+      },
+      { 
+        name: "Услуги", 
+        href: "services", 
+        type: "anchor" 
+      },
+      { 
+        name: "Направления", 
+        href: "directions", 
+        type: "anchor" 
+      },
+      { 
+        name: "Контакты", 
+        href: "contacts", 
+        type: "anchor" 
+      },
+    ]
   };
 
   return (
@@ -60,7 +130,6 @@ const isActive = location.pathname === '/privacy-policy'; // или ваш пу�
                   <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     ПРОФ ИТ
                   </span>
-          
                 </div>
               </div>
 
@@ -125,22 +194,22 @@ const isActive = location.pathname === '/privacy-policy'; // или ваш пу�
             </div>
 
             {/* Services */}
-            <div className="px-20 space-y-6">
+            <div className="space-y-6">
               <div>
                 <h3 className="font-bold text-foreground text-lg mb-4 pb-2 border-b border-border/50">
                   Услуги
                 </h3>
                 <ul className="space-y-3">
-                  {links.services.map((link, index) => (
+                  {links.services.map((link) => (
                     <li key={link.name}>
-  <a
-    href={link.href}
-    className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2"
-  >
-    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
-    <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
-  </a>
-</li>
+                      <button
+                        onClick={() => handleNavigation(link)}
+                        className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
+                        <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
+                      </button>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -154,19 +223,21 @@ const isActive = location.pathname === '/privacy-policy'; // или ваш пу�
                 </h3>
                 <ul className="space-y-3">
                   {links.company.map((link) => (
-                                        <li key={link.name}>
-  <a
-    href={link.href}
-    className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2"
-  >
-    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
-    <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
-  </a>
-</li>
+                    <li key={link.name}>
+                      <button
+                        onClick={() => handleNavigation(link)}
+                        className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
+                        <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
+                      </button>
+                    </li>
                   ))}
                 </ul>
               </div>
             </div>
+
+            
           </div>
         </div>
 
@@ -181,61 +252,59 @@ const isActive = location.pathname === '/privacy-policy'; // или ваш пу�
               </span>
               <div className="hidden sm:block w-px h-4 bg-border/50" />
               <Link 
-  to="/privacy-policy"
-  className={`
-    relative px-1 py-2
-    transition-all duration-300 ease-out
-    font-medium
-    focus:outline-none focus:text-blue-600 
-    group
-    ${isActive 
-      ? 'text-blue-600' 
-      : 'text-muted-foreground hover:text-blue-600'
-    }
-  `}
-  data-testid="privacy-policy-link"
->
-  Политика конфиденциальности
-  {/* Подчеркивание для активного элемента */}
-  <div className={`
-    absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
-    transition-all duration-300 ease-out
-    ${isActive 
-      ? 'opacity-100 transform scale-100' 
-      : 'opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100'
-    }
-  `} />
-</Link>
+                to="/privacy-policy"
+                className={`
+                  relative px-1 py-2
+                  transition-all duration-300 ease-out
+                  font-medium
+                  focus:outline-none focus:text-blue-600 
+                  group
+                  ${isActive 
+                    ? 'text-blue-600' 
+                    : 'text-muted-foreground hover:text-blue-600'
+                  }
+                `}
+                data-testid="privacy-policy-link"
+              >
+                Политика конфиденциальности
+                <div className={`
+                  absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
+                  transition-all duration-300 ease-out
+                  ${isActive 
+                    ? 'opacity-100 transform scale-100' 
+                    : 'opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100'
+                  }
+                `} />
+              </Link>
             </div>
           </div>
 
-         <Button
-  variant="outline"
-  size="sm"
-  onClick={scrollToTop}
-  className="
-    relative
-    overflow-hidden
-    inline-flex items-center gap-2 px-4 py-2 rounded-full 
-    border border-blue-800/30 
-    text-blue-600 dark:text-blue-400 text-sm font-bold
-    backdrop-blur-sm
-    transition-all duration-1000 ease-out
-    group
-    order-1 lg:order-2 hover-elevate
-    hover:border-blue-300
-    hover:text-blue-600 dark:hover:text-blue-400  /* Добавьте эту строку */
-  "
-  data-testid="button-scroll-top"
->
-  {/* Бегущий луч */}
-  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={scrollToTop}
+            className="
+              relative
+              overflow-hidden
+              inline-flex items-center gap-2 px-4 py-2 rounded-full 
+              border border-blue-800/30 
+              text-blue-600 dark:text-blue-400 text-sm font-bold
+              backdrop-blur-sm
+              transition-all duration-1000 ease-out
+              group
+              order-1 lg:order-2 hover-elevate
+              hover:border-blue-300
+              hover:text-blue-600 dark:hover:text-blue-400
+            "
+            data-testid="button-scroll-top"
+          >
+            <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
 
-  <ArrowUp className="relative z-10 h-4 w-4 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
-  <span className="relative z-10 transition-all">
-    Наверх
-  </span>
-</Button>
+            <ArrowUp className="relative z-10 h-4 w-4 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
+            <span className="relative z-10 transition-all">
+              Наверх
+            </span>
+          </Button>
         </div>
       </div>
     </footer>

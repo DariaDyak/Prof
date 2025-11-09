@@ -11,7 +11,7 @@ export default function AutomationBenefits() {
           </h2>
         </div>
 
-        <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-blue-50/50 dark:from-slate-800 dark:to-blue-900/20 hover:shadow-3xl transition-all duration-500 mb-20">
+        <Card className="bg-gradient-to-br from-white to-blue-50/50 group bg-white dark:bg-slate-800 rounded-2xl dark:border-slate-700 border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden mb-20">
           <CardContent className="p-8">
             {/* Основной текст */}
             <div className="space-y-6">

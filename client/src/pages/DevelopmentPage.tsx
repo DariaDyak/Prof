@@ -28,14 +28,14 @@ export default function DevelopmentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground font-Montserrat">
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
 
       <Header onNavigate={scrollToSection} />
 
-      <main className="space-y-20">
+      <main>
         <ItDecisions 
           badgeText="Разработка ПО"
           title="Индивидуальная разработка программного обеспечения"

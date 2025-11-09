@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import logo from '@assets/generated_images/logo.png';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   onNavigate?: (section: string) => void;
@@ -10,6 +11,9 @@ interface HeaderProps {
 export default function Header({ onNavigate }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const headerRef = useRef<HTMLElement>(null);
 
   const navigationItems = [
     { label: 'Главная', id: 'home' },
@@ -19,71 +23,118 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: 'Контакты', id: 'contacts' }
   ];
 
-  // Улучшенная функция для плавного скролла
-  const smoothScrollTo = (element: HTMLElement, offset: number = 0) => {
-    const elementRect = element.getBoundingClientRect();
-    const absoluteElementTop = elementRect.top + window.pageYOffset;
-    const scrollPosition = absoluteElementTop - offset;
+  // Функция для получения высоты header
+  const getHeaderHeight = () => {
+    if (headerRef.current) {
+      return headerRef.current.offsetHeight;
+    }
+    return 80; // Значение по умолчанию
+  };
 
-    window.scrollTo({
-      top: scrollPosition,
-      behavior: 'smooth'
-    });
+  // Улучшенная функция скролла
+  const scrollToElement = (sectionId: string, retries = 3) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = getHeaderHeight();
+      const elementRect = element.getBoundingClientRect();
+      const absoluteElementTop = elementRect.top + window.pageYOffset;
+      const scrollPosition = absoluteElementTop - headerHeight;
+
+      console.log(`Scrolling to ${sectionId}:`, {
+        headerHeight,
+        elementTop: elementRect.top,
+        absoluteElementTop,
+        scrollPosition,
+        currentScroll: window.pageYOffset
+      });
+
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: "smooth"
+      });
+    } else if (retries > 0) {
+      // Если элемент не найден, пробуем еще раз через задержку
+      setTimeout(() => {
+        scrollToElement(sectionId, retries - 1);
+      }, 100);
+    } else {
+      console.warn(`Элемент с id "${sectionId}" не найден`);
+    }
   };
 
   const handleNavClick = (id: string) => {
     setActiveId(id);
     
-    // Небольшая задержка для гарантии обновления состояния
-    setTimeout(() => {
+    if (location.pathname !== '/') {
+      // Переходим на главную и сохраняем информацию о скролле
+      navigate('/');
+      sessionStorage.setItem('scrollToSection', id);
+    } else {
+      // На главной странице
       if (id === 'home') {
-        // Плавный скролл к верху страницы
         window.scrollTo({
           top: 0,
           behavior: 'smooth'
         });
       } else {
-        const element = document.getElementById(id);
-        if (element) {
-          const header = document.querySelector('header');
-          const headerHeight = header ? header.getBoundingClientRect().height : 0;
-          
-          // Добавляем дополнительный отступ для лучшего визуального восприятия
-          const offset = headerHeight;
-          smoothScrollTo(element, offset);
-        } else {
-          console.warn(`Элемент с id "${id}" не найден. Проверьте наличие секций на странице.`);
-        }
+        // Небольшая задержка для гарантии что DOM обновлен
+        setTimeout(() => {
+          scrollToElement(id);
+        }, 50);
       }
-    }, 50);
+    }
     
     onNavigate?.(id);
     setIsMobileMenuOpen(false);
   };
 
+  // Обработка скролла после перехода на главную страницу
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const sectionToScroll = sessionStorage.getItem('scrollToSection');
+      if (sectionToScroll) {
+        const timer = setTimeout(() => {
+          if (sectionToScroll === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            scrollToElement(sectionToScroll);
+          }
+          sessionStorage.removeItem('scrollToSection');
+        }, 800); // Увеличиваем задержку
+        
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [location.pathname]);
+
   // Обновляем активный раздел при скролле
   useEffect(() => {
+    if (location.pathname !== '/') {
+      setActiveId(null);
+      return;
+    }
+
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Небольшой отступ для активации
+      const scrollPosition = window.scrollY;
+      const headerHeight = getHeaderHeight();
       
-      let currentActiveId: string | null = 'home'; // По умолчанию home
+      let currentActiveId: string | null = 'home';
       
-      // Проверяем все секции кроме home
-      for (const item of [...navigationItems].filter(item => item.id !== 'home')) {
+      for (const item of navigationItems.filter(item => item.id !== 'home')) {
         const element = document.getElementById(item.id);
         if (element) {
-          const elementTop = element.offsetTop;
-          const elementHeight = element.offsetHeight;
+          const elementRect = element.getBoundingClientRect();
+          const elementTop = elementRect.top + window.pageYOffset;
           
-          // Если мы прокрутили дальше начала секции, считаем её активной
-          if (scrollPosition >= elementTop - 100) {
+          // Проверяем, видна ли секция в области просмотра с учетом header
+          if (scrollPosition + headerHeight >= elementTop - 50) {
             currentActiveId = item.id;
           }
         }
       }
       
-      // Если мы в самом верху страницы - активна home
-      if (scrollPosition < 100) {
+      // Если в самом верху - home
+      if (scrollPosition < 50) {
         currentActiveId = 'home';
       }
       
@@ -91,14 +142,16 @@ export default function Header({ onNavigate }: HeaderProps) {
     };
 
     window.addEventListener('scroll', handleScroll);
-    // Вызываем сразу для установки начального состояния
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [navigationItems]);
+  }, [navigationItems, location.pathname]);
 
   return (
-    <header className="sticky top-0 z-50 bg-card/85 backdrop-blur-md border-b supports-backdrop-blur:bg-card/60">
+    <header 
+      ref={headerRef}
+      className="sticky top-0 z-50 bg-card/85 backdrop-blur-md border-b supports-backdrop-blur:bg-card/60"
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Логотип */}
@@ -107,7 +160,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             onClick={() => handleNavClick('home')}
             role="button"
             tabIndex={0}
-            onKeyPress={(e) => e.key === 'Enter' && handleNavClick('home')}
+            onKeyDown={(e) => e.key === 'Enter' && handleNavClick('home')}
           >
             <img 
               src={logo} 
@@ -122,7 +175,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           {/* Десктопное меню */}
           <nav className="hidden md:flex items-center space-x-8">
             {navigationItems.map((item) => {
-              const isActive = activeId === item.id;
+              const isActive = activeId === item.id && location.pathname === '/';
               return (
                 <button
                   key={item.id}
@@ -142,7 +195,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                   type="button"
                 >
                   {item.label}
-                  {/* Подчеркивание для активного элемента */}
                   <div className={`
                     absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
                     transition-all duration-300 ease-out
@@ -178,7 +230,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           <div className="md:hidden border-t bg-background/95 backdrop-blur-lg animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-1 p-4">
               {navigationItems.map((item) => {
-                const isActive = activeId === item.id;
+                const isActive = activeId === item.id && location.pathname === '/';
                 return (
                   <button
                     key={item.id}

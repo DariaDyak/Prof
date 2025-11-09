@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Image_1 from "@assets/generated_images/image_1.jpeg";
+import Aboutcompany from "@assets/generated_images/aboutcompany.png";
 
 export default function AboutSection() {
   const services = [
@@ -68,7 +68,7 @@ export default function AboutSection() {
         <Card className="overflow-hidden border-0 h-[430px] shadow-2xl"> {/* Убрал фиксированную высоту, добавил flex-1 */}
           <div className="relative group h-full "> {/* Добавил h-full */}
             <img
-              src={Image_1}
+              src={Aboutcompany}
               alt="Компьютерный офис компании ПРОФ ИТ"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />

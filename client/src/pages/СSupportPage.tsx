@@ -26,14 +26,14 @@ export default function CSupportPage() {
   };
 
   return (
-      <div className="min-h-screen text-foreground">
+      <div className="min-h-screen text-foreground font-Montserrat">
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
 
       <Header onNavigate={scrollToSection} />
 
-      <main className="space-y-20">
+      <main>
         {/* Hero секция с ItDecisions */}
         <ItDecisions 
           badgeText="1С сопровождение"

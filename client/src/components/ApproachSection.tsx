@@ -27,30 +27,40 @@ export default function ApproachSection() {
   ];
 
   return (
-    <section className="py-16 bg-background">
-  <div className="container mx-auto px-4 lg:px-8">
-    <div className="text-center mb-16">
-      <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
-        Пошаговая методология внедрения <span className="block text-blue-600 dark:text-blue-400">комплексных IT-решений</span>
-      </h2>
-      <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-        Процесс оценки текущего состояния ИТ-инфраструктуры компании включает анализ всех аспектов 
-        информационных технологий
-      </p>
-    </div>
+    <section className="pt-20 pb-16 bg-white dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
+     <div className="container mx-auto px-4 lg:px-8">
+  <div className="text-center mb-16">
+    <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-6">
+      Пошаговая методология внедрения <span className="block text-blue-600 dark:text-blue-400">комплексных IT-решений</span>
+    </h2>
+    <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+      Процесс оценки текущего состояния ИТ-инфраструктуры компании включает анализ всех аспектов 
+      информационных технологий
+    </p>
+  </div>
 
-    <div className="grid grid-cols-2 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+  {/* Контейнер для центрирования колонок */}
+  <div className="flex justify-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-none">
       {steps.map((step, index) => (
         <div 
           key={index}
-          className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer"
+          className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
         >
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 text-white w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              {step.icon}
+            {/* Иконка со статичным фоном */}
+            <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center">
+              {/* Фоновый квадратик */}
+              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                {/* Иконка */}
+                <div className="text-white">
+                  {step.icon}
+                </div>
+              </div>
             </div>
+            
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-foreground  group-hover:text-blue-600 transition-colors duration-300">
+              <h3 className="text-xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300">
                 {step.title}
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -62,6 +72,7 @@ export default function ApproachSection() {
       ))}
     </div>
   </div>
-</section>
+</div>
+    </section>
   );
 }

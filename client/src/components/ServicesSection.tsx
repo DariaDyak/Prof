@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Settings, Workflow, Wrench, Code } from "lucide-react"; // Добавлены иконки
-import Service1 from "@assets/generated_images/Service1.jpg";
-import Service3 from "@assets/generated_images/Service2.jpg";
-import Service4 from "@assets/generated_images/Service3.jpg";
-import Service2 from "@assets/generated_images/Service4.jpg";
+import U1 from "@assets/generated_images/U1.png";
+import U2 from "@assets/generated_images/U2.png";
+import U3 from "@assets/generated_images/U1.png";
+import U4 from "@assets/generated_images/U4.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function ServicesSection() {
@@ -14,7 +14,7 @@ export default function ServicesSection() {
       title: "Комплексные IT-решения для бизнеса",
       description:
         "Предлагаем комплексный аудит текущей ИТ-инфраструктуры с последующей разработкой стратегии развития. Реализуем необходимые преобразования для оптимизации бизнес-процессов и укрепления позиций на рынке.",
-      image: Service1,
+      image: U1,
       link: "/decisions",
       icon: Settings // Иконка для этой услуги
     },
@@ -22,7 +22,7 @@ export default function ServicesSection() {
       title: "Автоматизация и оптимизация бизнес-процессов компании",
       description:
         "Проводим детальный анализ ваших рабочих процессов и создаем индивидуальные решения, которые экономят время, снижают операционные расходы и предотвращают возможные ошибки.",
-      image: Service2,
+      image: U2,
       link: "/automationpage",
       icon: Workflow // Иконка для этой услуги
     },
@@ -30,7 +30,7 @@ export default function ServicesSection() {
       title: "1С сопровождение",
       description:
         "Мы обеспечиваем бесперебойную работу вашей системы 1С, оптимизируем бизнес-процессы и поддерживаем актуальность конфигураций для максимальной эффективности.",
-      image: Service3,
+      image: U3,
       link: "/cSupportPage",
       icon: Wrench // Иконка для этой услуги
     },
@@ -38,7 +38,7 @@ export default function ServicesSection() {
       title: "Разработка ПО",
       description:
         "Профессиональные разработчики реализуют кастомные программные решения, полностью адаптированные под специфические требования каждого клиента.",
-      image: Service4,
+      image: U4,
       link: "/developmentPage",
       icon: Code // Иконка для этой услуги
     },
