@@ -7,6 +7,7 @@ import AutomationSection from "@/components/AutomationSection";
 import { useEffect } from "react";
 import AutomationBenefits from "@/components/AutomationBenefits ";
 
+
 export default function AutomationPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,6 +42,7 @@ export default function AutomationPage() {
           title="Профессиональная автоматизация процессов"
           description="Анализируем бизнес-процессы и создаем индивидуальные решения для их автоматизации с использованием современных технологий"
           showBackButton={true}
+          backgroundImage="U1"
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали IT-решений')}
           titleSize="xl"

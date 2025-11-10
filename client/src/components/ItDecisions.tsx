@@ -1,7 +1,9 @@
 // components/HeroSection.tsx
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-//import heroImage from '@assets/generated_images/U1.png';
+import U1 from '@assets/generated_images/U1.png';
+import U2 from '@assets/generated_images/U2.png';
+import U3 from '@assets/generated_images/U3.jpg';
 import { Button } from "@/components/ui/button";
 
 interface ItDecisionsProps {
@@ -13,7 +15,7 @@ interface ItDecisionsProps {
   // Дополнительные опции
   showBackButton?: boolean;
   backButtonText?: string;
-  backgroundImage?: string;
+  backgroundImage?: "U1" | "U2" | "U3" | string; // Изменено для поддержки предустановленных изображений
   onLearnMore?: () => void;
   onBadgeClick?: () => void;
   
@@ -23,13 +25,20 @@ interface ItDecisionsProps {
   minHeight?: "sm" | "md" | "lg" | "xl";
 }
 
+// Объект с картинками для удобного доступа
+const backgroundImages = {
+  U1: U1,
+  U2: U2, 
+  U3: U3
+};
+
 export default function ItDecisions({ 
   badgeText = "IT-решения для бизнеса",
   title,
   description,
   showBackButton = true,
   backButtonText = "Назад на главную",
-  //backgroundImage = heroImage,
+  backgroundImage = "U1", // По умолчанию U1
   onLearnMore,
   onBadgeClick,
   titleSize = "xl",
@@ -37,6 +46,16 @@ export default function ItDecisions({
   minHeight = "md"
 }: ItDecisionsProps) {
   
+  // Получаем правильное изображение
+  const getBackgroundImage = () => {
+    if (typeof backgroundImage === 'string' && backgroundImage in backgroundImages) {
+      return backgroundImages[backgroundImage as keyof typeof backgroundImages];
+    }
+    return backgroundImage; // Возвращаем как есть, если это custom путь
+  };
+
+  const currentBackgroundImage = getBackgroundImage();
+
   const handleLearnMore = () => {
     console.log('Learn more button clicked');
     onLearnMore?.();
@@ -73,7 +92,7 @@ export default function ItDecisions({
       {/* Фоновое изображение */}
       <div className="absolute inset-0 z-0">
         <img 
-         // src={backgroundImage} 
+          src={currentBackgroundImage} 
           alt="Фон" 
           className="w-full h-full object-cover"
         />
@@ -81,58 +100,52 @@ export default function ItDecisions({
       </div>
 
       {/* Кнопка возврата на главную */}
-{showBackButton && (
-  <div className="container mx-auto lg:px-8 relative z-10">
-    <Link 
-      to="/" 
-      className="group relative inline-flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-blue-600 transition-all duration-300"
-    >
-      <span className="font-medium relative">
-        ← {backButtonText}
-        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-500" />
-      </span>
-    </Link>
-  </div>
-)}
+      {showBackButton && (
+        <div className="container mx-auto lg:px-8 relative z-10">
+          <Link 
+            to="/" 
+            className="group relative inline-flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-blue-600 transition-all duration-300"
+          >
+            <span className="font-medium relative">
+              ← {backButtonText}
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-500" />
+            </span>
+          </Link>
+        </div>
+      )}
 
       {/* Основной контент */}
       <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center relative z-10">
         <div className={`max-w-8xl mx-auto w-full ${alignmentClasses[alignment]}`}>
           
           {/* Бейдж/кнопка */}
-{badgeText && (
-  
-  <Button
-    onClick={handleBadgeClick}
-    className={`
-      relative
-      overflow-hidden
-      inline-flex items-center gap-2 px-4 py-2 
-      border border-blue-800/30 
-      text-blue-600 dark:text-blue-400 text-sm font-medium
-      transition-all duration-1000 ease-out
-      group
-      mb-10 my-4
-      hover:border-blue-400 
-      hover:scale-105
-      hover:text-blue-600 dark:hover:text-blue-400
-      bg-transparent 
-      hover:bg-transparent  /* Прозрачный фон */
-    `}
-    data-testid="hero-badge"
-    variant={onBadgeClick ? "default" : "outline"}
-  >
-    {/* Бегущий луч */}
-    <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-
-    <span className="relative z-10 transition-all duration-300">
-      {badgeText}
-    </span>
-  </Button>
-)}
-
-
-          
+          {badgeText && (
+            <Button
+              onClick={handleBadgeClick}
+              className={`
+                relative
+                overflow-hidden
+                inline-flex items-center gap-2 px-4 py-2 
+                border border-blue-800/30 
+                text-blue-600 dark:text-blue-400 text-sm font-medium
+                transition-all duration-1000 ease-out
+                group
+                mb-10 my-4
+                hover:border-blue-400 
+                hover:scale-105
+                hover:text-blue-600 dark:hover:text-blue-400
+                bg-transparent 
+                hover:bg-transparent
+              `}
+              data-testid="hero-badge"
+              variant={onBadgeClick ? "default" : "outline"}
+            >
+              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+              <span className="relative z-10 transition-all duration-300">
+                {badgeText}
+              </span>
+            </Button>
+          )}
 
           {/* Заголовок */}
           <h1 className={`font-Montserrat ${titleSizes[titleSize]} font-bold text-foreground mb-4 leading-tight`}>

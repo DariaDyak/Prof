@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Settings, Workflow, Wrench, Code } from "lucide-react"; // Добавлены иконки
 import U1 from "@assets/generated_images/U1.png";
 import U2 from "@assets/generated_images/U2.png";
-import U3 from "@assets/generated_images/U1.png";
+import U3 from "@assets/generated_images/U3.jpg";
 import U4 from "@assets/generated_images/U4.jpg";
 import { useNavigate } from "react-router-dom";
 

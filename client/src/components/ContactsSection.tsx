@@ -6,9 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { MapPin, ArrowRight, Phone, Mail, Clock, Send, MessageSquare } from "lucide-react";
 
-//import Service1 from "@assets/generated_images/Service1.jpg";
-//import Service3 from "@assets/generated_images/Service2.jpg";
-//import Service2 from "@assets/generated_images/Service4.jpg";
+import U1 from "@assets/generated_images/U1.png";
+import U2 from "@assets/generated_images/U2.png";
+import U3 from "@assets/generated_images/U3.jpg";
 
 export default function ContactsSection() {
   const [formData, setFormData] = useState({
@@ -24,17 +24,17 @@ export default function ContactsSection() {
 
   const slides = [
     {
-     // image: Service1,
+      image: U1,
       title: "IT-инфраструктура",
       description: "Современные решения для вашего бизнеса"
     },
     {
-     // image: Service2,
+      image: U2,
       title: "Автоматизация", 
       description: "Оптимизация бизнес-процессов"
     },
     {
-      //image: Service3,
+      image: U3,
       title: "1С Сопровождение",
       description: "Профессиональная техническая поддержка"
     }
@@ -122,7 +122,7 @@ export default function ContactsSection() {
           Обратная связь
         </h3>
 
-        <Card className="rounded-2xl border-blue-300 shadow-xl bg-white/80 dark:bg-slate-800/80">
+        <Card className="rounded-2xl border bg-white border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600">
   <CardContent className="p-8">
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-4">
@@ -223,7 +223,7 @@ export default function ContactsSection() {
                 {slides.map((slide, index) => (
                   <div key={index} className="w-full h-full flex-shrink-0 relative">
                     <img 
-                      //src={slide.image} 
+                      src={slide.image} 
                       alt={slide.title}
                       className="w-full h-full object-cover"
                     />
@@ -301,7 +301,7 @@ export default function ContactsSection() {
     {contactInfo.map((info, index) => (
       <div 
         key={index} 
-        className="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-slate-800 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600"
+        className="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600"
       >
         <div className="flex items-center justify-center h-12 w-12 flex-shrink-0">
           <info.icon className="h-7 w-7 text-blue-600 dark:text-blue-400" />

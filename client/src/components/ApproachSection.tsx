@@ -45,13 +45,13 @@ export default function ApproachSection() {
       {steps.map((step, index) => (
         <div 
           key={index}
-          className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-        >
+          className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300"
+>
           <div className="flex items-start gap-4">
             {/* Иконка со статичным фоном */}
             <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center">
               {/* Фоновый квадратик */}
-              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 {/* Иконка */}
                 <div className="text-white">
                   {step.icon}

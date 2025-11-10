@@ -4,7 +4,7 @@ export default function ResultsSection() {
   return (
     <section className="bg-white dark:bg-slate-900 pb-16">
       <div className="container mx-auto px-4 lg:px-8">
-        <Card className="bg-gradient-to-br from-white to-blue-50/50 group bg-white dark:bg-slate-800 rounded-2xl dark:border-slate-700 border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+        <Card className="bg-gradient-to-br from-white to-blue-50/50 group bg-white dark:bg-slate-800 rounded-2xl dark:border-slate-700 border-blue-300 dark:hover:border-blue-600 shadow-lg hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">

@@ -64,7 +64,7 @@ export default function AutomationSection() {
           {benefits.map((benefit, index) => (
             <Card 
               key={index} 
-              className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+              className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               
               <CardContent className="p-8 relative flex flex-col h-full">

@@ -108,7 +108,7 @@ export default function BusinessImpactSection() {
                 {metrics.map((metric, index) => (
                   <div
                     key={metric.label}
-                    className="group bg-white text-center dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                    className="group text-center bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300"
                   >
                     <metric.icon className="w-6 h-6 text-blue-600 mx-auto mb-2 group-hover:scale-110 transition-transform" />
                     <div className="text-2xl font-bold text-foreground group-hover:text-blue-600 transition-colors">{metric.value}</div>
@@ -126,13 +126,13 @@ export default function BusinessImpactSection() {
                 {features.map((feature, index) => (
                   <div
                     key={feature.title}
-                    className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full"
+                    className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300"
                   >
                     <div className="flex items-start gap-4">
                       {/* Иконка со статичным фоном */}
                       <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center">
                         {/* Фоновый квадратик */}
-                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                           {/* Иконка */}
                           <div className="text-white">
                             <feature.icon className="w-6 h-6" />

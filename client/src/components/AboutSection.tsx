@@ -57,7 +57,7 @@ export default function AboutSection() {
       </div>
 
       {/* Изображение с использованием Card */}
-      <div className="lg:order-last flex flex-col ">
+      <div className="lg:order-last flex flex-col">
         {/* Невидимый заголовок для выравнивания высоты */}
         <div className="invisible">
           <h2 className="text-3xl lg:text-4xl font-bold tracking-tight">

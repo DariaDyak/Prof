@@ -42,6 +42,7 @@ export default function Decisions() {
           title="Трансформация бизнеса через инновационные технологии"
           description="Мы создаем масштабируемые, надежные и безопасные IT-решения, которые помогают компаниям автоматизировать процессы, снижать издержки и достигать стратегических целей"
           showBackButton={true}
+          backgroundImage="U2"
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали IT-решений')}
           titleSize="xl"
