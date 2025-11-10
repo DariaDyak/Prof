@@ -156,7 +156,7 @@ export default function Header({ onNavigate }: HeaderProps) {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Логотип */}
           <div 
-            className="flex items-center space-x-3 cursor-pointer" 
+            className="flex items-center space-x-3 cursor-pointer focus:outline-none" 
             onClick={() => handleNavClick('home')}
             role="button"
             tabIndex={0}
@@ -182,13 +182,10 @@ export default function Header({ onNavigate }: HeaderProps) {
                   onClick={() => handleNavClick(item.id)}
                   className={`
                     relative px-1 py-2
-                    transition-all duration-300 ease-out
-                    font-medium
-                    focus:outline-none focus:text-blue-600
-                    group
+                    text-muted-foreground hover:text-blue-600 transition-all duration-300
                     ${isActive 
-                      ? 'text-blue-600' 
-                      : 'text-muted-foreground hover:text-blue-600'
+                      ? 'text-blue-600 text-bold' 
+                      : 'hover:text-blue-600'
                     }
                   `}
                   data-testid={`nav-${item.id}`}
@@ -212,7 +209,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden hover:bg-gray-100 transition-colors"
+            className="md:hidden hover:bg-gray-100 transition-colors focus:ring-0 focus:outline-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             data-testid="button-mobile-menu"
             type="button"
@@ -239,7 +236,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                       text-left px-4 py-3 rounded-lg
                       transition-all duration-300 ease-out
                       font-medium
-                      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                      focus:outline-none focus:ring-0
                       transform hover:translate-x-1
                       ${isActive 
                         ? 'text-blue-600 bg-blue-50 border-l-4 border-blue-600' 
