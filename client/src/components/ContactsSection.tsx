@@ -119,7 +119,7 @@ export default function ContactsSection() {
       {/* Форма обратной связи - слева */}
       <div>
         <h3 className="text-3xl font-bold text-foreground mb-4">
-          Обратная связь
+          Обратная связь +
         </h3>
 
         <Card className="rounded-2xl border bg-white border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600">
