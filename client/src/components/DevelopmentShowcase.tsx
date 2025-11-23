@@ -30,10 +30,10 @@ const solutions = [
 
 export default function DevelopmentShowcase() {
   return (
-    <section className="pt-16 pb-16 bg-white dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
+    <section className="pt-16 pb-16 from-slate-50 to-slate-100 dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-8 ">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-6">
             Комплексные решения
             <span className="block text-blue-600 dark:text-blue-400">для вашего бизнеса</span>
           </h2>
@@ -47,7 +47,7 @@ export default function DevelopmentShowcase() {
           {solutions.map((solution, index) => (
             <Card 
               key={index} 
-              className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:hover:shadow-none dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <CardContent className="p-6 relative z-10 flex flex-col h-full">
   <div className="flex-1">

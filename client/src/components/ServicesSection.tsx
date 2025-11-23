@@ -53,23 +53,23 @@ export default function ServicesSection() {
   return (
     <section id="services" className="pt-10 pb-16 bg-card from-slate-50 to-slate-100  dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 ">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-6">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
             Наши услуги
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto ">
+          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Команда ООО «Проф ИТ» сделает все возможное, чтобы помочь Вам
             достичь Ваших целей в области информационных технологий
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
           {services.map((service, index) => {
             const IconComponent = service.icon; // Получаем компонент иконки
             return (
               <Card
                 key={index}
-                className="group transition-all duration-300 shadow-lg overflow-hidden flex flex-col bg-white"
+                className="group dark:bg-slate-800 rounded-xl sm:rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg transition-all duration-300 overflow-hidden flex flex-col bg-white"
               >
                 <div className="aspect-video relative overflow-hidden">
                   <img
@@ -81,17 +81,17 @@ export default function ServicesSection() {
                   <div className="absolute bottom-4 right-4"></div>
                 </div>
 
-                <CardHeader>
-                  <CardTitle className="text-xl flex items-center gap-3"> {/* Добавлен flex для выравнивания */}
+                <CardHeader className="p-4 sm:p-6">
+                  <CardTitle className="text-base sm:text-lg lg:text-xl flex items-start gap-2 sm:gap-3">
                     {IconComponent && (
-                      <IconComponent className="h-5 w-5 text-blue-600 flex-shrink-0" /> // Маленькая иконка
+                      <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     )}
-                    <span>{service.title}</span>
+                    <span className="leading-tight">{service.title}</span>
                   </CardTitle>
                 </CardHeader>
 
-                <CardContent className="space-y-4 flex flex-col flex-grow">
-                  <p className="leading-relaxed flex-grow">
+                <CardContent className="space-y-3 sm:space-y-4 flex flex-col flex-grow p-4 sm:p-6 pt-0">
+                  <p className="text-sm sm:text-base leading-relaxed flex-grow">
                     {service.description}
                   </p>
 
@@ -99,9 +99,11 @@ export default function ServicesSection() {
                     className="
                       relative
                       overflow-hidden
-                      inline-flex items-center gap-2 px-4 py-2 rounded-full 
+                      inline-flex items-center gap-1 sm:gap-2 
+                      px-3 sm:px-4 py-2 rounded-full 
                       bg-blue-500/20 border border-blue-800/30 
-                      text-blue-600 dark:text-blue-400 text-sm font-bold
+                      text-blue-600 dark:text-blue-400 
+                      text-xs sm:text-sm font-bold
                       backdrop-blur-sm
                       transition-all duration-1000 ease-out
                       group
@@ -118,7 +120,7 @@ export default function ServicesSection() {
                     <span className="relative z-10 transition-all delay-100">
                       Узнать больше
                     </span>
-                    <ArrowRight className="relative z-10 ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400" />
+                    <ArrowRight className="relative z-10 ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400" />
                   </Button>
                 </CardContent>
               </Card>

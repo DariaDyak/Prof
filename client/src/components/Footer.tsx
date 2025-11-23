@@ -33,13 +33,13 @@ export default function Footer() {
         scrollToElement(link.href);
       }
     }
-    
   };
 
   const scrollToElement = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80;
+      // Добавляем отступ 80px для учета высоты header
+      const offset = 65;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -80,7 +80,7 @@ export default function Footer() {
     company: [
       { 
         name: "Главная", 
-        href: "home", 
+        href: "about", 
         type: "anchor" 
       },
       { 
@@ -114,7 +114,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Main Footer Content */}
         <div className="py-16">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Company Info */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3 mb-6">
@@ -138,54 +138,54 @@ export default function Footer() {
                 современная IT-компания, создающая инновационные решения для цифровой 
                 трансформации бизнеса.
               </p>
-              
             </div>
 
-            {/* Services */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-bold text-foreground text-lg mb-4 pb-2 border-b border-border/50">
-                  Услуги
-                </h3>
-                <ul className="space-y-3">
-                  {links.services.map((link) => (
-                    <li key={link.name}>
-                      <button
-                        onClick={() => handleNavigation(link)}
-                        className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
-                        <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+            {/* Две колонки для мобильных и планшетов */}
+            <div className="grid grid-cols-2 gap-6 lg:col-span-2">
+              {/* Services */}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bold text-foreground text-lg mb-4 pb-2 border-b border-border/50">
+                    Услуги
+                  </h3>
+                  <ul className="space-y-3">
+                    {links.services.map((link) => (
+                      <li key={link.name}>
+                        <button
+                          onClick={() => handleNavigation(link)}
+                          className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
+                          <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Company */}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bold text-foreground text-lg mb-4 pb-2 border-b border-border/50">
+                    Компания
+                  </h3>
+                  <ul className="space-y-3">
+                    {links.company.map((link) => (
+                      <li key={link.name}>
+                        <button
+                          onClick={() => handleNavigation(link)}
+                          className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
+                          <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-
-            {/* Company */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-bold text-foreground text-lg mb-4 pb-2 border-b border-border/50">
-                  Компания
-                </h3>
-                <ul className="space-y-3">
-                  {links.company.map((link) => (
-                    <li key={link.name}>
-                      <button
-                        onClick={() => handleNavigation(link)}
-                        className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
-                        <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            
           </div>
         </div>
 
@@ -194,7 +194,7 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="py-8 flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-muted-foreground order-2 lg:order-1">
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
               <span className="text-center sm:text-left">
                 © 2025 ООО "ПРОФ ИТ". Все права защищены.
               </span>
@@ -204,7 +204,7 @@ export default function Footer() {
                 className={`
                   relative px-1 py-2
                   transition-all duration-300 ease-out
-                  font-medium
+                  font-base
                   focus:outline-none focus:text-blue-600 
                   group
                   ${isActive 
@@ -216,17 +216,18 @@ export default function Footer() {
               >
                 Политика конфиденциальности
                 <div className={`
-                  absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
+                  absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 rounded-full
                   transition-all duration-300 ease-out
                   ${isActive 
-                    ? 'opacity-100 transform scale-100' 
-                    : 'opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100'
+                    ? 'w-full opacity-100' 
+                    : 'group-hover:w-full group-hover:opacity-100 opacity-0'
                   }
                 `} />
               </Link>
             </div>
           </div>
 
+          {/* Кнопка "Наверх" - убрана в правый бок */}
           <Button
             variant="outline"
             size="sm"
@@ -240,14 +241,13 @@ export default function Footer() {
               backdrop-blur-sm
               transition-all duration-1000 ease-out
               group
-              order-1 lg:order-2 hover-elevate
+              order-1 lg:order-2
               hover:border-blue-300
               hover:text-blue-600 dark:hover:text-blue-400
+              ml-auto lg:ml-0
             "
             data-testid="button-scroll-top"
           >
-            <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-
             <ArrowUp className="relative z-10 h-4 w-4 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
             <span className="relative z-10 transition-all">
               Наверх

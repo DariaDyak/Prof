@@ -165,11 +165,11 @@ export default function ContactsSection() {
   return (
     <section id="contacts" className="pt-10 pb-16 bg-card dark:from-slate-900 dark:to-blue-900/20">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-6">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
             Контакты
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Готовы обсудить ваш проект? Свяжитесь с нами любым удобным способом
           </p>
         </div>
@@ -180,11 +180,11 @@ export default function ContactsSection() {
             
             {/* Форма обратной связи - слева */}
             <div>
-              <h3 className="text-3xl font-bold text-foreground mb-4">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
                 Обратная связь
               </h3>
 
-              <Card className="rounded-2xl border bg-white border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <Card className="rounded-2xl border dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 dark:hover:shadow-none">
                 <CardContent className="p-8">
                   {/* Сообщения о статусе отправки */}
                   {submitStatus === "success" && (
@@ -198,7 +198,7 @@ export default function ContactsSection() {
                   {submitStatus === "error" && (
                     <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                       <p className="text-red-800 font-medium">
-                        ❌ Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.
+                        Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.
                       </p>
                     </div>
                   )}
@@ -298,7 +298,12 @@ export default function ContactsSection() {
                           Я соглашаюсь с{" "}
                           <Link 
                             to="/dataProcessing" 
-                            className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                            className="
+                        text-sm text-blue-500 dark:text-blue-400 font-bold
+                        hover:text-blue-800 dark:hover:text-blue-600
+                        transition-all duration-300 ease-out
+                        hover:underline
+                        cursor-pointer"
                             target="_blank"
                           >
                             политикой обработки персональных данных
@@ -453,7 +458,7 @@ export default function ContactsSection() {
             {contactInfo.map((info, index) => (
               <div 
                 key={index} 
-                className="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
+                className="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg transition-all duration-300 h-full hover:shadow-2xl dark:hover:shadow-none"
               >
                 <div className="flex items-center justify-center h-12 w-12 flex-shrink-0">
                   <info.icon className="h-7 w-7 text-blue-600 dark:text-blue-400" />

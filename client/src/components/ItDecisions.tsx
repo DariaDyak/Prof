@@ -100,20 +100,32 @@ export default function ItDecisions({
       </div>
 
       {/* Кнопка возврата на главную */}
-      {showBackButton && (
-        <div className="container mx-auto lg:px-8 relative z-10">
-          <Link 
-            to="/" 
-            className="group relative inline-flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-blue-600 transition-all duration-300"
-          >
-            <span className="font-medium relative">
-              ← {backButtonText}
-              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-500" />
-            </span>
-          </Link>
-        </div>
-      )}
-
+{showBackButton && (
+  <div className="container mx-auto lg:px-8 relative z-10">
+    <Link 
+      to="/" 
+      className={`
+        relative py-2
+        transition-all duration-300 ease-out
+        font-base
+        focus:outline-none focus:text-blue-600 
+        group
+        text-muted-foreground hover:text-blue-600
+        inline-block
+        pl-4 lg:pl-0
+      `}
+    >
+      <span className="relative">
+        ← {backButtonText}
+        <div className={`
+          absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 rounded-full
+          transition-all duration-300 ease-out
+          opacity-0 group-hover:w-full group-hover:opacity-100
+        `} />
+      </span>
+    </Link>
+  </div>
+)}
       {/* Основной контент */}
       <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center relative z-10">
         <div className={`max-w-8xl mx-auto w-full ${alignmentClasses[alignment]}`}>

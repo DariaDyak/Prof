@@ -42,10 +42,10 @@ const processSteps = [
 
 export default function DevelopmentProcess() {
   return (
-    <section className="pt-8 pb-16 bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-Montserrat text-2xl lg:text-4xl font-bold text-foreground mb-6">
+    <section className="pt-10 pb-16 bg-card from-slate-50 to-slate-100  dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-8 ">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-6">
             Процесс разработки
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -58,7 +58,7 @@ export default function DevelopmentProcess() {
           {processSteps.map((item, index) => (
             <Card 
               key={index} 
-              className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="group bg-white dark:bg-slate-800 rounded-2xl dark:hover:shadow-none border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <CardContent className="p-6 relative z-10">
                 <div className="flex justify-between items-start mb-4">
