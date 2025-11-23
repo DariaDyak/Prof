@@ -30,7 +30,7 @@ export default function ProcessSection() {
         {/* Обводка вокруг всей секции */}
         <div className="rounded-3xl p-8 lg:p-12 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 bg-white/50 dark:bg-slate-900/50">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-6">
               Процесс внедрения автоматизации
             </h2>
             <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">

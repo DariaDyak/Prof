@@ -80,7 +80,7 @@ export default function AboutSection() {
           {/* Текстовый контент */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold tracking-tight">
+              <h2 className="text-3xl lg:text-3xl font-bold tracking-tight">
                 О компании
               </h2>
             </div>

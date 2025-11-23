@@ -54,7 +54,7 @@ export default function ServicesSection() {
     <section id="services" className="pt-10 pb-16 bg-card from-slate-50 to-slate-100  dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 ">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
             Наши услуги
           </h2>
           <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

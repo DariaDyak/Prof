@@ -8,7 +8,7 @@ export default function ResultsSection() {
           <CardContent className="p-8">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="mb-8 sm:mb-10 lg:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-2xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
                   Результат нашего сотрудничества
                 </h2>
                 <p className="text-muted-foreground leading-relaxed text-base">
@@ -16,7 +16,7 @@ export default function ResultsSection() {
                   а также оказываем поддержку на всех этапах использования 1С системы.
                 </p>
               </div>
-              <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-700 text-sm sm:text-base lg:text-lg xl:text-xl">
+              <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-700 text-sm sm:text-base lg:text-base xl:text-base">
                 <ul className="space-y-4">
                   <li className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>

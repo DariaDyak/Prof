@@ -51,7 +51,7 @@ export default function BusinessImpactSection() {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Заголовок */}
         <div className="text-center mb-8 mt-10 sm:mb-10 lg:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
             Стратегическое <span className="text-blue-600">преимущество</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
