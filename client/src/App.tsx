@@ -11,6 +11,7 @@ import AutomationPage from "@/pages/AutomationPage";
 import СSupportPage from "@/pages/СSupportPage";
 import DevelopmentPage from "@/pages/DevelopmentPage";
 import './index.css'
+import DataProcessing from '@/pages/DataProcessing';
 
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/automationpage" element={<AutomationPage />} />
       <Route path="/cSupportPage" element={<СSupportPage />} />
       <Route path="/developmentPage" element={<DevelopmentPage />} />
+      <Route path="/dataProcessing" element={<DataProcessing />} />
     </Routes>
   );
 }

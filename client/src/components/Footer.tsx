@@ -138,59 +138,7 @@ export default function Footer() {
                 современная IT-компания, создающая инновационные решения для цифровой 
                 трансформации бизнеса.
               </p>
-
-              {/* Контактная информация */}
-              <div className="space-y-4 pt-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-foreground text-sm mb-1">Адрес</p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        г. Краснодар, ул. Рашпилевская, д. 244, этаж 3
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                      <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-foreground text-sm mb-1">Режим работы</p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        Пн-Пт: 9:00-18:00
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-foreground text-sm mb-1">Телефон</p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        +7 (939) 780-83-94
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-foreground text-sm mb-1">Email</p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        info@it4prof.ru
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
             {/* Services */}
