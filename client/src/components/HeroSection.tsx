@@ -148,7 +148,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
           <p className={`
             font-Montserrat text-muted-foreground mb-8 sm:mb-12 leading-relaxed 
             max-w-3xl mx-auto
-            text-sm sm:text-xl lg:text-lg xl:text-xl
+            text-xs sm:text-xs lg:text-lg xl:text-xl
             transform transition-all duration-800 ease-out
             ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}
           `} style={{ transitionDelay: '900ms' }}>
@@ -200,6 +200,25 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
         </div>
       </div>
 
+      {/* Кнопки навигации слайдера - ВЫШЕ основного контента */}
+      <div className="absolute inset-0 z-30 pointer-events-none">
+        
+              <button 
+          onClick={prevSlide}
+          className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-8 sm:h-8 rounded-full backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation pointer-events-auto"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+        <button 
+          onClick={nextSlide}
+          className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-8 sm:h-8 rounded-full backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation pointer-events-auto"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+      </div>
+
       {/* Слайдер на фоне - ПОСЛЕ контента */}
       <div className="absolute inset-0 z-10">
         <div 
@@ -243,7 +262,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`w-1 h-1 sm:w-1 sm:h-1 rounded-full transition-all duration-300 pointer-events-auto ${
                   index === currentSlide 
                     ? 'bg-white scale-125' 
                     : 'bg-white/50 hover:bg-white/80'
@@ -252,22 +271,6 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
               />
             ))}
           </div>
-
-          {/* Кнопки навигации - улучшенные для мобильных */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/30 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation z-40"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-          <button 
-            onClick={nextSlide}
-            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/30 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation z-40"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
         </div>
       </div>
     </section>

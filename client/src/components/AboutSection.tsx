@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Aboutcompany from "@assets/generated_images/aboutcompany.png";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import S1 from "@assets/generated_images/slide_prez1.png";
 import S2 from "@assets/generated_images/slide_prez2.png";
@@ -73,62 +74,62 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="pt-20 pb-16">
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Обертка - на xl (1280px) и больше grid с 2 колонками, на меньших экранах колонка */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-4 gap-8 items-start">
-          
-          {/* Текстовый контент */}
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-3xl lg:text-3xl font-bold tracking-tight">
-                О компании
-              </h2>
+  <div className="container mx-auto px-4 lg:px-8">
+    {/* Обертка - на xl (1280px) и больше grid с 2 колонками, на меньших экранах колонка */}
+    <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-4 gap-8 items-start">
+      
+      {/* Текстовый контент */}
+      <div className="space-y-6 xl:flex xl:flex-col xl:h-full">
+        <div>
+          <h2 className="text-3xl lg:text-3xl font-bold tracking-tight">
+            О компании
+          </h2>
+        </div>
+
+        <Card className="flex flex-col shadow-2xl xl:self-end xl:mt-auto">
+          <CardContent className="space-y-4 flex flex-col flex-1 p-6">
+            <div className="space-y-4 flex-1">
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                <strong>ООО «ПРОФ ИТ»</strong> — компания,
+                предоставляющая спектр ИТ-услуг:
+              </p>
+
+              <ul className="space-y-3">
+                {services.map((service, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm">{service}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Наши специалисты смогут подобрать решения для
+                автоматизации и развития Вашего бизнеса, не зависимо от
+                направления деятельности.
+              </p>
             </div>
 
-            <Card className="flex flex-col shadow-2xl">
-              <CardContent className="space-y-4 flex flex-col flex-1 p-6">
-                <div className="space-y-4 flex-1">
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    <strong>ООО «ПРОФ ИТ»</strong> — компания,
-                    предоставляющая спектр ИТ-услуг:
-                  </p>
-
-                  <ul className="space-y-3">
-                    {services.map((service, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-muted-foreground text-sm">{service}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    Наши специалисты смогут подобрать решения для
-                    автоматизации и развития Вашего бизнеса, не зависимо от
-                    направления деятельности.
-                  </p>
-                </div>
-
-                {/* Замена бейджа на ссылку для скачивания */}
-                <div className="pt-4 border-t border-gray-200">
-                  <div className="flex items-center">
-                    <button
-                      onClick={handleDownload}
-                      className="
-                        text-sm text-blue-500 dark:text-blue-400 font-bold
-                        hover:text-blue-800 dark:hover:text-blue-600
-                        transition-all duration-300 ease-out
-                        hover:underline
-                        cursor-pointer
-                      "
-                    >
-                      Скачайте подробную презентацию о компании
-                    </button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+            {/* Замена бейджа на ссылку для скачивания */}
+            <div className="pt-4 border-t border-gray-200">
+              <div className="flex items-center">
+                <button
+                  onClick={handleDownload}
+                  className="
+                    text-sm text-blue-500 dark:text-blue-400 font-bold
+                    hover:text-blue-800 dark:hover:text-blue-600
+                    transition-all duration-300 ease-out
+                    hover:underline
+                    cursor-pointer
+                  "
+                >
+                  Скачайте подробную презентацию о компании
+                </button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
           {/* Слайдер - на xl (1280px) и больше справа, на меньших экранах снизу */}
           <div className="w-full xl:self-end">
@@ -158,7 +159,7 @@ export default function AboutSection() {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    className={`w-1 h-1 sm:w-1 sm:h-1 rounded-full transition-all duration-300 ${
                       index === currentSlide 
                         ? 'bg-white scale-125' 
                         : 'bg-white/50 hover:bg-white/80'
@@ -171,17 +172,17 @@ export default function AboutSection() {
               {/* Кнопки навигации */}
 <button 
   onClick={prevSlide}
-  className="absolute left-1 sm:left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 text-xs sm:text-base"
+  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-5 sm:h-5 rounded-full backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation pointer-events-auto"
   aria-label="Previous slide"
 >
-  ←
+  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
 </button>
 <button 
   onClick={nextSlide}
-  className="absolute right-1 sm:right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 text-xs sm:text-base"
+  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-5 sm:h-5 rounded-full backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation pointer-events-auto"
   aria-label="Next slide"
 >
-  →
+  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
 </button>
             </div>
           </div>
