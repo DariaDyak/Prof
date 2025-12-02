@@ -21,7 +21,7 @@ export default function Footer() {
     // Если ссылка ведет на другую страницу (начинается с /)
     if (link.href.startsWith('/')) {
       navigate(link.href);
-    } 
+    }
     // Если это якорная ссылка на главной странице
     else if (link.type === 'anchor') {
       if (location.pathname !== '/') {
@@ -56,52 +56,52 @@ export default function Footer() {
 
   const links = {
     services: [
-      { 
-        name: "Разработка IT-решений", 
+      {
+        name: "Разработка IT-решений",
         href: "/Decisions",
-        type: "page" 
+        type: "page"
       },
-      { 
-        name: "Автоматизация бизнес-процессов", 
+      {
+        name: "Автоматизация бизнес-процессов",
         href: "/AutomationPage",
-        type: "page" 
+        type: "page"
       },
-      { 
-        name: "1С сопровождение", 
+      {
+        name: "1С сопровождение",
         href: "/CSupportPage",
-        type: "page" 
+        type: "page"
       },
-      { 
-        name: "Разработка ПО", 
+      {
+        name: "Разработка ПО",
         href: "/DevelopmentPage",
-        type: "page" 
+        type: "page"
       },
     ],
     company: [
-      { 
-        name: "Главная", 
-        href: "about", 
-        type: "anchor" 
+      {
+        name: "Главная",
+        href: "about",
+        type: "anchor"
       },
-      { 
-        name: "О компании", 
-        href: "about", 
-        type: "anchor" 
+      {
+        name: "О компании",
+        href: "about",
+        type: "anchor"
       },
-      { 
-        name: "Услуги", 
-        href: "services", 
-        type: "anchor" 
+      {
+        name: "Услуги",
+        href: "services",
+        type: "anchor"
       },
-      { 
-        name: "Направления", 
-        href: "directions", 
-        type: "anchor" 
+      {
+        name: "Направления",
+        href: "directions",
+        type: "anchor"
       },
-      { 
-        name: "Контакты", 
-        href: "contacts", 
-        type: "anchor" 
+      {
+        name: "Контакты",
+        href: "contacts",
+        type: "anchor"
       },
     ]
   };
@@ -110,7 +110,7 @@ export default function Footer() {
     <footer className="bg-card border-t relative overflow-hidden">
       {/* Декоративный фон */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-purple-50/10 dark:from-blue-950/10 dark:to-purple-950/5 pointer-events-none" />
-      
+
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Main Footer Content */}
         <div className="py-16">
@@ -134,8 +134,8 @@ export default function Footer() {
               </div>
 
               <p className="text-muted-foreground leading-relaxed text-base">
-                <span className="font-semibold text-foreground">ПРОФ ИТ</span> - 
-                современная IT-компания, создающая инновационные решения для цифровой 
+                <span className="font-semibold text-foreground">ПРОФ ИТ</span> -
+                современная IT-компания, создающая инновационные решения для цифровой
                 трансформации бизнеса.
               </p>
             </div>
@@ -199,60 +199,60 @@ export default function Footer() {
                 © 2025 ООО "ПРОФ ИТ". Все права защищены.
               </span>
               <div className="hidden sm:block w-px h-4 bg-border/50" />
-              <Link 
-                to="/privacy-policy"
+              {/* Используем Link для навигации на страницу DataProcessing */}
+              <Link
+                to="/dataProcessing"  // Это путь к странице политики
                 className={`
-                  relative px-1 py-2
-                  transition-all duration-300 ease-out
-                  font-base
-                  focus:outline-none focus:text-blue-600 
-                  group
-                  ${isActive 
-                    ? 'text-blue-600' 
-                    : 'text-muted-foreground hover:text-blue-600'
-                  }
-                `}
+          relative px-1 py-2
+          transition-all duration-300 ease-out
+          font-base
+          focus:outline-none focus:text-blue-600 
+          group
+          hover:text-blue-600  // Убираем проверку isActive для футера
+        `}
                 data-testid="privacy-policy-link"
               >
                 Политика конфиденциальности
                 <div className={`
-                  absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 rounded-full
-                  transition-all duration-300 ease-out
-                  ${isActive 
-                    ? 'w-full opacity-100' 
-                    : 'group-hover:w-full group-hover:opacity-100 opacity-0'
-                  }
-                `} />
+          absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 rounded-full
+          transition-all duration-300 ease-out
+          group-hover:w-full group-hover:opacity-100 opacity-0
+        `} />
               </Link>
             </div>
           </div>
 
+
+
+
+
           {/* Кнопка "Наверх" - убрана в правый бок */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={scrollToTop}
-            className="
-              relative
-              overflow-hidden
-              inline-flex items-center gap-2 px-4 py-2 rounded-full 
-              border border-blue-800/30 
-              text-blue-600 dark:text-blue-400 text-sm font-bold
-              backdrop-blur-sm
-              transition-all duration-1000 ease-out
-              group
-              order-1 lg:order-2
-              hover:border-blue-300
-              hover:text-blue-600 dark:hover:text-blue-400
-              ml-auto lg:ml-0
-            "
-            data-testid="button-scroll-top"
-          >
-            <ArrowUp className="relative z-10 h-4 w-4 transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
-            <span className="relative z-10 transition-all">
-              Наверх
-            </span>
-          </Button>
+          <div className="order-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={scrollToTop}
+              className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
+                bg-blue-500/20 border border-blue-800/30 
+                text-blue-600 dark:text-blue-400 font-medium
+                backdrop-blur-sm
+                group
+                hover:text-blue-600
+                px-4 py-2 sm:px-6 sm:py-3
+                text-sm sm:text-base
+                hover:border-blue-400 hover:bg-blue-500/30
+                transition-all duration-300"
+            >
+
+              {/* Бегущий луч */}
+              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+              <span>
+                Наверх
+              </span>
+              <ArrowUp className="h-3 w-3 sm:h-4 sm:w-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </footer>

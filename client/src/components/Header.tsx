@@ -50,8 +50,8 @@ export default function Header({ onNavigate }: HeaderProps) {
     return 80; // Значение по умолчанию
   };
 
-  // Улучшенная функция скролла
-  const scrollToElement = (sectionId: string, retries = 3) => {
+  // Функция скролла к элементу на главной странице
+  const scrollToElement = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       const headerHeight = getHeaderHeight();
@@ -59,47 +59,38 @@ export default function Header({ onNavigate }: HeaderProps) {
       const absoluteElementTop = elementRect.top + window.pageYOffset;
       const scrollPosition = absoluteElementTop - headerHeight;
 
-      console.log(`Scrolling to ${sectionId}:`, {
-        headerHeight,
-        elementTop: elementRect.top,
-        absoluteElementTop,
-        scrollPosition,
-        currentScroll: window.pageYOffset
-      });
-
       window.scrollTo({
         top: scrollPosition,
         behavior: "smooth"
       });
-    } else if (retries > 0) {
-      // Если элемент не найден, пробуем еще раз через задержку
-      setTimeout(() => {
-        scrollToElement(sectionId, retries - 1);
-      }, 100);
-    } else {
-      console.warn(`Элемент с id "${sectionId}" не найден`);
+      return true;
     }
+    return false;
   };
 
+  // Обработчик клика по навигации
   const handleNavClick = (id: string) => {
-    setActiveId(id);
+    console.log('Nav click:', id, 'Current location:', location.pathname);
     
     if (location.pathname !== '/') {
-      // Переходим на главную и сохраняем информацию о скролле
-      navigate('/');
-      sessionStorage.setItem('scrollToSection', id);
+      // Если мы не на главной странице, переходим на главную с параметром
+      console.log('Navigating to home with section:', id);
+      navigate(`/?section=${id}`);
     } else {
-      // На главной странице
+      // Если уже на главной странице
       if (id === 'home') {
         window.scrollTo({
           top: 0,
           behavior: 'smooth'
         });
       } else {
-        // Небольшая задержка для гарантии что DOM обновлен
-        setTimeout(() => {
-          scrollToElement(id);
-        }, 50);
+        // Пробуем проскроллить сразу
+        if (!scrollToElement(id)) {
+          // Если элемент еще не найден (может быть в процессе загрузки)
+          setTimeout(() => {
+            scrollToElement(id);
+          }, 100);
+        }
       }
     }
     
@@ -107,26 +98,37 @@ export default function Header({ onNavigate }: HeaderProps) {
     setIsMobileMenuOpen(false);
   };
 
-  // Обработка скролла после перехода на главную страницу
+  // Обработка параметра section при загрузке/смене страницы
   useEffect(() => {
-    if (location.pathname === '/') {
-      const sectionToScroll = sessionStorage.getItem('scrollToSection');
-      if (sectionToScroll) {
-        const timer = setTimeout(() => {
-          if (sectionToScroll === 'home') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          } else {
-            scrollToElement(sectionToScroll);
-          }
-          sessionStorage.removeItem('scrollToSection');
-        }, 800); // Увеличиваем задержку
+    // Обработка параметров URL
+    const searchParams = new URLSearchParams(location.search);
+    const sectionParam = searchParams.get('section');
+    
+    console.log('Location changed:', location.pathname, location.search, 'sectionParam:', sectionParam);
+    
+    if (location.pathname === '/' && sectionParam) {
+      console.log('Scrolling to section from URL:', sectionParam);
+      
+      // Ждем немного для гарантии что DOM загружен
+      const timer = setTimeout(() => {
+        if (sectionParam === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (!scrollToElement(sectionParam)) {
+          // Пробуем еще раз с задержкой
+          setTimeout(() => {
+            scrollToElement(sectionParam);
+          }, 300);
+        }
         
-        return () => clearTimeout(timer);
-      }
+        // Убираем параметр из URL после скролла
+        navigate('/', { replace: true });
+      }, 100);
+      
+      return () => clearTimeout(timer);
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.search, navigate]);
 
-  // Обновляем активный раздел при скролле
+  // Обновляем активный раздел при скролле на главной странице
   useEffect(() => {
     if (location.pathname !== '/') {
       setActiveId(null);
@@ -311,8 +313,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                   </button>
                 );
               })}
-              
-              
             </nav>
           </div>
         )}

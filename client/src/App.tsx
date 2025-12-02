@@ -23,6 +23,7 @@ function Router() {
       <Route path="/cSupportPage" element={<СSupportPage />} />
       <Route path="/developmentPage" element={<DevelopmentPage />} />
       <Route path="/dataProcessing" element={<DataProcessing />} />
+      
     </Routes>
   );
 }

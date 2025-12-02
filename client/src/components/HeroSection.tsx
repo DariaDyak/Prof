@@ -26,11 +26,43 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  // Для последовательного появления всех элементов
+  const [showBadge, setShowBadge] = useState(false);
+  const [showFirstLine, setShowFirstLine] = useState(false);
+  const [showSecondLine, setShowSecondLine] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+
+  // Инициализация анимации при монтировании
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer1 = setTimeout(() => {
       setIsVisible(true);
+      setShowBadge(true);
     }, 100);
-    return () => clearTimeout(timer);
+    
+    const timer2 = setTimeout(() => {
+      setShowFirstLine(true);
+    }, 300);
+    
+    const timer3 = setTimeout(() => {
+      setShowSecondLine(true);
+    }, 500);
+    
+    const timer4 = setTimeout(() => {
+      setShowDescription(true);
+    }, 700);
+    
+    const timer5 = setTimeout(() => {
+      setShowButton(true);
+    }, 900);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+      clearTimeout(timer5);
+    };
   }, []);
 
   // Автоплей слайдера
@@ -43,11 +75,6 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
     
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
-
-  const handleLearnMore = () => {
-    console.log('Learn more button clicked');
-    onLearnMore?.();
-  };
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -93,6 +120,12 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
     }
   };
 
+  // Общая анимация для всех элементов
+  const slideInAnimation = (isVisible: boolean, delay: string = '0ms') => ({
+    className: `transform transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`,
+    style: { transitionDelay: delay }
+  });
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Центрированный контент - ПЕРЕД слайдером */}
@@ -100,67 +133,50 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
         <div className="max-w-4xl mx-auto text-center">
 
           {/* Badge с анимацией появления сверху вниз */}
-          <div className={`
-            inline-flex items-center gap-2 px-4 py-2 rounded-full 
-            bg-blue-500/10 border border-blue-500/20 
-            text-blue-600 dark:text-blue-400 font-medium mb-6 sm:mb-8
-            backdrop-blur-sm
-            transition-all duration-700 ease-out
-            text-xs sm:text-sm
-            transform
-            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}
-          `} style={{ transitionDelay: '300ms' }}>
-            <Shield className="h-3 w-3 sm:h-4 sm:w-4" />
-            <span>
-              Ваш надежный ИТ-партнер
-            </span>
+          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full
+          bg-blue-500/10 border border-blue-500/20              
+          text-blue-600 dark:text-blue-400 font-medium mb-6 sm:mb-8             
+          backdrop-blur-sm             
+          text-xs sm:text-sm             
+          transform transition-all duration-700 ease-out
+          ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} 
+          style={{ transitionDelay: '10ms' }}>             
+          <Shield className="h-3 w-3 sm:h-4 sm:w-4" />             
+          <span>Ваш надежный ИТ-партнер</span>
           </div>
 
-          {/* Main Heading с последовательной анимацией сверху вниз */}
-          <div className="mb-6 sm:mb-8">
-            <h1 className="font-Montserrat font-bold text-foreground mb-4 leading-tight">
+          {/* Main Heading с последовательной анимацией */}
+          <div className="mb-6 sm:mb-8 space-y-2 sm:space-y-4">
+            <h1 className="font-Montserrat font-bold text-foreground leading-tight">
               {/* ООО «ПРОФ ИТ» - появляется первым */}
-              <span className={`
-                inline-block
-                text-2xl sm:text-5xl lg:text-5xl xl:text-6xl
-                transform transition-all duration-800 ease-out
-                ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}
-              `} style={{ transitionDelay: '500ms' }}>
-                ООО «ПРОФ ИТ»
-              </span>
+              <div {...slideInAnimation(showFirstLine, '50ms')}>
+                <span className="inline-block text-2xl sm:text-5xl lg:text-5xl xl:text-6xl">
+                  ООО «ПРОФ ИТ»
+                </span>
+              </div>
             </h1>
 
             {/* Эффективность через автоматизацию - появляется вторым */}
-            <div className={`
-              transform transition-all duration-800 ease-out
-              ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}
-            `} style={{ transitionDelay: '700ms' }}>
-              <span className={`
-                font-Montserrat font-semibold text-foreground/80
-                text-base sm:text-2xl lg:text-2xl xl:text-3xl
-              `}>
-                Эффективность через автоматизацию
-              </span>
+            <div {...slideInAnimation(showSecondLine, '100ms')}>
+              <div className="font-Montserrat font-semibold text-base sm:text-2xl lg:text-2xl xl:text-3xl">
+                <span className="text-foreground/80 dark:text-foreground/90">
+                  Эффективность через автоматизацию
+                </span>
+              </div>
             </div>
           </div>
 
           {/* Description с анимацией сверху вниз - появляется третьим */}
-          <p className={`
-            font-Montserrat text-muted-foreground mb-8 sm:mb-12 leading-relaxed 
-            max-w-3xl mx-auto
-            text-xs sm:text-xs lg:text-lg xl:text-xl
-            transform transition-all duration-800 ease-out
-            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}
-          `} style={{ transitionDelay: '900ms' }}>
-            <span>
+          <div {...slideInAnimation(showDescription, '200ms')}>
+            <p className="font-Montserrat text-muted-foreground mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto text-xs sm:text-xs lg:text-lg xl:text-xl">
               Комплексные ИТ-решения для цифровой трансформации вашего бизнеса. 
               От автоматизации процессов до полного цикла разработки — повышаем эффективность 
               и создаем конкурентные преимущества.
-            </span>
-          </p>
+            </p>
+          </div>
 
           {/* CTA Button - появляется четвертым сверху вниз */}
-          <div className="flex justify-center">
+          <div {...slideInAnimation(showButton, '300ms')}>
             <Button
               onClick={() => {
                 const aboutSection = document.getElementById('about');
@@ -171,22 +187,15 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                   });
                 }
               }}
-              className={`
-                relative
-                overflow-hidden
-                inline-flex items-center gap-2 rounded-full 
+              className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
                 bg-blue-500/20 border border-blue-800/30 
-                text-blue-600 dark:text-blue-400 font-bold
+                text-blue-600 dark:text-blue-400 font-medium
                 backdrop-blur-sm
-                transition-all duration-800 ease-out
                 group
                 px-4 py-2 sm:px-6 sm:py-3
                 text-sm sm:text-base
-                transform
-                ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}
                 hover:border-blue-400 hover:bg-blue-500/30
-              `}
-              style={{ transitionDelay: '1100ms' }}
+                transition-all duration-300"
             >
               {/* Бегущий луч */}
               <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
@@ -194,16 +203,15 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
               <span className="relative z-10">
                 О компании
               </span>
-              <ArrowRight className="relative z-10 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
+              <ArrowRight className="relative z-10 h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Кнопки навигации слайдера - ВЫШЕ основного контента */}
+      {/* Кнопки навигации слайдера */}
       <div className="absolute inset-0 z-30 pointer-events-none">
-        
-              <button 
+        <button 
           onClick={prevSlide}
           className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-8 sm:h-8 rounded-full backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation pointer-events-auto"
           aria-label="Previous slide"
@@ -219,7 +227,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
         </button>
       </div>
 
-      {/* Слайдер на фоне - ПОСЛЕ контента */}
+      {/* Слайдер на фоне */}
       <div className="absolute inset-0 z-10">
         <div 
           className="relative h-full w-full overflow-hidden"
@@ -240,14 +248,14 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                   className="w-full h-full object-cover brightness-120 opacity-40"
                   alt={`Slide ${index + 1}`}
                 />
-                {/* Белый фон */}
-                <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]" />
+                {/* Белый/черный фон в зависимости от темы */}
+                <div className="absolute inset-0 bg-white/20 dark:bg-black/20 backdrop-blur-[1px]" />
               </div>
             ))}
           </div>
 
           {/* Полоса состояния с градиентом */}
-          <div className="absolute top-0 left-0 right-0 z-30 h-1 bg-white/10">
+          <div className="absolute top-0 left-0 right-0 z-30 h-1 bg-white/10 dark:bg-black/10">
             <div 
               className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-1000 ease-out"
               style={{ 
@@ -256,7 +264,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
             />
           </div>
 
-          {/* Индикаторы слайдов для мобильных */}
+          {/* Индикаторы слайдов */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-30">
             {slides.map((_, index) => (
               <button
@@ -264,8 +272,8 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                 onClick={() => goToSlide(index)}
                 className={`w-1 h-1 sm:w-1 sm:h-1 rounded-full transition-all duration-300 pointer-events-auto ${
                   index === currentSlide 
-                    ? 'bg-white scale-125' 
-                    : 'bg-white/50 hover:bg-white/80'
+                    ? 'bg-white dark:bg-white scale-125' 
+                    : 'bg-white/50 dark:bg-white/50 hover:bg-white/80 dark:hover:bg-white/80'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
