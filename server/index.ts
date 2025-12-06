@@ -1,11 +1,24 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import cors from "cors";
+import dotenv from "dotenv";
+
+// Загружаем переменные окружения
+dotenv.config();
 
 const app = express();
+
+// Middleware для обработки CORS
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+  credentials: true,
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Логирование запросов API
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -36,26 +49,41 @@ app.use((req, res, next) => {
   next();
 });
 
+// Обработчик ошибок
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  const status = err.status || err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+
+  console.error("Server error:", err);
+
+  res.status(status).json({ 
+    success: false,
+    message,
+    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
+  });
+});
+
 (async () => {
-  const server = await registerRoutes(app);
+  try {
+    const server = await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+    if (app.get("env") === "development") {
+      await setupVite(app, server);
+    } else {
+      serveStatic(app);
+    }
 
-    res.status(status).json({ message });
-    throw err;
-  });
+    const port = parseInt(process.env.PORT || "3000", 10);
 
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
+    server.listen(port, () => {
+      console.log(`🚀 Сервер запущен на http://localhost:${port}`);
+      console.log(`📊 API продуктов: http://localhost:${port}/api/products`);
+      console.log(`🔍 Health check: http://localhost:${port}/api/health`);
+      console.log(`🔄 Инициализация БД: http://localhost:${port}/api/init-db (POST)`);
+    });
+
+  } catch (error) {
+    console.error("❌ Ошибка запуска сервера:", error);
+    process.exit(1);
   }
-
-  const port = parseInt(process.env.PORT || "3000", 10);
-
-  server.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
 })();

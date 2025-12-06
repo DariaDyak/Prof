@@ -99,6 +99,11 @@ export default function Footer() {
         type: "anchor"
       },
       {
+        name: "Кейсы",
+        href: "cases",
+        type: "anchor"
+      },
+      {
         name: "Контакты",
         href: "contacts",
         type: "anchor"

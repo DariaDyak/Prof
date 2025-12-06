@@ -1,59 +1,91 @@
-require('dotenv').config();
+// PROF/server/server.js
 const express = require('express');
 const cors = require('cors');
-const contactRoutes = require('./routes/contact');
-const { verifyEmailConfig } = require('./config/email');
+const { Pool } = require('pg');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://yourdomain.com'] 
-    : ['http://localhost:3001', 'http://localhost:5173'],
+  origin: 'http://localhost:5173',
   credentials: true
 }));
+app.use(express.json());
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
-
-// Логирование запросов
-app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
-  next();
+// Подключаемся к PostgreSQL
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  // Для локального PostgreSQL без SSL
+  ssl: false
 });
 
-// Routes
-app.use('/api', contactRoutes);
+// Тестовый запрос к базе
+app.get('/api/test', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW() as current_time');
+    res.json({ 
+      message: '✅ PostgreSQL подключен!', 
+      time: result.rows[0].current_time 
+    });
+  } catch (error) {
+    console.error('❌ Ошибка подключения к PostgreSQL:', error);
+    res.status(500).json({ 
+      error: 'Не удалось подключиться к базе данных',
+      details: error.message 
+    });
+  }
+});
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
-    timestamp: new Date().toISOString(),
-    service: 'Contact Form API'
-  });
+// Получить все продукты
+app.get('/api/products', async (req, res) => {
+  try {
+    console.log('📦 Запрос продуктов из PostgreSQL...');
+    const result = await pool.query('SELECT * FROM products ORDER BY id');
+    console.log(`✅ Найдено ${result.rowCount} записей`);
+    res.json(result.rows);
+  } catch (error) {
+    console.error('❌ Ошибка запроса к PostgreSQL:', error);
+    res.status(500).json({ 
+      error: 'Ошибка базы данных',
+      details: error.message 
+    });
+  }
+});
+
+// Получить статистику
+app.get('/api/products/stats', async (req, res) => {
+  try {
+    // Всего продуктов
+    const totalResult = await pool.query('SELECT COUNT(*) FROM products');
+    const total = parseInt(totalResult.rows[0].count);
+    
+    // С сертификатами
+    const certResult = await pool.query(`
+      SELECT COUNT(*) FROM products 
+      WHERE certificate_image IS NOT NULL 
+      AND certificate_image != ''
+    `);
+    const withCertificates = parseInt(certResult.rows[0].count);
+    
+    // Зарегистрированные
+    const registeredResult = await pool.query(`
+      SELECT COUNT(*) FROM products 
+      WHERE registration_num IS NOT NULL 
+      OR reg_program_num IS NOT NULL
+    `);
+    const registered = parseInt(registeredResult.rows[0].count);
+    
+    res.json({ total, withCertificates, registered });
+    
+  } catch (error) {
+    console.error('❌ Ошибка статистики:', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Запуск сервера
-const startServer = async () => {
-  try {
-    // Проверяем конфигурацию почты
-    const emailConfigOk = await verifyEmailConfig();
-    if (!emailConfigOk) {
-      console.warn('⚠️  Email configuration has issues, but server will start anyway');
-    }
-    
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`📧 Email service: ${emailConfigOk ? '✅ Ready' : '❌ Issues'}`);
-      console.log(`🌐 Environment: ${process.env.NODE_ENV}`);
-    });
-  } catch (error) {
-    console.error('❌ Failed to start server:', error);
-    process.exit(1);
-  }
-};
-
-startServer();
+app.listen(PORT, () => {
+  console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);
+  console.log(`📞 Тестовый запрос: http://localhost:${PORT}/api/test`);
+});

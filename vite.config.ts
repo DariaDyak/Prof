@@ -25,14 +25,39 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname, "client"),
   build: {
-    
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // Оптимизация для production
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+          ui: ["@/components/ui"],
+        },
+      },
+    },
   },
   server: {
     fs: {
       strict: true,
       deny: ["**/.*"],
     },
+    // Проксирование API запросов на сервер
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path,
+      },
+    },
+    // Настройки для разработки
+    port: 5173,
+    strictPort: true,
+    open: true,
+  },
+  // Переменные окружения для клиента
+  define: {
+    "process.env": process.env,
   },
 });

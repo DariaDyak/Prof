@@ -84,7 +84,7 @@ export default function DirectionsSection() {
           {directions.map((direction, index) => (
             <Card
               key={index}
-              className="group bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
+              className="group bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
               data-testid={`card-direction-${index}`}
             >
               <div className="flex flex-col h-full justify-between">

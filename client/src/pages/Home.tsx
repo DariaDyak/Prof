@@ -5,6 +5,7 @@ import AboutSection from '@/components/AboutSection';
 import ServicesSection from '@/components/ServicesSection';
 import DirectionsSection from '@/components/DirectionsSection';
 import ContactsSection from '@/components/ContactsSection';
+import StatsSection from '@/components/StatsSection';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -13,7 +14,8 @@ export default function Home() {
     about: useRef<HTMLDivElement>(null),
     services: useRef<HTMLDivElement>(null),
     directions: useRef<HTMLDivElement>(null),
-    contacts: useRef<HTMLDivElement>(null)
+    contacts: useRef<HTMLDivElement>(null),
+    cases: useRef<HTMLDivElement>(null)
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -49,6 +51,10 @@ export default function Home() {
         
         <div ref={sectionRefs.directions}>
           <DirectionsSection />
+        </div>
+
+        <div ref={sectionRefs.cases}>
+          <StatsSection />
         </div>
         
         <div ref={sectionRefs.contacts}>
