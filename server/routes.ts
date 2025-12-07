@@ -2,16 +2,19 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { Pool } from "pg";
 import dotenv from "dotenv";
+import productsRouter from "../server/products"; // Исправленный путь
+import express from 'express'; // Добавьте этот импорт
+import path from 'path';
 
 dotenv.config();
 
 // Подключение к PostgreSQL
 const pool = new Pool({
   host: process.env.DB_HOST || "localhost",
-  port: parseInt(process.env.DB_PORT || "5432"),
-  database: process.env.DB_NAME || "company_products",
+  port: parseInt(process.env.DB_PORT || "5433"),
+  database: process.env.DB_NAME || "profit_db",
   user: process.env.DB_USER || "postgres",
-  password: process.env.DB_PASSWORD || "",
+  password: process.env.DB_PASSWORD || "postgres",
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
@@ -51,6 +54,10 @@ interface UpdateProductDTO {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Простой вариант - относительные пути
+  app.use(express.static('.'));
+
+
   // Health check
   app.get("/api/health", async (_req: Request, res: Response) => {
     try {
@@ -92,7 +99,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
   });
-
+  app.use(productsRouter);
   // Поиск продуктов
   app.get("/api/products/search", async (req: Request, res: Response) => {
     try {
@@ -470,63 +477,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         )
       `);
 
-      // Вставляем тестовые данные, если таблица пустая
-      const countResult = await pool.query("SELECT COUNT(*) as count FROM products");
-      const productCount = parseInt(countResult.rows[0].count);
-
-      if (productCount === 0) {
-        const testProducts: CreateProductDTO[] = [
-          {
-            title: "Автоматизированная информационная система «ПРОФИТ-3С»",
-            description: "Программное обеспечение для покупки и продажи электроэнергии на розничных и оптовых рынках является важным инструментом для энергосбытовых компаний. Оно не только автоматизирует и оптимизирует процессы, но и способствует повышению эффективности, снижению рисков и улучшению обслуживания клиентов.",
-            short_description: "Автоматизация и оптимизация процессов купли-продажи электроэнергии для энергосбытовых компаний.",
-            certificate_image: "/images/certificate_profit_3s.png",
-            registration_num: "2024686145",
-            reg_program_num: "26848",
-            platform: "1С:Предприятие 8.3",
-          },
-          {
-            title: "Система «ПРОФИТ-МО»",
-            description: "Предназначена для комплексной автоматизации управления подвижным составом и оптимизации логистических процессов в сфере железнодорожных перевозок. Система обеспечивает мониторинг и контроль движения вагонов, управление ремонтами и обслуживанием, а также интеграцию с внешними системами для эффективного взаимодействия между всеми участниками логистической цепочки.",
-            short_description: "Автоматизация управления подвижным составом и логистики железнодорожных перевозок.",
-            certificate_image: "/images/certificate_profit_mo.png",
-            registration_num: "2025660499",
-            platform: "1С:Предприятие 8.3",
-          },
-          {
-            title: "Система для автоматизации медицинских осмотров",
-            description: "Система создана как расширение для конфигурации «1С:Бухгалтерия» и служит для автоматизации обмена данными и элементами управления между системой «ЭСМО» и 1С, а также создании среды для сбора, обмена, хранения и обработки информации по медицинским осмотрам.",
-            short_description: "Расширение для 1С:Бухгалтерия для автоматизации учёта медицинских осмотров.",
-            platform: "1С:Предприятие 8.3",
-          },
-        ];
-
-        for (const product of testProducts) {
-          await pool.query(
-            `
-            INSERT INTO products (
-              title, description, short_description, 
-              certificate_image, registration_num, 
-              reg_program_num, platform
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
-          `,
-            [
-              product.title,
-              product.description,
-              product.short_description,
-              product.certificate_image || null,
-              product.registration_num || null,
-              product.reg_program_num || null,
-              product.platform,
-            ]
-          );
-        }
-      }
+      
 
       res.json({
         success: true,
         message: "База данных успешно инициализирована",
-        productsCount: productCount === 0 ? "Добавлены тестовые данные" : "Данные уже существуют",
+        
       });
     } catch (error) {
       console.error("Init DB error:", error);

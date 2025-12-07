@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Database, FileText, Shield, X, Download, Cpu } from 'lucide-react';
+import { Database, FileText, Shield, X, Download, Cpu, ExternalLink} from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import {
     Table,
     TableBody,
@@ -11,11 +12,20 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { mockProducts } from './data/mockData';
+import { useProducts } from '@/hooks/useProducts'; // Импортируем хук
 
 export default function StatsSection() {
     const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
     const [zoom, setZoom] = useState(1);
+    const navigate = useNavigate();
+    
+    // Используем хук для загрузки данных
+    const { products, loading, error } = useProducts();
+
+    // Рассчитываем статистику на основе данных из БД
+    const totalProducts = products.length;
+    const registeredInRegistry = products.filter(p => p.reg_program_num).length;
+    const registeredInRospatent = products.filter(p => p.registration_num).length;
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('ru-RU', {
@@ -24,6 +34,30 @@ export default function StatsSection() {
             day: 'numeric'
         });
     };
+
+
+    // Функция для перехода на страницу продукта
+    const handleProductClick = (productId: number, productTitle: string) => {
+        // Проверяем название продукта для определения маршрута
+        if (productTitle.toLowerCase().includes('профит-эс') || 
+            productTitle.toLowerCase().includes('profit-es') ||
+            productId === 1) {
+            navigate('/profitEs');
+        } else if (productTitle.toLowerCase().includes('профит-лс') || 
+                   productTitle.toLowerCase().includes('profit-ls') ||
+                   productId === 2) {
+            // Если у вас есть отдельная страница для ПРОФИТ-ЛС
+            navigate('/profitLs');
+        } else if (productTitle.toLowerCase().includes('профит-мо') || 
+                   productTitle.toLowerCase().includes('profit-mo') ||
+                   productId === 3) {
+            // Если у вас есть отдельная страница для ПРОФИТ-МО
+            navigate('/product/3');
+        } else {
+            // Для остальных продуктов используем общий маршрут
+            navigate(`/product/${productId}`);
+        }
+    }
 
     const handleOpenCertificate = (certificatePath: string) => {
         setSelectedCertificate(certificatePath);
@@ -37,7 +71,6 @@ export default function StatsSection() {
 
     const handleDownloadCertificate = (certificatePath: string) => {
         console.log('Downloading certificate:', certificatePath);
-        // Логика скачивания файла
         const link = document.createElement('a');
         link.href = certificatePath;
         link.download = `certificate_${Date.now()}.jpg`;
@@ -57,6 +90,26 @@ export default function StatsSection() {
     const handleResetZoom = () => {
         setZoom(1);
     };
+
+    if (loading) {
+        return (
+            <section id="cases" className="pt-10 pb-16 bg-card dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
+                <div className="container mx-auto px-4 lg:px-8 text-center py-12">
+                    <p>Загрузка данных...</p>
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section id="cases" className="pt-10 pb-16 bg-card dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
+                <div className="container mx-auto px-4 lg:px-8 text-center py-12 text-red-500">
+                    <p>Ошибка загрузки данных: {error}</p>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section id="cases" className="pt-10 pb-16 bg-card dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
@@ -80,13 +133,10 @@ export default function StatsSection() {
                             <div className="flex flex-col h-full">
                                 <div className="flex-1">
                                     <div className="flex items-start justify-between mb-3 sm:mb-4">
-                                        {/* Текст слева */}
                                         <div>
                                             <p className="text-sm text-muted-foreground">Всего продуктов</p>
-                                            <p className="text-3xl font-bold mt-2">3</p>
+                                            <p className="text-3xl font-bold mt-2">{totalProducts}</p>
                                         </div>
-
-                                        {/* Иконка справа */}
                                         <div className="flex-shrink-0 ml-3">
                                             <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
                                                 <Database className="h-4 w-4 sm:h-6 sm:w-6" />
@@ -104,13 +154,10 @@ export default function StatsSection() {
                             <div className="flex flex-col h-full">
                                 <div className="flex-1">
                                     <div className="flex items-start justify-between mb-3 sm:mb-4">
-                                        {/* Текст слева */}
                                         <div>
                                             <p className="text-sm text-muted-foreground">Зарегистрировано в Реестре ПО</p>
-                                            <p className="text-3xl font-bold mt-2">1</p>
+                                            <p className="text-3xl font-bold mt-2">{registeredInRegistry}</p>
                                         </div>
-
-                                        {/* Иконка справа */}
                                         <div className="flex-shrink-0 ml-3">
                                             <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
                                                 <FileText className="h-4 w-4 sm:h-6 sm:w-6" />
@@ -128,13 +175,10 @@ export default function StatsSection() {
                             <div className="flex flex-col h-full">
                                 <div className="flex-1">
                                     <div className="flex items-start justify-between mb-3 sm:mb-4">
-                                        {/* Текст слева */}
                                         <div>
                                             <p className="text-sm text-muted-foreground">Зарегистрировано в Роспатенте</p>
-                                            <p className="text-3xl font-bold mt-2">2</p>
+                                            <p className="text-3xl font-bold mt-2">{registeredInRospatent}</p>
                                         </div>
-
-                                        {/* Иконка справа */}
                                         <div className="flex-shrink-0 ml-3">
                                             <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
                                                 <Shield className="h-4 w-4 sm:h-6 sm:w-6" />
@@ -157,106 +201,107 @@ export default function StatsSection() {
                     </div>
 
                     <Table>
-  <TableHeader className="bg-white dark:bg-gray-900 items-center">
-    <TableRow className="border-b dark:border-gray-800 hover:bg-transparent">
-      <TableHead className="w-[350px] font-bold text-foreground dark:text-white text-center">Продукт</TableHead>
-      <TableHead className="font-bold text-foreground dark:text-white text-center"></TableHead>
-      <TableHead className="w-[150px] font-bold text-foreground dark:text-white text-center">Платформа</TableHead>
-      <TableHead className="w-[180px] font-bold text-foreground dark:text-white text-center">Регистрация</TableHead>
-      <TableHead className="w-[140px] font-bold text-foreground dark:text-white text-center">Сертификаты</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    {mockProducts.map((product) => (
-      <TableRow
-        key={product.id}
-        className="group bg-white dark:bg-gray-900 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-purple-50/50 dark:hover:from-gray-800/50 dark:hover:to-gray-700/50 transition-all duration-200 border-b dark:border-gray-800 last:border-0"
-      >
-        <TableCell className="align-middle">
-          <div className="flex items-center gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-900/40 flex items-center justify-center">
-              <Cpu className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            </div>
-            <div>
-              <h4 className="font-semibold text-base leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors dark:text-white">
-                {product.title}
-              </h4>
-              <div className="flex items-center gap-2 mt-2">
-                {/* ваш контент */}
-              </div>
-            </div>
-          </div>
-        </TableCell>
+                        <TableHeader className="bg-white dark:bg-gray-900 items-center">
+                            <TableRow className="border-b dark:border-gray-800 hover:bg-transparent">
+                                <TableHead className="w-[350px] font-bold text-foreground dark:text-white text-center">Продукт</TableHead>
+                                <TableHead className="font-bold text-foreground dark:text-white text-center"></TableHead>
+                                <TableHead className="w-[150px] font-bold text-foreground dark:text-white text-center">Платформа</TableHead>
+                                <TableHead className="w-[180px] font-bold text-foreground dark:text-white text-center">Регистрация</TableHead>
+                                <TableHead className="w-[140px] font-bold text-foreground dark:text-white text-center">Сертификаты</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {products.map((product) => (
+                                <TableRow
+                                    key={product.id}
+                                    className="group bg-white dark:bg-gray-900 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-purple-50/50 dark:hover:from-gray-800/50 dark:hover:to-gray-700/50 transition-all duration-200 border-b dark:border-gray-800 last:border-0"
+                                >
+                                    <TableCell className="align-middle">
+                                        <div className="flex items-center gap-4">
+                                            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-900/40 flex items-center justify-center">
+                                                <Cpu className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                                            </div>
+                                            <div>
+                                                <button
+    onClick={() => handleProductClick(product.id, product.title)}
+    className="font-semibold text-base leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors dark:text-white text-left hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1 -mx-2 flex items-center gap-2"
+>
+    {product.title}
+    
+</button>
+                                            </div>
+                                        </div>
+                                    </TableCell>
 
-        <TableCell className="align-middle">
-          <p className="line-clamp-2 text-muted-foreground dark:text-gray-400">
-            {product.short_description}
-          </p>
-        </TableCell>
+                                    <TableCell className="align-middle">
+                                        <p className="line-clamp-2 text-muted-foreground dark:text-gray-400">
+                                            {product.short_description}
+                                        </p>
+                                    </TableCell>
 
-        <TableCell className="align-middle">
-          <Badge
-            variant="secondary"
-            className="text-white text-xs bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700"
-          >
-            {product.platform}
-          </Badge>
-        </TableCell>
+                                    <TableCell className="align-middle">
+                                        <Badge
+                                            variant="secondary"
+                                            className="text-white text-xs bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700"
+                                        >
+                                            {product.platform}
+                                        </Badge>
+                                    </TableCell>
 
-        <TableCell className="align-middle">
-          <div className="space-y-2">
-            {product.registration_num ? (
-              <div className="flex items-center gap-4">
-                <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center">
-                  <FileText className="w-3 h-3 text-green-600 dark:text-green-400" />
-                </div>
-                <div>
-                  <div className="text-xs text-muted-foreground dark:text-gray-500">Роспатент</div>
-                  <div className="font-mono text-sm font-medium dark:text-white">№{product.registration_num}</div>
-                </div>
-              </div>
-            ) : (
-              <div className="text-sm text-muted-foreground dark:text-gray-500">Не зарегистрировано</div>
-            )}
+                                    <TableCell className="align-middle">
+                                        <div className="space-y-2">
+                                            {product.registration_num ? (
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                                                        <FileText className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-xs text-muted-foreground dark:text-gray-500">Роспатент</div>
+                                                        <div className="font-mono text-sm font-medium dark:text-white">№{product.registration_num}</div>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="text-sm text-muted-foreground dark:text-gray-500">Не зарегистрировано</div>
+                                            )}
 
-            {product.reg_program_num && (
-              <div className="flex items-center gap-4">
-                <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
-                  <FileText className="w-3 h-3 text-blue-600 dark:text-blue-400" />
-                </div>
-                <div>
-                  <div className="text-xs text-muted-foreground dark:text-gray-500">Реестр ПО</div>
-                  <div className="text-sm font-medium dark:text-white">№{product.reg_program_num}</div>
-                </div>
-              </div>
-            )}
-          </div>
-        </TableCell>
+                                            {product.reg_program_num && (
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center">
+                                                        <FileText className="w-3 h-3 text-purple-600 dark:text-purple-400" />
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-xs text-muted-foreground dark:text-gray-500">Реестр ПО</div>
+                                                        <div className="text-sm font-medium dark:text-white">№{product.reg_program_num}</div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </TableCell>
 
-        <TableCell className="align-middle">
-          <div className="flex justify-end gap-2">
-            {product.certificate_image && (
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => handleOpenCertificate(product.certificate_image!)}
-                className="h-8 px-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border dark:border-gray-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/40 dark:hover:to-purple-800/40"
-              >
-                Показать
-              </Button>
-            )}
-          </div>
-        </TableCell>
-      </TableRow>
-    ))}
-  </TableBody>
-</Table>
+                                    <TableCell className="align-middle">
+                                        <div className="flex justify-end gap-2">
+                                            {product.certificate_image && (
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline"
+                                                    onClick={() => handleOpenCertificate(product.certificate_image!)}
+                                                    className="h-8 px-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border dark:border-gray-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/40 dark:hover:to-purple-800/40"
+                                                >
+                                                    Показать
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
 
                     {/* Футер таблицы */}
                     <div className="bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-gray-900/50 dark:to-gray-800/50 border-t dark:border-gray-800 px-6 py-4">
                         <div className="flex items-center justify-between">
                             <div className="text-sm text-muted-foreground dark:text-gray-400">
-                                Показано {mockProducts.length} из {mockProducts.length} продуктов
+                                Показано {products.length} из {products.length} продуктов
                             </div>
                         </div>
                     </div>
@@ -270,8 +315,6 @@ export default function StatsSection() {
                         {/* Шапка модального окна */}
                         <div className="flex items-center justify-between p-4 border-b dark:border-gray-800 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
                             <div className="flex items-center gap-2">
-                                
-                                {/* Кнопка закрытия */}
                                 <Button
                                     size="sm"
                                     variant="outline"
