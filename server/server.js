@@ -1,91 +1,88 @@
-// PROF/server/server.js
-const express = require('express');
-const cors = require('cors');
-const { Pool } = require('pg');
 require('dotenv').config();
+const express = require('express');
+const { Pool } = require('pg');
+const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const port = process.env.PORT || 3001;
 
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 
-// Подключаемся к PostgreSQL
+// Настройка подключения к PostgreSQL
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  // Для локального PostgreSQL без SSL
-  ssl: false
+  user: process.env.PG_USER || 'postgres',
+  host: process.env.PG_HOST || 'localhost',
+  database: process.env.PG_DATABASE || 'profit_db',
+  password: process.env.PG_PASSWORD || 'postgres',
+  port: process.env.PG_PORT || 5433,
 });
 
-// Тестовый запрос к базе
-app.get('/api/test', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW() as current_time');
-    res.json({ 
-      message: '✅ PostgreSQL подключен!', 
-      time: result.rows[0].current_time 
-    });
-  } catch (error) {
-    console.error('❌ Ошибка подключения к PostgreSQL:', error);
-    res.status(500).json({ 
-      error: 'Не удалось подключиться к базе данных',
-      details: error.message 
-    });
+// Проверка подключения
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error('Error connecting to PostgreSQL:', err);
+  } else {
+    console.log('✅ Connected to PostgreSQL database');
+    release();
   }
 });
 
-// Получить все продукты
+// API эндпоинты
 app.get('/api/products', async (req, res) => {
   try {
-    console.log('📦 Запрос продуктов из PostgreSQL...');
-    const result = await pool.query('SELECT * FROM products ORDER BY id');
-    console.log(`✅ Найдено ${result.rowCount} записей`);
+    console.log('Fetching products from database...');
+    const result = await pool.query(
+      'SELECT * FROM products ORDER BY created_at DESC'
+    );
+    console.log(`Found ${result.rows.length} products`);
     res.json(result.rows);
   } catch (error) {
-    console.error('❌ Ошибка запроса к PostgreSQL:', error);
-    res.status(500).json({ 
-      error: 'Ошибка базы данных',
-      details: error.message 
-    });
+    console.error('Error fetching products:', error);
+    res.status(500).json({ error: 'Failed to fetch products' });
   }
 });
 
-// Получить статистику
-app.get('/api/products/stats', async (req, res) => {
+app.get('/api/products/:id', async (req, res) => {
   try {
-    // Всего продуктов
-    const totalResult = await pool.query('SELECT COUNT(*) FROM products');
-    const total = parseInt(totalResult.rows[0].count);
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM products WHERE id = $1', [id]);
     
-    // С сертификатами
-    const certResult = await pool.query(`
-      SELECT COUNT(*) FROM products 
-      WHERE certificate_image IS NOT NULL 
-      AND certificate_image != ''
-    `);
-    const withCertificates = parseInt(certResult.rows[0].count);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
     
-    // Зарегистрированные
-    const registeredResult = await pool.query(`
-      SELECT COUNT(*) FROM products 
-      WHERE registration_num IS NOT NULL 
-      OR reg_program_num IS NOT NULL
-    `);
-    const registered = parseInt(registeredResult.rows[0].count);
-    
-    res.json({ total, withCertificates, registered });
-    
+    res.json(result.rows[0]);
   } catch (error) {
-    console.error('❌ Ошибка статистики:', error);
-    res.status(500).json({ error: error.message });
+    console.error('Error fetching product:', error);
+    res.status(500).json({ error: 'Failed to fetch product' });
   }
 });
 
-// Запуск сервера
-app.listen(PORT, () => {
-  console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);
-  console.log(`📞 Тестовый запрос: http://localhost:${PORT}/api/test`);
+app.post('/api/products', async (req, res) => {
+  try {
+    const { title, short_description, platform, registration_num, reg_program_num, certificate_image, description } = req.body;
+    
+    const result = await pool.query(
+      `INSERT INTO products (title, short_description, platform, registration_num, reg_program_num, certificate_image, description) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7) 
+       RETURNING *`,
+      [title, short_description, platform, registration_num, reg_program_num, certificate_image, description]
+    );
+    
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error('Error creating product:', error);
+    res.status(500).json({ error: 'Failed to create product' });
+  }
+});
+
+// Обновленная таблица в PostgreSQL
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', message: 'Server is running' });
+});
+
+app.listen(port, () => {
+  console.log(`🚀 Server running on http://localhost:${port}`);
+  console.log(`📊 API available at http://localhost:${port}/api/products`);
 });

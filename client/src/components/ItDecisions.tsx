@@ -115,12 +115,12 @@ export default function ItDecisions({
         pl-4 lg:pl-0
       `}
     >
-      <span className="relative">
+      <span className="relative inline-block">
         ← {backButtonText}
         <div className={`
-          absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 rounded-full
+          absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
           transition-all duration-300 ease-out
-          opacity-0 group-hover:w-full group-hover:opacity-100
+          opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
         `} />
       </span>
     </Link>

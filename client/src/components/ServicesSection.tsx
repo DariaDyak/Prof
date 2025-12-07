@@ -96,32 +96,28 @@ export default function ServicesSection() {
                   </p>
 
                   <Button
-                    className="
-                      relative
-                      overflow-hidden
-                      inline-flex items-center gap-1 sm:gap-2 
-                      px-3 sm:px-4 py-2 rounded-full 
-                      bg-blue-500/20 border border-blue-800/30 
-                      text-blue-600 dark:text-blue-400 
-                      text-xs sm:text-sm font-bold
-                      backdrop-blur-sm
-                      transition-all duration-1000 ease-out
-                      group
-                      mt-auto
-                      self-start
-                    "
-                    onClick={() => handleLearnMore(service.link)}
-                    disabled={!service.link || service.link === "#"}
-                    data-testid={`button-service-${index}`}
-                  >
-                    {/* Бегущий луч */}
-                    <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+  className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
+    bg-blue-500/20 border border-blue-800/30 
+    text-blue-600 dark:text-blue-400 font-medium
+    group
+    px-4 py-2 sm:px-6 sm:py-3
+    text-sm sm:text-base
+    hover:border-blue-400 hover:bg-blue-500/30
+    transition-all duration-300"
+  onClick={() => handleLearnMore(service.link)}
+  disabled={!service.link || service.link === "#"}
+  data-testid={`button-service-${index}`}
+>
+  {/* Бегущий луч */}
+  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] 
+    transition-transform duration-1000 ease-in-out 
+    bg-gradient-to-r from-transparent via-white/50 to-transparent" />
 
-                    <span className="relative z-10 transition-all delay-100">
-                      Узнать больше
-                    </span>
-                    <ArrowRight className="relative z-10 ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400" />
-                  </Button>
+  <span className="relative z-10">
+    Узнать подробнее
+  </span>
+  <ArrowRight className="relative z-10 h-3 w-3 sm:h-4 sm:w-4" />
+</Button>
                 </CardContent>
               </Card>
             );

@@ -206,24 +206,27 @@ export default function Footer() {
               <div className="hidden sm:block w-px h-4 bg-border/50" />
               {/* Используем Link для навигации на страницу DataProcessing */}
               <Link
-                to="/dataProcessing"  // Это путь к странице политики
-                className={`
-          relative px-1 py-2
-          transition-all duration-300 ease-out
-          font-base
-          focus:outline-none focus:text-blue-600 
-          group
-          hover:text-blue-600  // Убираем проверку isActive для футера
-        `}
-                data-testid="privacy-policy-link"
-              >
-                Политика конфиденциальности
-                <div className={`
-          absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 rounded-full
-          transition-all duration-300 ease-out
-          group-hover:w-full group-hover:opacity-100 opacity-0
-        `} />
-              </Link>
+  to="/dataProcessing"
+  className={`
+    relative py-2
+    transition-all duration-300 ease-out
+    font-base
+    focus:outline-none focus:text-blue-600 
+    group
+    text-muted-foreground hover:text-blue-600
+    inline-block
+  `}
+  data-testid="privacy-policy-link"
+>
+  <span className="relative inline-block">
+    Политика конфиденциальности
+    <div className={`
+      absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
+      transition-all duration-300 ease-out
+      opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
+    `} />
+  </span>
+</Link>
             </div>
           </div>
 

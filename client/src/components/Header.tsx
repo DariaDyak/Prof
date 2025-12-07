@@ -60,18 +60,12 @@ export default function Header({ onNavigate }: HeaderProps) {
       const absoluteElementTop = elementRect.top + window.pageYOffset;
       const scrollPosition = absoluteElementTop - headerHeight;
 
-      console.log(`Scrolling to ${sectionId}:`, {
-        headerHeight,
-        elementTop: elementRect.top,
-        absoluteElementTop,
-        scrollPosition,
-        currentScroll: window.pageYOffset
-      });
-
       window.scrollTo({
         top: scrollPosition,
         behavior: "smooth"
       });
+      
+      return true;
     } else if (retries > 0) {
       // Если элемент не найден, пробуем еще раз через задержку
       setTimeout(() => {
@@ -79,6 +73,7 @@ export default function Header({ onNavigate }: HeaderProps) {
       }, 100);
     } else {
       console.warn(`Элемент с id "${sectionId}" не найден`);
+      return false;
     }
   };
 
@@ -86,9 +81,12 @@ export default function Header({ onNavigate }: HeaderProps) {
     setActiveId(id);
     
     if (location.pathname !== '/') {
-      // Переходим на главную и сохраняем информацию о скролле
-      navigate('/');
+      // Сохраняем секцию для скролла
       sessionStorage.setItem('scrollToSection', id);
+      // Сохраняем флаг, что нужно выполнить скролл сразу после загрузки
+      sessionStorage.setItem('shouldScrollImmediately', 'true');
+      // Переходим на главную
+      navigate('/');
     } else {
       // На главной странице
       if (id === 'home') {
@@ -110,22 +108,60 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   // Обработка скролла после перехода на главную страницу
   useEffect(() => {
+    const shouldScrollImmediately = sessionStorage.getItem('shouldScrollImmediately') === 'true';
+    
     if (location.pathname === '/') {
       const sectionToScroll = sessionStorage.getItem('scrollToSection');
-      if (sectionToScroll) {
-        const timer = setTimeout(() => {
+      
+      if (sectionToScroll && shouldScrollImmediately) {
+        // Если нужно выполнить скролл сразу
+        const executeScroll = () => {
           if (sectionToScroll === 'home') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
-            scrollToElement(sectionToScroll);
+            const success = scrollToElement(sectionToScroll);
+            // Если не удалось найти элемент с первого раза, пробуем еще раз
+            if (!success) {
+              setTimeout(() => scrollToElement(sectionToScroll), 300);
+            }
           }
           sessionStorage.removeItem('scrollToSection');
-        }, 800); // Увеличиваем задержку
+          sessionStorage.removeItem('shouldScrollImmediately');
+        };
+        
+        // Пробуем выполнить скролл сразу, но с небольшой задержкой
+        const timer = setTimeout(executeScroll, 100);
         
         return () => clearTimeout(timer);
       }
     }
   }, [location.pathname]);
+
+ // Альтернативный подход: использование состояния в URL
+useEffect(() => {
+  const handleHashChange = () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && navigationItems.some(item => item.id === hash)) {
+      if (location.pathname === '/') {
+        // Если уже на главной, просто скроллим
+        setTimeout(() => scrollToElement(hash), 100);
+      } else {
+        // Иначе переходим на главную с хэшем
+        navigate(`/#${hash}`);
+      }
+    }
+  };
+
+  window.addEventListener('hashchange', handleHashChange);
+  
+  // Проверяем начальный хэш
+  const initialHash = window.location.hash.replace('#', '');
+  if (initialHash && navigationItems.some(item => item.id === initialHash)) {
+    handleHashChange();
+  }
+  
+  return () => window.removeEventListener('hashchange', handleHashChange);
+}, [location.pathname, navigate, navigationItems]);
 
   // Обновляем активный раздел при скролле
   useEffect(() => {
@@ -312,8 +348,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                   </button>
                 );
               })}
-              
-              
             </nav>
           </div>
         )}

@@ -190,7 +190,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
               className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
                 bg-blue-500/20 border border-blue-800/30 
                 text-blue-600 dark:text-blue-400 font-medium
-                backdrop-blur-sm
+                
                 group
                 px-4 py-2 sm:px-6 sm:py-3
                 text-sm sm:text-base

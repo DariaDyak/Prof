@@ -106,8 +106,8 @@ export default function StatsSection() {
                                     <div className="flex items-start justify-between mb-3 sm:mb-4">
                                         {/* Текст слева */}
                                         <div>
-                                            <p className="text-sm text-muted-foreground">С сертификатами</p>
-                                            <p className="text-3xl font-bold mt-2">2</p>
+                                            <p className="text-sm text-muted-foreground">Зарегистрировано в Реестре ПО</p>
+                                            <p className="text-3xl font-bold mt-2">1</p>
                                         </div>
 
                                         {/* Иконка справа */}
@@ -130,7 +130,7 @@ export default function StatsSection() {
                                     <div className="flex items-start justify-between mb-3 sm:mb-4">
                                         {/* Текст слева */}
                                         <div>
-                                            <p className="text-sm text-muted-foreground">Зарегистрировано</p>
+                                            <p className="text-sm text-muted-foreground">Зарегистрировано в Роспатенте</p>
                                             <p className="text-3xl font-bold mt-2">2</p>
                                         </div>
 
@@ -157,100 +157,100 @@ export default function StatsSection() {
                     </div>
 
                     <Table>
-                        <TableHeader className="bg-white dark:bg-gray-900 items-center">
-                            <TableRow className="border-b dark:border-gray-800">
-                                <TableHead className="w-[350px] font-bold text-foreground dark:text-white text-center">Продукт</TableHead>
-                                <TableHead className="font-bold text-foreground dark:text-white text-center"></TableHead>
-                                <TableHead className="w-[150px] font-bold text-foreground dark:text-white text-center">Платформа</TableHead>
-                                <TableHead className="w-[180px] font-bold text-foreground dark:text-white text-center">Регистрация</TableHead>
-                                <TableHead className="w-[140px] font-bold text-foreground dark:text-white text-center">Сертификаты</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {mockProducts.map((product) => (
-                                <TableRow
-                                    key={product.id}
-                                    className="group bg-white dark:bg-gray-900 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-purple-50/50 dark:hover:from-gray-800/50 dark:hover:to-gray-700/50 transition-all duration-200 border-b dark:border-gray-800 last:border-0"
-                                >
-                                    <TableCell className="align-middle">
-                                        <div className="flex items-center gap-4">
-                                            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-900/40 flex items-center justify-center">
-                                                <Cpu className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                                            </div>
-                                            <div>
-                                                <h4 className="font-semibold text-base leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors dark:text-white">
-                                                    {product.title}
-                                                </h4>
-                                                <div className="flex items-center gap-2 mt-2">
-                                                    {/* ваш контент */}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </TableCell>
+  <TableHeader className="bg-white dark:bg-gray-900 items-center">
+    <TableRow className="border-b dark:border-gray-800 hover:bg-transparent">
+      <TableHead className="w-[350px] font-bold text-foreground dark:text-white text-center">Продукт</TableHead>
+      <TableHead className="font-bold text-foreground dark:text-white text-center"></TableHead>
+      <TableHead className="w-[150px] font-bold text-foreground dark:text-white text-center">Платформа</TableHead>
+      <TableHead className="w-[180px] font-bold text-foreground dark:text-white text-center">Регистрация</TableHead>
+      <TableHead className="w-[140px] font-bold text-foreground dark:text-white text-center">Сертификаты</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {mockProducts.map((product) => (
+      <TableRow
+        key={product.id}
+        className="group bg-white dark:bg-gray-900 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-purple-50/50 dark:hover:from-gray-800/50 dark:hover:to-gray-700/50 transition-all duration-200 border-b dark:border-gray-800 last:border-0"
+      >
+        <TableCell className="align-middle">
+          <div className="flex items-center gap-4">
+            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-900/40 flex items-center justify-center">
+              <Cpu className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            </div>
+            <div>
+              <h4 className="font-semibold text-base leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors dark:text-white">
+                {product.title}
+              </h4>
+              <div className="flex items-center gap-2 mt-2">
+                {/* ваш контент */}
+              </div>
+            </div>
+          </div>
+        </TableCell>
 
-                                    <TableCell className="align-middle">
-                                        <p className="line-clamp-2 text-muted-foreground dark:text-gray-400">
-                                            {product.short_description}
-                                        </p>
-                                    </TableCell>
+        <TableCell className="align-middle">
+          <p className="line-clamp-2 text-muted-foreground dark:text-gray-400">
+            {product.short_description}
+          </p>
+        </TableCell>
 
-                                    <TableCell className="align-middle">
-                                        <Badge
-                                            variant="secondary"
-                                            className="text-white text-xs bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700"
-                                        >
-                                            {product.platform}
-                                        </Badge>
-                                    </TableCell>
+        <TableCell className="align-middle">
+          <Badge
+            variant="secondary"
+            className="text-white text-xs bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700"
+          >
+            {product.platform}
+          </Badge>
+        </TableCell>
 
-                                    <TableCell className="align-middle">
-                                        <div className="space-y-2">
-                                            {product.registration_num ? (
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center">
-                                                        <FileText className="w-3 h-3 text-green-600 dark:text-green-400" />
-                                                    </div>
-                                                    <div>
-                                                        <div className="text-xs text-muted-foreground dark:text-gray-500">Роспатент</div>
-                                                        <div className="font-mono text-sm font-medium dark:text-white">№{product.registration_num}</div>
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <div className="text-sm text-muted-foreground dark:text-gray-500">Не зарегистрировано</div>
-                                            )}
+        <TableCell className="align-middle">
+          <div className="space-y-2">
+            {product.registration_num ? (
+              <div className="flex items-center gap-4">
+                <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center">
+                  <FileText className="w-3 h-3 text-green-600 dark:text-green-400" />
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground dark:text-gray-500">Роспатент</div>
+                  <div className="font-mono text-sm font-medium dark:text-white">№{product.registration_num}</div>
+                </div>
+              </div>
+            ) : (
+              <div className="text-sm text-muted-foreground dark:text-gray-500">Не зарегистрировано</div>
+            )}
 
-                                            {product.reg_program_num && (
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
-                                                        <FileText className="w-3 h-3 text-blue-600 dark:text-blue-400" />
-                                                    </div>
-                                                    <div>
-                                                        <div className="text-xs text-muted-foreground dark:text-gray-500">Реестр ПО</div>
-                                                        <div className="text-sm font-medium dark:text-white">№{product.reg_program_num}</div>
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </TableCell>
+            {product.reg_program_num && (
+              <div className="flex items-center gap-4">
+                <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                  <FileText className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground dark:text-gray-500">Реестр ПО</div>
+                  <div className="text-sm font-medium dark:text-white">№{product.reg_program_num}</div>
+                </div>
+              </div>
+            )}
+          </div>
+        </TableCell>
 
-                                    <TableCell className="align-middle">
-                                        <div className="flex justify-end gap-2">
-                                            {product.certificate_image && (
-                                                <Button
-                                                    size="sm"
-                                                    variant="outline"
-                                                    onClick={() => handleOpenCertificate(product.certificate_image!)}
-                                                    className="h-8 px-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border dark:border-gray-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/40 dark:hover:to-purple-800/40"
-                                                >
-                                                    Показать
-                                                </Button>
-                                            )}
-                                        </div>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+        <TableCell className="align-middle">
+          <div className="flex justify-end gap-2">
+            {product.certificate_image && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => handleOpenCertificate(product.certificate_image!)}
+                className="h-8 px-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border dark:border-gray-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/40 dark:hover:to-purple-800/40"
+              >
+                Показать
+              </Button>
+            )}
+          </div>
+        </TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>
 
                     {/* Футер таблицы */}
                     <div className="bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-gray-900/50 dark:to-gray-800/50 border-t dark:border-gray-800 px-6 py-4">
