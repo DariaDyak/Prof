@@ -51,7 +51,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="pt-10 pb-16 bg-card from-slate-50 to-slate-100  dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
+    <section id="services" className="pt-10 pb-14 bg-card from-slate-50 to-slate-100  dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 ">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
@@ -84,7 +84,7 @@ export default function ServicesSection() {
                 <CardHeader className="p-4 sm:p-6">
                   <CardTitle className="text-base sm:text-lg lg:text-xl flex items-start gap-2 sm:gap-3">
                     {IconComponent && (
-                      <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
                     )}
                     <span className="leading-tight">{service.title}</span>
                   </CardTitle>
@@ -96,7 +96,7 @@ export default function ServicesSection() {
                   </p>
 
                   <Button
-  className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
+                    className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
     bg-blue-500/20 border border-blue-800/30 
     text-blue-600 dark:text-blue-400 font-medium
     group
@@ -104,20 +104,20 @@ export default function ServicesSection() {
     text-sm sm:text-base
     hover:border-blue-400 hover:bg-blue-500/30
     transition-all duration-300"
-  onClick={() => handleLearnMore(service.link)}
-  disabled={!service.link || service.link === "#"}
-  data-testid={`button-service-${index}`}
->
-  {/* Бегущий луч */}
-  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] 
+                    onClick={() => handleLearnMore(service.link)}
+                    disabled={!service.link || service.link === "#"}
+                    data-testid={`button-service-${index}`}
+                  >
+                    {/* Бегущий луч */}
+                    <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] 
     transition-transform duration-1000 ease-in-out 
     bg-gradient-to-r from-transparent via-white/50 to-transparent" />
 
-  <span className="relative z-10">
-    Узнать подробнее
-  </span>
-  <ArrowRight className="relative z-10 h-3 w-3 sm:h-4 sm:w-4" />
-</Button>
+                    <span className="relative z-10">
+                      Узнать подробнее
+                    </span>
+                    <ArrowRight className="relative z-10 h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
                 </CardContent>
               </Card>
             );

@@ -7,6 +7,7 @@ import DevelopmentShowcase from "@/components/DevelopmentShowcase";
 
 import DevelopmentProcess from "@/components/DevelopmentProcess";
 import { useEffect } from "react";
+import ProjectDevelopmentSection from "@/components/ProjectDevelopmentSection";
 
 export default function DevelopmentPage() {
   useEffect(() => {
@@ -50,7 +51,7 @@ export default function DevelopmentPage() {
         />
         
         <DevelopmentShowcase />
-        
+        <ProjectDevelopmentSection/>
         <DevelopmentProcess />
       </main>
 

@@ -5,6 +5,8 @@ import ThemeToggle from "@/components/ThemeToggle";
 import ItDecisions from "@/components/ItDecisions";
 import HexagonServices from "@/components/HexagonServices";
 import { useEffect } from "react";
+import ModificationServicesSec from "@/components/ModificationServicesSec";
+import ResultsSection from "@/components/ResultsSection";
 
 export default function CSupportPage() {
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function CSupportPage() {
   };
 
   return (
-      <div className="min-h-screen text-foreground font-Montserrat">
+    <div className="min-h-screen text-foreground font-Montserrat">
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
@@ -35,7 +37,7 @@ export default function CSupportPage() {
 
       <main>
         {/* Hero секция с ItDecisions */}
-        <ItDecisions 
+        <ItDecisions
           badgeText="1С сопровождение"
           title="Превращаем вашу 1С в конкурентное преимущество"
           description="Мы обеспечиваем стабильность и надежность работы ИТ-систем, а также оказываем поддержку на всех этапах использования 1С системы"
@@ -46,13 +48,17 @@ export default function CSupportPage() {
           alignment="left"
           minHeight="lg"
         />
-          
-    
+
+
 
         {/* Секция услуг в формате гексагонов */}
         <section ref={sectionRefs.services} className="scroll-mt-20">
           <HexagonServices />
         </section>
+
+        <ModificationServicesSec />
+        {/* Отдельная секция с итоговым блоком */}
+        <ResultsSection />
       </main>
 
       <Footer />

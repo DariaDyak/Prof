@@ -50,9 +50,9 @@ export default function AutomationPage() {
           minHeight="lg"
         />
         
-        <AutomationSection/>
+        
         <AutomationBenefits/>
-      
+        <AutomationSection/>
       </main>
 
       <Footer />

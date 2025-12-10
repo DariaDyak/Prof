@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Database, FileText, Shield, X, Download, Cpu, ExternalLink} from 'lucide-react';
+import { Database, FileText, Shield, X, Download, Cpu, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import {
     Table,
@@ -18,7 +18,7 @@ export default function StatsSection() {
     const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
     const [zoom, setZoom] = useState(1);
     const navigate = useNavigate();
-    
+
     // Используем хук для загрузки данных
     const { products, loading, error } = useProducts();
 
@@ -39,18 +39,18 @@ export default function StatsSection() {
     // Функция для перехода на страницу продукта
     const handleProductClick = (productId: number, productTitle: string) => {
         // Проверяем название продукта для определения маршрута
-        if (productTitle.toLowerCase().includes('профит-эс') || 
+        if (productTitle.toLowerCase().includes('профит-эс') ||
             productTitle.toLowerCase().includes('profit-es') ||
             productId === 1) {
             navigate('/profitEs');
-        } else if (productTitle.toLowerCase().includes('профит-лс') || 
-                   productTitle.toLowerCase().includes('profit-ls') ||
-                   productId === 2) {
+        } else if (productTitle.toLowerCase().includes('профит-лс') ||
+            productTitle.toLowerCase().includes('profit-ls') ||
+            productId === 2) {
             // Если у вас есть отдельная страница для ПРОФИТ-ЛС
             navigate('/profitLs');
-        } else if (productTitle.toLowerCase().includes('профит-мо') || 
-                   productTitle.toLowerCase().includes('profit-mo') ||
-                   productId === 3) {
+        } else if (productTitle.toLowerCase().includes('профит-мо') ||
+            productTitle.toLowerCase().includes('profit-mo') ||
+            productId === 3) {
             // Если у вас есть отдельная страница для ПРОФИТ-МО
             navigate('/product/3');
         } else {
@@ -120,8 +120,7 @@ export default function StatsSection() {
                         Собственная разработка
                     </h2>
                     <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Мы работаем с различными отраслями и имеем глубокую экспертизу в
-                        создании специализированных решений для каждой сферы
+                        Мы сотрудничаем с компаниями из разных секторов экономики, предлагая индивидуальные решения с учетом специфики каждой отрасли
                     </p>
                 </div>
 
@@ -223,12 +222,12 @@ export default function StatsSection() {
                                             </div>
                                             <div>
                                                 <button
-    onClick={() => handleProductClick(product.id, product.title)}
-    className="font-semibold text-base leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors dark:text-white text-left hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1 -mx-2 flex items-center gap-2"
->
-    {product.title}
-    
-</button>
+                                                    onClick={() => handleProductClick(product.id, product.title)}
+                                                    className="font-semibold text-base leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors dark:text-white text-left hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1 -mx-2 flex items-center gap-2"
+                                                >
+                                                    {product.title}
+
+                                                </button>
                                             </div>
                                         </div>
                                     </TableCell>
