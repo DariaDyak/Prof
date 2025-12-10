@@ -10,8 +10,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import InputMask from 'react-input-mask';
 import { Link } from "react-router-dom";
 
-import U1 from "@assets/generated_images/U1.png";
-import U2 from "@assets/generated_images/U2.png";
+import S1 from "@assets/generated_images/S1.png";
+import S2 from "@assets/generated_images/S2.png";
 import U3 from "@assets/generated_images/U3.jpg";
 
 // URL API для бэкенда
@@ -51,12 +51,12 @@ export default function ContactsSection() {
 
   const slides = [
     {
-      image: U1,
+      image: S1,
       title: "IT-инфраструктура",
       description: "Современные решения для вашего бизнеса"
     },
     {
-      image: U2,
+      image: S2,
       title: "Автоматизация",
       description: "Оптимизация бизнес-процессов"
     },
@@ -141,27 +141,34 @@ export default function ContactsSection() {
   };
 
   const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Адрес",
-      content: "г. Краснодар, ул. Рашпилевская, д. 244, этаж 3",
-    },
-    {
-      icon: Phone,
-      title: "Телефон",
-      content: "+7 (800) 200-29-70",
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      content: "info@it4prof.ru",
-    },
-    {
-      icon: Clock,
-      title: "Часы работы",
-      content: "Пн-Пт: 8:00 - 17:00",
-    },
-  ];
+  {
+    icon: Phone,
+    title: "Телефон",
+    content: "+7 (800) 200-29-70", // Замените на ваш телефон
+    type: "phone",
+    href: "tel:+78002002970" // Замените на ваш телефон без пробелов
+  },
+  {
+    icon: Mail,
+    title: "Электронная почта",
+    content: "info@prof-it.ru", // Замените на вашу почту
+    type: "email",
+    href: "mailto:info@prof-it.ru" // Замените на вашу почту
+  },
+  {
+    icon: MapPin,
+    title: "Адрес",
+    content: "г. Москва, ул. Примерная, д. 123", // Замените на ваш адрес
+    type: "address"
+  },
+  {
+    icon: Clock,
+    title: "Часы работы",
+    content: "Пн-Пт: 9:00-18:00",
+    type: "hours"
+  }
+];
+
 
   return (
     <section id="contacts" className="pt-10 pb-16 bg-card dark:from-slate-900 dark:to-blue-900/20">
@@ -444,28 +451,51 @@ export default function ContactsSection() {
             </div>
           </div>
 
-          {/* Контактная информация */}
-          <div className="grid gap-3 sm:gap-4 h-full">
-            {contactInfo.map((info, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg transition-all duration-300 h-full hover:shadow-2xl dark:hover:shadow-none"
-              >
-                <div className="flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 flex-shrink-0">
-                  <info.icon className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-blue-600 dark:text-blue-400" />
-                </div>
-                <div className="flex-grow">
-                  <h4 className="font-bold text-foreground mb-1 sm:mb-2 text-sm sm:text-base leading-tight">
-                    {info.title}
-                  </h4>
-                  <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm">
-                    {info.content}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+         
+    <div className="grid gap-3 sm:gap-4 h-full">
+  {contactInfo.map((info, index) => {
+    // Определяем, это ссылка или статический элемент
+    const isLink = info.type === "phone" || info.type === "email";
+    const Element = isLink ? "a" : "div";
+    
+    return (
+      <Element
+        key={index}
+        href={isLink ? info.href : undefined}
+        className={`
+          flex items-start gap-3 sm:gap-4 p-3 sm:p-4 
+          rounded-xl sm:rounded-2xl 
+          bg-white dark:bg-slate-800
+          border border-slate-200 dark:border-slate-700 
+          hover:border-blue-300 dark:hover:border-blue-600
+          shadow-lg transition-all duration-300 h-full 
+          hover:shadow-2xl dark:hover:shadow-none
+          ${isLink ? 'cursor-pointer' : ''}
+        `}
+      >
+        <div className={`
+          flex items-center justify-center 
+          h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 
+          flex-shrink-0
+        `}>
+          <info.icon className={`
+            h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 
+            text-blue-600 dark:text-blue-400
+          `} />
         </div>
+        <div className="flex-grow">
+          <h4 className="font-bold text-foreground mb-1 sm:mb-2 text-sm sm:text-base leading-tight">
+            {info.title}
+          </h4>
+          <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm">
+            {info.content}
+          </p>
+        </div>
+      </Element>
+    );
+  })}
+</div>
+</div>
       </div>
     </section>
   );

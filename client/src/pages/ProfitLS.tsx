@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
 import ProfitLSInfo from "@/components/ProfitLsInfo";
+import BackButton from "@/components/BackButton";
 
 export default function ProfitLs() {
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function ProfitLs() {
       </div>
 
       <Header onNavigate={scrollToSection} />
-      
+      <BackButton/>
       <ProfitLSInfo />
 
       <Footer />

@@ -13,7 +13,8 @@ import DevelopmentPage from "@/pages/DevelopmentPage";
 import './index.css'
 import DataProcessing from '@/pages/DataProcessing';
 import ProfitEs from "@/pages/ProfitES"; 
-import ProfitLs from "@/pages/ProfitLs"; 
+import ProfitLs from "@/pages/ProfitLs";
+ 
 
 
 function Router() {
