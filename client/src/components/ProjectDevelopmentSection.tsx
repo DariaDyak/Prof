@@ -4,7 +4,7 @@ export default function ProjectDevelopmentSection() {
             <div className="container mx-auto px-4 lg:px-8">
                 <div className="group backdrop-blur-sm transition-all duration-500 mb-12">
                     <div>
-                        <div className="space-y-6 sm:space-y-8"> 
+                        <div className="space-y-6 sm:space-y-8">
                             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-center text-foreground">
                                 Услуги в области
                                 <span className="block text-blue-600 dark:text-blue-400">разработки ПО</span>

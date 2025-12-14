@@ -11,7 +11,7 @@ interface BackButtonProps {
 export default function BackButtonSimple({
   text = "Назад к разработкам",
   className = "",
-  scrollTo="cases",
+  scrollTo = "cases",
 
 }: BackButtonProps) {
   const navigate = useNavigate();

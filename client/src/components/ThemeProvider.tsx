@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Apply theme to document
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
-    
+
     // Save to localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);

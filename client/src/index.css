@@ -5,15 +5,16 @@
 
 /* LIGHT MODE */
 :root {
-  --button-outline: rgba(0,0,0, .10);
-  --badge-outline: rgba(0,0,0, .05);
+  --button-outline: rgba(0, 0, 0, .10);
+  --badge-outline: rgba(0, 0, 0, .05);
 
   /* Automatic computation of border around primary / danger buttons */
-  --opaque-button-border-intensity: -8; /* In terms of percentages */
+  --opaque-button-border-intensity: -8;
+  /* In terms of percentages */
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(0,0,0, .03);
-  --elevate-2: rgba(0,0,0, .08);
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(0, 0, 0, .08);
 
   --background: 0 0% 98%;
 
@@ -80,7 +81,8 @@
   --font-sans: Inter, system-ui, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
-  --radius: .5rem; /* 8px */
+  --radius: .5rem;
+  /* 8px */
   --shadow-2xs: 0px 1px 2px 0px hsl(220 13% 69% / 0.05);
   --shadow-xs: 0px 1px 2px 0px hsl(220 13% 69% / 0.10);
   --shadow-sm: 0px 1px 2px 0px hsl(220 13% 69% / 0.10), 0px 1px 3px 0px hsl(220 13% 69% / 0.10);
@@ -124,14 +126,15 @@
 }
 
 .dark {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
+  --button-outline: rgba(255, 255, 255, .10);
+  --badge-outline: rgba(255, 255, 255, .05);
 
-  --opaque-button-border-intensity: 9;  /* In terms of percentages */
+  --opaque-button-border-intensity: 9;
+  /* In terms of percentages */
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
+  --elevate-1: rgba(255, 255, 255, .04);
+  --elevate-2: rgba(255, 255, 255, .09);
 
   --background: 220 15% 8%;
 
@@ -327,11 +330,15 @@
     inset: -1px;
   }
 }
+
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) scale(1);
     opacity: 0.7;
   }
+
   50% {
     transform: translateY(-20px) scale(1.05);
     opacity: 1;
@@ -345,15 +352,23 @@
 #contacts {
   scroll-margin-top: 80px;
 }
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
-        .animate-pulse-glow {
-          animation: pulse-glow 2s ease-in-out infinite;
-        }
-      
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

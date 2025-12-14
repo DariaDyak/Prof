@@ -49,7 +49,7 @@ export default function ProcessSection() {
                     <div className="text-5xl font-black text-slate-200 dark:text-slate-700 mb-4 group-hover:text-primary/20 transition-colors">
                       {step.step}
                     </div>
-                    
+
                     {/* Заголовок и описание */}
                     <div className="text-center">
                       <h4 className="text-lg font-bold text-foreground mb-3">

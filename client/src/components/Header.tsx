@@ -30,7 +30,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const initialTheme = savedTheme || systemTheme;
-    
+
     setTheme(initialTheme);
     document.documentElement.classList.toggle('dark', initialTheme === 'dark');
   }, []);
@@ -64,7 +64,7 @@ export default function Header({ onNavigate }: HeaderProps) {
         top: scrollPosition,
         behavior: "smooth"
       });
-      
+
       return true;
     } else if (retries > 0) {
       // Если элемент не найден, пробуем еще раз через задержку
@@ -79,7 +79,7 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   const handleNavClick = (id: string) => {
     setActiveId(id);
-    
+
     if (location.pathname !== '/') {
       // Сохраняем секцию для скролла
       sessionStorage.setItem('scrollToSection', id);
@@ -101,7 +101,7 @@ export default function Header({ onNavigate }: HeaderProps) {
         }, 50);
       }
     }
-    
+
     onNavigate?.(id);
     setIsMobileMenuOpen(false);
   };
@@ -109,10 +109,10 @@ export default function Header({ onNavigate }: HeaderProps) {
   // Обработка скролла после перехода на главную страницу
   useEffect(() => {
     const shouldScrollImmediately = sessionStorage.getItem('shouldScrollImmediately') === 'true';
-    
+
     if (location.pathname === '/') {
       const sectionToScroll = sessionStorage.getItem('scrollToSection');
-      
+
       if (sectionToScroll && shouldScrollImmediately) {
         // Если нужно выполнить скролл сразу
         const executeScroll = () => {
@@ -128,40 +128,40 @@ export default function Header({ onNavigate }: HeaderProps) {
           sessionStorage.removeItem('scrollToSection');
           sessionStorage.removeItem('shouldScrollImmediately');
         };
-        
+
         // Пробуем выполнить скролл сразу, но с небольшой задержкой
         const timer = setTimeout(executeScroll, 100);
-        
+
         return () => clearTimeout(timer);
       }
     }
   }, [location.pathname]);
 
- // Альтернативный подход: использование состояния в URL
-useEffect(() => {
-  const handleHashChange = () => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash && navigationItems.some(item => item.id === hash)) {
-      if (location.pathname === '/') {
-        // Если уже на главной, просто скроллим
-        setTimeout(() => scrollToElement(hash), 100);
-      } else {
-        // Иначе переходим на главную с хэшем
-        navigate(`/#${hash}`);
+  // Альтернативный подход: использование состояния в URL
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && navigationItems.some(item => item.id === hash)) {
+        if (location.pathname === '/') {
+          // Если уже на главной, просто скроллим
+          setTimeout(() => scrollToElement(hash), 100);
+        } else {
+          // Иначе переходим на главную с хэшем
+          navigate(`/#${hash}`);
+        }
       }
-    }
-  };
+    };
 
-  window.addEventListener('hashchange', handleHashChange);
-  
-  // Проверяем начальный хэш
-  const initialHash = window.location.hash.replace('#', '');
-  if (initialHash && navigationItems.some(item => item.id === initialHash)) {
-    handleHashChange();
-  }
-  
-  return () => window.removeEventListener('hashchange', handleHashChange);
-}, [location.pathname, navigate, navigationItems]);
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Проверяем начальный хэш
+    const initialHash = window.location.hash.replace('#', '');
+    if (initialHash && navigationItems.some(item => item.id === initialHash)) {
+      handleHashChange();
+    }
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [location.pathname, navigate, navigationItems]);
 
   // Обновляем активный раздел при скролле
   useEffect(() => {
@@ -173,55 +173,55 @@ useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const headerHeight = getHeaderHeight();
-      
+
       let currentActiveId: string | null = 'home';
-      
+
       for (const item of navigationItems.filter(item => item.id !== 'home')) {
         const element = document.getElementById(item.id);
         if (element) {
           const elementRect = element.getBoundingClientRect();
           const elementTop = elementRect.top + window.pageYOffset;
-          
+
           // Проверяем, видна ли секция в области просмотра с учетом header
           if (scrollPosition + headerHeight >= elementTop - 50) {
             currentActiveId = item.id;
           }
         }
       }
-      
+
       // Если в самом верху - home
       if (scrollPosition < 50) {
         currentActiveId = 'home';
       }
-      
+
       setActiveId(currentActiveId);
     };
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [navigationItems, location.pathname]);
 
   return (
-    <header 
+    <header
       ref={headerRef}
       className="sticky top-0 z-50 bg-card/85 backdrop-blur-md border-b supports-backdrop-blur:bg-card/60"
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Логотип */}
-          <div 
-            className="flex items-center space-x-3 cursor-pointer focus:outline-none" 
+          <div
+            className="flex items-center space-x-3 cursor-pointer focus:outline-none"
             onClick={() => handleNavClick('home')}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && handleNavClick('home')}
           >
-            <img 
-              src={logo} 
-              alt="Prof it Logo" 
-              className="w-8 h-8 lg:w-10 lg:h-10 object-cover transition-transform hover:scale-105" 
+            <img
+              src={logo}
+              alt="Prof it Logo"
+              className="w-8 h-8 lg:w-10 lg:h-10 object-cover transition-transform hover:scale-105"
             />
             <span className="text-xl sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               ПРОФ ИТ
@@ -242,8 +242,8 @@ useEffect(() => {
                       text-xs lg:text-base
                       relative px-1 py-2
                       text-muted-foreground hover:text-blue-600 transition-all duration-300
-                      ${isActive 
-                        ? 'text-blue-600 text-bold' 
+                      ${isActive
+                        ? 'text-blue-600 text-bold'
                         : 'hover:text-blue-600'
                       }
                     `}
@@ -254,8 +254,8 @@ useEffect(() => {
                     <div className={`
                       absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
                       transition-all duration-300 ease-out
-                      ${isActive 
-                        ? 'opacity-100 transform scale-100' 
+                      ${isActive
+                        ? 'opacity-100 transform scale-100'
                         : 'opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100'
                       }
                     `} />
@@ -336,8 +336,8 @@ useEffect(() => {
                       font-medium
                       focus:outline-none focus:ring-0
                       transform hover:translate-x-1
-                      ${isActive 
-                        ? 'text-blue-600 bg-blue-50 border-l-4 border-blue-600' 
+                      ${isActive
+                        ? 'text-blue-600 bg-blue-50 border-l-4 border-blue-600'
                         : 'text-muted-foreground hover:text-blue-600 hover:bg-gray-50 border-l-4 border-transparent'
                       }
                     `}

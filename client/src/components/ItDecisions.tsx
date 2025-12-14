@@ -11,14 +11,14 @@ interface ItDecisionsProps {
   badgeText?: string;
   title: string;
   description: string;
-  
+
   // Дополнительные опции
   showBackButton?: boolean;
   backButtonText?: string;
   backgroundImage?: "U1" | "U2" | "U3" | string; // Изменено для поддержки предустановленных изображений
   onLearnMore?: () => void;
   onBadgeClick?: () => void;
-  
+
   // Кастомизация стилей
   titleSize?: "sm" | "md" | "lg" | "xl";
   alignment?: "left" | "center";
@@ -28,11 +28,11 @@ interface ItDecisionsProps {
 // Объект с картинками для удобного доступа
 const backgroundImages = {
   U1: U1,
-  U2: U2, 
+  U2: U2,
   U3: U3
 };
 
-export default function ItDecisions({ 
+export default function ItDecisions({
   badgeText = "IT-решения для бизнеса",
   title,
   description,
@@ -45,7 +45,7 @@ export default function ItDecisions({
   alignment = "left",
   minHeight = "md"
 }: ItDecisionsProps) {
-  
+
   // Получаем правильное изображение
   const getBackgroundImage = () => {
     if (typeof backgroundImage === 'string' && backgroundImage in backgroundImages) {
@@ -68,7 +68,7 @@ export default function ItDecisions({
   // Размеры заголовка
   const titleSizes = {
     sm: "text-lg md:text-xl lg:text-xl",
-    md: "text-xl md:text-2xl lg:text-2xl", 
+    md: "text-xl md:text-2xl lg:text-2xl",
     lg: "text-2xl md:text-3xl lg:text-4xl",
     xl: "text-3xl md:text-4xl lg:text-5xl"
   };
@@ -91,20 +91,20 @@ export default function ItDecisions({
     <section className={`relative ${heightClasses[minHeight]} flex flex-col py-12`}>
       {/* Фоновое изображение */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={currentBackgroundImage} 
-          alt="Фон" 
+        <img
+          src={currentBackgroundImage}
+          alt="Фон"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/40" />
       </div>
 
       {/* Кнопка возврата на главную */}
-{showBackButton && (
-  <div className="container mx-auto lg:px-8 relative z-10">
-    <Link 
-      to="/" 
-      className={`
+      {showBackButton && (
+        <div className="container mx-auto lg:px-8 relative z-10">
+          <Link
+            to="/"
+            className={`
         relative py-2
         transition-all duration-300 ease-out
         font-base
@@ -114,22 +114,22 @@ export default function ItDecisions({
         inline-block
         pl-4 lg:pl-0
       `}
-    >
-      <span className="relative inline-block">
-        ← {backButtonText}
-        <div className={`
+          >
+            <span className="relative inline-block">
+              ← {backButtonText}
+              <div className={`
           absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
           transition-all duration-300 ease-out
           opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
         `} />
-      </span>
-    </Link>
-  </div>
-)}
+            </span>
+          </Link>
+        </div>
+      )}
       {/* Основной контент */}
       <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center relative z-10">
         <div className={`max-w-8xl mx-auto w-full ${alignmentClasses[alignment]}`}>
-          
+
           {/* Бейдж/кнопка */}
           {badgeText && (
             <Button

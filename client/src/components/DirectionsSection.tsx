@@ -36,7 +36,7 @@ export default function DirectionsSection() {
       description:
         "Создание технических заданий, регламентов, инструкций и политик безопасности для IT-систем.",
     },
-    
+
     {
       icon: Analiz,
       title: "Анализ информационной безопасности",
@@ -100,7 +100,7 @@ export default function DirectionsSection() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Заголовок притягивается к верху */}
                   <h3 className="text-sm sm:text-base font-bold text-foreground mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                     {direction.title}

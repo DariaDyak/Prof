@@ -13,7 +13,7 @@ export default function ProfitEsInfo() {
   // Функция для скачивания файла
   const handleDownload = (url: string, filename: string) => {
     setDownloading(filename);
-    
+
     // Создаем временную ссылку для скачивания
     const link = document.createElement('a');
     link.href = url;
@@ -21,7 +21,7 @@ export default function ProfitEsInfo() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     // Сбрасываем состояние через секунду
     setTimeout(() => setDownloading(null), 1000);
   };
@@ -228,7 +228,7 @@ export default function ProfitEsInfo() {
                   </div>
                   <p className="text-sm text-foreground/80">Полная автоматизация процессов купли-продажи электроэнергии</p>
                 </div>
-                
+
                 <div className="p-4 bg-white dark:bg-transparent rounded-xl sm:rounded-2xl border border-slate-200 dark:border-slate-700/30 hover:border-blue-200 dark:hover:border-blue-600 shadow-lg dark:shadow-slate-800/30 transition-all duration-300 overflow-hidden flex flex-col">
                   <div className="flex items-center mb-3">
                     <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3">
@@ -238,7 +238,7 @@ export default function ProfitEsInfo() {
                   </div>
                   <p className="text-sm text-foreground/80">Снижение рисков и повышение эффективности</p>
                 </div>
-                
+
                 <div className="p-4 bg-white dark:bg-transparent rounded-xl sm:rounded-2xl border border-slate-200 dark:border-slate-700/30 hover:border-blue-200 dark:hover:border-blue-600 shadow-lg dark:shadow-slate-800/30 transition-all duration-300 overflow-hidden flex flex-col">
                   <div className="flex items-center mb-3">
                     <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3">
