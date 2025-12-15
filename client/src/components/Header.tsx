@@ -204,154 +204,154 @@ export default function Header({ onNavigate }: HeaderProps) {
   }, [navigationItems, location.pathname]);
 
   return (
-    <header
-      ref={headerRef}
-      className="sticky top-0 z-50 bg-card/85 backdrop-blur-md border-b supports-backdrop-blur:bg-card/60"
-    >
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Логотип */}
-          <div
-            className="flex items-center space-x-3 cursor-pointer focus:outline-none"
-            onClick={() => handleNavClick('home')}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && handleNavClick('home')}
-          >
-            <img
-              src={logo}
-              alt="Prof it Logo"
-              className="w-8 h-8 lg:w-10 lg:h-10 object-cover transition-transform hover:scale-105"
-            />
-            <span className="text-xl sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              ПРОФ ИТ
-            </span>
-          </div>
-
-          {/* Десктопное меню и кнопка темы */}
-          <div className="hidden md:flex items-center space-x-6">
-            {/* Навигация */}
-            <nav className="flex items-center space-x-8">
-              {navigationItems.map((item) => {
-                const isActive = activeId === item.id && location.pathname === '/';
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.id)}
-                    className={`
-                      text-xs lg:text-base
-                      relative px-1 py-2
-                      text-muted-foreground hover:text-blue-600 transition-all duration-300
-                      ${isActive
-                        ? 'text-blue-600 text-bold'
-                        : 'hover:text-blue-600'
-                      }
-                    `}
-                    data-testid={`nav-${item.id}`}
-                    type="button"
-                  >
-                    {item.label}
-                    <div className={`
-                      absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
-                      transition-all duration-300 ease-out
-                      ${isActive
-                        ? 'opacity-100 transform scale-100'
-                        : 'opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100'
-                      }
-                    `} />
-                  </button>
-                );
-              })}
-            </nav>
-
-            {/* Разделитель */}
-            <div className="h-6 w-px bg-border" />
-
-            {/* Кнопка смены темы */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="h-9 w-9 p-0 hover:bg-accent transition-colors focus:ring-0 focus:outline-none"
-              aria-label={theme === 'light' ? 'Переключить на темную тему' : 'Переключить на светлую тему'}
-              type="button"
-            >
-              {theme === 'light' ? (
-                <Moon className="h-4 w-4 transition-transform duration-300 hover:scale-110" />
-              ) : (
-                <Sun className="h-4 w-4 transition-transform duration-300 hover:scale-110" />
-              )}
-            </Button>
-          </div>
-
-          {/* Мобильное меню и кнопка темы */}
-          <div className="flex items-center space-x-2 md:hidden">
-            {/* Кнопка смены темы в мобильной версии */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="h-9 w-9 p-0 hover:bg-accent transition-colors focus:ring-0 focus:outline-none"
-              aria-label={theme === 'light' ? 'Переключить на темную тему' : 'Переключить на светлую тему'}
-              type="button"
-            >
-              {theme === 'light' ? (
-                <Moon className="h-4 w-4" />
-              ) : (
-                <Sun className="h-4 w-4" />
-              )}
-            </Button>
-
-            {/* Кнопка мобильного меню */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-9 w-9 hover:bg-gray-100 transition-colors focus:ring-0 focus:outline-none"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              data-testid="button-mobile-menu"
-              type="button"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-5 w-5 transition-transform duration-300" />
-              ) : (
-                <Menu className="h-5 w-5 transition-transform duration-300" />
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Мобильное меню */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t bg-background/95 backdrop-blur-lg animate-in slide-in-from-top duration-300">
-            <nav className="flex flex-col space-y-1 p-4">
-              {navigationItems.map((item) => {
-                const isActive = activeId === item.id && location.pathname === '/';
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.id)}
-                    className={`
-                      text-left px-4 py-3 rounded-lg
-                      transition-all duration-300 ease-out
-                      font-medium
-                      focus:outline-none focus:ring-0
-                      transform hover:translate-x-1
-                      ${isActive
-                        ? 'text-blue-600 bg-blue-50 border-l-4 border-blue-600'
-                        : 'text-muted-foreground hover:text-blue-600 hover:bg-gray-50 border-l-4 border-transparent'
-                      }
-                    `}
-                    data-testid={`nav-mobile-${item.id}`}
-                    type="button"
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
-        )}
+   <header
+  ref={headerRef}
+  className="sticky top-0 z-50 bg-card/85 backdrop-blur-md border-b supports-backdrop-blur:bg-card/60"
+>
+  <div className="container mx-auto px-4 lg:px-8">
+    <div className="flex items-center justify-between h-16 lg:h-20">
+      {/* Логотип */}
+      <div
+        className="flex items-center space-x-3 cursor-pointer focus:outline-none"
+        onClick={() => handleNavClick('home')}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && handleNavClick('home')}
+      >
+        <img
+          src={logo}
+          alt="Prof it Logo"
+          className="w-8 h-8 lg:w-10 lg:h-10 object-cover transition-transform hover:scale-105"
+        />
+        <span className="text-xl sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          ПРОФ ИТ
+        </span>
       </div>
-    </header>
+
+      {/* Десктопное меню и кнопка темы - ТОЛЬКО ДЛЯ LG И ВЫШЕ */}
+      <div className="hidden lg:flex items-center space-x-6">
+        {/* Навигация */}
+        <nav className="flex items-center space-x-8">
+          {navigationItems.map((item) => {
+            const isActive = activeId === item.id && location.pathname === '/';
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`
+                  text-xs lg:text-base
+                  relative px-1 py-2
+                  text-muted-foreground hover:text-blue-600 transition-all duration-300
+                  ${isActive
+                    ? 'text-blue-600 text-bold'
+                    : 'hover:text-blue-600'
+                  }
+                `}
+                data-testid={`nav-${item.id}`}
+                type="button"
+              >
+                {item.label}
+                <div className={`
+                  absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
+                  transition-all duration-300 ease-out
+                  ${isActive
+                    ? 'opacity-100 transform scale-100'
+                    : 'opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100'
+                  }
+                `} />
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Разделитель */}
+        <div className="h-6 w-px bg-border" />
+
+        {/* Кнопка смены темы */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleTheme}
+          className="h-9 w-9 p-0 hover:bg-accent transition-colors focus:ring-0 focus:outline-none"
+          aria-label={theme === 'light' ? 'Переключить на темную тему' : 'Переключить на светлую тему'}
+          type="button"
+        >
+          {theme === 'light' ? (
+            <Moon className="h-4 w-4 transition-transform duration-300 hover:scale-110" />
+          ) : (
+            <Sun className="h-4 w-4 transition-transform duration-300 hover:scale-110" />
+          )}
+        </Button>
+      </div>
+
+      {/* Мобильное меню и кнопка темы - ДЛЯ ВСЕХ УСТРОЙСТВ МЕНЬШЕ LG */}
+      <div className="flex items-center space-x-2 lg:hidden">
+        {/* Кнопка смены темы в мобильной версии */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleTheme}
+          className="h-9 w-9 p-0 hover:bg-accent transition-colors focus:ring-0 focus:outline-none"
+          aria-label={theme === 'light' ? 'Переключить на темную тему' : 'Переключить на светлую тему'}
+          type="button"
+        >
+          {theme === 'light' ? (
+            <Moon className="h-4 w-4" />
+          ) : (
+            <Sun className="h-4 w-4" />
+          )}
+        </Button>
+
+        {/* Кнопка мобильного меню */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 hover:bg-gray-100 transition-colors focus:ring-0 focus:outline-none"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          data-testid="button-mobile-menu"
+          type="button"
+        >
+          {isMobileMenuOpen ? (
+            <X className="h-5 w-5 transition-transform duration-300" />
+          ) : (
+            <Menu className="h-5 w-5 transition-transform duration-300" />
+          )}
+        </Button>
+      </div>
+    </div>
+
+    {/* Мобильное меню */}
+    {isMobileMenuOpen && (
+      <div className="lg:hidden border-t bg-background/95 backdrop-blur-lg animate-in slide-in-from-top duration-300">
+        <nav className="flex flex-col space-y-1 p-4">
+          {navigationItems.map((item) => {
+            const isActive = activeId === item.id && location.pathname === '/';
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`
+                  text-left px-4 py-3 rounded-lg
+                  transition-all duration-300 ease-out
+                  font-medium
+                  focus:outline-none focus:ring-0
+                  transform hover:translate-x-1
+                  ${isActive
+                    ? 'text-blue-600 bg-blue-50 border-l-4 border-blue-600'
+                    : 'text-muted-foreground hover:text-blue-600 hover:bg-gray-50 border-l-4 border-transparent'
+                  }
+                `}
+                data-testid={`nav-mobile-${item.id}`}
+                type="button"
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </nav>
+      </div>
+    )}
+  </div>
+</header>
   );
 }

@@ -35,7 +35,6 @@ export default function StatsSection() {
         });
     };
 
-
     // Функция для перехода на страницу продукта
     const handleProductClick = (productId: number, productTitle: string) => {
         // Проверяем название продукта для определения маршрута
@@ -125,63 +124,85 @@ export default function StatsSection() {
                 </div>
 
                 {/* Статистика */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 sm:mb-10 lg:mb-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 lg:mb-10">
                     {/* Карточка 1: Всего продуктов */}
-                    <Card className="group bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                        <CardContent className="pt-8">
-                            <div className="flex flex-col h-full">
-                                <div className="flex-1">
-                                    <div className="flex items-start justify-between mb-3 sm:mb-4">
-                                        <div>
-                                            <p className="text-sm text-muted-foreground">Всего продуктов</p>
-                                            <p className="text-3xl font-bold mt-2">{totalProducts}</p>
-                                        </div>
-                                        <div className="flex-shrink-0 ml-3">
-                                            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                                <Database className="h-4 w-4 sm:h-6 sm:w-6" />
-                                            </div>
-                                        </div>
+                    <Card className="group bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                        <CardContent className="p-0 h-full">
+                            <div className="flex flex-col h-full justify-center">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-xs sm:text-sm text-muted-foreground">Всего продуктов</p>
+                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 sm:mt-1.5 lg:mt-2">{totalProducts}</p>
+                                    </div>
+                                    <div className="
+          w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
+          bg-gradient-to-br from-blue-500 to-purple-600 
+          rounded-lg sm:rounded-xl flex items-center justify-center 
+          shadow-lg 
+          dark:shadow-blue-900/30 
+          group-hover:shadow-xl 
+          group-hover:shadow-blue-500/30 
+          dark:group-hover:shadow-blue-600/40 
+          transition-all duration-300 text-white
+        ">
+                                        <Database className="h-4 w-4 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
                                     </div>
                                 </div>
                             </div>
+
                         </CardContent>
                     </Card>
 
-                    {/* Карточка 2: С сертификатами */}
-                    <Card className="group bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                        <CardContent className="pt-8">
-                            <div className="flex flex-col h-full">
-                                <div className="flex-1">
-                                    <div className="flex items-start justify-between mb-3 sm:mb-4">
-                                        <div>
-                                            <p className="text-sm text-muted-foreground">Зарегистрировано в Реестре ПО</p>
-                                            <p className="text-3xl font-bold mt-2">{registeredInRegistry}</p>
-                                        </div>
-                                        <div className="flex-shrink-0 ml-3">
-                                            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                                <FileText className="h-4 w-4 sm:h-6 sm:w-6" />
-                                            </div>
-                                        </div>
+                    {/* Карточка 2: Зарегистрировано в Реестре ПО */}
+                    <Card className="group bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                        <CardContent className="p-0 h-full">
+                            <div className="flex flex-col h-full justify-center">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-xs sm:text-sm text-muted-foreground">Зарегистрировано в Реестре ПО</p>
+                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 sm:mt-1.5 lg:mt-2">{registeredInRegistry}</p>
+                                    </div>
+                                    <div className="
+          w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
+          bg-gradient-to-br from-blue-500 to-purple-600 
+          rounded-lg sm:rounded-xl flex items-center justify-center 
+          shadow-lg 
+          dark:shadow-blue-900/30 
+          group-hover:shadow-xl 
+          group-hover:shadow-blue-500/30 
+          dark:group-hover:shadow-blue-600/40 
+          transition-all duration-300 text-white
+        ">
+                                        <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
                                     </div>
                                 </div>
                             </div>
+
                         </CardContent>
                     </Card>
 
-                    {/* Карточка 3: Зарегистрировано */}
-                    <Card className="group bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                        <CardContent className="pt-8">
-                            <div className="flex flex-col h-full">
-                                <div className="flex-1">
-                                    <div className="flex items-start justify-between mb-3 sm:mb-4">
-                                        <div>
-                                            <p className="text-sm text-muted-foreground">Зарегистрировано в Роспатенте</p>
-                                            <p className="text-3xl font-bold mt-2">{registeredInRospatent}</p>
-                                        </div>
-                                        <div className="flex-shrink-0 ml-3">
-                                            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                                <Shield className="h-4 w-4 sm:h-6 sm:w-6" />
-                                            </div>
+                    {/* Карточка 3: Зарегистрировано в Роспатенте */}
+                    <Card className="group bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                        <CardContent className="p-0 h-full">
+                            <div className="flex flex-col h-full justify-center">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-xs sm:text-sm text-muted-foreground">Зарегистрировано в Роспатенте</p>
+                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 sm:mt-1.5 lg:mt-2">{registeredInRospatent}</p>
+                                    </div>
+                                    <div className="flex-shrink-0 ml-2 sm:ml-3 lg:ml-4 flex items-center justify-center">
+                                        <div className="
+          w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
+          bg-gradient-to-br from-blue-500 to-purple-600 
+          rounded-lg sm:rounded-xl flex items-center justify-center 
+          shadow-lg 
+          dark:shadow-blue-900/30 
+          group-hover:shadow-xl 
+          group-hover:shadow-blue-500/30 
+          dark:group-hover:shadow-blue-600/40 
+          transition-all duration-300 text-white
+        ">
+                                            <Shield className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
                                         </div>
                                     </div>
                                 </div>
@@ -189,7 +210,6 @@ export default function StatsSection() {
                         </CardContent>
                     </Card>
                 </div>
-
                 {/* Таблица продуктов */}
                 <div className="bg-card rounded-xl border dark:border-gray-800 overflow-hidden shadow-2xl dark:shadow-xl dark:shadow-gray-900/20">
                     <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-b dark:border-gray-800">
