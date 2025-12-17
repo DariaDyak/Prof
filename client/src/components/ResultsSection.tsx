@@ -1,0 +1,27 @@
+export default function ResultsSection() {
+  return (
+    <section className="pt-16 pb-4 sm:pb-0">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-6 sm:mb-5 lg:mb-6">
+            Результат <span className="text-blue-600 dark:text-blue-400">нашего сотрудничества</span>
+          </h2>
+          <div className="items-center">
+            <div>
+              <p className="text-foreground text-justify leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
+                Результатом нашей работы будет повышение эффективности работы бизнес-процессов, увеличение производительности и конкурентоспособности вашей компании. Мы обеспечиваем стабильность и надежность работы ИТ-систем,
+                а также оказываем поддержку на всех этапах использования 1С системы.
+              </p>
+              <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700  sm:pb-0">
+                <p className="text-sm sm:text-base text-center text-muted-foreground italic">
+                  Наш подход основан на принципах прозрачности, ответственности и ориентации на результат.
+                  Мы измеряем успех не только выполнением задач, но и реальным вкладом в развитие вашего бизнеса.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
