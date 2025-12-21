@@ -118,7 +118,7 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Main Footer Content */}
-        <div className="py-16">
+        <div className="py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Company Info */}
             <div className="space-y-6">
@@ -127,9 +127,9 @@ export default function Footer() {
                   <img
                     src={logo}
                     alt="Prof it Logo"
-                    className="w-10 h-10 object-cover rounded-lg shadow-sm"
+                    className="w-12 h-12 lg:w-12 lg:h-12 object-contain"
                   />
-                  <div className="absolute -inset-1 bg-blue-500/10 rounded-lg blur-sm" />
+                  <div className="absolute -inset-1" />
                 </div>
                 <div>
                   <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">

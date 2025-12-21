@@ -67,7 +67,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="pt-20 pb-16">
+    <section id="about" className="pt-14 pb-16">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-4 gap-8 items-start">
           <div className="space-y-6 xl:flex xl:flex-col xl:h-full">
