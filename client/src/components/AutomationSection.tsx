@@ -95,7 +95,7 @@ export default function AutomationSection() {
                   {benefit.description}
                 </p>
 
-                {/* Метрики - в левом нижнем углу */}
+                
                 <div className="flex items-center justify-start mt-auto pt-3 sm:pt-4 border-t border-slate-200 dark:border-slate-700">
                   <span className="text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400">
                     {benefit.metrics}

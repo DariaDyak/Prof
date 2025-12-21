@@ -73,17 +73,17 @@ export default function DevelopmentProcess() {
 
                   {/* Обновленный блок иконки с новой анимацией */}
                   <div className="
-        w-10 h-10 sm:w-12 sm:h-12 
-        bg-gradient-to-br from-blue-500 to-purple-600 
-        rounded-lg sm:rounded-xl 
-        flex items-center justify-center text-white
-        shadow-lg 
-        dark:shadow-blue-900/30
-        group-hover:shadow-xl 
-        group-hover:shadow-blue-500/30 
-        dark:group-hover:shadow-blue-700/50
-        transition-all duration-300
-      ">
+                    w-10 h-10 sm:w-12 sm:h-12 
+                    bg-gradient-to-br from-blue-500 to-purple-600 
+                    rounded-lg sm:rounded-xl 
+                    flex items-center justify-center text-white
+                    shadow-lg 
+                    dark:shadow-blue-900/30
+                    group-hover:shadow-xl 
+                    group-hover:shadow-blue-500/30 
+                    dark:group-hover:shadow-blue-700/50
+                    transition-all duration-300
+                  ">
                     {item.icon}
                   </div>
                 </div>

@@ -123,7 +123,7 @@ export default function AboutSection() {
                         text-left
                       `}
                     >
-                      {/* Иконка скачивания - уменьшена в мобильной версии */}
+                     
                       <svg
                         className="absolute left-0 w-4 h-4 sm:w-5 sm:h-5 text-blue-500 group-hover:text-blue-600 dark:text-blue-400 dark:group-hover:text-blue-600 transition-colors duration-300"
                         fill="none"
@@ -170,9 +170,7 @@ export default function AboutSection() {
                   </div>
                 ))}
               </div>
-
-
-
+              
               <button
                 onClick={prevSlide}
                 className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-8 sm:h-8 rounded-full backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation pointer-events-auto"

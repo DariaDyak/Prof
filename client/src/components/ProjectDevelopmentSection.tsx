@@ -7,10 +7,11 @@ export default function ProjectDevelopmentSection() {
                         <div className="space-y-6 sm:space-y-8">
                             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-center text-foreground">
                                 Услуги в области
-                                <span className="block text-blue-600 dark:text-blue-400">разработки ПО</span>
+                                <span className="text-blue-600 dark:text-blue-400"> разработки ПО</span>
                             </h2>
 
-                            <p className="text-xs sm:text-base lg:text-base xl:text-base text-foreground leading-relaxed text-justify">
+                           
+                            <p className="text-sm sm:text-base lg:text-base xl:text-base text-foreground leading-relaxed text-justify">
                                 Мы создаем уникальные 1С-конфигурации для бизнесов с нестандартными процессами, где типовые решения не подходят. Сложные алгоритмы, отраслевые модули, например, для
                                 <span className="font-bold"> энергетики, логистики, медицины.</span>
                             </p>
@@ -29,15 +30,16 @@ export default function ProjectDevelopmentSection() {
                                     <div className="ml-4 space-y-3">
                                         <div className="flex items-start gap-2">
                                             <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                                            <span className="text-xs sm:text-base lg:text-base xl:text-base text-foreground">Адаптация любого продукта под потребности бизнеса</span>
+                                           
+                                            <span className="text-sm sm:text-base lg:text-base xl:text-base text-foreground">Адаптация любого продукта под потребности бизнеса</span>
                                         </div>
                                         <div className="flex items-start gap-2">
                                             <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                                            <span className="text-xs sm:text-base lg:text-base xl:text-base text-foreground">Интеграция с любыми внешними сервисами</span>
+                                            <span className="text-sm sm:text-base lg:text-base xl:text-base text-foreground">Интеграция с любыми внешними сервисами</span>
                                         </div>
                                         <div className="flex items-start gap-2">
                                             <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                                            <span className="text-xs sm:text-base lg:text-base xl:text-base text-foreground">Автоматизация эксклюзивных задач</span>
+                                            <span className="text-sm sm:text-base lg:text-base xl:text-base text-foreground">Автоматизация эксклюзивных задач</span>
                                         </div>
                                     </div>
                                 </div>
@@ -53,8 +55,9 @@ export default function ProjectDevelopmentSection() {
                                     <h3 className="text-base sm:text-xl font-bold text-foreground mb-3">
                                         Доработка и адаптация типовых конфигураций 1С
                                     </h3>
-                                    <p className="text-xs sm:text-base lg:text-base xl:text-base text-foreground leading-relaxed text-justify mb-4">
-                                        Оптимизируем стандартные продукты (1С:Бухгалтерия, 1С:Документооборот, 1С:УНФ, 1С:УТ и др.) под конкретные нужды компании. Упрощаем интерфейс, добавляем нужные поля, меняем логику формирования документов.
+                                   
+                                    <p className="text-sm sm:text-base lg:text-base xl:text-base text-foreground leading-relaxed text-justify mb-4">
+                                        Оптимизируем стандартные продукты (1С:Бухгалтерия, 1С:Документооборот и др.) под конкретные нужды компании. Упрощаем интерфейс, добавляем нужные поля, меняем логику формирования документов.
                                     </p>
                                 </div>
                             </div>

@@ -16,7 +16,7 @@ export default function ServicesSection() {
         "Предлагаем комплексный аудит текущей ИТ-инфраструктуры с последующей разработкой стратегии развития. Реализуем необходимые преобразования для оптимизации бизнес-процессов и укрепления позиций на рынке.",
       image: U1,
       link: "/decisions",
-      icon: Settings 
+      icon: Settings
     },
     {
       title: "Автоматизация и оптимизация бизнес-процессов компании",
@@ -24,7 +24,7 @@ export default function ServicesSection() {
         "Проводим детальный анализ ваших рабочих процессов и создаем индивидуальные решения, которые экономят время, снижают операционные расходы и предотвращают возможные ошибки.",
       image: U2,
       link: "/automationpage",
-      icon: Workflow 
+      icon: Workflow
     },
     {
       title: "1С сопровождение",
@@ -32,7 +32,7 @@ export default function ServicesSection() {
         "Мы обеспечиваем бесперебойную работу вашей системы 1С, оптимизируем бизнес-процессы и поддерживаем актуальность конфигураций для максимальной эффективности.",
       image: U3,
       link: "/cSupportPage",
-      icon: Wrench 
+      icon: Wrench
     },
     {
       title: "Разработка ПО",
@@ -40,7 +40,7 @@ export default function ServicesSection() {
         "Профессиональные разработчики реализуют кастомные программные решения, полностью адаптированные под специфические требования каждого клиента.",
       image: U4,
       link: "/developmentPage",
-      icon: Code 
+      icon: Code
     },
   ];
 
@@ -65,7 +65,7 @@ export default function ServicesSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
           {services.map((service, index) => {
-            const IconComponent = service.icon; // Получаем компонент иконки
+            const IconComponent = service.icon;
             return (
               <Card
                 key={index}
@@ -97,21 +97,21 @@ export default function ServicesSection() {
 
                   <Button
                     className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
-    bg-blue-500/20 border border-blue-800/30 
-    text-blue-600 dark:text-blue-400 font-medium
-    group
-    px-4 py-2 sm:px-6 sm:py-3
-    text-sm sm:text-base
-    hover:border-blue-400 hover:bg-blue-500/30
-    transition-all duration-300"
+                      bg-blue-500/20 border border-blue-800/30 
+                      text-blue-600 dark:text-blue-400 font-medium
+                      group
+                      px-4 py-2 sm:px-6 sm:py-3
+                      text-sm sm:text-base
+                      hover:border-blue-400 hover:bg-blue-500/30
+                      transition-all duration-300"
                     onClick={() => handleLearnMore(service.link)}
                     disabled={!service.link || service.link === "#"}
                     data-testid={`button-service-${index}`}
                   >
                     {/* Бегущий луч */}
                     <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] 
-    transition-transform duration-1000 ease-in-out 
-    bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                      transition-transform duration-1000 ease-in-out 
+                      bg-gradient-to-r from-transparent via-white/50 to-transparent" />
 
                     <span className="relative z-10">
                       Узнать подробнее

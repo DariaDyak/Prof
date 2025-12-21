@@ -25,7 +25,6 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: 'Контакты', id: 'contacts' }
   ];
 
-  // Инициализация темы
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -48,10 +47,9 @@ export default function Header({ onNavigate }: HeaderProps) {
     if (headerRef.current) {
       return headerRef.current.offsetHeight;
     }
-    return 80; // Значение по умолчанию
+    return 80;
   };
 
-  // Улучшенная функция скролла
   const scrollToElement = (sectionId: string, retries = 3) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -67,7 +65,6 @@ export default function Header({ onNavigate }: HeaderProps) {
 
       return true;
     } else if (retries > 0) {
-      // Если элемент не найден, пробуем еще раз через задержку
       setTimeout(() => {
         scrollToElement(sectionId, retries - 1);
       }, 100);
@@ -114,13 +111,13 @@ export default function Header({ onNavigate }: HeaderProps) {
       const sectionToScroll = sessionStorage.getItem('scrollToSection');
 
       if (sectionToScroll && shouldScrollImmediately) {
-        // Если нужно выполнить скролл сразу
+
         const executeScroll = () => {
           if (sectionToScroll === 'home') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
             const success = scrollToElement(sectionToScroll);
-            // Если не удалось найти элемент с первого раза, пробуем еще раз
+
             if (!success) {
               setTimeout(() => scrollToElement(sectionToScroll), 300);
             }
@@ -128,8 +125,6 @@ export default function Header({ onNavigate }: HeaderProps) {
           sessionStorage.removeItem('scrollToSection');
           sessionStorage.removeItem('shouldScrollImmediately');
         };
-
-        // Пробуем выполнить скролл сразу, но с небольшой задержкой
         const timer = setTimeout(executeScroll, 100);
 
         return () => clearTimeout(timer);
@@ -137,7 +132,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     }
   }, [location.pathname]);
 
-  // Альтернативный подход: использование состояния в URL
+
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
@@ -182,14 +177,12 @@ export default function Header({ onNavigate }: HeaderProps) {
           const elementRect = element.getBoundingClientRect();
           const elementTop = elementRect.top + window.pageYOffset;
 
-          // Проверяем, видна ли секция в области просмотра с учетом header
           if (scrollPosition + headerHeight >= elementTop - 50) {
             currentActiveId = item.id;
           }
         }
       }
 
-      // Если в самом верху - home
       if (scrollPosition < 50) {
         currentActiveId = 'home';
       }
@@ -228,7 +221,6 @@ export default function Header({ onNavigate }: HeaderProps) {
             </span>
           </div>
 
-          {/* Десктопное меню и кнопка темы - ТОЛЬКО ДЛЯ LG И ВЫШЕ */}
           <div className="hidden lg:flex items-center space-x-6">
             {/* Навигация */}
             <nav className="flex items-center space-x-8">
@@ -284,7 +276,6 @@ export default function Header({ onNavigate }: HeaderProps) {
             </Button>
           </div>
 
-          {/* Мобильное меню и кнопка темы - ДЛЯ ВСЕХ УСТРОЙСТВ МЕНЬШЕ LG */}
           <div className="flex items-center space-x-2 lg:hidden">
             {/* Кнопка смены темы в мобильной версии */}
             <Button

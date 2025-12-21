@@ -144,21 +144,21 @@ export default function ContactsSection() {
     {
       icon: Phone,
       title: "Телефон",
-      content: "+7 (800) 200-29-70", // Замените на ваш телефон
+      content: "+7 (800) 200-29-70",
       type: "phone",
-      href: "tel:+78002002970" // Замените на ваш телефон без пробелов
+      href: "tel:+78002002970"
     },
     {
       icon: Mail,
       title: "Электронная почта",
-      content: "info@prof-it.ru", // Замените на вашу почту
+      content: "info@it4prof.ru",
       type: "email",
-      href: "mailto:info@prof-it.ru" // Замените на вашу почту
+      href: "mailto:info@it4prof.ru"
     },
     {
       icon: MapPin,
       title: "Адрес",
-      content: "г. Краснодар, ул. Рашпилевская, 244", // Замените на ваш адрес
+      content: "г. Краснодар, ул. Рашпилевская, 244",
       type: "address"
     },
     {
@@ -396,10 +396,6 @@ export default function ContactsSection() {
                   </div>
                 ))}
               </div>
-
-
-
-
               {/* Кнопки навигации */}
               <button
                 onClick={prevSlide}

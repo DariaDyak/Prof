@@ -45,7 +45,7 @@ export default function DevelopmentPage() {
           backgroundImage="U3"
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали разработки')}
-          titleSize="xl"
+          titleSize="lg"
           alignment="left"
           minHeight="lg"
         />

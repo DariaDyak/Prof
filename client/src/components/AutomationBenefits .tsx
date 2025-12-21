@@ -10,10 +10,8 @@ export default function AutomationBenefits() {
           </h2>
         </div>
 
-        {/* Контент без карточки */}
         <div className="group backdrop-blur-sm transition-all duration-500 mb-20">
           <div>
-            {/* Основной текст */}
             <div className="space-y-4 sm:space-y-6">
               <p className="text-sm sm:text-base lg:text-base xl:text-base text-foreground leading-relaxed text-justify">
                 <strong className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent ">

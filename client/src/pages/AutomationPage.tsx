@@ -45,7 +45,7 @@ export default function AutomationPage() {
           backgroundImage="U1"
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали IT-решений')}
-          titleSize="xl"
+          titleSize="lg"
           alignment="left"
           minHeight="lg"
         />

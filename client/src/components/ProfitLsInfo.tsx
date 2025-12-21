@@ -44,7 +44,6 @@ export default function ProfitLsInfo() {
       platform: "1C: Предприятие 8.3",
       specifics: "Разработана на технологической платформе 1C: Предприятие 8.3 с учетом специфики железнодорожных перевозок",
       integration: [
-        "Поддерживает интеграцию с системами GPS/ГЛОНАСС-мониторинга",
         "Интеграция с системами учета",
         "Взаимодействие с другими отраслевыми решениями"
       ]
@@ -108,7 +107,7 @@ export default function ProfitLsInfo() {
                 </p>
               </div>
 
-              <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl border dark:border-white-100/50">
+              <div className="p-4 sm:p-6 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800/20 dark:to-gray-900/10 rounded-xl sm:rounded-2xl lg:rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg transition-all duration-300">
                 <h4 className="text-base sm:text-lg lg:text-xl text-blue-700 dark:text-blue-300 font-semibold mb-2 sm:mb-3">
                   Назначение программы
                 </h4>
@@ -161,7 +160,7 @@ export default function ProfitLsInfo() {
                 <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2 sm:mb-3">
                   Технологии
                 </h4>
-                <p className="text-foreground/90 text-sm sm:text-base mb-2 sm:mb-3 text-justify">
+                <p className="font-medium text-foreground text-sm sm:text-base mb-1.5 sm:mb-2">
                   <span className="font-medium">Платформа:</span> {productInfo.technologies.platform}
                 </p>
                 <p className="text-foreground/90 text-sm sm:text-base mb-2 sm:mb-3 text-justify">
@@ -178,7 +177,7 @@ export default function ProfitLsInfo() {
                           </div>
                         </div>
                         <div>
-                          <p className="text-xs sm:text-sm font-medium text-foreground text-justify">{item}</p>
+                          <p className="text-foreground/90 text-sm sm:text-base text-justify">{item}</p>
                         </div>
                       </li>
                     ))}
@@ -227,7 +226,7 @@ export default function ProfitLsInfo() {
               </div>
             </div>
 
-           
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Документация 
               <div className="p-4 sm:p-6 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800/20 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border border-slate-200 dark:border-slate-700/30 hover:border-blue-200 dark:hover:border-blue-800/30 shadow-lg  transition-all duration-300">

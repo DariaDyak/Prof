@@ -7,25 +7,20 @@ import U3 from '@assets/generated_images/U3.jpg';
 import { Button } from "@/components/ui/button";
 
 interface ItDecisionsProps {
-  // Основной контент
   badgeText?: string;
   title: string;
   description: string;
 
-  // Дополнительные опции
   showBackButton?: boolean;
   backButtonText?: string;
-  backgroundImage?: "U1" | "U2" | "U3" | string; // Изменено для поддержки предустановленных изображений
+  backgroundImage?: "U1" | "U2" | "U3" | string;
   onLearnMore?: () => void;
   onBadgeClick?: () => void;
 
-  // Кастомизация стилей
   titleSize?: "sm" | "md" | "lg" | "xl";
   alignment?: "left" | "center";
   minHeight?: "sm" | "md" | "lg" | "xl";
 }
-
-// Объект с картинками для удобного доступа
 const backgroundImages = {
   U1: U1,
   U2: U2,
@@ -38,7 +33,7 @@ export default function ItDecisions({
   description,
   showBackButton = true,
   backButtonText = "Назад на главную",
-  backgroundImage = "U1", // По умолчанию U1
+  backgroundImage = "U1",
   onLearnMore,
   onBadgeClick,
   titleSize = "xl",
@@ -46,7 +41,7 @@ export default function ItDecisions({
   minHeight = "md"
 }: ItDecisionsProps) {
 
-  // Получаем правильное изображение
+
   const getBackgroundImage = () => {
     if (typeof backgroundImage === 'string' && backgroundImage in backgroundImages) {
       return backgroundImages[backgroundImage as keyof typeof backgroundImages];
@@ -65,7 +60,6 @@ export default function ItDecisions({
     onBadgeClick?.();
   };
 
-  // Размеры заголовка
   const titleSizes = {
     sm: "text-lg md:text-xl lg:text-xl",
     md: "text-xl md:text-2xl lg:text-2xl",
@@ -73,7 +67,6 @@ export default function ItDecisions({
     xl: "text-3xl md:text-4xl lg:text-5xl"
   };
 
-  // Высота секции
   const heightClasses = {
     sm: "min-h-[40vh]",
     md: "min-h-[50vh]",
@@ -81,7 +74,6 @@ export default function ItDecisions({
     xl: "min-h-[70vh]"
   };
 
-  // Выравнивание текста
   const alignmentClasses = {
     left: "text-left",
     center: "text-center"
