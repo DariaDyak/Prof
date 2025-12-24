@@ -1,12 +1,22 @@
-import { defineConfig } from "vite";
+import { defineConfig, normalizePath } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
+  base: '/prof/',
   plugins: [
     react(),
     runtimeErrorOverlay(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: `${normalizePath(path.resolve(import.meta.dirname, "attached_assets"))}/**/*`,
+          dest: "attached_assets",
+        },
+      ],
+    }),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
@@ -32,7 +42,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom"],
-          ui: ["@/components/ui"],
         },
       },
     },

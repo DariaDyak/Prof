@@ -44,7 +44,7 @@ export default function CSupportPage() {
           showBackButton={true}
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали IT-решений')}
-          titleSize="xl"
+          titleSize="lg"
           alignment="left"
           minHeight="lg"
         />

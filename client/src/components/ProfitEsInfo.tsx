@@ -2,13 +2,14 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Download, Phone, Mail, CheckCircle, FileText, Award, BarChart, Shield, Zap } from "lucide-react";
 import { useState } from "react";
+import { withBaseUrl } from "@/lib/utils";
 
 export default function ProfitEsInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 
   // Используем публичные пути к файлам
-  const doc1Url = "/attached_assets/generated_images/Описание.pdf";
-  const doc2Url = "/attached_assets/generated_images/Руководство.pdf";
+  const doc1Url = withBaseUrl("/attached_assets/generated_images/Описание.pdf");
+  const doc2Url = withBaseUrl("/attached_assets/generated_images/Руководство.pdf");
 
   // Функция для скачивания файла
   const handleDownload = (url: string, filename: string) => {
@@ -115,7 +116,7 @@ export default function ProfitEsInfo() {
                 </p>
               </div>
 
-              <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl border dark:border-white-100/50">
+              <div className="p-4 sm:p-6 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800/20 dark:to-gray-900/10 rounded-xl sm:rounded-2xl lg:rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg transition-all duration-300">
                 <h4 className="text-base sm:text-lg lg:text-xl text-blue-700 dark:text-blue-300 font-semibold mb-2 sm:mb-3">
                   Назначение программы
                 </h4>
@@ -254,7 +255,7 @@ export default function ProfitEsInfo() {
             {/* Документация и контакты */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Документация */}
-              <div className="p-4 sm:p-6 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800/20 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border border-slate-200 dark:border-slate-700/30 hover:border-blue-200 dark:hover:border-blue-800/30 shadow-lg  transition-all duration-300">
+              <div className="p-4 sm:p-6 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800/20 dark:to-gray-900/10 rounded-xl sm:rounded-2xl lg:rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg transition-all duration-300">
                 <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-foreground mb-3 sm:mb-4">
                   Документация
                 </h4>

@@ -83,16 +83,16 @@ export default function DirectionsSection() {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {directions.map((direction, index) => (
             <Card
-  key={index}
-  className="group bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
-  data-testid={`card-direction-${index}`}
->
-  <div className="flex flex-col h-full justify-between">
-    {/* Верхняя часть - заголовок и иконка */}
-    <div className="flex-1">
-      {/* Иконка с обновлённым дизайном и анимацией */}
-      <div className="flex-shrink-0 mb-3 sm:mb-4">
-        <div className="
+              key={index}
+              className="group bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
+              data-testid={`card-direction-${index}`}
+            >
+              <div className="flex flex-col h-full justify-between">
+                {/* Верхняя часть - заголовок и иконка */}
+                <div className="flex-1">
+                  {/* Иконка с обновлённым дизайном и анимацией */}
+                  <div className="flex-shrink-0 mb-3 sm:mb-4">
+                    <div className="
           w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
           bg-gradient-to-br from-blue-500 to-purple-600 
           rounded-lg sm:rounded-xl flex items-center justify-center 
@@ -103,27 +103,25 @@ export default function DirectionsSection() {
           dark:group-hover:shadow-blue-600/40 
           transition-all duration-300
         ">
-          {/* Иконка */}
-          <div className="text-white">
-            <direction.icon className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
-          </div>
-        </div>
-      </div>
+                      {/* Иконка */}
+                      <div className="text-white">
+                        <direction.icon className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
+                      </div>
+                    </div>
+                  </div>
 
-      {/* Заголовок притягивается к верху */}
-      <h3 className="text-sm sm:text-base font-bold text-foreground mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
-        {direction.title}
-      </h3>
-    </div>
+                  <h3 className="text-sm sm:text-base font-bold text-foreground mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                    {direction.title}
+                  </h3>
+                </div>
 
-    {/* Нижняя часть - текст притягивается к низу */}
-    <div className="mt-auto">
-      <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
-        {direction.description}
-      </p>
-    </div>
-  </div>
-</Card>
+                <div className="mt-auto">
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                    {direction.description}
+                  </p>
+                </div>
+              </div>
+            </Card>
           ))}
         </div>
       </div>

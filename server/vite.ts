@@ -76,10 +76,14 @@ export function serveStatic(app: Express) {
     );
   }
 
+  // Serve static files on root (nginx already handles /prof prefix)
   app.use(express.static(distPath));
 
-  // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
+  // fall through to index.html if the file doesn't exist (but not for /api routes)
+  app.use((req, res, next) => {
+    if (req.path.startsWith("/api")) {
+      return next();
+    }
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }

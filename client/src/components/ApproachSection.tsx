@@ -65,7 +65,6 @@ export default function ApproachSection() {
                     </div>
                   </div>
 
-
                   <div className="flex-1">
                     <h3 className="text-base sm:text-lg lg:text-xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                       {step.title}

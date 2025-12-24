@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
 import logo from "@assets/generated_images/logo.png";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   Mail,
@@ -18,11 +17,11 @@ export default function Footer() {
   };
 
   const handleNavigation = (link: { href: string; type?: string }) => {
-    // Если ссылка ведет на другую страницу (начинается с /)
+
     if (link.href.startsWith('/')) {
       navigate(link.href);
     }
-    // Если это якорная ссылка на главной странице
+
     else if (link.type === 'anchor') {
       if (location.pathname !== '/') {
         navigate('/');
@@ -38,7 +37,7 @@ export default function Footer() {
   const scrollToElement = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Добавляем отступ 80px для учета высоты header
+
       const offset = 65;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
@@ -118,7 +117,7 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Main Footer Content */}
-        <div className="py-16">
+        <div className="py-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Company Info */}
             <div className="space-y-6">
@@ -127,9 +126,9 @@ export default function Footer() {
                   <img
                     src={logo}
                     alt="Prof it Logo"
-                    className="w-10 h-10 object-cover rounded-lg shadow-sm"
+                    className="w-12 h-12 lg:w-12 lg:h-12 object-contain"
                   />
-                  <div className="absolute -inset-1 bg-blue-500/10 rounded-lg blur-sm" />
+                  <div className="absolute -inset-1" />
                 </div>
                 <div>
                   <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -204,37 +203,43 @@ export default function Footer() {
                 © 2025 ООО "ПРОФ ИТ". Все права защищены.
               </span>
               <div className="hidden sm:block w-px h-4 bg-border/50" />
-              {/* Используем Link для навигации на страницу DataProcessing */}
-              <Link
-                to="/dataProcessing"
+              <button
+                onClick={() => {
+                  if (location.pathname === '/dataProcessing') {
+
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else {
+
+                    navigate('/dataProcessing');
+
+                    setTimeout(() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 100);
+                  }
+                }}
                 className={`
-    relative py-2
-    transition-all duration-300 ease-out
-    font-base
-    focus:outline-none focus:text-blue-600 
-    group
-    text-muted-foreground hover:text-blue-600
-    inline-block
-  `}
+                  relative py-2
+                  transition-all duration-300 ease-out
+                  font-base
+                  focus:outline-none focus:text-blue-600 
+                  group
+                  text-muted-foreground hover:text-blue-600
+                  inline-block cursor-pointer
+                `}
                 data-testid="privacy-policy-link"
               >
                 <span className="relative inline-block">
                   Политика конфиденциальности
                   <div className={`
-      absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
-      transition-all duration-300 ease-out
-      opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
-    `} />
+                    absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
+                    transition-all duration-300 ease-out
+                    opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
+                  `} />
                 </span>
-              </Link>
+              </button>
             </div>
           </div>
 
-
-
-
-
-          {/* Кнопка "Наверх" - убрана в правый бок */}
           <div className="order-2">
             <Button
               variant="outline"

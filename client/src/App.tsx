@@ -13,7 +13,8 @@ import DevelopmentPage from "@/pages/DevelopmentPage";
 import './index.css'
 import DataProcessing from '@/pages/DataProcessing';
 import ProfitEs from "@/pages/ProfitES"; 
-import ProfitLs from "@/pages/ProfitLs";
+import ProfitLs from "@/pages/ProfitLS";
+import ProfitMo from "@/pages/ProfitMO";
  
 
 
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/dataProcessing" element={<DataProcessing />} />
       <Route path="/profitEs" element={<ProfitEs />} />
       <Route path="/profitLs" element={<ProfitLs />} />
+      <Route path="/profitMo" element={<ProfitMo />} />
     </Routes>
   );
 }

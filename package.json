@@ -1,6 +1,6 @@
 {
   "name": "rest-express",
-  "homepage": "https://DariaDyak.github.io/Prof",
+  "homepage": "https://DariaDyak.github.io/test",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "start": "NODE_ENV=production node dist/index.js node server.js",
     "check": "tsc",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist",
+    "deploy": "vite build && gh-pages -d dist/public",
     "test:email": "node -e \"require('./config/email').verifyEmailConfig().then(console.log).catch(console.error)\"",
     "db:push": "drizzle-kit push"
   },
@@ -118,7 +118,8 @@
     "tailwindcss": "^3.4.18",
     "tsx": "^4.19.1",
     "typescript": "^5.6.3",
-    "vite": "^5.4.19"
+    "vite": "^5.4.19",
+    "vite-plugin-static-copy": "^3.1.4"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
@@ -133,6 +134,5 @@
   "author": "",
   "bugs": {
     "url": "https://github.com/DariaDyak/Prof/issues"
-  },
-  "homepage": "https://github.com/DariaDyak/Prof#readme"
+  }
 }

@@ -144,34 +144,34 @@ export default function ContactsSection() {
     {
       icon: Phone,
       title: "Телефон",
-      content: "+7 (800) 200-29-70", // Замените на ваш телефон
+      content: "+7 (800) 200-29-70",
       type: "phone",
-      href: "tel:+78002002970" // Замените на ваш телефон без пробелов
+      href: "tel:+78002002970"
     },
     {
       icon: Mail,
       title: "Электронная почта",
-      content: "info@prof-it.ru", // Замените на вашу почту
+      content: "info@it4prof.ru",
       type: "email",
-      href: "mailto:info@prof-it.ru" // Замените на вашу почту
+      href: "mailto:info@it4prof.ru"
     },
     {
       icon: MapPin,
       title: "Адрес",
-      content: "г. Москва, ул. Примерная, д. 123", // Замените на ваш адрес
+      content: "г. Краснодар, ул. Рашпилевская, 244",
       type: "address"
     },
     {
       icon: Clock,
       title: "Часы работы",
-      content: "Пн-Пт: 9:00-18:00",
+      content: "Пн-Пт: 8:00-17:00",
       type: "hours"
     }
   ];
 
 
   return (
-    <section id="contacts" className="pt-6 pb-16 bg-card dark:from-slate-900 dark:to-blue-900/20">
+    <section id="contacts" className="pt-4 pb-16 bg-card dark:from-slate-900 dark:to-blue-900/20">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
@@ -396,10 +396,6 @@ export default function ContactsSection() {
                   </div>
                 ))}
               </div>
-
-
-
-
               {/* Кнопки навигации */}
               <button
                 onClick={prevSlide}

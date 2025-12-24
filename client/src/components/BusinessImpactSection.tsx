@@ -1,11 +1,7 @@
-// components/BusinessImpactSection.jsx
 "use client";
-
-import { Card, CardContent } from "@/components/ui/card";
 import { Target, Zap, Shield, DollarSign, ArrowRight, TrendingUp, Users, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Link } from "react-router-dom";
 
 export default function BusinessImpactSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -257,7 +253,7 @@ export default function BusinessImpactSection() {
                     }
                   }}
                 >
-                  <span className="truncate">Запросить консультацию</span>
+                  <span className="truncate text-sm md:text-base lg:text-lg">Запросить консультацию</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 flex-shrink-0" />
                 </button>
 
@@ -296,7 +292,7 @@ export default function BusinessImpactSection() {
                     }
                   }}
                 >
-                  <span className="truncate">Изучить кейсы</span>
+                  <span className="truncate text-sm md:text-base lg:text-lg">Изучить кейсы</span>
                 </button>
               </div>
             </div>
