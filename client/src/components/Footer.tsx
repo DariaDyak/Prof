@@ -83,8 +83,8 @@ export default function Footer() {
         type: "anchor"
       },
       {
-        name: "О компании",
-        href: "about",
+        name: "О нас",
+        href: "/AboutUsPage",
         type: "anchor"
       },
       {

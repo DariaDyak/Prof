@@ -214,7 +214,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             <img
               src={logo}
               alt="Profit Logo"
-              className="w-12 h-12 lg:w-12 lg:h-12 object-contain transition-transform hover:scale-105"
+              className="w-14 h-14 lg:w-14 lg:h-14 object-contain transition-transform hover:scale-105"
             />
             <span className="text-xl sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               ПРОФ ИТ

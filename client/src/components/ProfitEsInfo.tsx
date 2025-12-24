@@ -71,7 +71,7 @@ export default function ProfitEsInfo() {
     ],
     contacts: {
       phone: "8-800-200-29-70",
-      email: "info@t4prof.ru"
+      email: "info@it4prof.ru"
     }
   };
 
