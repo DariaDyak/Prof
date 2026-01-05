@@ -78,8 +78,8 @@ function App() {
 
         // 2. Имитируем загрузку критически важных ресурсов
         const loadPromises = [
-          // Загрузка шрифтов, иконок, базовых данных
-          new Promise(resolve => setTimeout(resolve, 800)), // минимальное время показа
+  new Promise(resolve => setTimeout(resolve, 1200)), // 1.2 секунды минимум
+ // минимальное время показа
           
           // Загрузка реальных ресурсов
           // preloadImages(['/logo.png', '/background.jpg']),
@@ -99,7 +99,7 @@ function App() {
         setIsLoading(false);
 
         // 6. Показываем логотип дополнительное время для первого посещения
-        const logoDuration = isFirstVisit ? 2000 : 500;
+        const logoDuration = isFirstVisit ? 3000 : 1000;
         setTimeout(() => {
           setShowLogo(false);
         }, logoDuration);
