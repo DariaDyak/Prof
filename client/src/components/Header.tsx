@@ -19,10 +19,9 @@ export default function Header({ onNavigate }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null);
 
   const navigationItems = [
-    { label: 'Главная', id: 'home' },
+    
     { label: 'О компании', id: 'about' },
     { label: 'Услуги', id: 'services' },
-    { label: 'Направления', id: 'directions' },
     { label: 'Кейсы', id: 'cases' },
     { label: 'Контакты', id: 'contacts' }
   ];
@@ -199,10 +198,22 @@ export default function Header({ onNavigate }: HeaderProps) {
   }, [navigationItems, location.pathname]);
 
   return (
-    <header
+  <header
   ref={headerRef}
-  className="sticky top-0 z-50 bg-background/90 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/20"
->
+className="sticky top-0 z-50 
+  /* Светлая тема */
+  bg-gradient-to-b from-beige-light via-beige-light/95 to-beige/90 
+  backdrop-blur-lg backdrop-saturate-150
+  supports-[backdrop-filter]:bg-beige-light/80
+  
+  /* Темная тема */
+  dark:bg-gradient-to-b dark:from-brown-dark dark:via-brown-dark/95 dark:to-brown
+  dark:backdrop-blur-lg dark:backdrop-saturate-150
+  dark:supports-[backdrop-filter]:bg-gray-900/80
+  
+  /* Общие стили */
+  shadow-lg 
+  ">
   <div className="container mx-auto px-4 lg:px-8">
     <div className="flex items-center justify-between">
       {/* Логотип */}
@@ -215,6 +226,7 @@ export default function Header({ onNavigate }: HeaderProps) {
       >
         <div className="relative">
           {/* Логотип для светлой темы */}
+          
           <img
             src={logoLight}
             alt="Profit Logo"

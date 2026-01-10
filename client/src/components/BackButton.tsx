@@ -41,9 +41,9 @@ export default function BackButtonSimple({
           py-3 px-4
           transition-all duration-300 ease-out
           font-medium
-          focus:outline-none focus:text-blue-600 
+          focus:outline-none focus:text-brown-dark 
           group
-          text-muted-foreground hover:text-blue-600
+          text-brown-dark hover:text-brown-dark
           bg-transparent border-none cursor-pointer
           ${className}
         `}
@@ -52,7 +52,7 @@ export default function BackButtonSimple({
         <span className="relative inline-block">
           {text}
           <div className={`
-            absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
+            absolute bottom-0 left-0 w-full h-0.5 bg-brown-dark rounded-full
             transition-all duration-300 ease-out
             opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
           `} />

@@ -12,10 +12,13 @@ import СSupportPage from "@/pages/СSupportPage";
 import DevelopmentPage from "@/pages/DevelopmentPage";
 import './index.css'
 import DataProcessing from '@/pages/DataProcessing';
+import Approval from '@/pages/Approval';
 import ProfitEs from "@/pages/ProfitES"; 
 import ProfitLs from "@/pages/ProfitLS";
 import ProfitMo from "@/pages/ProfitMO";
 import AboutUsPage from "@/pages/AboutUsPage";
+import CookieBanner from "@/components/CookieBanner";
+import PartnersPage from "@/pages/PartnersPage";
 
 // Импортируем компонент логотипа и загрузчика
 import LoadingScreen from "@/components/LoadingScreen";
@@ -32,21 +35,25 @@ const LazyProfitEs = lazy(() => import("@/pages/ProfitES"));
 const LazyProfitLs = lazy(() => import("@/pages/ProfitLS"));
 const LazyProfitMo = lazy(() => import("@/pages/ProfitMO"));
 const LazyAboutUsPage = lazy(() => import("@/pages/AboutUsPage"));
+const LazyPartnersPage = lazy(() => import("@/pages/PartnersPage"));
+const LazyApproval = lazy(() => import("@/pages/Approval"));
 
 function Router() {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Routes>
-        <Route path="/" element={<LazyHome />} />
-        <Route path="/decisions" element={<LazyDecisions />} />
-        <Route path="/automationpage" element={<LazyAutomationPage />} />
-        <Route path="/cSupportPage" element={<LazyСSupportPage />} />
-        <Route path="/developmentPage" element={<LazyDevelopmentPage />} />
-        <Route path="/dataProcessing" element={<LazyDataProcessing />} />
-        <Route path="/profitEs" element={<LazyProfitEs />} />
-        <Route path="/profitLs" element={<LazyProfitLs />} />
-        <Route path="/profitMo" element={<LazyProfitMo />} />
-        <Route path="/AboutUsPage" element={<LazyAboutUsPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/decisions" element={<Decisions />} />
+        <Route path="/automationpage" element={<AutomationPage />} />
+        <Route path="/cSupportPage" element={<СSupportPage />} />
+        <Route path="/developmentPage" element={<DevelopmentPage />} />
+        <Route path="/dataProcessing" element={<DataProcessing />} />
+        <Route path="/profitEs" element={<ProfitEs />} />
+        <Route path="/profitLs" element={<ProfitLs />} />
+        <Route path="/profitMo" element={<ProfitMo />} />
+        <Route path="/aboutUsPage" element={<AboutUsPage />} />
+        <Route path="/partnersPage" element={<PartnersPage />} />
+        <Route path="/approval" element={<Approval />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
@@ -78,8 +85,8 @@ function App() {
 
         // 2. Имитируем загрузку критически важных ресурсов
         const loadPromises = [
-  new Promise(resolve => setTimeout(resolve, 1200)), // 1.2 секунды минимум
- // минимальное время показа
+          new Promise(resolve => setTimeout(resolve, 1200)), // 1.2 секунды минимум
+          // минимальное время показа
           
           // Загрузка реальных ресурсов
           // preloadImages(['/logo.png', '/background.jpg']),
@@ -137,6 +144,8 @@ function App() {
         <ThemeProvider>
           <Toaster />
           <Router />
+          {/* CookieBanner добавлен здесь - он будет показываться на всех страницах */}
+          <CookieBanner />
         </ThemeProvider>
       </TooltipProvider>
     </QueryClientProvider>

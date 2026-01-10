@@ -94,30 +94,29 @@ export default function StatsSection() {
     }
 
     return (
-        <section id="cases" className="pt-10 pb-16 bg-card dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
-            <div className="container mx-auto px-4 lg:px-8">
-                {/* Заголовок и описание секции */}
-                <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-                    <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
+        <section id="cases" className="py-14 sm:py-20 bg-beige/50  overflow-hidden">
+            <div className="container mx-auto h-full px-4 lg:px-8">
+                <div className="text-left mb-10 sm:mb-14 lg:mb-16">
+                    <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige mb-3">
                         Собственная разработка
                     </h2>
-                    <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-brown text-sm sm:text-lg dark:text-beige mb-3">
                         Мы сотрудничаем с компаниями из разных секторов экономики, предлагая индивидуальные решения с учетом специфики каждой отрасли
                     </p>
                 </div>
 
                 {/* Статистика */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 lg:mb-10">
-                    {/* Карточки статистики - оставьте без изменений */}
-                    <Card className="group bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                    {/* Карточки статистики */}
+                    <Card className="group bg-white  rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-lg dark:shadow-none transition-all duration-300 h-full border border-beige/30 dark:border-brown/30">
                         <CardContent className="p-0 h-full">
                             <div className="flex flex-col h-full justify-center">
                                 <div className="flex items-center justify-between">
                                     <div className="flex-1 min-w-0">
-                                        <p className="text-xs sm:text-sm text-muted-foreground">Всего продуктов</p>
-                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 sm:mt-1.5 lg:mt-2">{totalProducts}</p>
+                                        <p className="text-xs sm:text-sm text-brown-dark ">Всего продуктов</p>
+                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 text-brown-dark  sm:mt-1.5 lg:mt-2">{totalProducts}</p>
                                     </div>
-                                    <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg dark:shadow-blue-900/30 group-hover:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-600/40 transition-all duration-300 text-white">
+                                    <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-brown-dark rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 text-beige-light">
                                         <Database className="h-4 w-4 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
                                     </div>
                                 </div>
@@ -125,15 +124,15 @@ export default function StatsSection() {
                         </CardContent>
                     </Card>
 
-                    <Card className="group bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                    <Card className="group bg-white  rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-lg dark:shadow-none transition-all duration-300 h-full border border-beige/30 dark:border-brown/30">
                         <CardContent className="p-0 h-full">
                             <div className="flex flex-col h-full justify-center">
                                 <div className="flex items-center justify-between">
                                     <div className="flex-1 min-w-0">
-                                        <p className="text-xs sm:text-sm text-muted-foreground">Зарегистрировано в Реестре ПО</p>
-                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 sm:mt-1.5 lg:mt-2">{registeredInRegistry}</p>
+                                        <p className="text-xs sm:text-sm text-brown-dark ">Зарегистрировано в Реестре ПО</p>
+                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 text-brown-dark  sm:mt-1.5 lg:mt-2">{registeredInRegistry}</p>
                                     </div>
-                                    <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg dark:shadow-blue-900/30 group-hover:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-600/40 transition-all duration-300 text-white">
+                                    <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-brown-dark rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 text-beige-light">
                                         <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
                                     </div>
                                 </div>
@@ -141,16 +140,16 @@ export default function StatsSection() {
                         </CardContent>
                     </Card>
 
-                    <Card className="group bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 dark:shadow-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                    <Card className="group bg-white  rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-lg dark:shadow-none transition-all duration-300 h-full border border-beige/30 dark:border-brown/30">
                         <CardContent className="p-0 h-full">
                             <div className="flex flex-col h-full justify-center">
                                 <div className="flex items-center justify-between">
                                     <div className="flex-1 min-w-0">
-                                        <p className="text-xs sm:text-sm text-muted-foreground">Зарегистрировано в Роспатенте</p>
-                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 sm:mt-1.5 lg:mt-2">{registeredInRospatent}</p>
+                                        <p className="text-xs sm:text-sm text-brown-dark ">Зарегистрировано в Роспатенте</p>
+                                        <p className="text-xl sm:text-2xl lg:text-3xl font-bold mt-1 text-brown-dark  sm:mt-1.5 lg:mt-2">{registeredInRospatent}</p>
                                     </div>
                                     <div className="flex-shrink-0 ml-2 sm:ml-3 lg:ml-4 flex items-center justify-center">
-                                        <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg dark:shadow-blue-900/30 group-hover:shadow-xl group-hover:shadow-blue-500/30 dark:group-hover:shadow-blue-600/40 transition-all duration-300 text-white">
+                                        <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-brown-dark rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 text-beige-light">
                                             <Shield className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
                                         </div>
                                     </div>
@@ -161,23 +160,23 @@ export default function StatsSection() {
                 </div>
 
                 {/* Таблица продуктов */}
-                <div className="bg-card rounded-xl border dark:border-gray-800 overflow-hidden shadow-2xl dark:shadow-xl dark:shadow-gray-900/20">
-                    <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-b dark:border-gray-800">
-                        <h3 className="text-lg text-foreground dark:text-white">Наши разработки</h3>
-                        <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">
+                <div className="bg-white  rounded-xl overflow-hidden shadow-2xl border border-beige/30 dark:border-brown/30">
+                    <div className="px-6 py-4 bg-white  border-b border-beige/50 dark:border-brown/50">
+                        <h3 className="text-lg font-medium text-brown-dark ">Наши разработки</h3>
+                        <p className="text-sm text-brown  mt-1">
                             Автоматизированные системы и программные решения
                         </p>
                     </div>
 
                     <div className="hidden md:block">
                         <Table>
-                            <TableHeader className="bg-white dark:bg-gray-900 items-center">
-                                <TableRow className="border-b dark:border-gray-800 hover:bg-transparent">
-                                    <TableHead className="w-[350px] font-bold text-foreground dark:text-white text-center">Продукт</TableHead>
-                                    <TableHead className="font-bold text-foreground dark:text-white text-center"></TableHead>
-                                    <TableHead className="w-[150px] font-bold text-foreground dark:text-white text-center">Платформа</TableHead>
-                                    <TableHead className="w-[180px] font-bold text-foreground dark:text-white text-center">Регистрация</TableHead>
-                                    <TableHead className="w-[140px] font-bold text-foreground dark:text-white text-center">Сертификаты</TableHead>
+                            <TableHeader className="bg-white ">
+                                <TableRow className="border-b border-beige/50 dark:border-brown/50 hover:bg-transparent">
+                                    <TableHead className="w-[350px] font-bold text-brown-dark dark:text-brown-dark text-center">Продукт</TableHead>
+                                    <TableHead className="font-bold text-brown-dark dark:text-brown-dark text-center"></TableHead>
+                                    <TableHead className="w-[180px] font-bold text-brown-dark dark:text-brown-dark text-center">Платформа</TableHead>
+                                    <TableHead className="w-[150px] font-bold text-brown-dark dark:text-brown-dark text-center">Регистрация</TableHead>
+                                    <TableHead className="w-[140px] font-bold text-brown-dark dark:text-brown-dark text-center">Сертификаты</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -187,17 +186,17 @@ export default function StatsSection() {
                                     return (
                                         <TableRow
                                             key={product.id}
-                                            className="group bg-white dark:bg-gray-900 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-purple-50/50 dark:hover:from-gray-800/50 dark:hover:to-gray-700/50 transition-all duration-200 border-b dark:border-gray-800 last:border-0"
+                                            className="group bg-white hover:bg-beige transition-all duration-200 border-b border-beige/50 dark:border-brown/50 last:border-0"
                                         >
                                             <TableCell className="align-middle">
                                                 <div className="flex items-center gap-4">
-                                                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 flex items-center justify-center">
-                                                        <ProductIcon className="w-6 h-6 text-white" />
+                                                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brown-dark flex items-center justify-center">
+                                                        <ProductIcon className="w-6 h-6 text-beige-light dark:text-beige" />
                                                     </div>
                                                     <div>
                                                         <button
                                                             onClick={() => handleProductClick(product.id, product.title)}
-                                                            className="font-semibold text-base leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors dark:text-white text-left hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1 -mx-2 flex items-center gap-2"
+                                                            className="font-semibold text-base leading-tight  transition-colors text-brown-dark  text-left hover:underline focus:outline-none focus:ring-2 focus:ring-brown-dark focus:ring-offset-2 rounded px-2 py-1 -mx-2 flex items-center gap-2"
                                                         >
                                                             {product.title}
                                                         </button>
@@ -206,7 +205,7 @@ export default function StatsSection() {
                                             </TableCell>
 
                                             <TableCell className="align-middle">
-                                                <p className="line-clamp-2 text-muted-foreground dark:text-gray-400">
+                                                <p className="line-clamp-2 text-brown/80 dark:text-brown-dark">
                                                     {product.short_description}
                                                 </p>
                                             </TableCell>
@@ -214,7 +213,7 @@ export default function StatsSection() {
                                             <TableCell className="align-middle">
                                                 <Badge
                                                     variant="secondary"
-                                                    className="text-white text-xs bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700"
+                                                    className="text-beige-light text-xs bg-brown-dark"
                                                 >
                                                     {product.platform}
                                                 </Badge>
@@ -224,26 +223,26 @@ export default function StatsSection() {
                                                 <div className="space-y-2">
                                                     {product.registration_num ? (
                                                         <div className="flex items-center gap-4">
-                                                            <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
-                                                                <FileText className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                                                            <div className="w-6 h-6 rounded-full bg-white  flex items-center justify-center">
+                                                                <FileText className="w-3 h-3 text-brown-dark " />
                                                             </div>
                                                             <div>
-                                                                <div className="text-xs text-muted-foreground dark:text-gray-500">Роспатент</div>
-                                                                <div className="font-mono text-sm font-medium dark:text-white">№{product.registration_num}</div>
+                                                                <div className="text-xs text-brown-dark ">Роспатент</div>
+                                                                <div className="font-mono text-sm font-medium text-brown-dark ">№{product.registration_num}</div>
                                                             </div>
                                                         </div>
                                                     ) : (
-                                                        <div className="text-sm text-muted-foreground dark:text-gray-500">Не зарегистрировано</div>
+                                                        <div className="text-xs text-brown-dark ">Не зарегистрировано</div>
                                                     )}
 
                                                     {product.reg_program_num && (
                                                         <div className="flex items-center gap-4">
-                                                            <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center">
-                                                                <FileText className="w-3 h-3 text-purple-600 dark:text-purple-400" />
+                                                            <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                                                                <FileText className="w-3 h-3 text-brown-dark " />
                                                             </div>
                                                             <div>
-                                                                <div className="text-xs text-muted-foreground dark:text-gray-500">Реестр ПО</div>
-                                                                <div className="text-sm font-medium dark:text-white">№{product.reg_program_num}</div>
+                                                                <div className="text-xs text-brown-dark ">Реестр ПО</div>
+                                                                <div className="text-xs text-brown-dark ">№{product.reg_program_num}</div>
                                                             </div>
                                                         </div>
                                                     )}
@@ -257,7 +256,7 @@ export default function StatsSection() {
                                                             size="sm"
                                                             variant="outline"
                                                             onClick={() => handleOpenCertificate(product.certificate_image!)}
-                                                            className="h-8 px-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border dark:border-gray-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/40 dark:hover:to-purple-800/40"
+                                                            className="h-8 px-3 dark:bg-brown/30 border border-brown dark:border-brown/50 hover:bg-brown-dark text-brown-dark dark:text-beige hover:text-beige"
                                                         >
                                                             Показать
                                                         </Button>
@@ -265,33 +264,31 @@ export default function StatsSection() {
                                                 </div>
                                             </TableCell>
                                         </TableRow>
-
                                     );
                                 })}
-
                             </TableBody>
                         </Table>
                     </div>
 
                     <div className="md:hidden">
-                        <div className="divide-y dark:divide-gray-800">
+                        <div className="divide-y divide-beige/50 dark:divide-brown/50">
                             {products.map((product) => {
                                 const ProductIcon = getProductIcon(product.title);
 
                                 return (
                                     <div
                                         key={product.id}
-                                        className="p-4 bg-white dark:bg-gray-900 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-purple-50/50 dark:hover:from-gray-800/50 dark:hover:to-gray-700/50 transition-all duration-200"
+                                        className="p-4 bg-white hover:bg-beige hover:bg-beige dark:hover:bg-beige transition-all duration-200"
                                     >
                                         {/* Заголовок и иконка продукта */}
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 flex items-center justify-center">
-                                                <ProductIcon className="w-5 h-5 text-white" />
+                                        <div className="flex items-center gap-4">
+                                            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brown-dark flex items-center justify-center">
+                                                <ProductIcon className="w-6 h-6 text-beige-light dark:text-beige" />
                                             </div>
-                                            <div className="flex-1">
+                                            <div>
                                                 <button
                                                     onClick={() => handleProductClick(product.id, product.title)}
-                                                    className="font-semibold text-sm leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors dark:text-white text-left hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1 -mx-2 block w-full text-left"
+                                                    className="font-semibold text-base leading-tight  transition-colors text-brown-dark  text-left hover:underline focus:outline-none focus:ring-2 focus:ring-brown-dark focus:ring-offset-2 rounded px-2 py-1 -mx-2 flex items-center gap-2"
                                                 >
                                                     {product.title}
                                                 </button>
@@ -300,8 +297,8 @@ export default function StatsSection() {
 
                                         {/* Описание */}
                                         {product.short_description && (
-                                            <div className="mb-3">
-                                                <p className="text-muted-foreground dark:text-gray-400 text-sm">
+                                            <div className="mb-3 mt-3">
+                                                <p className="line-clamp-2 text-xs text-brown/80 dark:text-brown-dark">
                                                     {product.short_description}
                                                 </p>
                                             </div>
@@ -309,10 +306,10 @@ export default function StatsSection() {
 
                                         {/* Платформа */}
                                         <div className="mb-3">
-                                            <div className="text-xs text-muted-foreground dark:text-gray-500 mb-1">Платформа</div>
+                                            <div className="text-xs text-brown-dark dark:text-beige/70 mb-1">Платформа</div>
                                             <Badge
                                                 variant="secondary"
-                                                className="text-white text-xs bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700"
+                                                className="text-beige-light text-xs bg-brown-dark"
                                             >
                                                 {product.platform}
                                             </Badge>
@@ -320,30 +317,30 @@ export default function StatsSection() {
 
                                         {/* Регистрация */}
                                         <div className="mb-3">
-                                            <div className="text-xs text-muted-foreground dark:text-gray-500 mb-2">Регистрация</div>
+                                            <div className="text-xs text-brown-dark dark:text-beige/70 mb-2">Регистрация</div>
                                             <div className="space-y-2">
                                                 {product.registration_num ? (
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0">
-                                                            <FileText className="w-3 h-3 text-blue-600 dark:text-blue-400" />
+                                                    <div className="flex items-center gap-4">
+                                                        <div className="w-6 h-6 rounded-full bg-white  flex items-center justify-center">
+                                                            <FileText className="w-3 h-3 text-brown-dark " />
                                                         </div>
-                                                        <div className="flex-1">
-                                                            <div className="text-xs text-muted-foreground dark:text-gray-500">Роспатент</div>
-                                                            <div className="font-mono text-sm font-medium dark:text-white">№{product.registration_num}</div>
+                                                        <div>
+                                                            <div className="text-xs text-brown-dark ">Роспатент</div>
+                                                            <div className="font-mono text-sm font-medium text-brown-dark ">№{product.registration_num}</div>
                                                         </div>
                                                     </div>
                                                 ) : (
-                                                    <div className="text-sm text-muted-foreground dark:text-gray-500">Не зарегистрировано</div>
+                                                    <div className="text-xs text-brown-dark ">Не зарегистрировано</div>
                                                 )}
 
                                                 {product.reg_program_num && (
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center flex-shrink-0">
-                                                            <FileText className="w-3 h-3 text-purple-600 dark:text-purple-400" />
+                                                    <div className="flex items-center gap-4">
+                                                        <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                                                            <FileText className="w-3 h-3 text-brown-dark " />
                                                         </div>
-                                                        <div className="flex-1">
-                                                            <div className="text-xs text-muted-foreground dark:text-gray-500">Реестр ПО</div>
-                                                            <div className="text-sm font-medium dark:text-white">№{product.reg_program_num}</div>
+                                                        <div>
+                                                            <div className="text-xs text-brown-dark ">Реестр ПО</div>
+                                                            <div className="text-xs text-brown-dark ">№{product.reg_program_num}</div>
                                                         </div>
                                                     </div>
                                                 )}
@@ -351,15 +348,15 @@ export default function StatsSection() {
                                         </div>
 
                                         {/* Сертификаты */}
-                                        <div className="flex justify-between items-center pt-2 border-t dark:border-gray-800">
-                                            <div className="text-xs text-muted-foreground dark:text-gray-500">Сертификаты</div>
+                                        <div className="flex justify-between items-center pt-2 border-t border-beige/50 dark:border-brown/50">
+                                            <div className="text-xs text-brown-dark dark:text-beige/70">Сертификаты</div>
                                             <div>
                                                 {product.certificate_image && (
                                                     <Button
                                                         size="sm"
                                                         variant="outline"
                                                         onClick={() => handleOpenCertificate(product.certificate_image!)}
-                                                        className="h-7 px-3 text-xs bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border dark:border-gray-700 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-800/40 dark:hover:to-purple-800/40"
+                                                        className="h-7 px-3 text-xs dark:bg-brown/30 border border-brown dark:border-brown/50 hover:bg-brown-dark text-brown-dark dark:text-beige hover:text-beige"
                                                     >
                                                         Показать
                                                     </Button>
@@ -373,9 +370,9 @@ export default function StatsSection() {
                     </div>
 
                     {/* Футер таблицы */}
-                    <div className="bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-gray-900/50 dark:to-gray-800/50 border-t dark:border-gray-800 px-6 py-4">
+                    <div className="bg-beige/30 dark:bg-brown-dark/30 border-t border-beige/50 dark:border-brown/50 px-6 py-4">
                         <div className="flex items-center justify-between">
-                            <div className="text-sm text-muted-foreground dark:text-gray-400">
+                            <div className="text-sm text-brown-dark">
                                 Показано {products.length} из {products.length} продуктов
                             </div>
                         </div>
@@ -390,16 +387,16 @@ export default function StatsSection() {
                     onClick={handleCloseCertificate}
                 >
                     {/* Полупрозрачный фон */}
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+                    <div className="absolute inset-0 bg-brown-dark/80 dark:bg-brown/80 backdrop-blur-sm" />
 
                     {/* Кнопка закрытия */}
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={handleCloseCertificate}
-                        className="absolute top-4 right-4 z-10 h-10 w-10 bg-white/80 dark:bg-gray-900/80 hover:bg-white dark:hover:bg-gray-900 rounded-full shadow-lg backdrop-blur-sm border border-white/20 dark:border-gray-700/30"
+                        className="absolute top-4 right-4 z-10 h-10 w-10 bg-beige-light hover:bg-brown rounded-full shadow-lg backdrop-blur-sm border border-beige/20 dark:border-brown/30"
                     >
-                        <X className="w-5 h-5" />
+                        <X className="w-5 h-5 text-brown-dark " />
                     </Button>
 
                     {/* Изображение сертификата */}

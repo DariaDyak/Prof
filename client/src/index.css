@@ -19,8 +19,10 @@ button:focus-visible {
   outline: 2px solid #3b82f6 !important; /* Blue-500 */
   outline-offset: 2px !important;
 }
+
 /* LIGHT MODE */
 :root {
+   
   --button-outline: rgba(0, 0, 0, .10);
   --badge-outline: rgba(0, 0, 0, .05);
 
@@ -430,4 +432,82 @@ button:focus-visible {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Добавьте в конец index.css */
+@media (max-width: 640px) {
+  header img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .overflow-x-hidden {
+    overflow-x: hidden !important;
+  }
+}
+/* Убрать синюю обводку во всех браузерах */
+input:focus, 
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none;
+  outline-offset: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+}
+
+/* Убрать дефолтные стили браузеров */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+/* Добавить кастомную бежевую обводку */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #B6A593 !important; /* beige цвет */
+  box-shadow: 0 0 0 2px rgba(182, 165, 147, 0.2) !important; /* светлая бежевая тень */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Для ваших конкретных инпутов */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  border-color: #B6A593 !important;
+  box-shadow: 0 0 0 3px rgba(182, 165, 147, 0.15) !important;
+  outline: 2px solid transparent !important;
+}
+
+/* Убрать синюю обводку в Chrome/Safari */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset, 0 0 0 2px beige !important;
+  -webkit-text-fill-color: inherit !important;
+  border-color: beige !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Убрать синие кнопки в Chrome */
+button:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(182, 165, 147, 0.3) !important;
+}
+
+/* Для Tailwind компонентов если используются */
+input:focus-within,
+textarea:focus-within {
+  --tw-ring-color: transparent !important;
+}
+
+/* Убрать синюю обводку у кнопок ввода */
+input[type="submit"]:focus,
+button[type="submit"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(182, 165, 147, 0.3) !important;
 }

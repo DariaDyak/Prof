@@ -49,9 +49,9 @@ export default function Home() {
           <ServicesSection />
         </div>
         
-        <div ref={sectionRefs.directions}>
+        {/*<div ref={sectionRefs.directions}>
           <DirectionsSection />
-        </div>
+        </div>*/}
 
         <div ref={sectionRefs.cases}>
           <StatsSection />

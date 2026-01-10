@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import Header from '@/components/Header';
-import TextPolicy from '@/components/TextPolicy';
+import PartnersSection from '@/components/PartnersSection';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
 
-export default function DataProcessing() {
+export default function PartnersPage() {
   const sectionRefs = {
     home: useRef<HTMLDivElement>(null),
     about: useRef<HTMLDivElement>(null),
@@ -12,6 +12,14 @@ export default function DataProcessing() {
     directions: useRef<HTMLDivElement>(null),
     contacts: useRef<HTMLDivElement>(null)
   };
+
+  // Прокрутка вверх при загрузке страницы
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []); // Пустой массив зависимостей = выполняется только при монтировании
 
   const scrollToSection = (sectionId: string) => {
     const section = sectionRefs[sectionId as keyof typeof sectionRefs]?.current;
@@ -33,9 +41,9 @@ export default function DataProcessing() {
 
       <Header onNavigate={scrollToSection} />
       
-      <main> {/* Добавляем отступ для фиксированного header */}
+      <main>
         <div ref={sectionRefs.home}>
-          <TextPolicy />
+          <PartnersSection />
         </div>
       </main>
       

@@ -10,21 +10,20 @@ interface ItDecisionsProps {
   badgeText?: string;
   title: string;
   description: string;
-
   showBackButton?: boolean;
   backButtonText?: string;
   backgroundImage?: "U1" | "U2" | "U3" | string;
   onLearnMore?: () => void;
   onBadgeClick?: () => void;
-
   titleSize?: "sm" | "md" | "lg" | "xl";
   alignment?: "left" | "center";
   minHeight?: "sm" | "md" | "lg" | "xl";
 }
+
 const backgroundImages = {
   U1: U1,
-  U2: U2,
-  U3: U3
+  U2: U1,
+  U3: U1
 };
 
 export default function ItDecisions({
@@ -41,12 +40,11 @@ export default function ItDecisions({
   minHeight = "md"
 }: ItDecisionsProps) {
 
-
   const getBackgroundImage = () => {
     if (typeof backgroundImage === 'string' && backgroundImage in backgroundImages) {
       return backgroundImages[backgroundImage as keyof typeof backgroundImages];
     }
-    return backgroundImage; // Возвращаем как есть, если это custom путь
+    return backgroundImage;
   };
 
   const currentBackgroundImage = getBackgroundImage();
@@ -88,7 +86,17 @@ export default function ItDecisions({
           alt="Фон"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/40" />
+        {/* Контейнер для размытия границ */}
+        <div className="absolute inset-0 backdrop-blur-[10px] dark:backdrop-blur-[10px]"></div>
+
+        {/* Градиент снизу к центру */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-beige via-beige/60 to-transparent backdrop-blur-[1px] dark:from-brown dark:via-brown/40 dark:to-transparent"></div>
+
+        {/* Градиент сверху к центру */}
+        <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-beige via-beige/60 to-transparent backdrop-blur-[1px] dark:from-brown dark:via-brown/40 dark:to-transparent"></div>
+
+        {/* Дополнительные акцентные градиенты по углам */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-beige/30 dark:to-brown/30"></div>
       </div>
 
       {/* Кнопка возврата на главную */}
@@ -97,31 +105,31 @@ export default function ItDecisions({
           <Link
             to="/"
             className={`
-        relative py-2
-        transition-all duration-300 ease-out
-        font-base
-        focus:outline-none focus:text-blue-600 
-        group
-        text-muted-foreground hover:text-blue-600
-        inline-block
-        pl-4 lg:pl-0
-      `}
+              relative py-2
+              transition-all duration-300 ease-out
+              font-base
+              focus:outline-none focus:text-brown-dark
+              group
+              text-brown-dark hover:text-brown-dark
+              inline-block
+              pl-4 lg:pl-0
+            `}
           >
             <span className="relative inline-block">
               ← {backButtonText}
               <div className={`
-          absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
-          transition-all duration-300 ease-out
-          opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
-        `} />
+                absolute bottom-0 left-0 w-full h-0.5 bg-brown-dark rounded-full
+                transition-all duration-300 ease-out
+                opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
+              `} />
             </span>
           </Link>
         </div>
       )}
+
       {/* Основной контент */}
       <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center relative z-10">
         <div className={`max-w-8xl mx-auto w-full ${alignmentClasses[alignment]}`}>
-
           {/* Бейдж/кнопка */}
           {badgeText && (
             <Button
@@ -130,21 +138,21 @@ export default function ItDecisions({
                 relative
                 overflow-hidden
                 inline-flex items-center gap-2 px-4 py-2 
-                border border-blue-800/30 
-                text-blue-600 dark:text-blue-400 text-sm font-medium
+                border border-brown-dark 
+                text-brown-dark text-sm font-medium
                 transition-all duration-1000 ease-out
                 group
                 mb-10 my-4
-                hover:border-blue-400 
+                hover:border-brown-dark 
                 hover:scale-105
-                hover:text-blue-600 dark:hover:text-blue-400
+                hover:text-brown-dark 
                 bg-transparent 
                 hover:bg-transparent
               `}
               data-testid="hero-badge"
               variant={onBadgeClick ? "default" : "outline"}
             >
-              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige-light/30 to-transparent" />
               <span className="relative z-10 transition-all duration-300">
                 {badgeText}
               </span>
@@ -152,12 +160,12 @@ export default function ItDecisions({
           )}
 
           {/* Заголовок */}
-          <h1 className={`font-Montserrat ${titleSizes[titleSize]} font-bold text-foreground mb-4 leading-tight`}>
+          <h1 className={`font-Montserrat ${titleSizes[titleSize]} font-bold text-brown-dark mb-4 leading-tight`}>
             {title}
           </h1>
 
           {/* Описание */}
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-4xl">
+          <p className="text-base md:text-lg text-brown-dark leading-relaxed max-w-4xl">
             {description}
           </p>
         </div>

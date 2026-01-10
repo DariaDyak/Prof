@@ -32,7 +32,7 @@ export default function ProfitLs() {
       </div>
 
       <Header onNavigate={scrollToSection} />
-      <BackButton/>
+      
       <ProfitLSInfo />
 
       <Footer />

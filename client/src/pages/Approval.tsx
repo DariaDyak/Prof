@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import Header from '@/components/Header';
-import TextPolicy from '@/components/TextPolicy';
+import TextApproval from '@/components/TextApproval';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
 
-export default function DataProcessing() {
+export default function Approval() {
   const sectionRefs = {
     home: useRef<HTMLDivElement>(null),
     about: useRef<HTMLDivElement>(null),
@@ -35,7 +35,7 @@ export default function DataProcessing() {
       
       <main> {/* Добавляем отступ для фиксированного header */}
         <div ref={sectionRefs.home}>
-          <TextPolicy />
+          <TextApproval />
         </div>
       </main>
       

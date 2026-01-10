@@ -20,22 +20,22 @@ export default function AboutSection() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const slides = [
-  {
-    image: S1,
-    title: "Энергосбытовые компании",
-    description: "ИТ-решения для автоматизации расчетов, диспетчеризации и управления энергоресурсами"
-  },
-  {
-    image: S2,
-    title: "Железнодорожная логистика",
-    description: "Системы управления перевозками, отслеживания грузов и оптимизации логистических цепочек"
-  },
-  {
-    image: S3,
-    title: "Медицинские осмотры",
-    description: "Цифровизация процессов медосмотров, интеграция с медицинскими учреждениями и ведение электронных медкарт"
-  }
-];
+    {
+      image: S1,
+      title: "Энергосбытовые компании",
+      description: "ИТ-решения для автоматизации расчетов, диспетчеризации и управления энергоресурсами"
+    },
+    {
+      image: S2,
+      title: "Железнодорожная логистика",
+      description: "Системы управления перевозками, отслеживания грузов и оптимизации логистических цепочек"
+    },
+    {
+      image: S3,
+      title: "Медицинские осмотры",
+      description: "Цифровизация процессов медосмотров, интеграция с медицинскими учреждениями и ведение электронных медкарт"
+    }
+  ];
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -64,7 +64,6 @@ export default function AboutSection() {
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
-  // Функция для скачивания файла
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = PresentationPdf;
@@ -75,73 +74,231 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="pt-14 pb-16">
+    <section id="about" className="pt-14 pb-16 ">
       <div className="container mx-auto px-4 lg:px-8 h-full">
-        {/* Заголовки на одном уровне */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-4 gap-8 mb-8">
+        
+        {/* Мобильная версия */}
+        <div className="xl:hidden space-y-8">
+          {/* Блок 1: О компании */}
           <div>
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-brown-dark dark:text-beige-light">
+            <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige-light mb-3">
               О компании
             </h2>
-          </div>
-          <div>
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-brown-dark dark:text-beige-light">
-              Отрасли специализации
-            </h2>
-            <p className="mt-2 text-brown/80 dark:text-beige-light/70 text-base">
-              Направления, в которых мы имеем экспертизу
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-4 gap-8 items-stretch h-full">
-          {/* Левая колонка - о компании */}
-          <div className="flex flex-col h-full">
-            <Card className="flex flex-col shadow-2xl h-full">
+            
+            <Card className="flex flex-col shadow-2xl bg-white/80 dark:bg-white">
               <CardContent className="space-y-4 flex flex-col flex-1 p-6">
                 <div className="space-y-4 flex-1">
-                  <p className="text-beige dark:text-brown-dark text-base leading-relaxed">
-                    <strong>ООО «ПРОФ ИТ»</strong> — компания, предоставляющая спектр ИТ-услуг:
+                  <p className="text-sm leading-relaxed text-brown-dark dark:text-brown-dark">
+                    <strong className="font-bold text-brown-dark dark:text-brown-dark">ООО «ПРОФ ИТ»</strong> — компания, предоставляющая спектр ИТ-услуг:
                   </p>
 
                   <ul className="space-y-3">
                     {services.map((service, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-beige dark:bg-brown-dark rounded-full mt-[0.6rem] sm:mt-2 flex-shrink-0" />
-                        <span className="text-beige dark:text-brown-dark text-sm sm:text-base">{service}</span>
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mt-[0.6rem] sm:mt-2 flex-shrink-0 bg-brown-dark dark:bg-brown-dark" />
+                        <span className="text-sm sm:text-base text-brown-dark dark:text-brown-dark">{service}</span>
                       </li>
                     ))}
                   </ul>
                   
-                  <p className="text-beige dark:text-brown-dark text-base leading-relaxed">
+                  <p className="text-justify text-sm leading-relaxed text-brown-dark dark:text-brown-dark">
                     Мы используем только современное оборудование и программное обеспечение, 
                     чтобы обеспечить надежность и эффективность работы наших клиентов.
                   </p>
                   
-                  <p className="text-beige dark:text-brown-dark text-base leading-relaxed">
+                  <p className="text-justify text-sm leading-relaxed text-brown-dark dark:text-brown-dark">
                     Наши специалисты смогут подобрать решения для
                     автоматизации и развития Вашего бизнеса, не зависимо от
                     направления деятельности.
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-brown-dark/20 dark:border-beige-light/20 mt-auto">
+                <div className="pt-4 border-t ">
                   <div className="flex items-start justify-start">
                     <button
                       onClick={handleDownload}
-                      className={`
-                        relative py-2 sm:py-2.5 pl-8 sm:pl-10
-                        transition-all duration-300 ease-out
-                        text-sm sm:text-base font-medium
-                        focus:outline-none
-                        group
-                        text-beige dark:text-brown-dark hover:text-beige dark:hover:text-brown-dark
-                        items-center gap-2
-                        text-left
-                      `}
+                      className="relative py-2 sm:py-2.5 pl-8 sm:pl-10
+                               transition-all duration-300 ease-out
+                               text-xs sm:text-base font-medium
+                               focus:outline-none group
+                               text-brown-dark dark:text-brown-dark hover:opacity-80
+                               items-center gap-2 text-left"
                     >
                       <svg
-                        className="absolute left-0 w-5 h-5 sm:w-6 sm:h-6 text-beige dark:text-brown-dark group-hover:text-beige dark:group-hover:text-brown-dark transition-colors duration-300"
+                        className="absolute left-0 w-5 h-5 sm:w-6 sm:h-6 
+                                   text-brown-dark dark:text-brown-dark group-hover:opacity-80 
+                                   transition-colors duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+
+                      <span className="relative inline-block">
+                        Скачайте подробную презентацию о компании
+                        <div className="absolute bottom-0 w-full h-0.5 bg-brown-dark dark:bg-brown-dark rounded-full
+                                      transition-all duration-300 ease-out
+                                      opacity-0 group-hover:opacity-100
+                                      scale-x-0 group-hover:scale-x-100" />
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Блок 2: Отрасли специализации */}
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-brown-dark dark:text-beige-light mb-3">
+              Отрасли специализации
+            </h2>
+            <p className="text-brown-dark/80 dark:text-beige-light/70 text-base mb-3">
+              Направления, в которых мы имеем экспертизу
+            </p>
+            
+            <div className="relative h-full">
+              <div className="flex flex-col gap-2 lg:gap-3 rounded-2xl overflow-hidden h-full">
+                {slides.map((slide, index) => (
+                  <div
+                    key={index}
+                    className={`relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out flex-shrink-0 ${
+                      index === currentSlide
+                        ? 'flex-grow rounded-2xl'
+                        : 'h-14 lg:h-16 rounded-xl hover:h-16 lg:hover:h-18'
+                    }`}
+                    onClick={() => goToSlide(index)}
+                    onMouseEnter={() => index !== currentSlide && setIsAutoPlaying(false)}
+                    onMouseLeave={() => setIsAutoPlaying(true)}
+                  >
+                    <div className="absolute inset-0">
+                      <img
+                        src={slide.image}
+                        className={`w-full h-full object-cover transition-all duration-700 ${
+                          index === currentSlide ? 'scale-110 brightness-100' : 'scale-100 brightness-50'
+                        }`}
+                        alt={slide.title}
+                      />
+                      
+                      <div className={`absolute inset-0 transition-all duration-500 ${
+                        index === currentSlide
+                          ? 'bg-gradient-to-t from-black/80 via-black/40 to-transparent'
+                          : 'bg-black/70 hover:bg-black/60'
+                      }`} />
+                    </div>
+
+                    {index !== currentSlide && (
+                      <div className="relative h-full flex items-center px-4 lg:px-6">
+                        <div className="flex items-center justify-between w-full">
+                          <div className="flex items-center gap-3 lg:gap-4">
+                            <div className="w-6 h-6 lg:w-8 lg:h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-xs lg:text-sm font-medium">
+                              {index + 1}
+                            </div>
+                            <div className="text-white">
+                              <h4 className="font-medium text-sm lg:text-base leading-tight">
+                                {slide.title}
+                              </h4>
+                            </div>
+                          </div>
+                          
+                          <div className={`transform transition-transform duration-300 ${
+                            index === currentSlide ? 'rotate-180' : 'rotate-0'
+                          }`}>
+                            <ChevronRight className="w-4 h-4 lg:w-5 lg:h-5 text-white/80" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {index === currentSlide && (
+                      <div className="relative h-full flex flex-col justify-end p-6 lg:p-8">
+                        <div className="mb-4">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-sm text-white mb-3">
+                            <div className="w-2 h-2 rounded-full bg-beige-light animate-pulse" />
+                            Специализация в отрасли
+                          </div>
+                          
+                          <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
+                            {slide.title}
+                          </h3>
+                          
+                          <p className="text-white/90 text-base lg:text-lg leading-relaxed">
+                            {slide.description}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Десктоп версия */}
+        <div className="hidden xl:grid xl:grid-cols-2 xl:gap-8 gap-8 items-stretch h-full">
+          
+          {/* Заголовки на одном уровне */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-8 gap-8 mb-8 col-span-2">
+            <div>
+              <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-brown-dark dark:text-beige">
+                О компании
+              </h2>
+            </div>
+            <div>
+              <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-beige-dark dark:text-beige">
+                Отрасли специализации
+              </h2>
+              <p className="mt-2 text-brown-dark/80 dark:text-beige-light/70 text-base">
+                Направления, в которых мы имеем экспертизу
+              </p>
+            </div>
+          </div>
+
+          {/* Левая колонка - о компании */}
+          <div className="flex flex-col h-full">
+            <Card className="flex flex-col shadow-2xl h-full bg-white ">
+              <CardContent className="space-y-4 flex flex-col flex-1 p-6">
+                <div className="space-y-4 flex-1">
+                  <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
+                    <strong className="font-bold text-brown-dark dark:text-brown-dark">ООО «ПРОФ ИТ»</strong> — компания, предоставляющая спектр ИТ-услуг:
+                  </p>
+
+                  <ul className="space-y-3">
+                    {services.map((service, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mt-[0.6rem] sm:mt-2 flex-shrink-0 bg-brown-dark dark:bg-brown-dark" />
+                        <span className="text-sm sm:text-base text-brown-dark dark:text-brown-dark">{service}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
+                    Мы используем только современное оборудование и программное обеспечение, 
+                    чтобы обеспечить надежность и эффективность работы наших клиентов.
+                  </p>
+                  
+                  <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
+                    Наши специалисты смогут подобрать решения для
+                    автоматизации и развития Вашего бизнеса, не зависимо от
+                    направления деятельности.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-gray-300 dark:border-gray-600 mt-auto">
+                  <div className="flex items-start justify-start">
+                    <button
+                      onClick={handleDownload}
+                      className="relative py-2.5 pl-10
+                               transition-all duration-300 ease-out
+                               text-base font-medium
+                               focus:outline-none group
+                               text-brown-dark dark:text-brown-dark hover:text-brown-dark dark:hover:text-brown-dark
+                               items-center gap-2 text-left"
+                    >
+                      <svg
+                        className="absolute left-0 w-6 h-6 text-brown-dark dark:text-brown-dark  transition-colors duration-300"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -151,11 +308,10 @@ export default function AboutSection() {
 
                       <span className="relative inline-block ml-6">
                         Скачайте подробную презентацию о компании
-                        <div className={`
-                          absolute bottom-0 left-0 w-full h-0.5 bg-beige dark:bg-brown-dark rounded-full
-                          transition-all duration-300 ease-out
-                          opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
-                        `} />
+                        <div className="absolute bottom-0 w-full h-0.5 bg-brown-dark dark:bg-brown-dark rounded-full
+                                      transition-all duration-300 ease-out
+                                      opacity-0 group-hover:opacity-100
+                                      scale-x-0 group-hover:scale-x-100" />
                       </span>
                     </button>
                   </div>
@@ -240,10 +396,6 @@ export default function AboutSection() {
                   </div>
                 ))}
               </div>
-
-              
-
-              
             </div>
           </div>
         </div>
