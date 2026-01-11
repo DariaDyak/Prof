@@ -386,37 +386,34 @@ export default function StatsSection() {
 
             {/* Модальное окно для отображения сертификата */}
             {selectedCertificate && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-                    <div className="relative w-full max-w-4xl max-h-[150vh] bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden">
-                        {/* Шапка модального окна */}
-                        <div className="flex items-center justify-between p-4 border-b dark:border-gray-800 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
-                            <div className="flex items-center gap-2">
-                                <Button
-                                    size="sm"
-                                    variant="outline"
-                                    onClick={handleCloseCertificate}
-                                    className="h-8 w-8 p-0 ml-2"
-                                >
-                                    <X className="w-4 h-4" />
-                                </Button>
-                            </div>
-                        </div>
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4"
+                    onClick={handleCloseCertificate}
+                >
+                    {/* Полупрозрачный фон */}
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
-                        {/* Контейнер изображения */}
-                        <div className="p-4 bg-gray-100 dark:bg-black flex items-center justify-center min-h-[400px] max-h-[70vh] overflow-auto">
-                            <div className="relative">
-                                <img
-                                    src={selectedCertificate}
-                                    alt="Сертификат"
-                                    className="max-w-full max-h-[65vh] object-contain rounded-lg shadow-lg transition-transform duration-200"
-                                    style={{
-                                        transform: `scale(${zoom})`,
-                                        transformOrigin: 'center center'
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    {/* Кнопка закрытия */}
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleCloseCertificate}
+                        className="absolute top-4 right-4 z-10 h-10 w-10 bg-white/80 dark:bg-gray-900/80 hover:bg-white dark:hover:bg-gray-900 rounded-full shadow-lg backdrop-blur-sm border border-white/20 dark:border-gray-700/30"
+                    >
+                        <X className="w-5 h-5" />
+                    </Button>
+
+                    {/* Изображение сертификата */}
+                    <img
+                        src={selectedCertificate}
+                        alt="Сертификат"
+                        className="relative z-0 max-w-[95vw] max-h-[95vh] object-contain rounded-lg shadow-2xl"
+                        style={{
+                            transform: `scale(${zoom})`,
+                            transformOrigin: 'center center'
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    />
                 </div>
             )}
         </section>

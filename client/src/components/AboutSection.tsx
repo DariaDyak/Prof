@@ -87,7 +87,7 @@ export default function AboutSection() {
                   <ul className="space-y-3">
                     {services.map((service, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full mt-[0.6rem] sm:mt-2 flex-shrink-0" />
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full mt-[0.6rem] sm:mt-2 flex-shrink-0" />
                         <span className="text-muted-foreground text-sm">{service}</span>
                       </li>
                     ))}

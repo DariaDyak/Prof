@@ -2,7 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* В глобальный CSS файл (index.css, globals.css, styles.css) */
+button:focus,
+button:focus-visible {
+  outline: none !important;
+  outline-offset: none !important;
+  box-shadow: none !important; /* Синяя тень вместо outline */
+}
 
+/* Альтернатива с focus-visible для современных браузеров */
+button:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+button:focus-visible {
+  outline: none !important; /* Blue-500 */
+  outline-offset: none !important;
+}
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0, 0, 0, .10);

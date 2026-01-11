@@ -41,7 +41,7 @@ export default function BackButtonSimple({
           py-3 px-4
           transition-all duration-300 ease-out
           font-medium
-          focus:outline-none focus:text-blue-600 
+          outline: none !important;
           group
           text-muted-foreground hover:text-blue-600
           bg-transparent border-none cursor-pointer

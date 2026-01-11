@@ -15,6 +15,8 @@ import DataProcessing from '@/pages/DataProcessing';
 import ProfitEs from "@/pages/ProfitES"; 
 import ProfitLs from "@/pages/ProfitLS";
 import ProfitMo from "@/pages/ProfitMO";
+import AboutUsPage from "@/pages/AboutUsPage";
+
  
 
 
@@ -30,6 +32,7 @@ function Router() {
       <Route path="/profitEs" element={<ProfitEs />} />
       <Route path="/profitLs" element={<ProfitLs />} />
       <Route path="/profitMo" element={<ProfitMo />} />
+      <Route path="/AboutUsPage" element={<AboutUsPage />} />
     </Routes>
   );
 }

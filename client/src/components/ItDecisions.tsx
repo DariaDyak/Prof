@@ -100,7 +100,7 @@ export default function ItDecisions({
         relative py-2
         transition-all duration-300 ease-out
         font-base
-        focus:outline-none focus:text-blue-600 
+        outline: none !important; 
         group
         text-muted-foreground hover:text-blue-600
         inline-block

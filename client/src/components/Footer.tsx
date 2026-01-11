@@ -17,12 +17,9 @@ export default function Footer() {
   };
 
   const handleNavigation = (link: { href: string; type?: string }) => {
-
     if (link.href.startsWith('/')) {
       navigate(link.href);
-    }
-
-    else if (link.type === 'anchor') {
+    } else if (link.type === 'anchor') {
       if (location.pathname !== '/') {
         navigate('/');
         setTimeout(() => {
@@ -37,7 +34,6 @@ export default function Footer() {
   const scrollToElement = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-
       const offset = 65;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
@@ -83,8 +79,8 @@ export default function Footer() {
         type: "anchor"
       },
       {
-        name: "О компании",
-        href: "about",
+        name: "О нас",
+        href: "/AboutUsPage",
         type: "anchor"
       },
       {
@@ -157,7 +153,7 @@ export default function Footer() {
                       <li key={link.name}>
                         <button
                           onClick={() => handleNavigation(link)}
-                          className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                          className="group flex items-center gap-2 focus:outline-none focus:ring-0 focus:ring-offset-0 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
                           <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
@@ -179,7 +175,7 @@ export default function Footer() {
                       <li key={link.name}>
                         <button
                           onClick={() => handleNavigation(link)}
-                          className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                          className="group flex items-center gap-2 focus:outline-none focus:ring-0 focus:ring-offset-0 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
                           <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
@@ -206,12 +202,9 @@ export default function Footer() {
               <button
                 onClick={() => {
                   if (location.pathname === '/dataProcessing') {
-
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   } else {
-
                     navigate('/dataProcessing');
-
                     setTimeout(() => {
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }, 100);
@@ -221,7 +214,7 @@ export default function Footer() {
                   relative py-2
                   transition-all duration-300 ease-out
                   font-base
-                  focus:outline-none focus:text-blue-600 
+                  focus:outline-none focus:ring-0 focus:ring-offset-0 focus:text-blue-600 
                   group
                   text-muted-foreground hover:text-blue-600
                   inline-block cursor-pointer
@@ -254,9 +247,9 @@ export default function Footer() {
                 px-4 py-2 sm:px-6 sm:py-3
                 text-sm sm:text-base
                 hover:border-blue-400 hover:bg-blue-500/30
+                focus:outline-none focus:ring-0 focus:ring-offset-0
                 transition-all duration-300"
             >
-
               {/* Бегущий луч */}
               <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
 
