@@ -253,35 +253,36 @@ className="sticky top-0 z-50
             const isActive = activeId === item.id && location.pathname === '/';
             return (
               <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`
-                  text-sm lg:text-base
-                  relative px-2 py-3
-                  transition-all duration-300 ease-out
-                  font-medium
-                  ${isActive
-                    ? 'text-brown-dark dark:text-beige-light font-bold'
-                    : 'text-brown-dark/90 dark:text-beige-light/80 hover:text-brown-dark dark:hover:text-beige-light hover:font-semibold'
-                  }
-                `}
-                data-testid={`nav-${item.id}`}
-                type="button"
-              >
-                {item.label}
-                <div className={`
-                  absolute bottom-0 left-1/2 w-0 h-0.5
-                  bg-brown-dark
-                  dark:bg-beige-light
-                  dark:group-hover:bg-beige-light
-                  transition-all duration-300 ease-out
-                  transform -translate-x-1/2
-                  ${isActive
-                    ? 'w-full opacity-100'
-                    : 'opacity-0 group-hover:w-full group-hover:opacity-100 dark:group-hover:opacity-70'
-                  }
-                `} />
-              </button>
+  key={item.id}
+  onClick={() => handleNavClick(item.id)}
+  className={`
+    text-sm lg:text-base
+    relative px-2 py-3
+    transition-all duration-300 ease-out
+    font-medium
+    outline-none focus:outline-none
+    ${isActive
+      ? 'text-brown-dark dark:text-beige-light font-bold'
+      : 'text-brown-dark/90 dark:text-beige-light/80 hover:text-brown-dark dark:hover:text-beige-light hover:font-semibold'
+    }
+  `}
+  data-testid={`nav-${item.id}`}
+  type="button"
+>
+  {item.label}
+  <div className={`
+    absolute bottom-0 left-1/2 w-0 h-0.5
+    bg-brown-dark
+    dark:bg-beige-light
+    dark:group-hover:bg-beige-light
+    transition-all duration-300 ease-out
+    transform -translate-x-1/2
+    ${isActive
+      ? 'w-full opacity-100'
+      : 'opacity-0 group-hover:w-full group-hover:opacity-100 dark:group-hover:opacity-70'
+    }
+  `} />
+</button>
             );
           })}
         </nav>

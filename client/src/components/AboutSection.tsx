@@ -113,38 +113,63 @@ export default function AboutSection() {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t ">
-                  <div className="flex items-start justify-start">
-                    <button
-                      onClick={handleDownload}
-                      className="relative py-2 sm:py-2.5 pl-8 sm:pl-10
-                               transition-all duration-300 ease-out
-                               text-xs sm:text-base font-medium
-                               focus:outline-none group
-                               text-brown-dark dark:text-brown-dark hover:opacity-80
-                               items-center gap-2 text-left"
-                    >
-                      <svg
-                        className="absolute left-0 w-5 h-5 sm:w-6 sm:h-6 
-                                   text-brown-dark dark:text-brown-dark group-hover:opacity-80 
-                                   transition-colors duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
+                <div className="pt-4 border-t border-gray-300 dark:border-gray-600 mt-auto">
+  <div className="flex items-start justify-start">
+    <button
+      onClick={handleDownload}
+      className="relative py-2.5 pl-10
+                 transition-all duration-300 ease-out
+                 text-base font-medium
+                 select-none
+                 ring-0 focus:ring-0 focus:ring-offset-0
+                 outline-none focus:outline-none focus-visible:outline-none
+                 active:outline-none active:ring-0
+                 text-brown-dark dark:text-brown-dark hover:text-brown-dark dark:hover:text-brown-dark
+                 items-center gap-2 text-left
+                 group"  // Добавлен group для анимации
+      style={{
+        outline: 'none',
+        WebkitTapHighlightColor: 'transparent',
+      }}
+      onMouseDown={(e) => {
+        e.preventDefault();
+        e.currentTarget.style.outline = 'none';
+        e.currentTarget.style.boxShadow = 'none';
+      }}
+      onFocus={(e) => {
+        e.currentTarget.style.outline = 'none';
+        e.currentTarget.style.boxShadow = 'none';
+      }}
+      onTouchStart={(e) => {
+        e.currentTarget.style.outline = 'none';
+        e.currentTarget.style.boxShadow = 'none';
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleDownload();
+        }
+      }}
+    >
+      <svg
+        className="absolute left-0 w-6 h-6 text-brown-dark dark:text-brown-dark group-hover:opacity-80 transition-colors duration-300"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
 
-                      <span className="relative inline-block">
-                        Скачайте подробную презентацию о компании
-                        <div className="absolute bottom-0 w-full h-0.5 bg-brown-dark dark:bg-brown-dark rounded-full
-                                      transition-all duration-300 ease-out
-                                      opacity-0 group-hover:opacity-100
-                                      scale-x-0 group-hover:scale-x-100" />
-                      </span>
-                    </button>
-                  </div>
-                </div>
+      <span className="relative inline-block ml-6">
+        Скачайте подробную презентацию о компании
+        <div className="absolute bottom-0 left-0 w-full h-0.5 bg-brown-dark dark:bg-brown-dark rounded-full
+                      transition-all duration-300 ease-out
+                      opacity-0 transform scale-x-0 group-hover:opacity-100 group-hover:transform group-hover:scale-x-100
+                      origin-left" />
+      </span>
+    </button>
+  </div>
+</div>
               </CardContent>
             </Card>
           </div>
@@ -258,67 +283,91 @@ export default function AboutSection() {
 
           {/* Левая колонка - о компании */}
           <div className="flex flex-col h-full">
-            <Card className="flex flex-col shadow-2xl h-full bg-white ">
-              <CardContent className="space-y-4 flex flex-col flex-1 p-6">
-                <div className="space-y-4 flex-1">
-                  <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
-                    <strong className="font-bold text-brown-dark dark:text-brown-dark">ООО «ПРОФ ИТ»</strong> — компания, предоставляющая спектр ИТ-услуг:
-                  </p>
+           <Card className="flex flex-col shadow-2xl h-full bg-white ">
+  <CardContent className="space-y-4 flex flex-col flex-1 p-6">
+    <div className="space-y-4 flex-1">
+      <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
+        <strong className="font-bold text-brown-dark dark:text-brown-dark">ООО «ПРОФ ИТ»</strong> — компания, предоставляющая спектр ИТ-услуг:
+      </p>
 
-                  <ul className="space-y-3">
-                    {services.map((service, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mt-[0.6rem] sm:mt-2 flex-shrink-0 bg-brown-dark dark:bg-brown-dark" />
-                        <span className="text-sm sm:text-base text-brown-dark dark:text-brown-dark">{service}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
-                    Мы используем только современное оборудование и программное обеспечение, 
-                    чтобы обеспечить надежность и эффективность работы наших клиентов.
-                  </p>
-                  
-                  <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
-                    Наши специалисты смогут подобрать решения для
-                    автоматизации и развития Вашего бизнеса, не зависимо от
-                    направления деятельности.
-                  </p>
-                </div>
+      <ul className="space-y-3">
+        {services.map((service, index) => (
+          <li key={index} className="flex items-start gap-3">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mt-[0.6rem] sm:mt-2 flex-shrink-0 bg-brown-dark dark:bg-brown-dark" />
+            <span className="text-sm sm:text-base text-brown-dark dark:text-brown-dark">{service}</span>
+          </li>
+        ))}
+      </ul>
+      
+      <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
+        Мы используем только современное оборудование и программное обеспечение, 
+        чтобы обеспечить надежность и эффективность работы наших клиентов.
+      </p>
+      
+      <p className="text-base leading-relaxed text-brown-dark dark:text-brown-dark">
+        Наши специалисты смогут подобрать решения для
+        автоматизации и развития Вашего бизнеса, не зависимо от
+        направления деятельности.
+      </p>
+    </div>
 
-                <div className="pt-4 border-t border-gray-300 dark:border-gray-600 mt-auto">
-                  <div className="flex items-start justify-start">
-                    <button
-                      onClick={handleDownload}
-                      className="relative py-2.5 pl-10
-                               transition-all duration-300 ease-out
-                               text-base font-medium
-                               focus:outline-none group
-                               text-brown-dark dark:text-brown-dark hover:text-brown-dark dark:hover:text-brown-dark
-                               items-center gap-2 text-left"
-                    >
-                      <svg
-                        className="absolute left-0 w-6 h-6 text-brown-dark dark:text-brown-dark  transition-colors duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
+    <div className="pt-4 border-t border-gray-300 dark:border-gray-600 mt-auto">
+      <div className="flex items-start justify-start">
+        <button
+          onClick={handleDownload}
+          className="relative py-2.5 pl-10
+                   transition-all duration-300 ease-out
+                   text-base font-medium
+                   focus:outline-none group
+                   text-brown-dark dark:text-brown-dark hover:text-brown-dark dark:hover:text-brown-dark
+                   items-center gap-2 text-left
+                   select-none"
+          style={{
+            outline: 'none',
+            WebkitTapHighlightColor: 'transparent',
+          }}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.currentTarget.style.outline = 'none';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.outline = 'none';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
+          onTouchStart={(e) => {
+            e.currentTarget.style.outline = 'none';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleDownload();
+            }
+          }}
+        >
+          <svg
+            className="absolute left-0 w-6 h-6 text-brown-dark dark:text-brown-dark group-hover:opacity-80 transition-colors duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
 
-                      <span className="relative inline-block ml-6">
-                        Скачайте подробную презентацию о компании
-                        <div className="absolute bottom-0 w-full h-0.5 bg-brown-dark dark:bg-brown-dark rounded-full
-                                      transition-all duration-300 ease-out
-                                      opacity-0 group-hover:opacity-100
-                                      scale-x-0 group-hover:scale-x-100" />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <span className="relative inline-block ml-6">
+            Скачайте подробную презентацию о компании
+            <div className="absolute bottom-0 w-full h-0.5 bg-brown-dark dark:bg-brown-dark rounded-full
+                          transition-all duration-300 ease-out
+                          opacity-0 group-hover:opacity-100
+                          scale-x-0 group-hover:scale-x-100" />
+          </span>
+        </button>
+      </div>
+    </div>
+  </CardContent>
+</Card>
+  </div>
 
           {/* Правая колонка - слайдер */}
           <div className="flex flex-col h-full">

@@ -6,6 +6,7 @@ export default {
   theme: {
     extend: {
       
+      
       colors: {
         'beige-light': 'var(--color-beige-light)',
         'beige': 'var(--color-beige)',

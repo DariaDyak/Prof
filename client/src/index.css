@@ -2,24 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* В глобальный CSS файл (index.css, globals.css, styles.css) */
-button:focus,
-button:focus-visible {
-  outline: 2px solid transparent !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important; /* Синяя тень вместо outline */
-}
-
-/* Альтернатива с focus-visible для современных браузеров */
-button:focus:not(:focus-visible) {
-  outline: none !important;
-}
-
-button:focus-visible {
-  outline: 2px solid #3b82f6 !important; /* Blue-500 */
-  outline-offset: 2px !important;
-}
-
 /* LIGHT MODE */
 :root {
    
@@ -270,6 +252,23 @@ button:focus-visible {
 
 }
 
+:focus,
+:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* Убираем синюю обводку браузера, но оставляем возможность для кастомной */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ТОЛЬКО для браузерной обводки по умолчанию - убираем ее */
+button:focus-visible {
+  outline-color: transparent;
+}
+
+
 @layer base {
   * {
     @apply border-border;
@@ -314,6 +313,7 @@ button:focus-visible {
     pointer-events: none;
   }
 
+ 
   /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
    * buttons/badges can remove the automatic brightness adjustment on interactions
    * and program their own. */
@@ -445,31 +445,25 @@ button:focus-visible {
     overflow-x: hidden !important;
   }
 }
-/* Убрать синюю обводку во всех браузерах */
-input:focus, 
-textarea:focus,
-select:focus,
-button:focus {
-  outline: none;
-  outline-offset: 0;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-focus-ring-color: transparent;
-}
 
-/* Убрать дефолтные стили браузеров */
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: none;
-}
-
-/* Добавить кастомную бежевую обводку */
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: #B6A593 !important; /* beige цвет */
-  box-shadow: 0 0 0 2px rgba(182, 165, 147, 0.2) !important; /* светлая бежевая тень */
+  border-color: #B6A593;
+  box-shadow: 0 0 0 2px rgba(182, 165, 147, 0.2);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ваши анимации и утилиты */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 1;
+  }
 }
 
 /* Для ваших конкретных инпутов */
@@ -482,32 +476,6 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(182, 165, 147, 0.15) !important;
   outline: 2px solid transparent !important;
 }
-
-/* Убрать синюю обводку в Chrome/Safari */
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px white inset, 0 0 0 2px beige !important;
-  -webkit-text-fill-color: inherit !important;
-  border-color: beige !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-/* Убрать синие кнопки в Chrome */
-button:focus {
-  outline: none !important;
-  box-shadow: 0 0 0 2px rgba(182, 165, 147, 0.3) !important;
-}
-
-/* Для Tailwind компонентов если используются */
-input:focus-within,
-textarea:focus-within {
-  --tw-ring-color: transparent !important;
-}
-
-/* Убрать синюю обводку у кнопок ввода */
-input[type="submit"]:focus,
-button[type="submit"]:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(182, 165, 147, 0.3) !important;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
