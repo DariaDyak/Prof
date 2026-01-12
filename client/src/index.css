@@ -5,9 +5,9 @@
 /* В глобальный CSS файл (index.css, globals.css, styles.css) */
 button:focus,
 button:focus-visible {
-  outline: none !important;
-  outline-offset: none !important;
-  box-shadow: none !important; /* Синяя тень вместо outline */
+  outline: 2px solid transparent !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important; /* Синяя тень вместо outline */
 }
 
 /* Альтернатива с focus-visible для современных браузеров */
@@ -16,11 +16,13 @@ button:focus:not(:focus-visible) {
 }
 
 button:focus-visible {
-  outline: none !important; /* Blue-500 */
-  outline-offset: none !important;
+  outline: 2px solid #3b82f6 !important; /* Blue-500 */
+  outline-offset: 2px !important;
 }
+
 /* LIGHT MODE */
 :root {
+   
   --button-outline: rgba(0, 0, 0, .10);
   --badge-outline: rgba(0, 0, 0, .05);
 
@@ -32,59 +34,61 @@ button:focus-visible {
   --elevate-1: rgba(0, 0, 0, .03);
   --elevate-2: rgba(0, 0, 0, .08);
 
-  --background: 0 0% 98%;
 
-  --foreground: 220 20% 15%;
+  /* Основные цвета из палитры в HSL */
+  --color-beige-light: #E7E3DB;  /* hsl(40, 20%, 90%) */
+  --color-beige: #E2D8CE;        /* hsl(33, 27%, 84%) */
+  --color-tan: #B6A593;          /* hsl(33, 19%, 65%) */
+  --color-brown: #473c32;        /* hsl(28, 18%, 36%) */
+  --color-brown-dark: #382E25;   /* hsl(28, 20%, 18%) */
 
-  --border: 220 13% 91%;
+  /* Основные переменные */
+  --background: 40 20% 90%;      /* #E7E3DB - светло-бежевый */
+  --foreground: 28 20% 18%;      /* #382E25 - темно-коричневый */
 
-  --card: 220 10% 96%;
+  /* Границы */
+  --border: 33 27% 84%;          /* #E2D8CE - бежевый */
 
-  --card-foreground: 220 20% 15%;
+  /* Карточки */
+  --card: 28 20% 18%;            /* #E7E3DB - светло-бежевый */
+  --card-foreground: 28 20% 18%; /* #382E25 - темно-коричневый */
+  --card-border: 33 19% 84%;     /* немного темнее border */
 
-  --card-border: 220 13% 93%;
+  /* Сайдбар */
+  --sidebar: 33 27% 84%;         /* #E2D8CE - бежевый */
+  --sidebar-foreground: 28 20% 18%; /* #382E25 */
+  --sidebar-border: 33 19% 78%;  /* немного темнее sidebar */
+  --sidebar-primary: 28 18% 36%; /* #6B5B4C - коричневый */
+  --sidebar-primary-foreground: 40 20% 90%; /* #E7E3DB */
+  --sidebar-accent: 33 19% 65%;  /* #B6A593 - тан */
+  --sidebar-accent-foreground: 28 20% 18%; /* #382E25 */
+  --sidebar-ring: 28 18% 36%;    /* #6B5B4C */
 
-  --sidebar: 220 12% 94%;
+  /* Всплывающие элементы */
+  --popover: 33 27% 84%;         /* #E2D8CE */
+  --popover-foreground: 28 20% 18%; /* #382E25 */
+  --popover-border: 33 19% 78%;  /* немного темнее */
 
-  --sidebar-foreground: 220 20% 15%;
+  /* Основные цвета */
+  --primary: 28 18% 36%;         /* #6B5B4C - коричневый */
+  --primary-foreground: 40 20% 90%; /* #E7E3DB */
 
-  --sidebar-border: 220 13% 90%;
+  /* Вторичные цвета */
+  --secondary: 33 19% 65%;       /* #B6A593 - тан */
+  --secondary-foreground: 28 20% 18%; /* #382E25 */
 
-  --sidebar-primary: 220 85% 25%;
+  /* Приглушенные цвета */
+  --muted: 33 27% 84%;           /* #E2D8CE */
+  --muted-foreground: 33 19% 65%; /* #B6A593 */
 
-  --sidebar-primary-foreground: 220 15% 98%;
+  /* Акцентные цвета */
+  --accent: 33 19% 65%;          /* #B6A593 */
+  --accent-foreground: 28 20% 18%; /* #382E25 */
 
-  --sidebar-accent: 220 20% 88%;
+  /* Деструктивные действия */
+  --destructive: 10 60% 45%;     /* Темно-красный (не из палитры) */
+  --destructive-foreground: 40 20% 90%; /* #E7E3DB */
 
-  --sidebar-accent-foreground: 220 25% 20%;
-
-  --sidebar-ring: 220 85% 25%;
-
-  --popover: 220 15% 92%;
-
-  --popover-foreground: 220 20% 15%;
-
-  --popover-border: 220 13% 88%;
-
-  --primary: 220 85% 25%;
-
-  --primary-foreground: 220 15% 98%;
-
-  --secondary: 220 15% 90%;
-
-  --secondary-foreground: 220 25% 20%;
-
-  --muted: 220 12% 89%;
-
-  --muted-foreground: 220 25% 20%;
-
-  --accent: 220 18% 87%;
-
-  --accent-foreground: 220 25% 20%;
-
-  --destructive: 0 84% 45%;
-
-  --destructive-foreground: 0 10% 98%;
 
   --input: 220 25% 75%;
   --ring: 220 85% 25%;
@@ -142,27 +146,68 @@ button:focus-visible {
 }
 
 .dark {
-  --button-outline: rgba(255, 255, 255, .10);
-  --badge-outline: rgba(255, 255, 255, .05);
-
+  --button-outline: 33 27% 84%;
+  --badge-outline: rgba(255, 255, 255, .04);
+  
   --opaque-button-border-intensity: 9;
-  /* In terms of percentages */
-
+  
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(255, 255, 255, .04);
-  --elevate-2: rgba(255, 255, 255, .09);
+  --elevate-1: rgba(255, 255, 255, .03);
+  --elevate-2: rgba(255, 255, 255, .07);
 
-  --background: 220 15% 8%;
+  --color-beige-light: #E7E3DB; /* или светлее для темной темы */
+  --color-beige: #E2D8CE;
+  --color-tan: #B6A593;
+  --color-brown: #6B5B4C;
+  --color-brown-dark: #382E25;       /* Светлый для текста */
 
-  --foreground: 220 15% 85%;
+  /* Основные переменные */
+  --background: 28 18% 10%;          /* Темный коричневый фон */
+  --foreground: 33 27% 84%;          /* #E2D8CE - светлый бежевый */
 
-  --border: 220 13% 18%;
+  /* Границы */
+  --border: 28 18% 18%;              /* Темный коричневый */
 
-  --card: 220 12% 11%;
+  /* Карточки */
+  --card: 28 18% 14%;                /* Темный коричневый */
+  --card-foreground: 33 27% 84%;     /* #E2D8CE - светлый бежевый */
+  --card-border: 28 18% 20%;         /* Темный коричневый граница */
 
-  --card-foreground: 220 15% 85%;
+  /* Сайдбар */
+  --sidebar: 28 18% 12%;             /* Темный коричневый */
+  --sidebar-foreground: 33 27% 84%;  /* #E2D8CE */
+  --sidebar-border: 28 18% 20%;      /* Темный коричневый граница */
+  --sidebar-primary: 33 19% 65%;     /* #B6A593 - как акцент */
+  --sidebar-primary-foreground: 28 18% 14%; /* Темный текст */
+  --sidebar-accent: 28 18% 20%;      /* Темный акцент */
+  --sidebar-accent-foreground: 33 27% 84%; /* Светлый текст */
+  --sidebar-ring: 33 19% 65%;        /* #B6A593 */
 
-  --card-border: 220 13% 20%;
+  /* Всплывающие элементы */
+  --popover: 28 18% 12%;             /* Темный коричневый */
+  --popover-foreground: 33 27% 84%;  /* #E2D8CE */
+  --popover-border: 28 18% 20%;      /* Темный коричневый граница */
+
+  /* Основные цвета */
+  --primary: 33 19% 65%;             /* #B6A593 - светлый акцент */
+  --primary-foreground: 28 18% 14%;  /* Темный текст */
+
+  /* Вторичные цвета */
+  --secondary: 28 18% 20%;           /* Темный */
+  --secondary-foreground: 33 27% 84%; /* Светлый текст */
+
+  /* Приглушенные цвета */
+  --muted: 28 18% 16%;               /* Темный приглушенный */
+  --muted-foreground: 33 19% 65%;    /* #B6A593 */
+
+  /* Акцентные цвета */
+  --accent: 28 18% 20%;              /* Темный акцент */
+  --accent-foreground: 33 27% 84%;   /* Светлый текст */
+
+  /* Деструктивные действия */
+  --destructive: 0 70% 45%;          /* Красный */
+  --destructive-foreground: 33 27% 84%; /* Светлый текст */
+
 
   --sidebar: 220 14% 13%;
 
@@ -387,4 +432,82 @@ button:focus-visible {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Добавьте в конец index.css */
+@media (max-width: 640px) {
+  header img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .overflow-x-hidden {
+    overflow-x: hidden !important;
+  }
+}
+/* Убрать синюю обводку во всех браузерах */
+input:focus, 
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none;
+  outline-offset: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+}
+
+/* Убрать дефолтные стили браузеров */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+/* Добавить кастомную бежевую обводку */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #B6A593 !important; /* beige цвет */
+  box-shadow: 0 0 0 2px rgba(182, 165, 147, 0.2) !important; /* светлая бежевая тень */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Для ваших конкретных инпутов */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  border-color: #B6A593 !important;
+  box-shadow: 0 0 0 3px rgba(182, 165, 147, 0.15) !important;
+  outline: 2px solid transparent !important;
+}
+
+/* Убрать синюю обводку в Chrome/Safari */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset, 0 0 0 2px beige !important;
+  -webkit-text-fill-color: inherit !important;
+  border-color: beige !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Убрать синие кнопки в Chrome */
+button:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(182, 165, 147, 0.3) !important;
+}
+
+/* Для Tailwind компонентов если используются */
+input:focus-within,
+textarea:focus-within {
+  --tw-ring-color: transparent !important;
+}
+
+/* Убрать синюю обводку у кнопок ввода */
+input[type="submit"]:focus,
+button[type="submit"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(182, 165, 147, 0.3) !important;
 }

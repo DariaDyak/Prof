@@ -5,12 +5,13 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      borderRadius: {
-        lg: ".5625rem", /* 9px */
-        md: ".375rem", /* 6px */
-        sm: ".1875rem", /* 3px */
-      },
+      
       colors: {
+        'beige-light': 'var(--color-beige-light)',
+        'beige': 'var(--color-beige)',
+        'tan': 'var(--color-tan)',
+        'brown': 'var(--color-brown)',
+        'brown-dark': 'var(--color-brown-dark)',
         // Flat / base colors (regular buttons)
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",

@@ -34,7 +34,7 @@ export default function ProfitEs() {
       </div>
 
       <Header onNavigate={scrollToSection} />
-      <BackButton/>
+      
 
     
       

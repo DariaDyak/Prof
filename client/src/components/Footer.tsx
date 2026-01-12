@@ -79,8 +79,8 @@ export default function Footer() {
         type: "anchor"
       },
       {
-        name: "О нас",
-        href: "/AboutUsPage",
+        name: "Подробнее о компании",
+        href: "/aboutUsPage",
         type: "anchor"
       },
       {
@@ -89,13 +89,13 @@ export default function Footer() {
         type: "anchor"
       },
       {
-        name: "Направления",
-        href: "directions",
+        name: "Кейсы",
+        href: "cases",
         type: "anchor"
       },
       {
-        name: "Кейсы",
-        href: "cases",
+        name: "Партнеры",
+        href: "/partnersPage",
         type: "anchor"
       },
       {
@@ -107,9 +107,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-card border-t relative overflow-hidden">
-      {/* Декоративный фон */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-purple-50/10 dark:from-blue-950/10 dark:to-purple-950/5 pointer-events-none" />
+    <footer className="bg-brown-dark text-beige border-brown/30 relative overflow-hidden">
+      {/* Декоративный фон - убрана темная тема */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brown/20 to-brown-dark/30 pointer-events-none" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Main Footer Content */}
@@ -122,21 +122,16 @@ export default function Footer() {
                   <img
                     src={logo}
                     alt="Prof it Logo"
-                    className="w-12 h-12 lg:w-12 lg:h-12 object-contain"
+                    className="w-24 h-24 lg:w-24 lg:h-24 object-contain"
                   />
                   <div className="absolute -inset-1" />
                 </div>
-                <div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    ПРОФ ИТ
-                  </span>
-                </div>
               </div>
 
-              <p className="text-muted-foreground leading-relaxed text-base">
-                <span className="font-semibold text-foreground">ПРОФ ИТ</span> -
+              <p className="text-beige/80 leading-relaxed text-base">
+                <span className="font-semibold text-beige">ПРОФ ИТ</span> -
                 современная IT-компания, создающая инновационные решения для цифровой
-                трансформации бизнеса.
+                трансформации бизнеса
               </p>
             </div>
 
@@ -145,7 +140,7 @@ export default function Footer() {
               {/* Services */}
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-bold text-foreground text-lg mb-4 pb-2 border-b border-border/50">
+                  <h3 className="font-bold text-beige text-lg mb-4 pb-2 ">
                     Услуги
                   </h3>
                   <ul className="space-y-3">
@@ -153,9 +148,9 @@ export default function Footer() {
                       <li key={link.name}>
                         <button
                           onClick={() => handleNavigation(link)}
-                          className="group flex items-center gap-2 focus:outline-none focus:ring-0 focus:ring-offset-0 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                          className="group flex items-center gap-2 text-beige/70 hover:text-beige transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
                         >
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-beige opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
                           <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
                         </button>
                       </li>
@@ -167,7 +162,7 @@ export default function Footer() {
               {/* Company */}
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-bold text-foreground text-lg mb-4 pb-2 border-b border-border/50">
+                  <h3 className="font-bold text-beige text-lg mb-4 pb-2">
                     Компания
                   </h3>
                   <ul className="space-y-3">
@@ -175,9 +170,9 @@ export default function Footer() {
                       <li key={link.name}>
                         <button
                           onClick={() => handleNavigation(link)}
-                          className="group flex items-center gap-2 focus:outline-none focus:ring-0 focus:ring-offset-0 text-muted-foreground hover:text-foreground transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                          className="group flex items-center gap-2 text-beige/70 hover:text-beige transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
                         >
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-beige opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
                           <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
                         </button>
                       </li>
@@ -189,16 +184,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <Separator className="bg-border/50" />
+        {/* Разделитель - убраны темные стили */}
+        <Separator className="bg-beige/20" />
 
         {/* Bottom Footer */}
         <div className="py-8 flex flex-col lg:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-muted-foreground order-2 lg:order-1">
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-beige/70 order-2 lg:order-1">
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <span className="text-center sm:text-left">
                 © 2025 ООО "ПРОФ ИТ". Все права защищены.
               </span>
-              <div className="hidden sm:block w-px h-4 bg-border/50" />
+              <div className="hidden sm:block w-px h-4 bg-beige/20" />
               <button
                 onClick={() => {
                   if (location.pathname === '/dataProcessing') {
@@ -214,9 +210,9 @@ export default function Footer() {
                   relative py-2
                   transition-all duration-300 ease-out
                   font-base
-                  focus:outline-none focus:ring-0 focus:ring-offset-0 focus:text-blue-600 
+                  focus:outline-none focus:text-beige
                   group
-                  text-muted-foreground hover:text-blue-600
+                  text-beige/70 hover:text-beige
                   inline-block cursor-pointer
                 `}
                 data-testid="privacy-policy-link"
@@ -224,7 +220,7 @@ export default function Footer() {
                 <span className="relative inline-block">
                   Политика конфиденциальности
                   <div className={`
-                    absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full
+                    absolute bottom-0 left-0 w-full h-0.5 bg-beige rounded-full
                     transition-all duration-300 ease-out
                     opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
                   `} />
@@ -239,19 +235,18 @@ export default function Footer() {
               size="sm"
               onClick={scrollToTop}
               className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
-                bg-blue-500/20 border border-blue-800/30 
-                text-blue-600 dark:text-blue-400 font-medium
+                bg-beige/20 border border-beige/30 dark:border dark:border-beige/30 
+                text-beige font-medium
                 backdrop-blur-sm
                 group
-                hover:text-blue-600
+                hover:text-beige
                 px-4 py-2 sm:px-6 sm:py-3
                 text-sm sm:text-base
-                hover:border-blue-400 hover:bg-blue-500/30
-                focus:outline-none focus:ring-0 focus:ring-offset-0
+                hover:border-beige/50 hover:bg-beige/30
                 transition-all duration-300"
             >
               {/* Бегущий луч */}
-              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige/20 to-transparent" />
 
               <span>
                 Наверх

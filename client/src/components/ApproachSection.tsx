@@ -25,13 +25,13 @@ export default function ApproachSection() {
   ];
 
   return (
-    <section className="pt-16 pb-16 from-slate-50 to-slate-100 dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
-      <div className="container mx-auto px-4 lg:px-8 ">
+    <section className="pt-16 pb-16 bg-beige-light dark:bg-brown-dark overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
-            Пошаговая методология внедрения <span className="block text-blue-600 dark:text-blue-400">комплексных IT-решений</span>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark dark:text-beige-light mb-4 sm:mb-5 lg:mb-6">
+            Пошаговая методология внедрения <span className="block text-brown/70 dark:text-beige/80">комплексных IT-решений</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown/80 dark:text-beige/80 max-w-3xl mx-auto leading-relaxed">
             Процесс оценки текущего состояния ИТ-инфраструктуры компании включает анализ всех аспектов
             информационных технологий
           </p>
@@ -43,33 +43,33 @@ export default function ApproachSection() {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="group bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl dark:hover:shadow-none transition-all duration-300"
+                className="group bg-white dark:bg-brown-dark/95 rounded-xl sm:rounded-2xl p-4 sm:p-6 border shadow-lg transition-all duration-300 "
               >
                 <div className="flex items-start gap-3 sm:gap-4">
                   {/* Иконка */}
                   <div className="flex-shrink-0">
                     <div className="
                       w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
-                      bg-gradient-to-br from-blue-500 to-purple-600 
+                      bg-brown-dark 
+                      dark:from-beige/20 dark:to-beige/10
                       rounded-lg sm:rounded-xl flex items-center justify-center 
                       shadow-lg 
-                      dark:shadow-blue-900/30 
-                      group-hover:shadow-xl 
-                      group-hover:shadow-blue-500/30 
-                      dark:group-hover:shadow-blue-600/40 
+                      shadow-brown/20 
+                      
+                      
                       transition-all duration-300
                     ">
-                      <div className="text-white">
+                      <div className="text-beige-light dark:text-beige">
                         {step.icon}
                       </div>
                     </div>
                   </div>
 
                   <div className="flex-1">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-brown-dark transition-colors duration-300 leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-2">
+                    <p className="text-xs sm:text-sm text-brown-dark leading-relaxed mt-2">
                       {step.description}
                     </p>
                   </div>
@@ -81,4 +81,5 @@ export default function ApproachSection() {
       </div>
     </section>
   );
+
 }

@@ -5,7 +5,7 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
-  base: '/prof/',
+  base: '/prof2/',
   plugins: [
     react(),
     runtimeErrorOverlay(),

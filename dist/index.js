@@ -423,7 +423,7 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 var vite_config_default = defineConfig({
-  base: "/prof/",
+  base: "/prof2/",
   plugins: [
     react(),
     runtimeErrorOverlay(),
