@@ -50,7 +50,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-14 sm:py-20 root:bg-white overflow-hidden">
+    <section id="services" className="py-12 sm:py-20 overflow-hidden">
       <div className="container mx-auto h-full px-4 lg:px-8">
         <div className="text-left mb-10 sm:mb-14 lg:mb-16">
           <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige-light mb-3">
@@ -80,7 +80,7 @@ export default function ServicesSection() {
                         <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-brown dark:text-beige-light" />
                       </div>
                     )}
-                    <h3 className="text-md sm:text-base lg:text-2xl xl:text-2xl font-bold text-brown-dark dark:text-beige-light">
+                    <h3 className="text-md sm:text-md lg:text-2xl xl:text-2xl font-bold text-brown-dark dark:text-beige-light">
                       {service.title}
                     </h3>
                   </div>

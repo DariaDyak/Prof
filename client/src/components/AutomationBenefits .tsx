@@ -2,15 +2,15 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function AutomationBenefits() {
   return (
-    <section className="pt-16 overflow-hidden">
+    <section className="pt-8 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <h2 className="text-2xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
+        <div className="text-center sm:mb-10 lg:mb-12">
+          <h2 className="text-2xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-6 sm:mb-5 lg:mb-6">
             Профессиональный подход к автоматизации <span className="block text-broen-dark">бизнес-процессов</span>
           </h2>
         </div>
 
-        <div className="group backdrop-blur-sm transition-all duration-500 mb-20">
+        <div className="group backdrop-blur-sm transition-all duration-500 mb-12">
           <div>
             <div className="space-y-4 sm:space-y-6">
               <p className="text-sm sm:text-base lg:text-base xl:text-base text-foreground leading-relaxed text-justify">
@@ -29,9 +29,9 @@ export default function AutomationBenefits() {
             </div>
 
             {/* Итоговый блок */}
-            <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-brown-dark shadow-lg transition-all duration-300 rounded-2xl shadow-inner">
+            <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-brown-dark dark:bg-beige shadow-lg transition-all duration-300 rounded-2xl shadow-inner">
               <div className="flex justify-center items-center text-center">
-                <p className="text-sm sm:text-sm lg:text-base xl:text-base text-beige font-semibold leading-relaxed">
+                <p className="text-sm sm:text-sm lg:text-base xl:text-base text-beige dark:text-brown-dark  font-semibold leading-relaxed">
                   Результат: увеличение эффективности работы и снижение затрат на выполнение бизнес-процессов
                 </p>
               </div>

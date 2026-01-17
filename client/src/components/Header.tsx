@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import logo from '@assets/generated_images/logo.png';
 import { useLocation, useNavigate } from 'react-router-dom';
-import logoLight from '@assets/generated_images/logo_light.png';
-import logoDark from '@assets/generated_images/logo_dark.png';
 
 interface HeaderProps {
   onNavigate?: (section: string) => void;
@@ -13,37 +10,34 @@ interface HeaderProps {
 export default function Header({ onNavigate }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [isDark, setIsDark] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const headerRef = useRef<HTMLElement>(null);
 
   const navigationItems = [
-
     { label: 'О компании', id: 'about' },
     { label: 'Услуги', id: 'services' },
-    { label: 'Кейсы', id: 'cases' },
+    { label: 'Проекты', id: 'cases' },
     { label: 'Контакты', id: 'contacts' }
   ];
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const savedTheme = localStorage.getItem('theme');
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const initialTheme = savedTheme || systemTheme;
-
-    setTheme(initialTheme);
+    
+    setIsDark(initialTheme === 'dark');
     document.documentElement.classList.toggle('dark', initialTheme === 'dark');
   }, []);
 
-  // Функция переключения темы
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    const newIsDark = !isDark;
+    setIsDark(newIsDark);
+    localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', newIsDark);
   };
 
-  // Функция для получения высоты header
   const getHeaderHeight = () => {
     if (headerRef.current) {
       return headerRef.current.offsetHeight;
@@ -79,21 +73,16 @@ export default function Header({ onNavigate }: HeaderProps) {
     setActiveId(id);
 
     if (location.pathname !== '/') {
-      // Сохраняем секцию для скролла
       sessionStorage.setItem('scrollToSection', id);
-      // Сохраняем флаг, что нужно выполнить скролл сразу после загрузки
       sessionStorage.setItem('shouldScrollImmediately', 'true');
-      // Переходим на главную
       navigate('/');
     } else {
-      // На главной странице
       if (id === 'home') {
         window.scrollTo({
           top: 0,
           behavior: 'smooth'
         });
       } else {
-        // Небольшая задержка для гарантии что DOM обновлен
         setTimeout(() => {
           scrollToElement(id);
         }, 50);
@@ -104,7 +93,6 @@ export default function Header({ onNavigate }: HeaderProps) {
     setIsMobileMenuOpen(false);
   };
 
-  // Обработка скролла после перехода на главную страницу
   useEffect(() => {
     const shouldScrollImmediately = sessionStorage.getItem('shouldScrollImmediately') === 'true';
 
@@ -112,13 +100,11 @@ export default function Header({ onNavigate }: HeaderProps) {
       const sectionToScroll = sessionStorage.getItem('scrollToSection');
 
       if (sectionToScroll && shouldScrollImmediately) {
-
         const executeScroll = () => {
           if (sectionToScroll === 'home') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
             const success = scrollToElement(sectionToScroll);
-
             if (!success) {
               setTimeout(() => scrollToElement(sectionToScroll), 300);
             }
@@ -127,30 +113,24 @@ export default function Header({ onNavigate }: HeaderProps) {
           sessionStorage.removeItem('shouldScrollImmediately');
         };
         const timer = setTimeout(executeScroll, 100);
-
         return () => clearTimeout(timer);
       }
     }
   }, [location.pathname]);
-
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
       if (hash && navigationItems.some(item => item.id === hash)) {
         if (location.pathname === '/') {
-          // Если уже на главной, просто скроллим
           setTimeout(() => scrollToElement(hash), 100);
         } else {
-          // Иначе переходим на главную с хэшем
           navigate(`/#${hash}`);
         }
       }
     };
 
     window.addEventListener('hashchange', handleHashChange);
-
-    // Проверяем начальный хэш
     const initialHash = window.location.hash.replace('#', '');
     if (initialHash && navigationItems.some(item => item.id === initialHash)) {
       handleHashChange();
@@ -159,7 +139,6 @@ export default function Header({ onNavigate }: HeaderProps) {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [location.pathname, navigate, navigationItems]);
 
-  // Обновляем активный раздел при скролле
   useEffect(() => {
     if (location.pathname !== '/') {
       setActiveId(null);
@@ -172,7 +151,7 @@ export default function Header({ onNavigate }: HeaderProps) {
 
       let currentActiveId: string | null = 'home';
 
-      for (const item of navigationItems.filter(item => item.id !== 'home')) {
+      for (const item of navigationItems) {
         const element = document.getElementById(item.id);
         if (element) {
           const elementRect = element.getBoundingClientRect();
@@ -197,56 +176,43 @@ export default function Header({ onNavigate }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [navigationItems, location.pathname]);
 
+  // УДАЛЕНО: Все лишние элементы и кнопки темы
+
   return (
-    <header
+    <header 
       ref={headerRef}
-      className="sticky top-0 z-50 
-  /* Светлая тема */
-  bg-gradient-to-b from-beige-light via-beige-light/95 to-beige/90 
-  backdrop-blur-lg backdrop-saturate-150
-  supports-[backdrop-filter]:bg-beige-light/80
-  
-  /* Темная тема */
-  dark:bg-gradient-to-b dark:from-brown-dark dark:via-brown-dark/95 dark:to-brown/90
-  dark:backdrop-blur-lg dark:backdrop-saturate-150
-  dark:supports-[backdrop-filter]:bg-brown-dark/80
-  
-  /* Общие стили */
-  shadow-lg 
-  transition-all duration-0">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between">
+      className="h-20 sticky top-0 z-50 
+        bg-gradient-to-b from-beige-light via-beige-light/95 to-beige/90 
+        backdrop-blur-lg backdrop-saturate-150
+        supports-[backdrop-filter]:bg-beige-light/80
+        
+        dark:bg-gradient-to-b dark:from-brown-dark dark:via-brown-dark/95 dark:to-brown/90
+        dark:backdrop-blur-lg dark:backdrop-saturate-150
+        dark:supports-[backdrop-filter]:bg-brown-dark/80
+        
+        shadow-lg 
+        transition-all duration-0"
+    >
+      <div className="container mx-auto px-4 lg:px-8 h-full">
+        <div className="flex items-center justify-between h-full">
           {/* Логотип */}
           <div
-            className="flex items-center space-x-3 cursor-pointer focus:outline-none group"
+            className="flex items-center cursor-pointer focus:outline-none group h-full"
             onClick={() => handleNavClick('home')}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && handleNavClick('home')}
           >
-            <div className="relative">
-              {/* Логотип для светлой темы */}
-
-              <img
-                src={logoLight}
-                alt="Profit Logo"
-                className={`w-20 h-20 lg:w-24 lg:h-24 object-contain transition-all duration-300 ${theme === 'light' ? 'opacity-100' : 'opacity-0 absolute inset-0'
-                  }`}
-              />
-
-              {/* Логотип для темной темы */}
-              <img
-                src={logoDark}
-                alt="Profit Logo"
-                className={`w-20 h-20 lg:w-24 lg:h-24 object-contain transition-all duration-300 ${theme === 'dark' ? 'opacity-100' : 'opacity-0 absolute inset-0'
-                  }`}
-              />
+            <div className="relative flex items-center h-full">
+              <span className="font-bold text-2xl lg:text-4xl transition-colors duration-300 text-brown-dark dark:text-beige">
+                ПРОФ ИТ
+              </span>
             </div>
           </div>
 
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-6 h-full">
             {/* Навигация */}
-            <nav className="flex items-center space-x-8">
+            <nav className="flex items-center space-x-8 h-full">
               {navigationItems.map((item) => {
                 const isActive = activeId === item.id && location.pathname === '/';
                 return (
@@ -254,32 +220,32 @@ export default function Header({ onNavigate }: HeaderProps) {
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
                     className={`
-    text-sm lg:text-base
-    relative px-2 py-3
-    transition-all duration-300 ease-out
-    font-medium
-    outline-none focus:outline-none
-    ${isActive
+                      text-sm lg:text-base
+                      relative px-2
+                      transition-all duration-300 ease-out
+                      font-medium
+                      outline-none focus:outline-none
+                      flex items-center h-full
+                      ${isActive
                         ? 'text-brown-dark dark:text-beige-light font-bold'
                         : 'text-brown-dark/90 dark:text-beige-light/80 hover:text-brown-dark dark:hover:text-beige-light hover:font-semibold'
                       }
-  `}
+                    `}
                     data-testid={`nav-${item.id}`}
                     type="button"
                   >
                     {item.label}
                     <div className={`
-    absolute bottom-0 left-1/2 w-0 h-0.5
-    bg-brown-dark
-    dark:bg-beige-light
-    dark:group-hover:bg-beige-light
-    transition-all duration-300 ease-out
-    transform -translate-x-1/2
-    ${isActive
+                      absolute bottom-0 left-1/2 w-0 h-0.5
+                      bg-brown-dark
+                      dark:bg-beige-light
+                      transition-all duration-300 ease-out
+                      transform -translate-x-1/2
+                      ${isActive
                         ? 'w-full opacity-100'
                         : 'opacity-0 group-hover:w-full group-hover:opacity-100 dark:group-hover:opacity-70'
                       }
-  `} />
+                    `} />
                   </button>
                 );
               })}
@@ -288,37 +254,37 @@ export default function Header({ onNavigate }: HeaderProps) {
             {/* Разделитель */}
             <div className="h-6 w-px bg-gradient-to-b from-transparent via-tan to-transparent dark:via-beige-light/40" />
 
-            {/* Кнопка смены темы */}
+            {/* ОДНА кнопка смены темы */}
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="h-9 w-9 p-0 hover:bg-beige-light/10 dark:hover:bg-tan/20 transition-all duration-300 focus:ring-0"
-              aria-label={theme === 'light' ? 'Переключить на темную тему' : 'Переключить на светлую тему'}
+              className="h-9 w-9 p-0 hover:bg-beige-light/10 dark:hover:bg-tan/20 transition-all duration-300 focus:ring-0 flex items-center justify-center"
+              aria-label={isDark ? 'Переключить на светлую тему' : 'Переключить на темную тему'}
               type="button"
             >
-              {theme === 'light' ? (
-                <Moon className="h-4 w-4 transition-all duration-300 hover:scale-110 text-brown-dark" />
-              ) : (
+              {isDark ? (
                 <Sun className="h-4 w-4 transition-all duration-300 hover:scale-110 text-beige-light" />
+              ) : (
+                <Moon className="h-4 w-4 transition-all duration-300 hover:scale-110 text-brown-dark" />
               )}
             </Button>
           </div>
 
-          <div className="flex items-center space-x-2 lg:hidden">
-            {/* Кнопка смены темы в мобильной версии */}
+          <div className="flex items-center space-x-2 lg:hidden h-full">
+            {/* ОДНА кнопка смены темы в мобильной версии */}
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="h-9 w-9 p-0 hover:bg-beige-light/10 dark:hover:bg-tan/20 transition-colors focus:ring-0"
-              aria-label={theme === 'light' ? 'Переключить на темную тему' : 'Переключить на светлую тему'}
+              className="h-9 w-9 p-0 hover:bg-beige-light/10 dark:hover:bg-tan/20 transition-colors focus:ring-0 flex items-center justify-center"
+              aria-label={isDark ? 'Переключить на светлую тему' : 'Переключить на темную тему'}
               type="button"
             >
-              {theme === 'light' ? (
-                <Moon className="h-4 w-4 text-brown-dark" />
-              ) : (
+              {isDark ? (
                 <Sun className="h-4 w-4 text-beige-light" />
+              ) : (
+                <Moon className="h-4 w-4 text-brown-dark" />
               )}
             </Button>
 
@@ -326,7 +292,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="h-9 w-9 hover:bg-beige-light/10 dark:hover:bg-tan/20 transition-colors focus:ring-0 focus:outline-none"
+              className="h-9 w-9 hover:bg-beige-light/10 dark:hover:bg-tan/20 transition-colors focus:ring-0 focus:outline-none flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-mobile-menu"
               type="button"
@@ -342,35 +308,49 @@ export default function Header({ onNavigate }: HeaderProps) {
 
         {/* Мобильное меню */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden animate-in slide-in-from-top duration-300">
-            <nav className="flex flex-col space-y-1 p-4">
-              {navigationItems.map((item) => {
-                const isActive = activeId === item.id && location.pathname === '/';
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.id)}
-                    className={`
-                  text-left px-4 py-3 rounded-lg
-                  transition-all duration-300 ease-out
-                  font-medium
-                  focus:outline-none focus:ring-0
-                  backdrop-blur-sm
-                  ${isActive
-                        ? 'text-brown-dark dark:text-beige-light font-bold border-l-4 border-brown dark:border-tan'
-                        : 'text-brown dark:text-tan hover:text-brown-dark dark:hover:text-beige-light hover:bg-white/15 dark:hover:bg-black/15 border-l-4 border-transparent hover:border-tan dark:hover:border-brown'
-                      }
-                `}
-                    data-testid={`nav-mobile-${item.id}`}
-                    type="button"
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
+          <div className="lg:hidden animate-in slide-in-from-top duration-300 fixed inset-x-0 top-20 z-40">
+            <nav className="flex flex-col p-6 w-full 
+              bg-beige-light
+              backdrop-blur-sm backdrop-saturate-100
+              supports-[backdrop-filter]:bg-beige-light/70
+              
+              dark:bg-[#1E1915]
+              dark:backdrop-blur-xl dark:backdrop-saturate-200
+              dark:supports-[backdrop-filter]:bg-brown-dark/70
+              
+              shadow-xl"
+            >
+              {/* Пункты меню */}
+              <div className="flex flex-col space-y-2 mt-4">
+                {navigationItems.map((item) => {
+                  const isActive = activeId === item.id && location.pathname === '/';
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`
+                        w-full text-left px-4 py-3 rounded-lg
+                        transition-all duration-300 ease-out
+                        font-medium
+                        focus:outline-none focus:ring-0
+                        backdrop-blur-sm
+                        ${isActive
+                          ? 'text-brown-dark dark:text-beige-light font-bold bg-white/30 dark:bg-black/30 border-l-4 border-brown dark:border-beige'
+                          : 'text-brown dark:text-beige hover:text-brown-dark dark:hover:text-beige-light hover:bg-white/40 dark:hover:bg-black/20 border-l-4 border-transparent hover:border-brown/30 dark:hover:border-beige/30'
+                        }
+                      `}
+                      data-testid={`nav-mobile-${item.id}`}
+                      type="button"
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
             </nav>
           </div>
         )}
       </div>
-    </header>);
+    </header>
+  );
 }

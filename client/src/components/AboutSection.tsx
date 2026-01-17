@@ -74,7 +74,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="pt-14 pb-16 ">
+    <section id="about" className="py-14 pb-16 ">
       <div className="container mx-auto px-4 lg:px-8 h-full">
 
         {/* Мобильная версия */}

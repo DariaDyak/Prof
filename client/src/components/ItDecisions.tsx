@@ -2,8 +2,9 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import U1 from '@assets/generated_images/U1.png';
-import U2 from '@assets/generated_images/U2.png';
-import U3 from '@assets/generated_images/U3.jpg';
+import U8 from '@assets/generated_images/U8.png';
+import U6 from '@assets/generated_images/U6.png';
+import U5 from '@assets/generated_images/U5.png';
 import { Button } from "@/components/ui/button";
 
 interface ItDecisionsProps {
@@ -12,7 +13,7 @@ interface ItDecisionsProps {
   description: string;
   showBackButton?: boolean;
   backButtonText?: string;
-  backgroundImage?: "U1" | "U2" | "U3" | string;
+  backgroundImage?: "U1" | "U2" | "U3" | "U4" | string;
   onLearnMore?: () => void;
   onBadgeClick?: () => void;
   titleSize?: "sm" | "md" | "lg" | "xl";
@@ -22,8 +23,9 @@ interface ItDecisionsProps {
 
 const backgroundImages = {
   U1: U1,
-  U2: U1,
-  U3: U1
+  U2: U8,
+  U3: U6,
+  U4: U5
 };
 
 export default function ItDecisions({
@@ -87,7 +89,7 @@ export default function ItDecisions({
           className="w-full h-full object-cover"
         />
         {/* Контейнер для размытия границ */}
-        <div className="absolute inset-0 backdrop-blur-[10px] dark:backdrop-blur-[10px]"></div>
+        <div className="absolute inset-0 backdrop-blur-[4px] dark:backdrop-blur-[4px]"></div>
 
         {/* Градиент снизу к центру */}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-beige via-beige/60 to-transparent backdrop-blur-[1px] dark:from-brown dark:via-brown/40 dark:to-transparent"></div>
@@ -171,7 +173,7 @@ active:outline-none active:ring-0
           </h1>
 
           {/* Описание */}
-          <p className="text-base md:text-lg text-brown-dark leading-relaxed max-w-4xl">
+          <p className="text-base md:text-lg font-medium text-brown-dark leading-relaxed max-w-4xl">
             {description}
           </p>
         </div>

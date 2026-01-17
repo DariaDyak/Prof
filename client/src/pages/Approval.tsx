@@ -25,7 +25,7 @@ export default function Approval() {
   };
 
   return (
-    <div className="min-h-screen bg-beige-light text-foreground font-Montserrat">
+    <div className="min-h-screen bg-background text-foreground text-brown-dark font-Montserrat">
       {/* Fixed Theme Toggle */}
       <div className="fixed top-4 right-4 z-50">
           <ThemeToggle />

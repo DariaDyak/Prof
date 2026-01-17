@@ -1,6 +1,6 @@
 export default function TextPolicy() {
     return (
-        <section id="services" className="pt-10 pb-16 bg-white dark:bg-beige text-justify overflow-hidden">
+        <section id="services" className="pt-10 pb-16 bg-beige dark:bg-beige text-justify overflow-hidden">
             <div className="container mx-auto px-4 lg:px-8 ">
                 <div className="text-center mb-8 sm:mb-12">
                     <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold text-brown-dark mb-2">

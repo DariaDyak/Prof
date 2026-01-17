@@ -42,7 +42,7 @@ const processSteps = [
 
 export default function DevelopmentProcess() {
   return (
-    <section className="pt-10 pb-16 bg-beige-light overflow-hidden">
+    <section className="pt-8 pb-16 dark:bg-beige-light overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 ">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark mb-4 sm:mb-5 lg:mb-6">
@@ -87,7 +87,7 @@ export default function DevelopmentProcess() {
     <h3 className="text-base sm:text-lg font-bold text-brown-dark mb-2 leading-tight">
       {item.title}
     </h3>
-    <p className="text-xs sm:text-sm text-brown-dark leading-relaxed">
+    <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-relaxed">
       {item.description}
     </p>
   </CardContent>

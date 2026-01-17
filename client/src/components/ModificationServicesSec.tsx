@@ -44,8 +44,8 @@ export default function ModificationServicesSec() {
     const [activeTab, setActiveTab] = useState(0);
 
     return (
-        <section className="pt-0 pb-4 sm:pt-8 sm:pb-0">
-    <div className="container mx-auto px-4 lg:px-8">
+        <section className="pt-0 pb-6 sm:pt-8 sm:pb-4 ">
+    <div className="container mx-auto px-4 lg:px-8 pb-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12 mt-6 sm:mt-0">
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark dark:text-beige mb-4 sm:mb-5 lg:mb-6">
                 Модификация и адаптация типовых решений
@@ -110,7 +110,7 @@ export default function ModificationServicesSec() {
                     </div>
 
                     {/* Блок с информацией о франчайзи и сертификатами */}
-                    <div className="mt-8 sm:mt-10 p-4 sm:p-6 bg-white shadow-xl transition-all duration-300 rounded-2xl border">
+                    <div className="mt-8 sm:mt-10 p-4 sm:p-6 bg-white transition-all duration-300 rounded-2xl border">
                         <div className="flex items-center gap-3 mb-3">
                             <Award className="w-5 h-5 sm:w-6 sm:h-6 text-brown-dark" />
                             <h4 className="text-base sm:text-lg font-bold text-brown-dark">ООО «ПРОФ ИТ» входит в сеть «1С:Франчайзи»</h4>

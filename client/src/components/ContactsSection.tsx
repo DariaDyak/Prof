@@ -124,7 +124,7 @@ export default function ContactsSection() {
 
 
   return (
-    <section id="contacts" className="pt-14 pb-16 bg-beige/20 dark:bg-beige">
+    <section id="contacts" className="py-12 sm:py-20 bg-beige/20 dark:bg-beige">
         <div className="container mx-auto h-full px-4 lg:px-8">
         <div className="text-left mb-10 sm:mb-14 lg:mb-16">
           <h2 className="text-5xl font-bold text-brown-dark mb-3">

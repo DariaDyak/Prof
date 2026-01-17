@@ -8,6 +8,7 @@ import ContactsSection from '@/components/ContactsSection';
 import StatsSection from '@/components/StatsSection';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
+import PartnersSection from '@/components/PartnersSection';
 
 export default function Home() {
   const sectionRefs = {
@@ -15,7 +16,8 @@ export default function Home() {
     services: useRef<HTMLDivElement>(null),
     directions: useRef<HTMLDivElement>(null),
     contacts: useRef<HTMLDivElement>(null),
-    cases: useRef<HTMLDivElement>(null)
+    cases: useRef<HTMLDivElement>(null),
+    partners: useRef<HTMLDivElement>(null)
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -56,6 +58,10 @@ export default function Home() {
         <div ref={sectionRefs.cases}>
           <StatsSection />
         </div>
+        <div ref={sectionRefs.partners}>
+          <PartnersSection />
+        </div>
+        
         
         <div ref={sectionRefs.contacts}>
           <ContactsSection />

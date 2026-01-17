@@ -94,15 +94,13 @@ export default function StatsSection() {
     }
 
     return (
-        <section id="cases" className="py-14 sm:py-20 bg-beige/50  overflow-hidden">
+        <section id="cases" className="py-12 sm:py-12 bg-beige/50 overflow-hidden">
             <div className="container mx-auto h-full px-4 lg:px-8">
                 <div className="text-left mb-10 sm:mb-14 lg:mb-16">
                     <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige mb-3">
                         Собственная разработка
                     </h2>
-                   <p className="text-brown text-sm 
-  mt-6 sm:mt-3 lg:mt-8 
-  sm:text-lg dark:text-beige mb-3">
+                   <p className="text-brown text-sm mt-6 sm:mt-3 lg:mt-8 sm:text-lg dark:text-beige mb-3">
                         Мы сотрудничаем с компаниями из разных секторов экономики, предлагая индивидуальные решения с учетом специфики каждой отрасли
                     </p>
                 </div>
@@ -162,7 +160,7 @@ export default function StatsSection() {
                 </div>
 
                 {/* Таблица продуктов */}
-                <div className="bg-white  rounded-xl overflow-hidden shadow-2xl border border-beige/30 dark:border-brown/30">
+                <div className="bg-white  rounded-xl overflow-hidden shadow-xl border border-beige/30 dark:border-brown/30">
                     <div className="px-6 py-4 bg-white  border-b border-beige/50 dark:border-brown/50">
                         <h3 className="text-lg font-medium text-brown-dark ">Наши разработки</h3>
                         <p className="text-sm text-brown  mt-1">
@@ -288,8 +286,10 @@ export default function StatsSection() {
                   text-beige-light  font-medium
                   dark:bg-beige dark:text-brown-dark
                   hover:bg-white hover:text-brown-dark
-                  dark:hover:border-white
+                  dark:hover:border
+                  dark:hover:border-brown-dark
                   dark:hover:text-brown-dark dark:hover:bg-white
+                  
                        select-none
                        ring-0 focus:ring-0 focus:ring-offset-0
                        outline-none focus:outline-none focus-visible:outline-none
@@ -327,7 +327,7 @@ export default function StatsSection() {
                     </div>
 
                     <div className="md:hidden">
-                        <div className="divide-y divide-beige/50 divide-beige/50 dark:divide-brown/50">
+                        <div className="divide-y divide-beige/50 dark:divide-brown/50">
                             {products.map((product) => {
                                 const ProductIcon = getProductIcon(product.title);
 
@@ -442,7 +442,8 @@ export default function StatsSection() {
                   text-beige-light  font-medium
                   dark:bg-beige dark:text-brown-dark
                   hover:bg-white hover:text-brown-dark
-                  dark:hover:border-white
+                  dark:hover:border
+                  dark:hover:border-brown-dark
                   dark:hover:text-brown-dark dark:hover:bg-white
                        select-none
                        ring-0 focus:ring-0 focus:ring-offset-0
@@ -499,15 +500,24 @@ export default function StatsSection() {
                     {/* Полупрозрачный фон */}
                     <div className="absolute inset-0 bg-brown-dark/80 dark:bg-brown/80 backdrop-blur-sm" />
 
-                    {/* Кнопка закрытия */}
                     <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={handleCloseCertificate}
-                        className="absolute top-4 right-4 z-10 h-10 w-10 bg-beige-light hover:bg-brown rounded-full shadow-lg backdrop-blur-sm border border-beige/20 dark:border-brown/30"
-                    >
-                        <X className="w-5 h-5 text-brown-dark " />
-                    </Button>
+    variant="ghost"
+    size="icon"
+    onClick={handleCloseCertificate}
+    className="absolute top-4 right-4 z-10 h-10 w-10 
+        /* Светлая тема */
+        bg-white hover:bg-brown-dark 
+        border border-beige/30 hover:border-brown-dark
+        text-brown-dark hover:text-white
+        
+       
+        
+        /* Общие стили */
+        rounded-full shadow-lg backdrop-blur-sm 
+        transition-all duration-300"
+>
+    <X className="w-5 h-5" />
+</Button>
 
                     {/* Изображение сертификата */}
                     <img

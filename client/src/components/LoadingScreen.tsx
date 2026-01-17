@@ -39,7 +39,7 @@ const LoadingScreen = ({ isLoading = true }) => {
     <AnimatePresence>
       <motion.div
         className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-screen h-screen overflow-hidden"
-        style={{ backgroundColor: '#2a231bff' }}
+        style={{ backgroundColor: '#1E1915' }}
         initial={{ opacity: 1 }}
         exit={{ 
           opacity: 0,

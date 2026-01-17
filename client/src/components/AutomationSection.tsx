@@ -48,13 +48,13 @@ export default function AutomationSection() {
   ];
 
   return (
-    <section>
+    <section className="pt-10 pb-8 dark:bg-beige-light">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-4 sm:mb-5 lg:mb-6">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark  mb-4 sm:mb-5 lg:mb-6">
             Оптимизация затрат и повышение качества 
           </h2>
-          <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark dark:text-beige max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark max-w-3xl mx-auto leading-relaxed">
             Результатом нашей работы будет повышение эффективности бизнес-процессов, увеличение производительности и сокращение затрат на их выполнение
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function AutomationSection() {
           {benefits.map((benefit, index) => (
             <Card
               key={index}
-              className="group bg-white rounded-xl sm:rounded-2xl dark:hover:shadow-none shadow-lg transition-all duration-300"
+              className="group bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300"
             >
 
               <CardContent className="p-4 sm:p-6 lg:p-8 relative flex flex-col h-full">

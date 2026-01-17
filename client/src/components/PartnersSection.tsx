@@ -1,7 +1,8 @@
 import P1 from "@assets/generated_images/P1.png";
-import P2 from "@assets/generated_images/P2.png";
+import P2 from "@assets/generated_images/P2(2).png";
 import P3 from "@assets/generated_images/P3.png";
 import P4 from "@assets/generated_images/P4.png";
+import P5 from "@assets/generated_images/P5.png";
 
 export default function PartnersSection() {
   const partners = [
@@ -24,52 +25,86 @@ export default function PartnersSection() {
       name: "ООО «Клеверенс Софт»", 
       image: P4,
       website: "https://www.cleverence.ru"
+    },
+    { 
+      name: "АО «амоЦРМ»", 
+      image: P5,
+      website: "https://www.amocrm.ru"
     }
   ];
 
   return (
-    <section className="pt-14 pb-16 bg-white dark:bg-beige overflow-hidden">
-      <div className="container mx-auto px-4 lg:px-8 ">
-        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark mb-4 sm:mb-5 lg:mb-6">
-             Наши партнеры
+   
+    <section id="partners" className="py-8 sm:py-20 bg-beige/20">
+      <div className="container mx-auto h-full px-4 lg:px-8">
+        <div className="text-left mb-10 sm:mb-14 lg:mb-16">
+          <h2 className="text-5xl font-bold text-brown-dark dark:text-beige mb-3">
+            Наши партнеры
           </h2>
-          <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark max-w-3xl mx-auto leading-relaxed">
+          <p className="text-brown-dark dark:text-beige text-sm sm:text-lg mb-3">
             ООО "ПРОФ ИТ" предлагает своим партнерам уникальные условия сотрудничества, 
             которые позволяют получать выгоду от совместной работы
           </p>
         </div>
 
-        {/* Сетка партнеров */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {partners.map((partner) => (
-            <a 
-              key={partner.name}
-              href={partner.website} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-white rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 p-4 sm:p-6 flex flex-col items-center text-center group hover:transform hover:-translate-y-1 h-full"
-            >
-              {/* Контейнер для изображения - занимает все доступное пространство */}
-              <div className="flex-1 w-full flex items-center justify-center mb-3 sm:mb-4">
-                <div className="w-full flex items-center justify-center p-2 sm:p-3">
-                  <img 
-                    src={partner.image}
-                    alt={`Логотип ${partner.name}`}
-                    className="max-w-full max-h-32 object-contain"
-                  />
-                </div>
-              </div>
-              
-              {/* Название партнера - фиксировано внизу */}
-              <div className="w-full">
-                <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-brown-dark mt-auto">
-                  {partner.name}
-                </h3>
-              </div>
-            </a>
-          ))}
+        {/* Сетка для мобильных, flex для десктопа */}
+<div className="
+  grid grid-cols-2 gap-6 sm:gap-8
+  lg:flex lg:flex-wrap lg:justify-center lg:items-center lg:gap-10 lg:gap-20
+">
+  {partners.map((partner, index) => (
+    <a 
+      key={partner.name}
+      href={partner.website} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="
+        flex flex-col items-center group
+        lg:w-auto
+      "
+    >
+      {/* Круглый элемент с логотипом */}
+      <div className="
+        w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32
+        bg-white 
+        rounded-full 
+        shadow-lg 
+        hover:shadow-xl 
+        border border-gray-200
+        dark:border-beige/20
+        p-3 sm:p-4 lg:p-5 lg:p-6
+        flex items-center justify-center
+        mb-2 sm:mb-3 lg:mb-4
+        transition-all duration-300
+        lg:hover:scale-105
+        lg:hover:-translate-y-1
+      ">
+        <div className="w-full h-full flex items-center justify-center">
+          <img 
+            src={partner.image}
+            alt={`Логотип ${partner.name}`}
+            className="max-w-full max-h-full object-contain p-1 sm:p-2"
+          />
         </div>
+      </div>
+      
+      {/* Название партнера под кругом */}
+      <div className="text-center max-w-[120px] sm:max-w-[140px] lg:max-w-[150px]">
+        <h3 className="
+          text-xs sm:text-sm lg:text-base 
+          font-medium text-brown-dark 
+          dark:text-beige
+          transition-colors duration-300
+          lg:group-hover:text-brown-dark/80
+          leading-tight
+        ">
+          {partner.name}
+        </h3>
+      </div>
+    </a>
+  ))}
+</div>
+        
       </div>
     </section>
   );
