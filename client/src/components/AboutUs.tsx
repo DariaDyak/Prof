@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import priceListPdf from '@assets/generated_images/pricelist.pdf';
 
 export default function AboutUs() {
   useEffect(() => {
@@ -174,16 +175,14 @@ export default function AboutUs() {
                   Стоимость услуг определяется в соответствии с действующими тарифами:
                 </p>
                 <ul className="space-y-1 ml-4 sm:ml-6 text-sm sm:text-base">
-                  <li className="text-brown-dark ">
-                    <a href="#" className="text-brown-dark hover:text-brown-dark hover:underline transition-colors">
-                      Прайс-лист на разработку ПО (PDF)
-                    </a>
-                  </li>
-                  <li className="text-brown-dark ">
-                    <a href="#" className="text-brown-dark hover:text-brown-dark hover:underline transition-colors">
-                      Прайс-лист на IT-консалтинг (PDF)
-                    </a>
-                  </li>
+                  <a 
+  href={priceListPdf} 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="text-brown-dark hover:text-brown-dark hover:underline transition-colors"
+>
+  Прайс-лист на техническое сопровождение (PDF)
+</a>
                 </ul>
               </div>
 
