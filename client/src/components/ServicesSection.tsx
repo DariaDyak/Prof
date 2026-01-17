@@ -50,10 +50,10 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-14 sm:py-20 bg-white dark:bg-beige overflow-hidden">
+    <section id="services" className="py-14 sm:py-20 root:bg-white overflow-hidden">
       <div className="container mx-auto h-full px-4 lg:px-8">
         <div className="text-left mb-10 sm:mb-14 lg:mb-16">
-          <h2 className="text-5xl font-bold tracking-tight text-brown-dark mb-3">
+          <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige-light mb-3">
             Наши услуги
           </h2>
           
@@ -77,15 +77,15 @@ export default function ServicesSection() {
                   <div className="flex items-center gap-3 sm:gap-4">
                     {IconComponent && (
                       <div className="rounded-lg">
-                        <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-brown " />
+                        <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-brown dark:text-beige-light" />
                       </div>
                     )}
-                    <h3 className="text-md sm:text-base lg:text-2xl xl:text-2xl font-bold text-brown-dark ">
+                    <h3 className="text-md sm:text-base lg:text-2xl xl:text-2xl font-bold text-brown-dark dark:text-beige-light">
                       {service.title}
                     </h3>
                   </div>
                   
-                  <p className="text-sm  text-justify lg:text-lg text-brown sm:text-lg leading-relaxed sm:leading-loose">
+                  <p className="text-sm  text-justify lg:text-lg text-brown-dark dark:text-beige-light sm:text-lg leading-relaxed sm:leading-loose">
                     {service.description}
                   </p>
                   
@@ -94,12 +94,13 @@ export default function ServicesSection() {
                     className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
                   bg-brown-dark border border-brown-dark
                   text-beige-light  font-medium
-                  
+                  dark:bg-beige dark:text-brown-dark
+                  hover:bg-white hover:text-brown-dark
+                  dark:hover:border-white
+                  dark:hover:text-brown-dark dark:hover:bg-white
                   group
                   px-6
                   text-xs sm:text-sm
-                  hover:bg-beige hover:text-brown-dark
-                  
                   transition-all duration-300"
                 
                     onClick={() => handleLearnMore(service.link)}

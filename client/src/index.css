@@ -127,6 +127,12 @@
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
+/* Явно отключаем переходы для цветов в темной теме */
+.dark .transition-none,
+.transition-none {
+  transition: none !important;
+}
+
 .dark {
   --button-outline: 33 27% 84%;
   --badge-outline: rgba(255, 255, 255, .04);
