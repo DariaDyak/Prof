@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import logo from "@assets/generated_images/Group 4.png";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { NoOutlineButton } from "@/components/NoOutlineButton";
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 import {
   Mail,
@@ -111,34 +110,28 @@ export default function Footer() {
 
   return (
     <footer className="dark:bg-[#1E1915] bg-[#1E1915] text-beige border-brown/30 relative overflow-hidden">
-      {/* Декоративный фон - убрана темная тема */}
       <div className="absolute inset-0 bg-gradient-to-br from-brown/20 to-brown-dark/30 pointer-events-none" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Main Footer Content */}
         <div className="py-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Company Info */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3 mb-6">
-                 <div className="relative flex items-center h-full">
-          {/* Текстовый логотип */}
-          <div className="relative">
-            {/* Текст для светлой темы */}
-            <span
-              className={`font-bold text-2xl lg:text-4xl transition-all duration-300 flex items-center h-full ${
-                theme === 'light'
-                  ? 'opacity-100 text-beige-light'
-                  : 'opacity-0 absolute'
-              }`}
-            >
-              ПРОФ ИТ
-            </span>
+                <div className="relative flex items-center h-full">
+                  <div className="relative">
+                    <span
+                      className={`font-bold text-2xl lg:text-4xl transition-all duration-300 flex items-center h-full ${theme === 'light'
+                          ? 'opacity-100 text-beige-light'
+                          : 'opacity-0 absolute'
+                        }`}
+                    >
+                      ПРОФ ИТ
+                    </span>
 
-            
-          </div>
+
+                  </div>
+                </div>
               </div>
-</div>
               <p className="text-beige/80 leading-relaxed text-base">
                 <span className="font-semibold text-beige">ПРОФ ИТ</span> -
                 современная IT-компания, создающая инновационные решения для цифровой
@@ -148,7 +141,6 @@ export default function Footer() {
 
             {/* Две колонки для мобильных и планшетов */}
             <div className="grid grid-cols-2 gap-6 lg:col-span-2">
-              {/* Services */}
               <div className="space-y-6">
                 <div>
                   <h3 className="font-bold text-beige text-lg mb-4 pb-2 ">
@@ -170,7 +162,6 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Company */}
               <div className="space-y-6">
                 <div>
                   <h3 className="font-bold text-beige text-lg mb-4 pb-2">
@@ -195,10 +186,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Разделитель - убраны темные стили */}
         <Separator className="bg-beige/20" />
 
-        {/* Bottom Footer */}
         <div className="py-8 flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-beige/70 order-2 lg:order-1">
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -258,7 +247,6 @@ export default function Footer() {
                 transition-all duration-300
                 focus:ring-0 focus:ring-offset-0 focus:outline-none"
             >
-              {/* Бегущий луч */}
               <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige/20 to-transparent" />
 
               <span>

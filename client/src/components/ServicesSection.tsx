@@ -56,14 +56,14 @@ export default function ServicesSection() {
           <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige-light mb-3">
             Наши услуги
           </h2>
-          
+
         </div>
 
         <div className="space-y-16 sm:space-y-24 lg:space-y-32">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             const isEven = index % 2 === 0; // Четные индексы - текст слева, нечетные - текст справа
-            
+
             return (
               <div
                 key={index}
@@ -84,11 +84,11 @@ export default function ServicesSection() {
                       {service.title}
                     </h3>
                   </div>
-                  
+
                   <p className="text-sm  text-justify lg:text-lg text-brown-dark dark:text-beige-light sm:text-lg leading-relaxed sm:leading-loose">
                     {service.description}
                   </p>
-                  
+
                   <Button
                     variant="ghost"
                     className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
@@ -102,7 +102,7 @@ export default function ServicesSection() {
                   px-6
                   text-xs sm:text-sm
                   transition-all duration-300"
-                
+
                     onClick={() => handleLearnMore(service.link)}
                     disabled={!service.link || service.link === "#"}
                     data-testid={`button-service-${index}`}
@@ -113,14 +113,6 @@ export default function ServicesSection() {
                     <ArrowRight className="relative z-10 h-3 w-3 sm:h-4 sm:w-4" />
                   </Button>
                 </div>
-
-
-
-
-
-
-
-                {/* Блок с изображением */}
                 <div className="w-full lg:w-1/2">
                   <div className="relative overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-2xl group">
                     <img
@@ -128,9 +120,7 @@ export default function ServicesSection() {
                       alt={service.title}
                       className="w-full h-[250px] sm:h-[350px] lg:h-[400px] xl:h-[450px] object-cover transform group-hover:scale-105 transition-transform duration-700"
                     />
-                    {/* Градиентное наложение */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    {/* Декор */}
                     <div className="absolute top-4 right-4 w-16 h-16 sm:w-20 sm:h-20 bg-blue-500/10 rounded-full blur-2xl transform group-hover:scale-125 transition-transform duration-700" />
                     <div className="absolute bottom-4 left-4 w-24 h-24 sm:w-32 sm:h-32 bg-blue-400/10 rounded-full blur-2xl transform group-hover:scale-125 transition-transform duration-700" />
                   </div>

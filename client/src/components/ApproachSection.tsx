@@ -37,7 +37,6 @@ export default function ApproachSection() {
           </p>
         </div>
 
-        {/* Контейнер для центрирования колонок */}
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 w-full max-w-none">
             {steps.map((step, index) => (
@@ -46,7 +45,6 @@ export default function ApproachSection() {
                 className="group bg-white dark:bg-brown-dark/95 rounded-xl sm:rounded-2xl p-4 sm:p-6 border shadow-lg transition-all duration-300 "
               >
                 <div className="flex items-center gap-3 sm:gap-4">
-                  {/* Иконка */}
                   <div className="flex-shrink-0">
                     <div className="
                       w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
@@ -55,8 +53,6 @@ export default function ApproachSection() {
                       rounded-lg sm:rounded-xl flex items-center justify-center 
                       shadow-lg 
                       shadow-brown/20 
-                      
-                      
                       transition-all duration-300
                     ">
                       <div className="text-beige-light dark:text-beige">

@@ -18,7 +18,6 @@ export default function AboutUs() {
           </p>
         </div>
 
-        {/* Основной текст */}
         <div className="space-y-6 sm:space-y-8">
           <div className="bg-white dark:bg-brown-dark rounded-xl shadow-lg p-6 sm:p-8">
             <p className="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed text-brown-dark dark:text-beige-light text-justify">
@@ -175,14 +174,14 @@ export default function AboutUs() {
                   Стоимость услуг определяется в соответствии с действующими тарифами:
                 </p>
                 <ul className="space-y-1 ml-4 sm:ml-6 text-sm sm:text-base">
-                  <a 
-  href={priceListPdf} 
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="text-brown-dark hover:text-brown-dark hover:underline transition-colors"
->
-  Прайс-лист на техническое сопровождение (PDF)
-</a>
+                  <a
+                    href={priceListPdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brown-dark hover:text-brown-dark hover:underline transition-colors"
+                  >
+                    Прайс-лист на техническое сопровождение (PDF)
+                  </a>
                 </ul>
               </div>
 

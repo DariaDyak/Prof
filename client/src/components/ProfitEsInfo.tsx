@@ -1,20 +1,15 @@
-// components/ProfitEsInfo.tsx
-import { Card, CardContent } from "@/components/ui/card";
-import { Download, Phone, Mail, CheckCircle, FileText, Award, BarChart, Shield, Zap } from "lucide-react";
+import { Download, Phone, Mail, FileText, Award, BarChart, Shield, Zap } from "lucide-react";
 import { useState } from "react";
 
 export default function ProfitEsInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 
-  // Используем публичные пути к файлам
   const doc1Url = "/attached_assets/generated_images/Описание.pdf";
   const doc2Url = "/attached_assets/generated_images/Руководство.pdf";
 
-  // Функция для скачивания файла
   const handleDownload = (url: string, filename: string) => {
     setDownloading(filename);
 
-    // Создаем временную ссылку для скачивания
     const link = document.createElement('a');
     link.href = url;
     link.download = filename;
@@ -22,11 +17,9 @@ export default function ProfitEsInfo() {
     link.click();
     document.body.removeChild(link);
 
-    // Сбрасываем состояние через секунду
     setTimeout(() => setDownloading(null), 1000);
   };
 
-  // Данные из скриншотов
   const productInfo = {
     title: "Автоматизированная информационная система «Профит — ЭС»",
     about: "АИС «Профит-ЭС» — разработана на технологической платформе 1C: Предприятие 8.3. компанией ООО «Проф ИТ», внесена в Реестр программ для ЭВМ под регистрационным номером № 2024686145.",
@@ -87,7 +80,6 @@ export default function ProfitEsInfo() {
           </p>
         </div>
 
-        {/* Заголовок и реестры */}
         <div className="mb-6 sm:mb-8">
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
             <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm bg-white ">
@@ -101,7 +93,6 @@ export default function ProfitEsInfo() {
           </div>
         </div>
 
-        {/* О продукте и назначение */}
         <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
           <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-2 sm:mb-3">
@@ -122,7 +113,6 @@ export default function ProfitEsInfo() {
           </div>
         </div>
 
-        {/* Решаемые задачи */}
         <div className="mb-6 sm:mb-8">
           <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
             <Zap className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-brown-dark mr-2" />
@@ -146,7 +136,6 @@ export default function ProfitEsInfo() {
           </ul>
         </div>
 
-        {/* Описание системы */}
         <div className="mb-6 sm:mb-8">
           <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify mb-3 sm:mb-4">
             <strong className="text-brown-dark">
@@ -158,9 +147,7 @@ export default function ProfitEsInfo() {
           </p>
         </div>
 
-        {/* Технологии и классификация в сетке */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
-          {/* Технологии */}
           <div className="p-4 sm:p-6 bg-brown-dark rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-beige-light mb-2 sm:mb-3">
               Технологии
@@ -188,7 +175,6 @@ export default function ProfitEsInfo() {
             </div>
           </div>
 
-          {/* Классификация */}
           <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-2 sm:mb-3">
               Классификация ПО

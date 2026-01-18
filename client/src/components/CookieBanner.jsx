@@ -1,4 +1,3 @@
-// components/CookieBanner.jsx
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -7,9 +6,8 @@ const CookieBanner = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    // Проверяем, было ли уже принято решение о cookies
     const cookieDecision = localStorage.getItem('cookieConsent');
-    
+
     // Если решения еще нет, показываем баннер
     if (!cookieDecision) {
       // Небольшая задержка для лучшего UX
@@ -17,7 +15,7 @@ const CookieBanner = () => {
         setIsVisible(true);
         setIsAnimating(true);
       }, 1000);
-      
+
       return () => clearTimeout(timer);
     }
   }, []);
@@ -35,7 +33,6 @@ const CookieBanner = () => {
   };
 
   const handleDetails = () => {
-    // Здесь можно реализовать переход на страницу с политикой конфиденциальности
     window.open('/dataProcessing', '_blank');
   };
 
@@ -59,7 +56,7 @@ const CookieBanner = () => {
                 </h3>
                 <p className="text-gray-600 text-sm md:text-base">
                   На нашем сайте используются cookie-файлы, в том числе сервисов веб-аналитики. Используя сайт, вы соглашаетесь на обработку персональных данных при помощи cookie-файлов. Подробнее об обработке персональных данных вы можете узнать в {' '}
-                  <button 
+                  <button
                     onClick={handleDetails}
                     className="text-brown-dark hover:text-brown underline font-medium transition-colors"
                   >
@@ -67,9 +64,9 @@ const CookieBanner = () => {
                   </button>.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-3">
-                
+
                 <button
                   onClick={handleAccept}
                   className="px-6 py-2.5 text-sm font-medium text-white bg-brown-dark hover:bg-brown rounded-lg transition-colors duration-200 shadow-sm"
@@ -78,8 +75,8 @@ const CookieBanner = () => {
                 </button>
               </div>
             </div>
-            
-            
+
+
           </div>
         </motion.div>
       )}

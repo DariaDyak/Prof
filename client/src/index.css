@@ -4,73 +4,94 @@
 
 /* LIGHT MODE */
 :root {
-   
+
   --button-outline: rgba(0, 0, 0, .10);
   --badge-outline: rgba(0, 0, 0, .05);
 
-  /* Automatic computation of border around primary / danger buttons */
   --opaque-button-border-intensity: -8;
-  /* In terms of percentages */
 
-  /* Backgrounds applied on top of other backgrounds when hovered/active */
   --elevate-1: rgba(0, 0, 0, .03);
   --elevate-2: rgba(0, 0, 0, .08);
 
-
-  /* Основные цвета из палитры в HSL */
-  --color-beige-light: #E7E3DB;  /* hsl(40, 20%, 90%) */
-  --color-beige: #E2D8CE;        /* hsl(33, 27%, 84%) */
-  --color-tan: #B6A593;          /* hsl(33, 19%, 65%) */
-  --color-brown: #473c32;        /* hsl(28, 18%, 36%) */
-  --color-brown-dark: #382E25;   /* hsl(28, 20%, 18%) */
+  --color-beige-light: #E7E3DB;
+  --color-beige: #E2D8CE;
+  --color-tan: #B6A593;
+  --color-brown: #473c32;
+  --color-brown-dark: #382E25;
 
   /* Основные переменные */
-  --background: 40 20% 90%;      /* #E7E3DB - светло-бежевый */
-  --foreground: 28 20% 18%;      /* #382E25 - темно-коричневый */
+  --background: 40 20% 90%;
+  /* #E7E3DB - светло-бежевый */
+  --foreground: 28 20% 18%;
+  /* #382E25 - темно-коричневый */
 
   /* Границы */
-  --border: 33 27% 84%;          /* #E2D8CE - бежевый */
+  --border: 33 27% 84%;
+  /* #E2D8CE - бежевый */
 
   /* Карточки */
-  --card: 28 20% 18%;            /* #E7E3DB - светло-бежевый */
-  --card-foreground: 28 20% 18%; /* #382E25 - темно-коричневый */
-  --card-border: 33 19% 84%;     /* немного темнее border */
+  --card: 28 20% 18%;
+  /* #E7E3DB - светло-бежевый */
+  --card-foreground: 28 20% 18%;
+  /* #382E25 - темно-коричневый */
+  --card-border: 33 19% 84%;
+  /* немного темнее border */
 
   /* Сайдбар */
-  --sidebar: 33 27% 84%;         /* #E2D8CE - бежевый */
-  --sidebar-foreground: 28 20% 18%; /* #382E25 */
-  --sidebar-border: 33 19% 78%;  /* немного темнее sidebar */
-  --sidebar-primary: 28 18% 36%; /* #6B5B4C - коричневый */
-  --sidebar-primary-foreground: 40 20% 90%; /* #E7E3DB */
-  --sidebar-accent: 33 19% 65%;  /* #B6A593 - тан */
-  --sidebar-accent-foreground: 28 20% 18%; /* #382E25 */
-  --sidebar-ring: 28 18% 36%;    /* #6B5B4C */
+  --sidebar: 33 27% 84%;
+  /* #E2D8CE - бежевый */
+  --sidebar-foreground: 28 20% 18%;
+  /* #382E25 */
+  --sidebar-border: 33 19% 78%;
+  /* немного темнее sidebar */
+  --sidebar-primary: 28 18% 36%;
+  /* #6B5B4C - коричневый */
+  --sidebar-primary-foreground: 40 20% 90%;
+  /* #E7E3DB */
+  --sidebar-accent: 33 19% 65%;
+  /* #B6A593 - тан */
+  --sidebar-accent-foreground: 28 20% 18%;
+  /* #382E25 */
+  --sidebar-ring: 28 18% 36%;
+  /* #6B5B4C */
 
   /* Всплывающие элементы */
-  --popover: 33 27% 84%;         /* #E2D8CE */
-  --popover-foreground: 28 20% 18%; /* #382E25 */
-  --popover-border: 33 19% 78%;  /* немного темнее */
+  --popover: 33 27% 84%;
+  /* #E2D8CE */
+  --popover-foreground: 28 20% 18%;
+  /* #382E25 */
+  --popover-border: 33 19% 78%;
+  /* немного темнее */
 
   /* Основные цвета */
-  --primary: 28 18% 36%;         /* #6B5B4C - коричневый */
-  --primary-foreground: 40 20% 90%; /* #E7E3DB */
+  --primary: 28 18% 36%;
+  /* #6B5B4C - коричневый */
+  --primary-foreground: 40 20% 90%;
+  /* #E7E3DB */
 
   /* Вторичные цвета */
-  --secondary: 33 19% 65%;       /* #B6A593 - тан */
-  --secondary-foreground: 28 20% 18%; /* #382E25 */
+  --secondary: 33 19% 65%;
+  /* #B6A593 - тан */
+  --secondary-foreground: 28 20% 18%;
+  /* #382E25 */
 
   /* Приглушенные цвета */
-  --muted: 33 27% 84%;           /* #E2D8CE */
-  --muted-foreground: 33 19% 65%; /* #B6A593 */
+  --muted: 33 27% 84%;
+  /* #E2D8CE */
+  --muted-foreground: 33 19% 65%;
+  /* #B6A593 */
 
   /* Акцентные цвета */
-  --accent: 33 19% 65%;          /* #B6A593 */
-  --accent-foreground: 28 20% 18%; /* #382E25 */
+  --accent: 33 19% 65%;
+  /* #B6A593 */
+  --accent-foreground: 28 20% 18%;
+  /* #382E25 */
 
   /* Деструктивные действия */
-  --destructive: 10 60% 45%;     /* Темно-красный (не из палитры) */
-  --destructive-foreground: 40 20% 90%; /* #E7E3DB */
-
+  --destructive: 10 60% 45%;
+  /* Темно-красный (не из палитры) */
+  --destructive-foreground: 40 20% 90%;
+  /* #E7E3DB */
 
   --input: 220 25% 75%;
   --ring: 220 85% 25%;
@@ -84,7 +105,6 @@
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: .5rem;
-  /* 8px */
   --shadow-2xs: 0px 1px 2px 0px hsl(220 13% 69% / 0.05);
   --shadow-xs: 0px 1px 2px 0px hsl(220 13% 69% / 0.10);
   --shadow-sm: 0px 1px 2px 0px hsl(220 13% 69% / 0.10), 0px 1px 3px 0px hsl(220 13% 69% / 0.10);
@@ -96,38 +116,28 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
-  /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
-
-  /* Fallback for older browsers */
   --sidebar-primary-border: hsl(var(--sidebar-primary));
   --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --sidebar-accent-border: hsl(var(--sidebar-accent));
   --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --primary-border: hsl(var(--primary));
   --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --secondary-border: hsl(var(--secondary));
   --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --muted-border: hsl(var(--muted));
   --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --accent-border: hsl(var(--accent));
   --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 
-  /* Fallback for older browsers */
   --destructive-border: hsl(var(--destructive));
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* Явно отключаем переходы для цветов в темной теме */
 .dark .transition-none,
 .transition-none {
   transition: none !important;
@@ -136,65 +146,93 @@
 .dark {
   --button-outline: 33 27% 84%;
   --badge-outline: rgba(255, 255, 255, .04);
-  
+
   --opaque-button-border-intensity: 9;
-  
-  /* Backgrounds applied on top of other backgrounds when hovered/active */
+
   --elevate-1: rgba(255, 255, 255, .03);
   --elevate-2: rgba(255, 255, 255, .07);
 
-  --color-beige-light: #E7E3DB; /* или светлее для темной темы */
+  --color-beige-light: #E7E3DB;
+  /* или светлее для темной темы */
   --color-beige: #E2D8CE;
   --color-tan: #B6A593;
   --color-brown: #6B5B4C;
-  --color-brown-dark: #382E25;       /* Светлый для текста */
+  --color-brown-dark: #382E25;
+  /* Светлый для текста */
 
   /* Основные переменные */
-  --background: 28 18% 10%;          /* Темный коричневый фон */
-  --foreground: 33 27% 84%;          /* #E2D8CE - светлый бежевый */
+  --background: 28 18% 10%;
+  /* Темный коричневый фон */
+  --foreground: 33 27% 84%;
+  /* #E2D8CE - светлый бежевый */
 
   /* Границы */
-  --border: 28 18% 18%;              /* Темный коричневый */
+  --border: 28 18% 18%;
+  /* Темный коричневый */
 
   /* Карточки */
-  --card: 28 18% 14%;                /* Темный коричневый */
-  --card-foreground: 33 27% 84%;     /* #E2D8CE - светлый бежевый */
-  --card-border: 28 18% 20%;         /* Темный коричневый граница */
+  --card: 28 18% 14%;
+  /* Темный коричневый */
+  --card-foreground: 33 27% 84%;
+  /* #E2D8CE - светлый бежевый */
+  --card-border: 28 18% 20%;
+  /* Темный коричневый граница */
 
   /* Сайдбар */
-  --sidebar: 28 18% 12%;             /* Темный коричневый */
-  --sidebar-foreground: 33 27% 84%;  /* #E2D8CE */
-  --sidebar-border: 28 18% 20%;      /* Темный коричневый граница */
-  --sidebar-primary: 33 19% 65%;     /* #B6A593 - как акцент */
-  --sidebar-primary-foreground: 28 18% 14%; /* Темный текст */
-  --sidebar-accent: 28 18% 20%;      /* Темный акцент */
-  --sidebar-accent-foreground: 33 27% 84%; /* Светлый текст */
-  --sidebar-ring: 33 19% 65%;        /* #B6A593 */
+  --sidebar: 28 18% 12%;
+  /* Темный коричневый */
+  --sidebar-foreground: 33 27% 84%;
+  /* #E2D8CE */
+  --sidebar-border: 28 18% 20%;
+  /* Темный коричневый граница */
+  --sidebar-primary: 33 19% 65%;
+  /* #B6A593 - как акцент */
+  --sidebar-primary-foreground: 28 18% 14%;
+  /* Темный текст */
+  --sidebar-accent: 28 18% 20%;
+  /* Темный акцент */
+  --sidebar-accent-foreground: 33 27% 84%;
+  /* Светлый текст */
+  --sidebar-ring: 33 19% 65%;
+  /* #B6A593 */
 
   /* Всплывающие элементы */
-  --popover: 28 18% 12%;             /* Темный коричневый */
-  --popover-foreground: 33 27% 84%;  /* #E2D8CE */
-  --popover-border: 28 18% 20%;      /* Темный коричневый граница */
+  --popover: 28 18% 12%;
+  /* Темный коричневый */
+  --popover-foreground: 33 27% 84%;
+  /* #E2D8CE */
+  --popover-border: 28 18% 20%;
+  /* Темный коричневый граница */
 
   /* Основные цвета */
-  --primary: 33 19% 65%;             /* #B6A593 - светлый акцент */
-  --primary-foreground: 28 18% 14%;  /* Темный текст */
+  --primary: 33 19% 65%;
+  /* #B6A593 - светлый акцент */
+  --primary-foreground: 28 18% 14%;
+  /* Темный текст */
 
   /* Вторичные цвета */
-  --secondary: 28 18% 20%;           /* Темный */
-  --secondary-foreground: 33 27% 84%; /* Светлый текст */
+  --secondary: 28 18% 20%;
+  /* Темный */
+  --secondary-foreground: 33 27% 84%;
+  /* Светлый текст */
 
   /* Приглушенные цвета */
-  --muted: 28 18% 16%;               /* Темный приглушенный */
-  --muted-foreground: 33 19% 65%;    /* #B6A593 */
+  --muted: 28 18% 16%;
+  /* Темный приглушенный */
+  --muted-foreground: 33 19% 65%;
+  /* #B6A593 */
 
   /* Акцентные цвета */
-  --accent: 28 18% 20%;              /* Темный акцент */
-  --accent-foreground: 33 27% 84%;   /* Светлый текст */
+  --accent: 28 18% 20%;
+  /* Темный акцент */
+  --accent-foreground: 33 27% 84%;
+  /* Светлый текст */
 
   /* Деструктивные действия */
-  --destructive: 0 70% 45%;          /* Красный */
-  --destructive-foreground: 33 27% 84%; /* Светлый текст */
+  --destructive: 0 70% 45%;
+  /* Красный */
+  --destructive-foreground: 33 27% 84%;
+  /* Светлый текст */
 
 
   --sidebar: 220 14% 13%;
@@ -264,12 +302,10 @@
   outline-offset: 2px;
 }
 
-/* Убираем синюю обводку браузера, но оставляем возможность для кастомной */
 :focus:not(:focus-visible) {
   outline: none;
 }
 
-/* ТОЛЬКО для браузерной обводки по умолчанию - убираем ее */
 button:focus-visible {
   outline-color: transparent;
 }
@@ -285,77 +321,41 @@ button:focus-visible {
   }
 }
 
-/**
- * Using the elevate system.
- * Automatic contrast adjustment.
- *
- * <element className="hover-elevate" />
- * <element className="active-elevate-2" />
- *
- * // Using the tailwind utility when a data attribute is "on"
- * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
- * // Or manually controlling the toggle state
- * <element className="toggle-elevate toggle-elevated" />
- *
- * Elevation systems have to handle many states.
- * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
- * - toggled or not
- * - focused or not (this is not handled with these utilities)
- *
- * Even without handling focused or not, this is six possible combinations that
- * need to be distinguished from eachother visually.
- */
 @layer utilities {
 
-  /* Hide ugly search cancel button in Chrome until we can style it properly */
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden;
   }
 
-  /* Placeholder styling for contentEditable div */
   [contenteditable][data-placeholder]:empty::before {
     content: attr(data-placeholder);
     color: hsl(var(--muted-foreground));
     pointer-events: none;
   }
 
- 
-  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
-   * buttons/badges can remove the automatic brightness adjustment on interactions
-   * and program their own. */
   .no-default-hover-elevate {}
 
   .no-default-active-elevate {}
 
 
-  /**
-   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
-   * This way they can stack/compound. Both will overlap the parent's borders!
-   * So borders will be automatically adjusted both on toggle, and hover/active,
-   * and they will be compounded.
-   */
   .toggle-elevate::before,
   .toggle-elevate-2::before {
     content: "";
     pointer-events: none;
     position: absolute;
     inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
     border-radius: inherit;
     z-index: -1;
-    /* sits behind content but above backdrop */
   }
 
   .toggle-elevate.toggle-elevated::before {
     background-color: var(--elevate-2);
   }
 
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
   .border.toggle-elevate::before {
     inset: -1px;
   }
 
-  /* Does not work on elements with overflow:hidden! */
   .hover-elevate:not(.no-default-hover-elevate),
   .active-elevate:not(.no-default-active-elevate),
   .hover-elevate-2:not(.no-default-hover-elevate),
@@ -372,10 +372,8 @@ button:focus-visible {
     pointer-events: none;
     position: absolute;
     inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
     border-radius: inherit;
     z-index: 999;
-    /* sits in front of content */
   }
 
   .hover-elevate:hover:not(.no-default-hover-elevate)::after,
@@ -388,7 +386,6 @@ button:focus-visible {
     background-color: var(--elevate-2);
   }
 
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
   .border.active-elevate:not(.no-active-interaction-elevate)::after,
   .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
@@ -412,7 +409,6 @@ button:focus-visible {
   }
 }
 
-/* Включить плавную прокрутку для всего сайта */
 #about,
 #services,
 #directions,
@@ -440,13 +436,12 @@ button:focus-visible {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Добавьте в конец index.css */
 @media (max-width: 640px) {
   header img {
     max-width: 100%;
     height: auto;
   }
-  
+
   .overflow-x-hidden {
     overflow-x: hidden !important;
   }
@@ -460,19 +455,20 @@ select:focus {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Ваши анимации и утилиты */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) scale(1);
     opacity: 0.7;
   }
+
   50% {
     transform: translateY(-20px) scale(1.05);
     opacity: 1;
   }
 }
 
-/* Для ваших конкретных инпутов */
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
@@ -482,6 +478,7 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(182, 165, 147, 0.15) !important;
   outline: 2px solid transparent !important;
 }
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }

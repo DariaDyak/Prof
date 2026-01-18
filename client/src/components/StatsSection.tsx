@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Database, FileText, Shield, X, Zap, Cpu, Train, Calculator } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -100,7 +100,7 @@ export default function StatsSection() {
                     <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige mb-3">
                         Собственная разработка
                     </h2>
-                   <p className="text-brown text-sm mt-6 sm:mt-3 lg:mt-8 sm:text-lg dark:text-beige mb-3">
+                    <p className="text-brown text-sm mt-6 sm:mt-3 lg:mt-8 sm:text-lg dark:text-beige mb-3">
                         Мы сотрудничаем с компаниями из разных секторов экономики, предлагая индивидуальные решения с учетом специфики каждой отрасли
                     </p>
                 </div>
@@ -336,7 +336,6 @@ export default function StatsSection() {
                                         key={product.id}
                                         className="p-4 bg-white hover:bg-beige dark:hover:bg-beige transition-all duration-200"
                                     >
-                                        {/* Заголовок и иконка продукта */}
                                         <div className="flex items-center gap-4">
                                             <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brown-dark flex items-center justify-center">
                                                 <ProductIcon className="w-6 h-6 text-beige-light dark:text-beige" />
@@ -501,23 +500,21 @@ export default function StatsSection() {
                     <div className="absolute inset-0 bg-brown-dark/80 dark:bg-brown/80 backdrop-blur-sm" />
 
                     <Button
-    variant="ghost"
-    size="icon"
-    onClick={handleCloseCertificate}
-    className="absolute top-4 right-4 z-10 h-10 w-10 
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleCloseCertificate}
+                        className="absolute top-4 right-4 z-10 h-10 w-10 
         /* Светлая тема */
         bg-white hover:bg-brown-dark 
         border border-beige/30 hover:border-brown-dark
         text-brown-dark hover:text-white
         
-       
-        
         /* Общие стили */
         rounded-full shadow-lg backdrop-blur-sm 
         transition-all duration-300"
->
-    <X className="w-5 h-5" />
-</Button>
+                    >
+                        <X className="w-5 h-5" />
+                    </Button>
 
                     {/* Изображение сертификата */}
                     <img

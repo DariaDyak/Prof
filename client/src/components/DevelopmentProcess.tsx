@@ -57,22 +57,22 @@ export default function DevelopmentProcess() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {processSteps.map((item, index) => (
             <Card
-  key={index}
-  className="group bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 "
->
-  <CardContent className="p-4 sm:p-6 relative z-10">
-    <div className="flex justify-between items-start mb-3 sm:mb-4">
-      <div className="flex items-center space-x-2">
-        <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-brown-dark text-beige-light text-xs flex items-center justify-center font-bold">
-          {index + 1}
-        </div>
-        <span className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-brown-dark">
-          {item.step}
-        </span>
-      </div>
+              key={index}
+              className="group bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 "
+            >
+              <CardContent className="p-4 sm:p-6 relative z-10">
+                <div className="flex justify-between items-start mb-3 sm:mb-4">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-brown-dark text-beige-light text-xs flex items-center justify-center font-bold">
+                      {index + 1}
+                    </div>
+                    <span className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-brown-dark">
+                      {item.step}
+                    </span>
+                  </div>
 
-      {/* Обновленный блок иконки с новой анимацией */}
-      <div className="
+
+                  <div className="
         w-10 h-10 sm:w-12 sm:h-12 
         bg-brown-dark
         rounded-lg sm:rounded-xl 
@@ -80,18 +80,18 @@ export default function DevelopmentProcess() {
         shadow-lg 
         transition-all duration-300
       ">
-        {item.icon}
-      </div>
-    </div>
+                    {item.icon}
+                  </div>
+                </div>
 
-    <h3 className="text-base sm:text-lg font-bold text-brown-dark mb-2 leading-tight">
-      {item.title}
-    </h3>
-    <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-relaxed">
-      {item.description}
-    </p>
-  </CardContent>
-</Card>
+                <h3 className="text-base sm:text-lg font-bold text-brown-dark mb-2 leading-tight">
+                  {item.title}
+                </h3>
+                <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-relaxed">
+                  {item.description}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

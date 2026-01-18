@@ -1,5 +1,3 @@
-// components/HeroSection.tsx
-import { useRef } from "react";
 import { Link } from "react-router-dom";
 import U1 from '@assets/generated_images/U1.png';
 import U8 from '@assets/generated_images/U8.png';
@@ -81,27 +79,21 @@ export default function ItDecisions({
 
   return (
     <section className={`relative ${heightClasses[minHeight]} flex flex-col py-12`}>
-      {/* Фоновое изображение */}
       <div className="absolute inset-0 z-0">
         <img
           src={currentBackgroundImage}
           alt="Фон"
           className="w-full h-full object-cover"
         />
-        {/* Контейнер для размытия границ */}
         <div className="absolute inset-0 backdrop-blur-[4px] dark:backdrop-blur-[4px]"></div>
 
-        {/* Градиент снизу к центру */}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-beige via-beige/60 to-transparent backdrop-blur-[1px] dark:from-brown dark:via-brown/40 dark:to-transparent"></div>
 
-        {/* Градиент сверху к центру */}
         <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-beige via-beige/60 to-transparent backdrop-blur-[1px] dark:from-brown dark:via-brown/40 dark:to-transparent"></div>
 
-        {/* Дополнительные акцентные градиенты по углам */}
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-beige/30 dark:to-brown/30"></div>
       </div>
 
-      {/* Кнопка возврата на главную */}
       {showBackButton && (
         <div className="container mx-auto lg:px-8 relative z-10">
           <Link
@@ -133,14 +125,12 @@ active:outline-none active:ring-0
         </div>
       )}
 
-      {/* Основной контент */}
-      <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center relative z-10">
+      =      <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center relative z-10">
         <div className={`max-w-8xl mx-auto w-full ${alignmentClasses[alignment]}`}>
-          {/* Бейдж/кнопка */}
           {badgeText && (
             <Button
-  onClick={handleBadgeClick}
-  className={`
+              onClick={handleBadgeClick}
+              className={`
     relative
     overflow-hidden
     inline-flex items-center gap-2 px-4 py-2 
@@ -157,22 +147,20 @@ active:outline-none active:ring-0
     bg-transparent 
     hover:bg-transparent
   `}
-  data-testid="hero-badge"
-  variant={onBadgeClick ? "default" : "outline"}
->
-  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige-light/30 to-transparent" />
-  <span className="relative z-10 transition-all duration-300">
-    {badgeText}
-  </span>
-</Button>
+              data-testid="hero-badge"
+              variant={onBadgeClick ? "default" : "outline"}
+            >
+              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige-light/30 to-transparent" />
+              <span className="relative z-10 transition-all duration-300">
+                {badgeText}
+              </span>
+            </Button>
           )}
 
-          {/* Заголовок */}
           <h1 className={`font-Montserrat ${titleSizes[titleSize]} font-bold text-brown-dark mb-4 leading-tight`}>
             {title}
           </h1>
 
-          {/* Описание */}
           <p className="text-base md:text-lg font-medium text-brown-dark leading-relaxed max-w-4xl">
             {description}
           </p>

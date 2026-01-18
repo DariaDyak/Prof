@@ -1,20 +1,15 @@
-// components/ProfitLsInfo.tsx
-import { Card, CardContent } from "@/components/ui/card";
-import { Download, Phone, Mail, FileText, Award, Zap, BarChart, Shield, Cpu, Train, Wrench, Network } from "lucide-react";
+import { Phone, Mail, FileText, BarChart, Shield, Train } from "lucide-react";
 import { useState } from "react";
 
 export default function ProfitLsInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 
-  // Используем публичные пути к файлам (замените на актуальные)
   const doc1Url = "";
   const doc2Url = "";
 
-  // Функция для скачивания файла
   const handleDownload = (url: string, filename: string) => {
     setDownloading(filename);
 
-    // Создаем временную ссылку для скачивания
     const link = document.createElement('a');
     link.href = url;
     link.download = filename;
@@ -22,11 +17,9 @@ export default function ProfitLsInfo() {
     link.click();
     document.body.removeChild(link);
 
-    // Сбрасываем состояние через секунду
     setTimeout(() => setDownloading(null), 1000);
   };
 
-  // Данные из скриншота
   const productInfo = {
     title: "Автоматизированная информационная система «Профит — ЛС»",
     about: "АИС «Профит-ЛС» предназначена для комплексной автоматизации управления подвижным составом и оптимизации логистических процессов в сфере железнодорожных перевозок.",
@@ -76,7 +69,7 @@ export default function ProfitLsInfo() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-brown-dark mb-3 sm:mb-4 lg:mb-5">
-            Автоматизированная информационная система <br/>«Профит — ЛС»
+            Автоматизированная информационная система <br />«Профит — ЛС»
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-brown-dark max-w-3xl mx-auto text-center sm:text-center">
             Комплексное решение для автоматизации управления железнодорожными перевозками
@@ -116,21 +109,21 @@ export default function ProfitLsInfo() {
 
         {/* Основные функции */}
         <div className="mb-6 sm:mb-8">
-  <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
+          <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
             <Train className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-brown-dark mr-2" />
             Основные функции системы
           </h4>
           <ul className="space-y-2 sm:space-y-3">
             {productInfo.features.map((feature, index) => (
               <li key={index} className="flex sm:items-center items-start group/task">
-        <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
-            <span className="text-beige-light text-xs sm:text-sm font-bold">
-              {index + 1}
-            </span>
-          </div>
-        </div>
-        <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
+                <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
+                    <span className="text-beige-light text-xs sm:text-sm font-bold">
+                      {index + 1}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
                   {feature}
                 </p>
               </li>

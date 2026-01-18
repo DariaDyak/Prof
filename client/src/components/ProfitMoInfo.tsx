@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, Download, CheckCircle, FileText, Users, RefreshCw, Shield, Building, FileCheck, Settings, Lock, Database } from "lucide-react";
 import { useState } from "react";
 
@@ -113,7 +112,7 @@ export default function ProfitMoInfo() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-brown-dark mb-3 sm:mb-4 lg:mb-5">
-            Интеграционный модуль <br/>«Профит-УМО»
+            Интеграционный модуль <br />«Профит-УМО»
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-brown-dark max-w-3xl mx-auto text-center sm:text-center">
             Автоматизация взаимодействия между системой ЭСМО и 1С:Бухгалтерия
@@ -153,21 +152,21 @@ export default function ProfitMoInfo() {
 
         {/* Решаемые проблемы */}
         <div className="mb-6 sm:mb-8">
-  <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
+          <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
             <Shield className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-brown-dark mr-2" />
             Решаемые проблемы
           </h4>
           <ul className="space-y-2 sm:space-y-3">
             {productInfo.problems.map((problem, index) => (
               <li key={index} className="flex sm:items-center items-start group/task">
-        <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
-            <span className="text-beige-light text-xs sm:text-sm font-bold">
-              {index + 1}
-            </span>
-          </div>
-        </div>
-        <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
+                <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
+                    <span className="text-beige-light text-xs sm:text-sm font-bold">
+                      {index + 1}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
                   {problem}
                 </p>
               </li>
@@ -177,18 +176,18 @@ export default function ProfitMoInfo() {
 
         {/* Экономические выгоды */}
         <div className="mb-6 sm:mb-8">
-  <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
+          <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
             Экономические выгоды внедрения
           </h4>
           <ul className="space-y-2 sm:space-y-3">
             {productInfo.benefits.map((benefit, index) => (
               <li key={index} className="flex items-start group/benefit">
                 <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
                     <CheckCircle className="w-3 h-3 text-beige-light" />
                   </div>
                 </div>
-        <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
+                <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
                   {benefit}
                 </p>
               </li>

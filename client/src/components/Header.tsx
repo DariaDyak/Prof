@@ -26,7 +26,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     const savedTheme = localStorage.getItem('theme');
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const initialTheme = savedTheme || systemTheme;
-    
+
     setIsDark(initialTheme === 'dark');
     document.documentElement.classList.toggle('dark', initialTheme === 'dark');
   }, []);
@@ -176,10 +176,8 @@ export default function Header({ onNavigate }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [navigationItems, location.pathname]);
 
-  // УДАЛЕНО: Все лишние элементы и кнопки темы
-
   return (
-    <header 
+    <header
       ref={headerRef}
       className="h-20 sticky top-0 z-50 
         bg-gradient-to-b from-beige-light via-beige-light/95 to-beige/90 
@@ -195,7 +193,6 @@ export default function Header({ onNavigate }: HeaderProps) {
     >
       <div className="container mx-auto px-4 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
-          {/* Логотип */}
           <div
             className="flex items-center cursor-pointer focus:outline-none group h-full"
             onClick={() => handleNavClick('home')}
@@ -211,7 +208,6 @@ export default function Header({ onNavigate }: HeaderProps) {
           </div>
 
           <div className="hidden lg:flex items-center space-x-6 h-full">
-            {/* Навигация */}
             <nav className="flex items-center space-x-8 h-full">
               {navigationItems.map((item) => {
                 const isActive = activeId === item.id && location.pathname === '/';
@@ -251,10 +247,8 @@ export default function Header({ onNavigate }: HeaderProps) {
               })}
             </nav>
 
-            {/* Разделитель */}
             <div className="h-6 w-px bg-gradient-to-b from-transparent via-tan to-transparent dark:via-beige-light/40" />
 
-            {/* ОДНА кнопка смены темы */}
             <Button
               variant="ghost"
               size="icon"
@@ -272,7 +266,6 @@ export default function Header({ onNavigate }: HeaderProps) {
           </div>
 
           <div className="flex items-center space-x-2 lg:hidden h-full">
-            {/* ОДНА кнопка смены темы в мобильной версии */}
             <Button
               variant="ghost"
               size="icon"
@@ -288,7 +281,6 @@ export default function Header({ onNavigate }: HeaderProps) {
               )}
             </Button>
 
-            {/* Кнопка мобильного меню */}
             <Button
               variant="ghost"
               size="icon"
@@ -320,7 +312,6 @@ export default function Header({ onNavigate }: HeaderProps) {
               
               shadow-xl"
             >
-              {/* Пункты меню */}
               <div className="flex flex-col space-y-2 mt-4">
                 {navigationItems.map((item) => {
                   const isActive = activeId === item.id && location.pathname === '/';

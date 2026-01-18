@@ -66,11 +66,10 @@ export default function ServicesSec() {
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-300 min-w-[120px] sm:min-w-[140px] text-center ${
-                activeTab === index
+              className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-300 min-w-[120px] sm:min-w-[140px] text-center ${activeTab === index
                   ? 'bg-brown-dark text-white dark:text-white shadow-lg border-transparent'
-                                    : 'bg-white dark:text-brown-dark hover:bg-beige dark:hover:text-brown-dark dark:hover:bg-beige'
-                                    }`}
+                  : 'bg-white dark:text-brown-dark hover:bg-beige dark:hover:text-brown-dark dark:hover:bg-beige'
+                }`}
             >
               {service.title}
             </button>

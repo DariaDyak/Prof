@@ -13,18 +13,16 @@ import DevelopmentPage from "@/pages/DevelopmentPage";
 import './index.css'
 import DataProcessing from '@/pages/DataProcessing';
 import Approval from '@/pages/Approval';
-import ProfitEs from "@/pages/ProfitES"; 
+import ProfitEs from "@/pages/ProfitES";
 import ProfitLs from "@/pages/ProfitLS";
 import ProfitMo from "@/pages/ProfitMO";
 import AboutUsPage from "@/pages/AboutUsPage";
 import CookieBanner from "@/components/CookieBanner";
 import PartnersPage from "@/pages/PartnersPage";
 
-// Импортируем компонент логотипа и загрузчика
 import LoadingScreen from "@/components/LoadingScreen";
 import { useState, useEffect, Suspense, lazy } from "react";
 
-// Опционально: ленивая загрузка страниц для улучшения производительности
 const LazyHome = lazy(() => import("@/pages/Home"));
 const LazyDecisions = lazy(() => import("@/pages/Decisions"));
 const LazyAutomationPage = lazy(() => import("@/pages/AutomationPage"));
@@ -66,46 +64,31 @@ function App() {
   const [initialTheme, setInitialTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    // Определяем начальную тему из localStorage
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     if (savedTheme) {
       setInitialTheme(savedTheme);
     } else {
-      // Если тема не сохранена, можно использовать медиа-запрос
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setInitialTheme(prefersDark ? 'dark' : 'light');
     }
 
-    // Функция для имитации/реализации фоновой загрузки
     const initializeApp = async () => {
       try {
-        // 1. Проверяем, первый ли это визит
         const hasVisitedBefore = localStorage.getItem('app_has_visited');
         const isFirstVisit = !hasVisitedBefore;
 
-        // 2. Имитируем загрузку критически важных ресурсов
         const loadPromises = [
-          new Promise(resolve => setTimeout(resolve, 1200)), // 1.2 секунды минимум
-          // минимальное время показа
-          
-          // Загрузка реальных ресурсов
-          // preloadImages(['/logo.png', '/background.jpg']),
-          // loadFonts(),
-          // fetchInitialData(),
+          new Promise(resolve => setTimeout(resolve, 1200)),
         ];
 
-        // 3. Ждем загрузки ресурсов
         await Promise.all(loadPromises);
 
-        // 4. Устанавливаем флаг посещения
         if (isFirstVisit) {
           localStorage.setItem('app_has_visited', 'true');
         }
 
-        // 5. Завершаем основную загрузку
         setIsLoading(false);
 
-        // 6. Показываем логотип дополнительное время для первого посещения
         const logoDuration = isFirstVisit ? 3000 : 1000;
         setTimeout(() => {
           setShowLogo(false);
@@ -113,7 +96,6 @@ function App() {
 
       } catch (error) {
         console.error('Error during app initialization:', error);
-        // В случае ошибки все равно скрываем загрузку
         setIsLoading(false);
         setShowLogo(false);
       }
@@ -121,16 +103,13 @@ function App() {
 
     initializeApp();
 
-    // Очистка таймеров при размонтировании
     return () => {
       // Можно добавить отмену запросов если они используются
     };
   }, []);
 
-  // Показываем экран загрузки с логотипом
   if (showLogo) {
     return (
-      // ThemeProvider не принимает defaultTheme и storageKey, оставляем только children
       <ThemeProvider>
         <LoadingScreen isLoading={isLoading} />
       </ThemeProvider>
@@ -140,11 +119,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        {/* Ваш ThemeProvider принимает только children */}
         <ThemeProvider>
           <Toaster />
           <Router />
-          {/* CookieBanner добавлен здесь - он будет показываться на всех страницах */}
           <CookieBanner />
         </ThemeProvider>
       </TooltipProvider>

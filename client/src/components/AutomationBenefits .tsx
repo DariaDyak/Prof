@@ -1,5 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
-
 export default function AutomationBenefits() {
   return (
     <section className="pt-8 overflow-hidden">
@@ -28,7 +26,6 @@ export default function AutomationBenefits() {
               </p>
             </div>
 
-            {/* Итоговый блок */}
             <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-brown-dark dark:bg-beige shadow-lg transition-all duration-300 rounded-2xl shadow-inner">
               <div className="flex justify-center items-center text-center">
                 <p className="text-sm sm:text-sm lg:text-base xl:text-base text-beige dark:text-brown-dark  font-semibold leading-relaxed">

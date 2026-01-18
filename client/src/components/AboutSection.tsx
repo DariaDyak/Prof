@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 import S1 from "@assets/generated_images/slide_prez1.png";
 import S2 from "@assets/generated_images/slide_prez2.png";
@@ -126,7 +126,7 @@ export default function AboutSection() {
                  active:outline-none active:ring-0
                  text-brown-dark dark:text-brown-dark hover:text-brown-dark dark:hover:text-brown-dark
                  items-center gap-2 text-left
-                 group"  // Добавлен group для анимации
+                 group"
                       style={{
                         outline: 'none',
                         WebkitTapHighlightColor: 'transparent',
@@ -192,8 +192,8 @@ export default function AboutSection() {
                   <div
                     key={index}
                     className={`relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out flex-shrink-0 ${index === currentSlide
-                        ? 'flex-grow rounded-2xl'
-                        : 'h-14 lg:h-16 rounded-xl'
+                      ? 'flex-grow rounded-2xl'
+                      : 'h-14 lg:h-16 rounded-xl'
                       }`}
                     onClick={() => goToSlide(index)}
                     onMouseEnter={() => index !== currentSlide && setIsAutoPlaying(false)}
@@ -208,8 +208,8 @@ export default function AboutSection() {
                       />
 
                       <div className={`absolute inset-0 transition-all duration-500 ${index === currentSlide
-                          ? 'bg-gradient-to-t from-black/80 via-black/40 to-transparent'
-                          : 'bg-black/70 hover:bg-black/60'
+                        ? 'bg-gradient-to-t from-black/80 via-black/40 to-transparent'
+                        : 'bg-black/70 hover:bg-black/60'
                         }`} />
                     </div>
 
@@ -259,8 +259,6 @@ export default function AboutSection() {
 
         {/* Десктоп версия */}
         <div className="hidden xl:grid xl:grid-cols-2 xl:gap-8 gap-8 items-stretch h-full">
-
-          {/* Заголовки на одном уровне */}
           <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-8 gap-8 mb-8 col-span-2">
             <div>
               <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-brown-dark dark:text-beige">
@@ -373,8 +371,8 @@ export default function AboutSection() {
                   <div
                     key={index}
                     className={`relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out flex-shrink-0 ${index === currentSlide
-                        ? 'flex-grow rounded-2xl'
-                        : 'h-14 lg:h-16 rounded-xl'
+                      ? 'flex-grow rounded-2xl'
+                      : 'h-14 lg:h-16 rounded-xl'
                       }`}
                     onClick={() => goToSlide(index)}
                     onMouseEnter={() => index !== currentSlide && setIsAutoPlaying(false)}
@@ -389,8 +387,8 @@ export default function AboutSection() {
                       />
 
                       <div className={`absolute inset-0 transition-all duration-500 ${index === currentSlide
-                          ? 'bg-gradient-to-t from-black/80 via-black/40 to-transparent'
-                          : 'bg-black/70 hover:bg-black/60'
+                        ? 'bg-gradient-to-t from-black/80 via-black/40 to-transparent'
+                        : 'bg-black/70 hover:bg-black/60'
                         }`} />
                     </div>
 

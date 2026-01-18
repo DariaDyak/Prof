@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Database, Globe, Shield, Zap, Users } from "lucide-react";
+import { Code, Database, Globe, Shield } from "lucide-react";
 
 const solutions = [
   {
@@ -51,7 +51,7 @@ export default function DevelopmentShowcase() {
             >
               <CardContent className="p-4 sm:p-6 relative z-10 flex flex-col h-full">
                 <div className="flex-1">
-                  {/* Обновленный блок иконки с новой анимацией */}
+
                   <div className="
             w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
             bg-brown-dark 

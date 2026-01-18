@@ -15,7 +15,6 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
   const [showButton, setShowButton] = useState(false);
   const [showImage, setShowImage] = useState(false);
 
-  // Инициализация анимации при монтировании
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowBadge(true);
@@ -58,7 +57,6 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
 
   return (
     <section className="pt-12 pb-16 lg:pt-10 lg:pb-20 relative min-h-[92vh] flex items-center justify-center overflow-hidden">
-      {/* Фоновое изображение с эффектом размытия */}
       <div className="absolute inset-0 z-0">
         <img
           src={logoDark}
@@ -70,7 +68,6 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
             objectPosition: 'center'
           }}
         />
-        {/* Светлая тема: осветляем фон */}
         <div className="absolute inset-0 bg-gradient-to-t from-beige via-beige/85 to-beige/30"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-beige/50"></div>
 
@@ -88,7 +85,6 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
           <div className="order-1 lg:order-1 text-center lg:text-left flex flex-col justify-center">
             <div className="max-w-xl mx-auto lg:mx-0">
 
-              {/* Badge */}
               <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full
                 bg-brown-dark/10 border border-brown-dark
                 
@@ -103,7 +99,6 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                 <span className="transition-none">Ваш надежный ИТ-партнер</span>
               </div>
 
-              {/* Main Heading */}
               <div className="mb-6 sm:mb-8 space-y-2 sm:space-y-4">
                 <h1 className="font-bold ">
                   <div {...slideInAnimation(showFirstLine, '50ms')}>
@@ -113,8 +108,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                   </div>
                 </h1>
               </div>
-              {/* Description */}
-              <div {...slideInAnimation(showDescription, '200ms')}>
+                           <div {...slideInAnimation(showDescription, '200ms')}>
                 <p className="text-brown-dark  mb-8 sm:mb-12 leading-relaxed 
                   text-sm sm:text-base lg:text-lg transition-none !important">
                   Комплексные ИТ-решения для цифровой трансформации вашего бизнеса.
@@ -123,8 +117,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                 </p>
               </div>
 
-              {/* CTA Button */}
-              <div
+                           <div
                 className="flex justify-center lg:justify-start transition-all duration-700 ease-out"
                 style={{
                   opacity: showButton ? 1 : 0,
@@ -145,13 +138,10 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                   className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
                   bg-brown-dark border border-brown-dark
                   text-beige-light font-medium
-                  
                   group
                   px-6
                   text-xs sm:text-sm
                   hover:bg-beige-light hover:text-brown-dark
-                  
-                 
                   group-hover:transition-all group-hover:duration-300"
                 >
                   <span className="relative z-10 ">
@@ -178,10 +168,8 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                 filter: 'brightness(1.1) contrast(1.1)'
               }}
             >
-              {/* Градиентное наложение для улучшения читаемости и эстетики */}
               <div className="absolute inset-0 bg-gradient-to-tl from-brown-dark/5 via-transparent to-beige-light/10 transition-none !important"></div>
 
-              {/* Текст поверх изображения */}
               <div
                 className="absolute bottom-6 left-6 right-6 z-10 transform transition-all duration-1000 ease-out"
                 style={{
@@ -190,11 +178,9 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                   transitionDelay: '1200ms'
                 }}
               >
-
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

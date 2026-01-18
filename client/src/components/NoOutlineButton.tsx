@@ -1,4 +1,3 @@
-// components/NoOutlineButton.tsx
 import React, { useEffect, useRef } from 'react';
 
 interface NoOutlineButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,7 +11,6 @@ export const NoOutlineButton: React.FC<NoOutlineButtonProps> = ({ children, ...p
     const button = buttonRef.current;
     if (!button) return;
 
-    // Удаляем обводку при фокусе
     const handleFocus = () => {
       button.style.outline = 'none';
       button.style.boxShadow = 'none';
@@ -20,7 +18,6 @@ export const NoOutlineButton: React.FC<NoOutlineButtonProps> = ({ children, ...p
       button.style.setProperty('box-shadow', 'none', 'important');
     };
 
-    // Удаляем обводку при нажатии
     const handleMouseDown = () => {
       button.style.outline = 'none';
       button.style.boxShadow = 'none';
@@ -30,7 +27,6 @@ export const NoOutlineButton: React.FC<NoOutlineButtonProps> = ({ children, ...p
     button.addEventListener('mousedown', handleMouseDown);
     button.addEventListener('touchstart', handleMouseDown);
 
-    // Инициализация
     button.style.outline = 'none';
     button.style.boxShadow = 'none';
 
@@ -46,10 +42,10 @@ export const NoOutlineButton: React.FC<NoOutlineButtonProps> = ({ children, ...p
       ref={buttonRef}
       {...props}
       className={`${props.className || ''} outline-none focus:outline-none focus-visible:outline-none ring-0 focus:ring-0`}
-      style={{ 
+      style={{
         outline: 'none',
         boxShadow: 'none',
-        ...props.style 
+        ...props.style
       }}
     >
       {children}
