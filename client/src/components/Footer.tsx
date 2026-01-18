@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import logo from "@assets/generated_images/logo.png";
 import { useLocation, useNavigate } from 'react-router-dom';
+import { NoOutlineButton } from "@/components/NoOutlineButton";
 
 import {
   Mail,
@@ -145,16 +146,16 @@ export default function Footer() {
                   </h3>
                   <ul className="space-y-3">
                     {links.services.map((link) => (
-                      <li key={link.name}>
-                        <button
-                          onClick={() => handleNavigation(link)}
-                          className="group flex items-center gap-2 text-beige/70 hover:text-beige transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-beige opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
-                          <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
-                        </button>
-                      </li>
-                    ))}
+  <li key={link.name}>
+    <NoOutlineButton
+      onClick={() => handleNavigation(link)}
+      className="group flex items-center gap-2 text-beige/70 hover:text-beige transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+    >
+      <div className="w-1.5 h-1.5 rounded-full bg-beige opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
+      <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
+    </NoOutlineButton>
+  </li>
+))}
                   </ul>
                 </div>
               </div>
@@ -170,7 +171,7 @@ export default function Footer() {
                       <li key={link.name}>
                         <button
                           onClick={() => handleNavigation(link)}
-                          className="group flex items-center gap-2 text-beige/70 hover:text-beige transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                          className="group flex items-center gap-2 text-beige/70 hover:text-beige transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left outline-none focus:outline-none focus-visible:outline-none"
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-beige opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
                           <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
@@ -210,10 +211,11 @@ export default function Footer() {
                   relative py-2
                   transition-all duration-300 ease-out
                   font-base
-                  focus:outline-none focus:text-beige
                   group
                   text-beige/70 hover:text-beige
                   inline-block cursor-pointer
+                  outline-none focus:outline-none focus-visible:outline-none
+                  focus:ring-0 focus:ring-offset-0 focus:outline-none
                 `}
                 data-testid="privacy-policy-link"
               >
@@ -243,7 +245,8 @@ export default function Footer() {
                 px-4 py-2 sm:px-6 sm:py-3
                 text-sm sm:text-base
                 hover:border-beige/50 hover:bg-beige/30
-                transition-all duration-300"
+                transition-all duration-300
+                focus:ring-0 focus:ring-offset-0 focus:outline-none"
             >
               {/* Бегущий луч */}
               <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige/20 to-transparent" />

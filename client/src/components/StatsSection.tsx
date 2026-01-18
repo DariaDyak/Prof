@@ -197,7 +197,32 @@ export default function StatsSection() {
                                                     <div>
                                                         <button
                                                             onClick={() => handleProductClick(product.id, product.title)}
-                                                            className="font-semibold text-base leading-tight  transition-colors text-brown-dark  text-left hover:underline focus:outline-none focus:ring-2 focus:ring-brown-dark focus:ring-offset-2 rounded px-2 py-1 -mx-2 flex items-center gap-2"
+                                                            className="font-semibold text-base leading-tight transition-colors text-brown-dark text-left hover:underline 
+                       select-none
+                       ring-0 focus:ring-0 focus:ring-offset-0
+                       outline-none focus:outline-none focus-visible:outline-none
+                       active:outline-none active:ring-0
+                       focus:border-transparent
+                       px-2 py-1 -mx-2 flex items-center gap-2
+                       focus:bg-transparent"
+                                                            style={{
+                                                                outline: 'none',
+                                                                WebkitTapHighlightColor: 'transparent',
+                                                            }}
+                                                            onMouseDown={(e) => {
+                                                                e.preventDefault();
+                                                                e.currentTarget.style.outline = 'none';
+                                                                e.currentTarget.style.boxShadow = 'none';
+                                                            }}
+                                                            onFocus={(e) => {
+                                                                e.currentTarget.style.outline = 'none';
+                                                                e.currentTarget.style.boxShadow = 'none';
+                                                                e.currentTarget.style.border = 'none';
+                                                            }}
+                                                            onTouchStart={(e) => {
+                                                                e.currentTarget.style.outline = 'none';
+                                                                e.currentTarget.style.boxShadow = 'none';
+                                                            }}
                                                         >
                                                             {product.title}
                                                         </button>
@@ -224,26 +249,26 @@ export default function StatsSection() {
                                                 <div className="space-y-2">
                                                     {product.registration_num ? (
                                                         <div className="flex items-center gap-4">
-                                                            <div className="w-6 h-6 rounded-full bg-white  flex items-center justify-center">
-                                                                <FileText className="w-3 h-3 text-brown-dark " />
+                                                            <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                                                                <FileText className="w-3 h-3 text-brown-dark" />
                                                             </div>
                                                             <div>
-                                                                <div className="text-xs text-brown-dark ">Роспатент</div>
-                                                                <div className="font-mono text-sm font-medium text-brown-dark ">№{product.registration_num}</div>
+                                                                <div className="text-xs text-brown-dark">Роспатент</div>
+                                                                <div className="font-mono text-sm font-medium text-brown-dark">№{product.registration_num}</div>
                                                             </div>
                                                         </div>
                                                     ) : (
-                                                        <div className="text-xs text-brown-dark ">Не зарегистрировано</div>
+                                                        <div className="text-xs text-brown-dark">Не зарегистрировано</div>
                                                     )}
 
                                                     {product.reg_program_num && (
                                                         <div className="flex items-center gap-4">
                                                             <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-                                                                <FileText className="w-3 h-3 text-brown-dark " />
+                                                                <FileText className="w-3 h-3 text-brown-dark" />
                                                             </div>
                                                             <div>
-                                                                <div className="text-xs text-brown-dark ">Реестр ПО</div>
-                                                                <div className="text-xs text-brown-dark ">№{product.reg_program_num}</div>
+                                                                <div className="text-xs text-brown-dark">Реестр ПО</div>
+                                                                <div className="text-xs text-brown-dark">№{product.reg_program_num}</div>
                                                             </div>
                                                         </div>
                                                     )}
@@ -257,7 +282,30 @@ export default function StatsSection() {
                                                             size="sm"
                                                             variant="outline"
                                                             onClick={() => handleOpenCertificate(product.certificate_image!)}
-                                                            className="h-8 px-3 dark:bg-brown/30 border border-brown dark:border-brown/50 hover:bg-brown-dark text-brown-dark dark:text-beige hover:text-beige"
+                                                            className="h-8 px-3 dark:bg-brown/30 border border-brown dark:border-brown/50 hover:bg-brown-dark text-brown-dark dark:text-beige hover:text-beige
+                       select-none
+                       ring-0 focus:ring-0 focus:ring-offset-0
+                       outline-none focus:outline-none focus-visible:outline-none
+                       active:outline-none active:ring-0
+                       focus:border-transparent"
+                                                            style={{
+                                                                outline: 'none',
+                                                                WebkitTapHighlightColor: 'transparent',
+                                                            }}
+                                                            onMouseDown={(e) => {
+                                                                e.preventDefault();
+                                                                e.currentTarget.style.outline = 'none';
+                                                                e.currentTarget.style.boxShadow = 'none';
+                                                            }}
+                                                            onFocus={(e) => {
+                                                                e.currentTarget.style.outline = 'none';
+                                                                e.currentTarget.style.boxShadow = 'none';
+                                                                e.currentTarget.style.borderColor = 'transparent';
+                                                            }}
+                                                            onTouchStart={(e) => {
+                                                                e.currentTarget.style.outline = 'none';
+                                                                e.currentTarget.style.boxShadow = 'none';
+                                                            }}
                                                         >
                                                             Показать
                                                         </Button>
@@ -279,7 +327,7 @@ export default function StatsSection() {
                                 return (
                                     <div
                                         key={product.id}
-                                        className="p-4 bg-white hover:bg-beige hover:bg-beige dark:hover:bg-beige transition-all duration-200"
+                                        className="p-4 bg-white hover:bg-beige dark:hover:bg-beige transition-all duration-200"
                                     >
                                         {/* Заголовок и иконка продукта */}
                                         <div className="flex items-center gap-4">
@@ -289,7 +337,32 @@ export default function StatsSection() {
                                             <div>
                                                 <button
                                                     onClick={() => handleProductClick(product.id, product.title)}
-                                                    className="font-semibold text-base leading-tight  transition-colors text-brown-dark  text-left hover:underline focus:outline-none focus:ring-2 focus:ring-brown-dark focus:ring-offset-2 rounded px-2 py-1 -mx-2 flex items-center gap-2"
+                                                    className="font-semibold text-base leading-tight transition-colors text-brown-dark text-left hover:underline 
+                       select-none
+                       ring-0 focus:ring-0 focus:ring-offset-0
+                       outline-none focus:outline-none focus-visible:outline-none
+                       active:outline-none active:ring-0
+                       focus:border-transparent
+                       px-2 py-1 -mx-2 flex items-center gap-2
+                       focus:bg-transparent"
+                                                    style={{
+                                                        outline: 'none',
+                                                        WebkitTapHighlightColor: 'transparent',
+                                                    }}
+                                                    onMouseDown={(e) => {
+                                                        e.preventDefault();
+                                                        e.currentTarget.style.outline = 'none';
+                                                        e.currentTarget.style.boxShadow = 'none';
+                                                    }}
+                                                    onFocus={(e) => {
+                                                        e.currentTarget.style.outline = 'none';
+                                                        e.currentTarget.style.boxShadow = 'none';
+                                                        e.currentTarget.style.border = 'none';
+                                                    }}
+                                                    onTouchStart={(e) => {
+                                                        e.currentTarget.style.outline = 'none';
+                                                        e.currentTarget.style.boxShadow = 'none';
+                                                    }}
                                                 >
                                                     {product.title}
                                                 </button>
@@ -322,26 +395,26 @@ export default function StatsSection() {
                                             <div className="space-y-2">
                                                 {product.registration_num ? (
                                                     <div className="flex items-center gap-4">
-                                                        <div className="w-6 h-6 rounded-full bg-white  flex items-center justify-center">
-                                                            <FileText className="w-3 h-3 text-brown-dark " />
+                                                        <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                                                            <FileText className="w-3 h-3 text-brown-dark" />
                                                         </div>
                                                         <div>
-                                                            <div className="text-xs text-brown-dark ">Роспатент</div>
-                                                            <div className="font-mono text-sm font-medium text-brown-dark ">№{product.registration_num}</div>
+                                                            <div className="text-xs text-brown-dark">Роспатент</div>
+                                                            <div className="font-mono text-sm font-medium text-brown-dark">№{product.registration_num}</div>
                                                         </div>
                                                     </div>
                                                 ) : (
-                                                    <div className="text-xs text-brown-dark ">Не зарегистрировано</div>
+                                                    <div className="text-xs text-brown-dark">Не зарегистрировано</div>
                                                 )}
 
                                                 {product.reg_program_num && (
                                                     <div className="flex items-center gap-4">
                                                         <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-                                                            <FileText className="w-3 h-3 text-brown-dark " />
+                                                            <FileText className="w-3 h-3 text-brown-dark" />
                                                         </div>
                                                         <div>
-                                                            <div className="text-xs text-brown-dark ">Реестр ПО</div>
-                                                            <div className="text-xs text-brown-dark ">№{product.reg_program_num}</div>
+                                                            <div className="text-xs text-brown-dark">Реестр ПО</div>
+                                                            <div className="text-xs text-brown-dark">№{product.reg_program_num}</div>
                                                         </div>
                                                     </div>
                                                 )}
@@ -357,7 +430,30 @@ export default function StatsSection() {
                                                         size="sm"
                                                         variant="outline"
                                                         onClick={() => handleOpenCertificate(product.certificate_image!)}
-                                                        className="h-7 px-3 text-xs dark:bg-brown/30 border border-brown dark:border-brown/50 hover:bg-brown-dark text-brown-dark dark:text-beige hover:text-beige"
+                                                        className="h-7 px-3 text-xs dark:bg-brown/30 border border-brown dark:border-brown/50 hover:bg-brown-dark text-brown-dark dark:text-beige hover:text-beige
+                       select-none
+                       ring-0 focus:ring-0 focus:ring-offset-0
+                       outline-none focus:outline-none focus-visible:outline-none
+                       active:outline-none active:ring-0
+                       focus:border-transparent"
+                                                        style={{
+                                                            outline: 'none',
+                                                            WebkitTapHighlightColor: 'transparent',
+                                                        }}
+                                                        onMouseDown={(e) => {
+                                                            e.preventDefault();
+                                                            e.currentTarget.style.outline = 'none';
+                                                            e.currentTarget.style.boxShadow = 'none';
+                                                        }}
+                                                        onFocus={(e) => {
+                                                            e.currentTarget.style.outline = 'none';
+                                                            e.currentTarget.style.boxShadow = 'none';
+                                                            e.currentTarget.style.borderColor = 'transparent';
+                                                        }}
+                                                        onTouchStart={(e) => {
+                                                            e.currentTarget.style.outline = 'none';
+                                                            e.currentTarget.style.boxShadow = 'none';
+                                                        }}
                                                     >
                                                         Показать
                                                     </Button>

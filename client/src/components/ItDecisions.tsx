@@ -112,6 +112,10 @@ export default function ItDecisions({
               group
               text-brown-dark hover:text-brown-dark
               inline-block
+              ring-0 focus:ring-0 focus:ring-offset-0
+outline-none focus:outline-none focus-visible:outline-none
+active:outline-none active:ring-0
+              
               pl-4 lg:pl-0
             `}
           >
@@ -133,30 +137,32 @@ export default function ItDecisions({
           {/* Бейдж/кнопка */}
           {badgeText && (
             <Button
-              onClick={handleBadgeClick}
-              className={`
-                relative
-                overflow-hidden
-                inline-flex items-center gap-2 px-4 py-2 
-                border border-brown-dark 
-                text-brown-dark text-sm font-medium
-                transition-all duration-1000 ease-out
-                group
-                mb-10 my-4
-                hover:border-brown-dark 
-                hover:scale-105
-                hover:text-brown-dark 
-                bg-transparent 
-                hover:bg-transparent
-              `}
-              data-testid="hero-badge"
-              variant={onBadgeClick ? "default" : "outline"}
-            >
-              <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige-light/30 to-transparent" />
-              <span className="relative z-10 transition-all duration-300">
-                {badgeText}
-              </span>
-            </Button>
+  onClick={handleBadgeClick}
+  className={`
+    relative
+    overflow-hidden
+    inline-flex items-center gap-2 px-4 py-2 
+    border border-brown-dark 
+    text-brown-dark text-sm font-medium
+    transition-all duration-1000 ease-out
+    group
+    mb-10 my-4
+    ring-0 focus:ring-0 focus:ring-offset-0
+outline-none focus:outline-none focus-visible:outline-none
+active:outline-none active:ring-0
+    
+    hover:text-brown-dark 
+    bg-transparent 
+    hover:bg-transparent
+  `}
+  data-testid="hero-badge"
+  variant={onBadgeClick ? "default" : "outline"}
+>
+  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige-light/30 to-transparent" />
+  <span className="relative z-10 transition-all duration-300">
+    {badgeText}
+  </span>
+</Button>
           )}
 
           {/* Заголовок */}
