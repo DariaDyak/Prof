@@ -12,14 +12,25 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
+    // Сначала проверяем localStorage
     const savedTheme = localStorage.getItem('theme') as Theme;
-    return savedTheme || 'light';
+    if (savedTheme) {
+      return savedTheme;
+    }
+    
+    // Если нет сохраненной темы, проверяем системные настройки
+    if (typeof window !== 'undefined') {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark ? 'dark' : 'light';
+    }
+    
+    // По умолчанию light
+    return 'light';
   });
 
   useEffect(() => {
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
-
     localStorage.setItem('theme', theme);
   }, [theme]);
 

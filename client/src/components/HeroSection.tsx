@@ -108,7 +108,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                   </div>
                 </h1>
               </div>
-                           <div {...slideInAnimation(showDescription, '200ms')}>
+              <div {...slideInAnimation(showDescription, '200ms')}>
                 <p className="text-brown-dark  mb-8 sm:mb-12 leading-relaxed 
                   text-sm sm:text-base lg:text-lg transition-none !important">
                   Комплексные ИТ-решения для цифровой трансформации вашего бизнеса.
@@ -117,7 +117,7 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                 </p>
               </div>
 
-                           <div
+              <div
                 className="flex justify-center lg:justify-start transition-all duration-700 ease-out"
                 style={{
                   opacity: showButton ? 1 : 0,
