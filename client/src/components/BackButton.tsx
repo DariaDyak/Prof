@@ -1,11 +1,10 @@
-// components/BackButtonSimple.tsx
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
 interface BackButtonProps {
   text?: string;
   className?: string;
-  scrollTo?: string; // ID элемента для скролла
+  scrollTo?: string;
 }
 
 export default function BackButtonSimple({

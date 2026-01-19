@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import logo from "@assets/generated_images/logo.png";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { NoOutlineButton } from "@/components/NoOutlineButton";
+import { useState } from 'react';
 
 import {
   Mail,
@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 export default function Footer() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -80,7 +81,7 @@ export default function Footer() {
         type: "anchor"
       },
       {
-        name: "Подробнее о компании",
+        name: "Раскрытие информации",
         href: "/aboutUsPage",
         type: "anchor"
       },
@@ -90,13 +91,13 @@ export default function Footer() {
         type: "anchor"
       },
       {
-        name: "Кейсы",
+        name: "Проекты",
         href: "cases",
         type: "anchor"
       },
       {
         name: "Партнеры",
-        href: "/partnersPage",
+        href: "partners",
         type: "anchor"
       },
       {
@@ -108,27 +109,29 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-brown-dark text-beige border-brown/30 relative overflow-hidden">
-      {/* Декоративный фон - убрана темная тема */}
+    <footer className="dark:bg-[#1E1915] bg-[#1E1915] text-beige border-brown/30 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-brown/20 to-brown-dark/30 pointer-events-none" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Main Footer Content */}
         <div className="py-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Company Info */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="relative">
-                  <img
-                    src={logo}
-                    alt="Prof it Logo"
-                    className="w-24 h-24 lg:w-24 lg:h-24 object-contain"
-                  />
-                  <div className="absolute -inset-1" />
+                <div className="relative flex items-center h-full">
+                  <div className="relative">
+                    <span
+                      className={`font-bold text-2xl lg:text-4xl transition-all duration-300 flex items-center h-full ${theme === 'light'
+                          ? 'opacity-100 text-beige-light'
+                          : 'opacity-0 absolute'
+                        }`}
+                    >
+                      ПРОФ ИТ
+                    </span>
+
+
+                  </div>
                 </div>
               </div>
-
               <p className="text-beige/80 leading-relaxed text-base">
                 <span className="font-semibold text-beige">ПРОФ ИТ</span> -
                 современная IT-компания, создающая инновационные решения для цифровой
@@ -138,7 +141,6 @@ export default function Footer() {
 
             {/* Две колонки для мобильных и планшетов */}
             <div className="grid grid-cols-2 gap-6 lg:col-span-2">
-              {/* Services */}
               <div className="space-y-6">
                 <div>
                   <h3 className="font-bold text-beige text-lg mb-4 pb-2 ">
@@ -146,21 +148,20 @@ export default function Footer() {
                   </h3>
                   <ul className="space-y-3">
                     {links.services.map((link) => (
-  <li key={link.name}>
-    <NoOutlineButton
-      onClick={() => handleNavigation(link)}
-      className="group flex items-center gap-2 text-beige/70 hover:text-beige transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
-    >
-      <div className="w-1.5 h-1.5 rounded-full bg-beige opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
-      <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
-    </NoOutlineButton>
-  </li>
-))}
+                      <li key={link.name}>
+                        <NoOutlineButton
+                          onClick={() => handleNavigation(link)}
+                          className="group flex items-center gap-2 text-beige/70 hover:text-beige transition-all duration-300 px-2 py-1 rounded-md -ml-2 w-full text-left"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-beige opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" />
+                          <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">{link.name}</span>
+                        </NoOutlineButton>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
 
-              {/* Company */}
               <div className="space-y-6">
                 <div>
                   <h3 className="font-bold text-beige text-lg mb-4 pb-2">
@@ -185,10 +186,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Разделитель - убраны темные стили */}
         <Separator className="bg-beige/20" />
 
-        {/* Bottom Footer */}
         <div className="py-8 flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-beige/70 order-2 lg:order-1">
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -248,7 +247,6 @@ export default function Footer() {
                 transition-all duration-300
                 focus:ring-0 focus:ring-offset-0 focus:outline-none"
             >
-              {/* Бегущий луч */}
               <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-beige/20 to-transparent" />
 
               <span>

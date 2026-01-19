@@ -5,7 +5,7 @@ export default function ApproachSection() {
     {
       icon: <Search className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       title: "Анализ и аудит",
-      description: "Глубокое исследование текущей IT-инфраструктуры, выявление узких мест и потенциала для оптимизации"
+      description: "Исследование текущей IT-инфраструктуры, выявление потенциала для оптимизации"
     },
     {
       icon: <Target className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
@@ -25,19 +25,18 @@ export default function ApproachSection() {
   ];
 
   return (
-    <section className="pt-16 pb-16 bg-beige-light dark:bg-brown-dark overflow-hidden">
+    <section className="pt-12 pb-12 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark dark:text-beige-light mb-4 sm:mb-5 lg:mb-6">
+        <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark dark:text-beige-light mb-6 sm:mb-5 lg:mb-6">
             Пошаговая методология внедрения <span className="block text-brown/70 dark:text-beige/80">комплексных IT-решений</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown/80 dark:text-beige/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark dark:text-beige-light leading-relaxed mb-6">
             Процесс оценки текущего состояния ИТ-инфраструктуры компании включает анализ всех аспектов
             информационных технологий
           </p>
         </div>
 
-        {/* Контейнер для центрирования колонок */}
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 w-full max-w-none">
             {steps.map((step, index) => (
@@ -45,8 +44,7 @@ export default function ApproachSection() {
                 key={index}
                 className="group bg-white dark:bg-brown-dark/95 rounded-xl sm:rounded-2xl p-4 sm:p-6 border shadow-lg transition-all duration-300 "
               >
-                <div className="flex items-start gap-3 sm:gap-4">
-                  {/* Иконка */}
+                <div className="flex items-center gap-3 sm:gap-4">
                   <div className="flex-shrink-0">
                     <div className="
                       w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
@@ -55,8 +53,6 @@ export default function ApproachSection() {
                       rounded-lg sm:rounded-xl flex items-center justify-center 
                       shadow-lg 
                       shadow-brown/20 
-                      
-                      
                       transition-all duration-300
                     ">
                       <div className="text-beige-light dark:text-beige">
@@ -66,10 +62,10 @@ export default function ApproachSection() {
                   </div>
 
                   <div className="flex-1">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-brown-dark transition-colors duration-300 leading-tight">
+                    <h3 className="text-sm sm:text-base lg:text-base xl:text-base font-bold text-brown-dark transition-colors duration-300 leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-brown-dark leading-relaxed mt-2">
+                    <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-relaxed mt-2">
                       {step.description}
                     </p>
                   </div>

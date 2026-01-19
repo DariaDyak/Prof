@@ -1,13 +1,10 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, Download, CheckCircle, FileText, Users, RefreshCw, Shield, Building, FileCheck, Settings, Lock, Database } from "lucide-react";
 import { useState } from "react";
 import { withBaseUrl } from "@/lib/utils";
-
 export default function ProfitMoInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 
-  const doc1Url = withBaseUrl("/attached_assets/generated_images/Описание_Profit-MO.pdf");
-  const doc2Url = withBaseUrl("/attached_assets/generated_images/Руководство_Profit-MO.pdf");
+  const doc1Url = withBaseUrl("/attached_assets/generated_images/Презентация_API_Профит-УМО.pdf");
 
   const handleDownload = (url: string, filename: string) => {
     setDownloading(filename);
@@ -111,11 +108,11 @@ export default function ProfitMoInfo() {
   };
 
   return (
-    <section className="pt-16 pb-16 overflow-hidden bg-white dark:bg-beige">
+    <section className="pt-16 pb-16 overflow-hidden bg-beige-light dark:bg-beige">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-brown-dark mb-3 sm:mb-4 lg:mb-5">
-            Интеграционный модуль <br/>«Профит-УМО»
+            Интеграционный модуль <br />«Профит-УМО»
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-brown-dark max-w-3xl mx-auto text-center sm:text-center">
             Автоматизация взаимодействия между системой ЭСМО и 1С:Бухгалтерия
@@ -125,7 +122,7 @@ export default function ProfitMoInfo() {
         {/* Заголовок и реестры */}
         <div className="mb-6 sm:mb-8">
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
-            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm bg-white border border-beige/30">
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm bg-white ">
               <FileText className="w-3 h-3 sm:w-4 sm:h-4 text-brown-dark mr-1.5 sm:mr-2" />
               <span className="font-medium text-brown-dark">Роспатент: <span className="font-bold">№ {productInfo.registration.reestr}</span></span>
             </div>
@@ -134,7 +131,7 @@ export default function ProfitMoInfo() {
 
         {/* О продукте и назначение */}
         <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
-          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl border border-beige/30">
+          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-2 sm:mb-3">
               О продукте
             </h4>
@@ -143,7 +140,7 @@ export default function ProfitMoInfo() {
             </p>
           </div>
 
-          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl border border-beige/30">
+          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-2 sm:mb-3">
               Назначение программы
             </h4>
@@ -155,21 +152,21 @@ export default function ProfitMoInfo() {
 
         {/* Решаемые проблемы */}
         <div className="mb-6 sm:mb-8">
-  <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
+          <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
             <Shield className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-brown-dark mr-2" />
             Решаемые проблемы
           </h4>
           <ul className="space-y-2 sm:space-y-3">
             {productInfo.problems.map((problem, index) => (
               <li key={index} className="flex sm:items-center items-start group/task">
-        <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
-            <span className="text-beige-light text-xs sm:text-sm font-bold">
-              {index + 1}
-            </span>
-          </div>
-        </div>
-        <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
+                <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
+                    <span className="text-beige-light text-xs sm:text-sm font-bold">
+                      {index + 1}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
                   {problem}
                 </p>
               </li>
@@ -179,18 +176,18 @@ export default function ProfitMoInfo() {
 
         {/* Экономические выгоды */}
         <div className="mb-6 sm:mb-8">
-  <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
+          <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
             Экономические выгоды внедрения
           </h4>
           <ul className="space-y-2 sm:space-y-3">
             {productInfo.benefits.map((benefit, index) => (
               <li key={index} className="flex items-start group/benefit">
                 <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
                     <CheckCircle className="w-3 h-3 text-beige-light" />
                   </div>
                 </div>
-        <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
+                <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
                   {benefit}
                 </p>
               </li>
@@ -208,7 +205,7 @@ export default function ProfitMoInfo() {
             {productInfo.modules.map((module, index) => (
               <div
                 key={index}
-                className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl border border-beige/30 shadow-lg transition-all duration-300 overflow-hidden flex flex-col hover:border-brown-dark"
+                className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl  shadow-lg transition-all duration-300 overflow-hidden flex flex-col hover:border-brown-dark"
               >
                 <div className="flex items-center mb-2 sm:mb-3">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brown-dark rounded-lg flex items-center justify-center mr-2 sm:mr-3">
@@ -218,7 +215,7 @@ export default function ProfitMoInfo() {
                   </div>
                   <span className="font-semibold text-brown-dark text-sm sm:text-base">{module.name}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-brown-dark text-justify flex-grow">
+                <p className="text-sm sm:text-base lg:text-base text-brown-dark text-justify flex-grow">
                   {module.description}
                 </p>
               </div>
@@ -229,7 +226,7 @@ export default function ProfitMoInfo() {
         {/* Технологии и классификация в сетке */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {/* Технологии */}
-          <div className="p-4 sm:p-6 bg-brown-dark rounded-xl sm:rounded-2xl border border-beige/30">
+          <div className="p-4 sm:p-6 bg-brown-dark rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-beige-light mb-2 sm:mb-3">
               Технологии и интеграция
             </h4>
@@ -257,7 +254,7 @@ export default function ProfitMoInfo() {
           </div>
 
           {/* Классификация */}
-          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl border border-beige/30">
+          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-2 sm:mb-3">
               Классификация ПО
             </h4>
@@ -266,13 +263,13 @@ export default function ProfitMoInfo() {
                 <p className="text-xs sm:text-sm font-bold text-brown-dark mb-1">
                   Основной класс
                 </p>
-                <p className="text-brown-dark font-medium text-sm sm:text-base text-justify">{productInfo.classification.main}</p>
+                <p className="text-brown-dark text-sm sm:text-base text-justify">{productInfo.classification.main}</p>
               </div>
               <div>
                 <p className="text-xs sm:text-sm font-bold text-brown-dark mb-1">
                   Дополнительный класс
                 </p>
-                <p className="text-brown-dark font-medium text-sm sm:text-base text-justify">{productInfo.classification.additional}</p>
+                <p className="text-brown-dark text-sm sm:text-base text-justify">{productInfo.classification.additional}</p>
               </div>
             </div>
           </div>
@@ -284,34 +281,34 @@ export default function ProfitMoInfo() {
             Ключевые преимущества системы
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl  shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
               <div className="flex items-center mb-2 sm:mb-3">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brown-dark rounded-lg flex items-center justify-center mr-2 sm:mr-3">
                   <RefreshCw className="w-3 h-3 sm:w-4 sm:h-5 lg:w-5 lg:h-5 text-beige-light" />
                 </div>
                 <span className="font-semibold text-brown-dark text-sm sm:text-base">Автоматизация</span>
               </div>
-              <p className="text-xs sm:text-sm text-brown-dark text-justify">Автоматизация взаимодействия между системой ЭСМО и 1С:Бухгалтерия</p>
+              <p className="text-sm sm:text-base lg:text-base text-brown-dark text-justify">Автоматизация взаимодействия между системой ЭСМО и 1С:Бухгалтерия</p>
             </div>
 
-            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl  shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
               <div className="flex items-center mb-2 sm:mb-3">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brown-dark rounded-lg flex items-center justify-center mr-2 sm:mr-3">
                   <Shield className="w-3 h-3 sm:w-4 sm:h-5 lg:w-5 lg:h-5 text-beige-light" />
                 </div>
                 <span className="font-semibold text-brown-dark text-sm sm:text-base">Точность данных</span>
               </div>
-              <p className="text-xs sm:text-sm text-brown-dark text-justify">Исключение ошибок ручного ввода и дублирования данных</p>
+              <p className="text-sm sm:text-base lg:text-base text-brown-dark text-justify">Исключение ошибок ручного ввода и дублирования данных</p>
             </div>
 
-            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl  shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
               <div className="flex items-center mb-2 sm:mb-3">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brown-dark rounded-lg flex items-center justify-center mr-2 sm:mr-3">
                   <Users className="w-3 h-3 sm:w-4 sm:h-5 lg:w-5 lg:h-5 text-beige-light" />
                 </div>
                 <span className="font-semibold text-brown-dark text-sm sm:text-base">Экономия времени</span>
               </div>
-              <p className="text-xs sm:text-sm text-brown-dark text-justify">Снижение трудозатрат на ведение учета в двух системах</p>
+              <p className="text-sm sm:text-base lg:text-base text-brown-dark text-justify">Снижение трудозатрат на ведение учета в двух системах</p>
             </div>
           </div>
         </div>
@@ -319,7 +316,7 @@ export default function ProfitMoInfo() {
         {/* Документация и контакты */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Документация */}
-          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300">
+          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl  shadow-lg transition-all duration-300">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4">
               Документация
             </h4>
@@ -329,9 +326,9 @@ export default function ProfitMoInfo() {
                   key={index}
                   onClick={() => handleDownload(doc.url, doc.filename)}
                   disabled={downloading === doc.filename}
-                  className="w-full text-left p-3 sm:p-4 bg-white rounded-lg border border-beige/30 shadow-lg transition-all duration-300 group/doc flex items-center justify-between disabled:opacity-50 disabled:cursor-not-allowed hover:border-brown-dark"
+                  className="w-full text-left p-3 sm:p-4 bg-white rounded-lg  shadow-lg transition-all duration-300 group/doc flex items-center justify-between disabled:opacity-50 disabled:cursor-not-allowed hover:border-brown-dark"
                 >
-                  <span className="text-brown-dark group-hover/doc:text-brown transition-colors duration-200 text-xs sm:text-sm lg:text-base text-justify pr-2 sm:pr-4">
+                  <span className="text-brown-dark group-hover/doc:text-brown transition-colors duration-200 text-sm sm:text-base lg:text-base text-justify pr-2 sm:pr-4">
                     {doc.title}
                   </span>
                   <div className="ml-2 sm:ml-4 flex-shrink-0 flex items-center">
@@ -347,16 +344,16 @@ export default function ProfitMoInfo() {
           </div>
 
           {/* Контакты */}
-          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300">
+          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl lg:rounded-2xl  shadow-lg transition-all duration-300">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4">
               Для получения лицензии и консультации
             </h4>
             <div className="space-y-3 sm:space-y-4">
               <a
                 href={`tel:${productInfo.contacts.phone.replace(/-/g, '')}`}
-                className="flex items-center p-3 sm:p-4 bg-white rounded-lg lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 group/phone hover:border-brown-dark"
+                className="flex items-center p-3 sm:p-4 bg-white rounded-lg lg:rounded-2xl  shadow-lg transition-all duration-300 group/phone hover:border-brown-dark"
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white border border-beige/30 rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover/phone:bg-brown-dark transition-colors duration-200">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white  rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover/phone:bg-brown-dark transition-colors duration-200">
                   <Phone className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-brown-dark group-hover/phone:text-beige-light transition-colors" />
                 </div>
                 <div>
@@ -369,9 +366,9 @@ export default function ProfitMoInfo() {
 
               <a
                 href={`mailto:${productInfo.contacts.email}`}
-                className="flex items-center p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 group/email hover:border-brown-dark"
+                className="flex items-center p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl lg:rounded-2xl  shadow-lg transition-all duration-300 group/email hover:border-brown-dark"
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white border border-beige/30 rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover/email:bg-brown-dark transition-colors duration-200">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white  rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover/email:bg-brown-dark transition-colors duration-200">
                   <Mail className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-brown-dark group-hover/email:text-beige-light transition-colors" />
                 </div>
                 <div>
@@ -382,7 +379,7 @@ export default function ProfitMoInfo() {
                 </div>
               </a>
             </div>
-            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-beige/30">
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-brown-dark">
               <p className="text-xs sm:text-sm text-brown-dark text-justify">
                 Разработчик: <span className="font-medium">{productInfo.registration.developer}</span>
               </p>

@@ -27,7 +27,6 @@ export default function ProcessSection() {
   return (
     <section className="pb-6 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        {/* Обводка вокруг всей секции */}
         <div className="rounded-3xl p-8 lg:p-12 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 bg-white/50 dark:bg-slate-900/50">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-6">
@@ -38,19 +37,15 @@ export default function ProcessSection() {
             </p>
           </div>
 
-          {/* Сетка шагов процесса */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {processSteps.map((step, index) => (
               <div key={index} className="relative group">
-                {/* Карточка шага */}
                 <Card className="relative z-10 bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200/50 dark:border-slate-700/50 h-full">
                   <CardContent className="p-0">
-                    {/* Номер шага */}
                     <div className="text-5xl font-black text-slate-200 dark:text-slate-700 mb-4 group-hover:text-primary/20 transition-colors">
                       {step.step}
                     </div>
 
-                    {/* Заголовок и описание */}
                     <div className="text-center">
                       <h4 className="text-lg font-bold text-foreground mb-3">
                         {step.title}

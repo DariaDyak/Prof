@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ThemeToggle from "@/components/ThemeToggle";
 import ItDecisions from "@/components/ItDecisions";
 import AutomationSection from "@/components/AutomationSection";
 import { useEffect } from "react";
@@ -29,14 +28,9 @@ export default function AutomationPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-Montserrat">
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-
       <Header onNavigate={scrollToSection} />
 
-      <main> {/* Добавлено равномерное расстояние */}
-        {/* ItDecisions с кастомным контентом для страницы решений */}
+      <main> 
         <ItDecisions 
           badgeText="Автоматизация процессов"
           title="Профессиональная автоматизация процессов"
@@ -49,8 +43,6 @@ export default function AutomationPage() {
           alignment="left"
           minHeight="lg"
         />
-        
-        
         <AutomationBenefits/>
         <AutomationSection/>
       </main>

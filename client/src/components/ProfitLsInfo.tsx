@@ -1,20 +1,15 @@
-// components/ProfitLsInfo.tsx
-import { Card, CardContent } from "@/components/ui/card";
-import { Download, Phone, Mail, FileText, Award, Zap, BarChart, Shield, Cpu, Train, Wrench, Network } from "lucide-react";
+import { Phone, Mail, FileText, BarChart, Shield, Train } from "lucide-react";
 import { useState } from "react";
 
 export default function ProfitLsInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 
-  // Используем публичные пути к файлам (замените на актуальные)
   const doc1Url = "";
   const doc2Url = "";
 
-  // Функция для скачивания файла
   const handleDownload = (url: string, filename: string) => {
     setDownloading(filename);
 
-    // Создаем временную ссылку для скачивания
     const link = document.createElement('a');
     link.href = url;
     link.download = filename;
@@ -22,11 +17,9 @@ export default function ProfitLsInfo() {
     link.click();
     document.body.removeChild(link);
 
-    // Сбрасываем состояние через секунду
     setTimeout(() => setDownloading(null), 1000);
   };
 
-  // Данные из скриншота
   const productInfo = {
     title: "Автоматизированная информационная система «Профит — ЛС»",
     about: "АИС «Профит-ЛС» предназначена для комплексной автоматизации управления подвижным составом и оптимизации логистических процессов в сфере железнодорожных перевозок.",
@@ -72,11 +65,11 @@ export default function ProfitLsInfo() {
   };
 
   return (
-    <section className="pt-16 pb-16 overflow-hidden bg-white dark:bg-beige">
+    <section className="pt-16 pb-16 overflow-hidden bg-beige-light dark:bg-beige">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-brown-dark mb-3 sm:mb-4 lg:mb-5">
-            Автоматизированная информационная система <br/>«Профит — ЛС»
+            Автоматизированная информационная система <br />«Профит — ЛС»
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-brown-dark max-w-3xl mx-auto text-center sm:text-center">
             Комплексное решение для автоматизации управления железнодорожными перевозками
@@ -86,7 +79,7 @@ export default function ProfitLsInfo() {
         {/* Заголовок и реестры */}
         <div className="mb-6 sm:mb-8">
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
-            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm bg-white border border-beige/30">
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm bg-white ">
               <FileText className="w-3 h-3 sm:w-4 sm:h-4 text-brown-dark mr-1.5 sm:mr-2" />
               <span className="font-medium text-brown-dark">Роспатент: <span className="font-bold">№ {productInfo.registration.reestr}</span></span>
             </div>
@@ -95,7 +88,7 @@ export default function ProfitLsInfo() {
 
         {/* О продукте и назначение */}
         <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
-          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl border border-beige/30">
+          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-2 sm:mb-3">
               О продукте
             </h4>
@@ -104,7 +97,7 @@ export default function ProfitLsInfo() {
             </p>
           </div>
 
-          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl border border-beige/30">
+          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-2 sm:mb-3">
               Назначение программы
             </h4>
@@ -116,21 +109,21 @@ export default function ProfitLsInfo() {
 
         {/* Основные функции */}
         <div className="mb-6 sm:mb-8">
-  <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
+          <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4 flex items-center">
             <Train className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-brown-dark mr-2" />
             Основные функции системы
           </h4>
           <ul className="space-y-2 sm:space-y-3">
             {productInfo.features.map((feature, index) => (
               <li key={index} className="flex sm:items-center items-start group/task">
-        <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
-            <span className="text-beige-light text-xs sm:text-sm font-bold">
-              {index + 1}
-            </span>
-          </div>
-        </div>
-        <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
+                <div className="flex-shrink-0 mt-0.5 sm:mt-0 mr-2 sm:mr-3">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-brown-dark rounded-full flex items-center justify-center transition-colors">
+                    <span className="text-beige-light text-xs sm:text-sm font-bold">
+                      {index + 1}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-brown-dark leading-relaxed text-sm sm:text-base text-justify transition-colors pt-0.5 sm:pt-0">
                   {feature}
                 </p>
               </li>
@@ -153,7 +146,7 @@ export default function ProfitLsInfo() {
         {/* Технологии в сетке */}
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {/* Технологии */}
-          <div className="p-4 sm:p-6 bg-brown-dark rounded-xl sm:rounded-2xl border border-beige/30">
+          <div className="p-4 sm:p-6 bg-brown-dark rounded-xl sm:rounded-2xl ">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-beige-light mb-2 sm:mb-3">
               Технологии
             </h4>
@@ -189,50 +182,50 @@ export default function ProfitLsInfo() {
             Ключевые преимущества системы
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
               <div className="flex items-center mb-2 sm:mb-3">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brown-dark rounded-lg flex items-center justify-center mr-2 sm:mr-3">
                   <Train className="w-3 h-3 sm:w-4 sm:h-5 lg:w-5 lg:h-5 text-beige-light" />
                 </div>
                 <span className="font-semibold text-brown-dark text-sm sm:text-base">Автоматизация</span>
               </div>
-              <p className="text-xs sm:text-sm text-brown-dark text-justify">Полная автоматизация управления подвижным составом</p>
+              <p className="text-sm sm:text-base lg:text-base text-brown-dark text-justify">Полная автоматизация управления подвижным составом</p>
             </div>
 
-            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl  shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
               <div className="flex items-center mb-2 sm:mb-3">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brown-dark rounded-lg flex items-center justify-center mr-2 sm:mr-3">
                   <BarChart className="w-3 h-3 sm:w-4 sm:h-5 lg:w-5 lg:h-5 text-beige-light" />
                 </div>
                 <span className="font-semibold text-brown-dark text-sm sm:text-base">Оптимизация</span>
               </div>
-              <p className="text-xs sm:text-sm text-brown-dark text-justify">Снижение простоев и повышение эффективности перевозок</p>
+              <p className="text-sm sm:text-base lg:text-base text-brown-dark text-justify">Снижение простоев и повышение эффективности перевозок</p>
             </div>
 
-            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+            <div className="p-3 sm:p-4 bg-white rounded-lg sm:rounded-xl lg:rounded-2xl  shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
               <div className="flex items-center mb-2 sm:mb-3">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brown-dark rounded-lg flex items-center justify-center mr-2 sm:mr-3">
                   <Shield className="w-3 h-3 sm:w-4 sm:h-5 lg:w-5 lg:h-5 text-beige-light" />
                 </div>
                 <span className="font-semibold text-brown-dark text-sm sm:text-base">Надежность</span>
               </div>
-              <p className="text-xs sm:text-sm text-brown-dark text-justify">Соответствие российскому законодательству</p>
+              <p className="text-sm sm:text-base lg:text-base  text-brown-dark text-justify">Соответствие российскому законодательству</p>
             </div>
           </div>
         </div>
 
         {/* Контакты */}
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 sm:gap-6">
-          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300">
+          <div className="p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl lg:rounded-2xl  shadow-lg transition-all duration-300">
             <h4 className="text-base sm:text-lg lg:text-xl font-semibold text-brown-dark mb-3 sm:mb-4">
               Для получения лицензии и консультации
             </h4>
             <div className="space-y-3 sm:space-y-4">
               <a
                 href={`tel:${productInfo.contacts.phone.replace(/-/g, '')}`}
-                className="flex items-center p-3 sm:p-4 bg-white rounded-lg lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 group/phone hover:border-brown-dark"
+                className="flex items-center p-3 sm:p-4 bg-white rounded-lg lg:rounded-2xl  shadow-lg transition-all duration-300 group/phone hover:border-brown-dark"
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white border border-beige/30 rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover/phone:bg-brown-dark transition-colors duration-200">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover/phone:bg-brown-dark transition-colors duration-200">
                   <Phone className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-brown-dark group-hover/phone:text-beige-light transition-colors" />
                 </div>
                 <div>
@@ -245,9 +238,9 @@ export default function ProfitLsInfo() {
 
               <a
                 href={`mailto:${productInfo.contacts.email}`}
-                className="flex items-center p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl lg:rounded-2xl border border-beige/30 shadow-lg transition-all duration-300 group/email hover:border-brown-dark"
+                className="flex items-center p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl lg:rounded-2xl shadow-lg transition-all duration-300 group/email hover:border-brown-dark"
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white border border-beige/30 rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover/email:bg-brown-dark transition-colors duration-200">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center mr-3 sm:mr-4 group-hover/email:bg-brown-dark transition-colors duration-200">
                   <Mail className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-brown-dark group-hover/email:text-beige-light transition-colors" />
                 </div>
                 <div>
@@ -258,7 +251,7 @@ export default function ProfitLsInfo() {
                 </div>
               </a>
             </div>
-            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-beige/30">
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-brown-dark">
               <p className="text-xs sm:text-sm text-brown-dark text-justify">
                 Разработчик: <span className="font-medium">{productInfo.registration.developer}</span>
               </p>

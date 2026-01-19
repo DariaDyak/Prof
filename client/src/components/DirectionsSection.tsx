@@ -70,14 +70,13 @@ export default function DirectionsSection() {
               onClick={() => handleDirectionClick(direction.title)}
             >
               <div className="flex flex-col h-full justify-between">
-                {/* Верхняя часть - заголовок */}
+
                 <div className="flex-1">
                   <h3 className="text-sm sm:text-base font-bold text-foreground mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-tight">
                     {direction.title}
                   </h3>
                 </div>
 
-                {/* Нижняя часть - описание */}
                 <div className="mt-auto">
                   <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">
                     {direction.description}

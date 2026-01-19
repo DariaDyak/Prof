@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import Header from '@/components/Header';
 import TextPolicy from '@/components/TextPolicy';
 import Footer from '@/components/Footer';
-import ThemeToggle from '@/components/ThemeToggle';
 
 export default function DataProcessing() {
   const sectionRefs = {
@@ -25,20 +24,15 @@ export default function DataProcessing() {
   };
 
   return (
-    <div className="min-h-screen bg-beige-light text-foreground font-Montserrat">
-      {/* Fixed Theme Toggle */}
-      <div className="fixed top-4 right-4 z-50">
-          <ThemeToggle />
-      </div>
-
+    <div className="min-h-screen bg-background text-foreground text-foreground font-Montserrat">
       <Header onNavigate={scrollToSection} />
-      
-      <main> {/* Добавляем отступ для фиксированного header */}
+
+      <main>
         <div ref={sectionRefs.home}>
           <TextPolicy />
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

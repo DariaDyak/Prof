@@ -1,4 +1,3 @@
-// client/src/lib/api.ts
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
 export interface ApiResponse<T> {
@@ -47,7 +46,6 @@ export interface ProductStats {
   byPlatform: Record<string, number>;
 }
 
-// Функция для обработки ошибок
 async function handleResponse<T>(response: Response): Promise<ApiResponse<T>> {
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
@@ -55,40 +53,38 @@ async function handleResponse<T>(response: Response): Promise<ApiResponse<T>> {
       errorData.message || `HTTP error! status: ${response.status}`
     );
   }
-  
+
   const data: ApiResponse<T> = await response.json();
-  
+
   if (!data.success) {
     throw new Error(data.message || 'API request failed');
   }
-  
+
   return data;
 }
 
-// Базовые заголовки для запросов
 function getHeaders(): HeadersInit {
   const token = localStorage.getItem('token');
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
   };
-  
+
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
-  
+
   return headers;
 }
 
-// Проверка здоровья API
 export async function checkHealth(): Promise<boolean> {
   try {
     const response = await fetch(`${API_BASE_URL}/health`, {
       method: 'GET',
       headers: getHeaders(),
     });
-    
+
     if (!response.ok) return false;
-    
+
     const data = await response.json();
     return data.success === true && data.status === 'healthy';
   } catch (error) {
@@ -102,7 +98,7 @@ export async function fetchProducts(): Promise<Product[]> {
   const response = await fetch(`${API_BASE_URL}/products`, {
     headers: getHeaders(),
   });
-  
+
   const result = await handleResponse<Product[]>(response);
   return result.data;
 }
@@ -113,7 +109,7 @@ export async function searchProducts(query: string): Promise<Product[]> {
     `${API_BASE_URL}/products/search?q=${encodeURIComponent(query)}`,
     { headers: getHeaders() }
   );
-  
+
   const result = await handleResponse<Product[]>(response);
   return result.data;
 }
@@ -123,7 +119,7 @@ export async function getProductStats(): Promise<ProductStats> {
   const response = await fetch(`${API_BASE_URL}/products/stats`, {
     headers: getHeaders(),
   });
-  
+
   const result = await handleResponse<ProductStats>(response);
   return result.data;
 }
@@ -133,7 +129,7 @@ export async function getProductById(id: number): Promise<Product> {
   const response = await fetch(`${API_BASE_URL}/products/${id}`, {
     headers: getHeaders(),
   });
-  
+
   const result = await handleResponse<Product>(response);
   return result.data;
 }
@@ -145,7 +141,7 @@ export async function createProduct(productData: CreateProductDTO): Promise<Prod
     headers: getHeaders(),
     body: JSON.stringify(productData),
   });
-  
+
   const result = await handleResponse<Product>(response);
   return result.data;
 }
@@ -157,7 +153,7 @@ export async function updateProduct(id: number, productData: UpdateProductDTO): 
     headers: getHeaders(),
     body: JSON.stringify(productData),
   });
-  
+
   const result = await handleResponse<Product>(response);
   return result.data;
 }
@@ -168,7 +164,7 @@ export async function deleteProduct(id: number): Promise<boolean> {
     method: 'DELETE',
     headers: getHeaders(),
   });
-  
+
   const result = await handleResponse<any>(response);
   return result.success;
 }
@@ -179,7 +175,7 @@ export async function getProductsByPlatform(platform: string): Promise<Product[]
     `${API_BASE_URL}/products/platform/${encodeURIComponent(platform)}`,
     { headers: getHeaders() }
   );
-  
+
   const result = await handleResponse<Product[]>(response);
   return result.data;
 }
@@ -189,7 +185,7 @@ export async function getProductsWithCertificates(): Promise<Product[]> {
   const response = await fetch(`${API_BASE_URL}/products/with-certificates`, {
     headers: getHeaders(),
   });
-  
+
   const result = await handleResponse<Product[]>(response);
   return result.data;
 }
@@ -199,7 +195,7 @@ export async function getRegisteredProducts(): Promise<Product[]> {
   const response = await fetch(`${API_BASE_URL}/products/registered`, {
     headers: getHeaders(),
   });
-  
+
   const result = await handleResponse<Product[]>(response);
   return result.data;
 }
@@ -210,7 +206,7 @@ export async function initializeDatabase(): Promise<boolean> {
     method: 'POST',
     headers: getHeaders(),
   });
-  
+
   const result = await handleResponse<any>(response);
   return result.success;
 }
@@ -220,7 +216,7 @@ export async function testDatabaseConnection(): Promise<any> {
   const response = await fetch(`${API_BASE_URL}/test-db`, {
     headers: getHeaders(),
   });
-  
+
   const result = await handleResponse<any>(response);
   return result.data;
 }

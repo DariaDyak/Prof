@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Database, FileText, Shield, X, Zap, Cpu, Train, Calculator } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useProducts } from '@/hooks/useProducts';
 import { withBaseUrl } from '@/lib/utils';
-
 export default function StatsSection() {
     const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
     const [zoom, setZoom] = useState(1);
@@ -95,13 +94,13 @@ export default function StatsSection() {
     }
 
     return (
-        <section id="cases" className="py-14 sm:py-20 bg-beige/50  overflow-hidden">
+        <section id="cases" className="py-12 sm:py-12 bg-beige/50 overflow-hidden">
             <div className="container mx-auto h-full px-4 lg:px-8">
                 <div className="text-left mb-10 sm:mb-14 lg:mb-16">
                     <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige mb-3">
                         Собственная разработка
                     </h2>
-                    <p className="text-brown text-sm sm:text-lg dark:text-beige mb-3">
+                    <p className="text-brown text-sm mt-6 sm:mt-3 lg:mt-8 sm:text-lg dark:text-beige mb-3">
                         Мы сотрудничаем с компаниями из разных секторов экономики, предлагая индивидуальные решения с учетом специфики каждой отрасли
                     </p>
                 </div>
@@ -161,7 +160,7 @@ export default function StatsSection() {
                 </div>
 
                 {/* Таблица продуктов */}
-                <div className="bg-white  rounded-xl overflow-hidden shadow-2xl border border-beige/30 dark:border-brown/30">
+                <div className="bg-white  rounded-xl overflow-hidden shadow-xl border border-beige/30 dark:border-brown/30">
                     <div className="px-6 py-4 bg-white  border-b border-beige/50 dark:border-brown/50">
                         <h3 className="text-lg font-medium text-brown-dark ">Наши разработки</h3>
                         <p className="text-sm text-brown  mt-1">
@@ -231,7 +230,7 @@ export default function StatsSection() {
                                             </TableCell>
 
                                             <TableCell className="align-middle">
-                                                <p className="line-clamp-2 text-brown/80 dark:text-brown-dark">
+                                                <p className="line-clamp-2 text-sm text-brown/80 dark:text-brown-dark">
                                                     {product.short_description}
                                                 </p>
                                             </TableCell>
@@ -280,14 +279,22 @@ export default function StatsSection() {
                                                     {product.certificate_image && (
                                                         <Button
                                                             size="sm"
-                                                            variant="outline"
+                                                            variant="ghost"
                                                             onClick={() => handleOpenCertificate(product.certificate_image!)}
-                                                            className="h-8 px-3 dark:bg-brown/30 border border-brown dark:border-brown/50 hover:bg-brown-dark text-brown-dark dark:text-beige hover:text-beige
+                                                            className="h-8 px-3 text-beige bg-brown-dark font-medium
+                  bg-brown-dark border border-brown-dark
+                  text-beige-light  font-medium
+                  dark:bg-beige dark:text-brown-dark
+                  hover:bg-white hover:text-brown-dark
+                  dark:hover:border
+                  dark:hover:border-brown-dark
+                  dark:hover:text-brown-dark dark:hover:bg-white
+                  
                        select-none
                        ring-0 focus:ring-0 focus:ring-offset-0
                        outline-none focus:outline-none focus-visible:outline-none
                        active:outline-none active:ring-0
-                       focus:border-transparent"
+                       focus:border-brown-dark"
                                                             style={{
                                                                 outline: 'none',
                                                                 WebkitTapHighlightColor: 'transparent',
@@ -300,7 +307,7 @@ export default function StatsSection() {
                                                             onFocus={(e) => {
                                                                 e.currentTarget.style.outline = 'none';
                                                                 e.currentTarget.style.boxShadow = 'none';
-                                                                e.currentTarget.style.borderColor = 'transparent';
+                                                                e.currentTarget.style.borderColor = 'brown';
                                                             }}
                                                             onTouchStart={(e) => {
                                                                 e.currentTarget.style.outline = 'none';
@@ -329,7 +336,6 @@ export default function StatsSection() {
                                         key={product.id}
                                         className="p-4 bg-white hover:bg-beige dark:hover:bg-beige transition-all duration-200"
                                     >
-                                        {/* Заголовок и иконка продукта */}
                                         <div className="flex items-center gap-4">
                                             <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brown-dark flex items-center justify-center">
                                                 <ProductIcon className="w-6 h-6 text-beige-light dark:text-beige" />
@@ -372,7 +378,7 @@ export default function StatsSection() {
                                         {/* Описание */}
                                         {product.short_description && (
                                             <div className="mb-3 mt-3">
-                                                <p className="line-clamp-2 text-xs text-brown/80 dark:text-brown-dark">
+                                                <p className="line-clamp-2 text-sm text-brown/80 dark:text-brown-dark">
                                                     {product.short_description}
                                                 </p>
                                             </div>
@@ -422,7 +428,7 @@ export default function StatsSection() {
                                         </div>
 
                                         {/* Сертификаты */}
-                                        <div className="flex justify-between items-center pt-2 border-t border-beige/50 dark:border-brown/50">
+                                        <div className="flex justify-between items-center pt-2 border-t border-beige/50 hover:border-brown/50">
                                             <div className="text-xs text-brown-dark dark:text-beige/70">Сертификаты</div>
                                             <div>
                                                 {product.certificate_image && (
@@ -430,12 +436,19 @@ export default function StatsSection() {
                                                         size="sm"
                                                         variant="outline"
                                                         onClick={() => handleOpenCertificate(product.certificate_image!)}
-                                                        className="h-7 px-3 text-xs dark:bg-brown/30 border border-brown dark:border-brown/50 hover:bg-brown-dark text-brown-dark dark:text-beige hover:text-beige
+                                                        className="h-8 px-3 text-beige bg-brown-dark font-medium
+                  bg-brown-dark border border-brown-dark
+                  text-beige-light  font-medium
+                  dark:bg-beige dark:text-brown-dark
+                  hover:bg-white hover:text-brown-dark
+                  dark:hover:border
+                  dark:hover:border-brown-dark
+                  dark:hover:text-brown-dark dark:hover:bg-white
                        select-none
                        ring-0 focus:ring-0 focus:ring-offset-0
                        outline-none focus:outline-none focus-visible:outline-none
                        active:outline-none active:ring-0
-                       focus:border-transparent"
+                       focus:border-brown-dark"
                                                         style={{
                                                             outline: 'none',
                                                             WebkitTapHighlightColor: 'transparent',
@@ -467,7 +480,7 @@ export default function StatsSection() {
                     </div>
 
                     {/* Футер таблицы */}
-                    <div className="bg-beige/30 dark:bg-brown-dark/30 border-t border-beige/50 dark:border-brown/50 px-6 py-4">
+                    <div className="bg-beige/30 dark:bg-brown-dark/30 border-t border-beige/50 hover:border-brown/50 dark:border-brown/50 px-6 py-4">
                         <div className="flex items-center justify-between">
                             <div className="text-sm text-brown-dark">
                                 Показано {products.length} из {products.length} продуктов
@@ -486,14 +499,21 @@ export default function StatsSection() {
                     {/* Полупрозрачный фон */}
                     <div className="absolute inset-0 bg-brown-dark/80 dark:bg-brown/80 backdrop-blur-sm" />
 
-                    {/* Кнопка закрытия */}
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={handleCloseCertificate}
-                        className="absolute top-4 right-4 z-10 h-10 w-10 bg-beige-light hover:bg-brown rounded-full shadow-lg backdrop-blur-sm border border-beige/20 dark:border-brown/30"
+                        className="absolute top-4 right-4 z-10 h-10 w-10 
+        /* Светлая тема */
+        bg-white hover:bg-brown-dark 
+        border border-beige/30 hover:border-brown-dark
+        text-brown-dark hover:text-white
+        
+        /* Общие стили */
+        rounded-full shadow-lg backdrop-blur-sm 
+        transition-all duration-300"
                     >
-                        <X className="w-5 h-5 text-brown-dark " />
+                        <X className="w-5 h-5" />
                     </Button>
 
                     {/* Изображение сертификата */}

@@ -36,11 +36,9 @@ export function useProducts() {
                 
                 const result: ApiResponse = await response.json();
                 
-                // Проверяем структуру ответа
                 if (result.success && Array.isArray(result.data)) {
                     setProducts(result.data);
                 } else {
-                    // Если структура не соответствует ожиданиям
                     console.error('Unexpected API response structure:', result);
                     setProducts([]);
                 }

@@ -1,10 +1,7 @@
-// pages/ProfitLs.tsx
 import { useRef, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ThemeToggle from "@/components/ThemeToggle";
 import ProfitLSInfo from "@/components/ProfitLsInfo";
-import BackButton from "@/components/BackButton";
 
 export default function ProfitLs() {
   useEffect(() => {
@@ -27,14 +24,8 @@ export default function ProfitLs() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-Montserrat">
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-
       <Header onNavigate={scrollToSection} />
-      
       <ProfitLSInfo />
-
       <Footer />
     </div>
   );

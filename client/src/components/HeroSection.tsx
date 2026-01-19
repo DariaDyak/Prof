@@ -15,7 +15,6 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
   const [showButton, setShowButton] = useState(false);
   const [showImage, setShowImage] = useState(false);
 
-  // Инициализация анимации при монтировании
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowBadge(true);
@@ -58,29 +57,24 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
 
   return (
     <section className="pt-12 pb-16 lg:pt-10 lg:pb-20 relative min-h-[92vh] flex items-center justify-center overflow-hidden">
-      {/* Фоновое изображение с эффектом размытия */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={logoDark} 
-          alt="ИТ-решения для бизнеса" 
-          className="w-full h-full object-cover transform transition-transform duration-1000"
+        <img
+          src={logoDark}
+          alt="ИТ-решения для бизнеса"
+          className="w-full h-full object-cover transform transition-transform duration-1000
+    blur-[4px] lg:blur-[12px] brightness-90"
           style={{
             transform: showImage ? 'scale(1)' : 'scale(1.05)',
-            filter: 'blur(8px) brightness(0.9)',
             objectPosition: 'center'
           }}
         />
-        {/* Светлая тема: осветляем фон */}
-        <div className="absolute inset-0 bg-gradient-to-t from-beige via-beige/85 to-beige/30 dark:hidden"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-beige/50 dark:hidden"></div>
-        
-        {/* Темная тема: затемняем фон */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brown via-brown/90 to-brown/85 hidden dark:block"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-brown/70 hidden dark:block"></div>
-        
+        <div className="absolute inset-0 bg-gradient-to-t from-beige via-beige/85 to-beige/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-beige/50"></div>
+
+
         {/* Наложения для улучшения видимости контента */}
-        <div className="absolute inset-0 bg-gradient-to-t from-beige/80 via-beige/70 to-beige/60 dark:from-brown/80 dark:via-brown/70 dark:to-brown/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-beige/30 dark:to-brown/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-beige/80 via-beige/70 to-beige/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-beige/30"></div>
       </div>
 
       {/* Основной контент */}
@@ -91,54 +85,41 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
           <div className="order-1 lg:order-1 text-center lg:text-left flex flex-col justify-center">
             <div className="max-w-xl mx-auto lg:mx-0">
 
-              {/* Badge с анимацией появления сверху вниз */}
               <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full
                 bg-brown-dark/10 border border-brown-dark
-                dark:bg-beige-light/5 dark:border-beige-light
-                text-brown-dark dark:text-beige-light font-medium mb-6 sm:mb-8
+                
+                text-brown-dark  font-medium mb-6 sm:mb-8
                 backdrop-blur-sm
                 text-xs sm:text-sm
-                transform transition-all duration-700 ease-out
+                transform transition-transform duration-700 ease-out
+                transition-none !important
                 ${showBadge ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`}
                 style={{ transitionDelay: '10ms' }}>
-                <Shield className="h-3 w-3 sm:h-4 sm:w-4" />
-                <span>Ваш надежный ИТ-партнер</span>
+                <Shield className="h-3 w-3 sm:h-4 sm:w-4 transition-none !important" />
+                <span className="transition-none">Ваш надежный ИТ-партнер</span>
               </div>
 
-              {/* Main Heading с последовательной анимацией */}
               <div className="mb-6 sm:mb-8 space-y-2 sm:space-y-4">
-                <h1 className="font-bold text-brown-dark dark:text-beige-light leading-tight">
-                  {/* ООО «ПРОФ ИТ» - появляется первым */}
+                <h1 className="font-bold ">
                   <div {...slideInAnimation(showFirstLine, '50ms')}>
-                    <span className="inline-block text-2xl sm:text-4xl lg:text-5xl xl:text-6xl">
+                    <span className="text-4xl sm:text-4xl lg:text-5xl xl:text-6xl text-[#382E25]">
                       ООО «ПРОФ ИТ»
                     </span>
                   </div>
                 </h1>
-
-                {/* Эффективность через автоматизацию - появляется вторым */}
-                <div {...slideInAnimation(showSecondLine, '100ms')}>
-                  <div className="font-semibold text-base sm:text-xl lg:text-2xl xl:text-3xl">
-                    <span className="text-brown-dark/80 dark:text-beige-light/90">
-                      Эффективность через автоматизацию
-                    </span>
-                  </div>
-                </div>
               </div>
-
-              {/* Description с анимацией сверху вниз - появляется третьим */}
               <div {...slideInAnimation(showDescription, '200ms')}>
-                <p className="text-brown-dark dark:text-beige mb-8 sm:mb-12 leading-relaxed text-sm sm:text-base lg:text-lg">
+                <p className="text-brown-dark  mb-8 sm:mb-12 leading-relaxed 
+                  text-sm sm:text-base lg:text-lg transition-none !important">
                   Комплексные ИТ-решения для цифровой трансформации вашего бизнеса.
                   От автоматизации процессов до полного цикла разработки — повышаем эффективность
                   и создаем конкурентные преимущества
                 </p>
               </div>
 
-              {/* CTA Button - появляется с fade in анимацией */}
-              <div 
+              <div
                 className="flex justify-center lg:justify-start transition-all duration-700 ease-out"
-                style={{ 
+                style={{
                   opacity: showButton ? 1 : 0,
                   transform: showButton ? 'translateY(0)' : 'translateY(20px)',
                   transitionDelay: '700ms'
@@ -156,27 +137,25 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                   }}
                   className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
                   bg-brown-dark border border-brown-dark
-                  text-beige-light dark:text-beige-light font-medium
-                  dark:bg-beige-light/5 
+                  text-beige-light font-medium
                   group
                   px-6
                   text-xs sm:text-sm
-                  hover:bg-beige hover:text-brown-dark
-                  dark:hover:bg-beige-light dark:hover:text-brown-dark
-                  transition-all duration-300"
+                  hover:bg-beige-light hover:text-brown-dark
+                  group-hover:transition-all group-hover:duration-300"
                 >
-                  <span className="relative z-10">
+                  <span className="relative z-10 ">
                     Подробнее об услугах
                   </span>
-                  <ArrowDown className="relative z-10 h-4 w-4" />
+                  <ArrowDown className="relative z-10 h-4 w-4 " />
                 </Button>
               </div>
             </div>
           </div>
 
           {/* Правая колонка - изображение */}
-          <div className="order-2 lg:order-2 mt-8 lg:mt-0 h-full min-h-[400px] lg:min-h-[500px] xl:min-h-[600px]">
-            <div 
+          <div className="order-2 lg:order-2 mt-8 lg:mt-0 h-full min-h-[400px] lg:min-h-[500px] xl:min-h-[600px] hidden lg:block">
+            <div
               className="relative w-full h-full rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-1000 ease-out backdrop-blur-sm"
               style={{
                 opacity: showImage ? 1 : 0,
@@ -189,11 +168,9 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                 filter: 'brightness(1.1) contrast(1.1)'
               }}
             >
-              {/* Градиентное наложение для улучшения читаемости и эстетики */}
-              <div className="absolute inset-0 bg-gradient-to-tl from-brown-dark/5 via-transparent to-beige-light/10 dark:from-black/10 dark:via-transparent dark:to-black/10"></div>
-              
-              {/* Текст поверх изображения */}
-              <div 
+              <div className="absolute inset-0 bg-gradient-to-tl from-brown-dark/5 via-transparent to-beige-light/10 transition-none !important"></div>
+
+              <div
                 className="absolute bottom-6 left-6 right-6 z-10 transform transition-all duration-1000 ease-out"
                 style={{
                   opacity: showImage ? 1 : 0,
@@ -201,11 +178,9 @@ export default function HeroSection({ onLearnMore }: HeroSectionProps) {
                   transitionDelay: '1200ms'
                 }}
               >
-                
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

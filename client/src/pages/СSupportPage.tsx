@@ -29,14 +29,9 @@ export default function CSupportPage() {
 
   return (
     <div className="min-h-screen text-foreground font-Montserrat">
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-
       <Header onNavigate={scrollToSection} />
 
       <main>
-        {/* Hero секция с ItDecisions */}
         <ItDecisions
           badgeText="1С сопровождение"
           title="Превращаем вашу 1С в конкурентное преимущество"
@@ -49,15 +44,10 @@ export default function CSupportPage() {
           minHeight="lg"
         />
 
-
-
-        {/* Секция услуг в формате гексагонов */}
         <section ref={sectionRefs.services} className="scroll-mt-20">
           <HexagonServices />
         </section>
-
         <ModificationServicesSec />
-        {/* Отдельная секция с итоговым блоком */}
         <ResultsSection />
       </main>
 

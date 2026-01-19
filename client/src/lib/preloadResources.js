@@ -1,4 +1,3 @@
-// @/lib/preloadResources.js
 export const preloadResources = async () => {
   const resources = [
     // Критические изображения

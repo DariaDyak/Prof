@@ -50,20 +50,20 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-14 sm:py-20 bg-white dark:bg-beige overflow-hidden">
+    <section id="services" className="py-12 sm:py-20 overflow-hidden">
       <div className="container mx-auto h-full px-4 lg:px-8">
         <div className="text-left mb-10 sm:mb-14 lg:mb-16">
-          <h2 className="text-5xl font-bold tracking-tight text-brown-dark mb-3">
+          <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige-light mb-3">
             Наши услуги
           </h2>
-          
+
         </div>
 
         <div className="space-y-16 sm:space-y-24 lg:space-y-32">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             const isEven = index % 2 === 0; // Четные индексы - текст слева, нечетные - текст справа
-            
+
             return (
               <div
                 key={index}
@@ -77,31 +77,32 @@ export default function ServicesSection() {
                   <div className="flex items-center gap-3 sm:gap-4">
                     {IconComponent && (
                       <div className="rounded-lg">
-                        <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-brown " />
+                        <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-brown dark:text-beige-light" />
                       </div>
                     )}
-                    <h3 className="text-md sm:text-base lg:text-2xl xl:text-2xl font-bold text-brown-dark ">
+                    <h3 className="text-md sm:text-md lg:text-2xl xl:text-2xl font-bold text-brown-dark dark:text-beige-light">
                       {service.title}
                     </h3>
                   </div>
-                  
-                  <p className="text-sm  text-justify lg:text-lg text-brown sm:text-lg leading-relaxed sm:leading-loose">
+
+                  <p className="text-sm  text-justify lg:text-lg text-brown-dark dark:text-beige-light sm:text-lg leading-relaxed sm:leading-loose">
                     {service.description}
                   </p>
-                  
+
                   <Button
                     variant="ghost"
                     className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
                   bg-brown-dark border border-brown-dark
                   text-beige-light  font-medium
-                  
+                  dark:bg-beige dark:text-brown-dark
+                  hover:bg-white hover:text-brown-dark
+                  dark:hover:border-white
+                  dark:hover:text-brown-dark dark:hover:bg-white
                   group
                   px-6
                   text-xs sm:text-sm
-                  hover:bg-beige hover:text-brown-dark
-                  
                   transition-all duration-300"
-                
+
                     onClick={() => handleLearnMore(service.link)}
                     disabled={!service.link || service.link === "#"}
                     data-testid={`button-service-${index}`}
@@ -112,14 +113,6 @@ export default function ServicesSection() {
                     <ArrowRight className="relative z-10 h-3 w-3 sm:h-4 sm:w-4" />
                   </Button>
                 </div>
-
-
-
-
-
-
-
-                {/* Блок с изображением */}
                 <div className="w-full lg:w-1/2">
                   <div className="relative overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-2xl group">
                     <img
@@ -127,9 +120,7 @@ export default function ServicesSection() {
                       alt={service.title}
                       className="w-full h-[250px] sm:h-[350px] lg:h-[400px] xl:h-[450px] object-cover transform group-hover:scale-105 transition-transform duration-700"
                     />
-                    {/* Градиентное наложение */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    {/* Декор */}
                     <div className="absolute top-4 right-4 w-16 h-16 sm:w-20 sm:h-20 bg-blue-500/10 rounded-full blur-2xl transform group-hover:scale-125 transition-transform duration-700" />
                     <div className="absolute bottom-4 left-4 w-24 h-24 sm:w-32 sm:h-32 bg-blue-400/10 rounded-full blur-2xl transform group-hover:scale-125 transition-transform duration-700" />
                   </div>

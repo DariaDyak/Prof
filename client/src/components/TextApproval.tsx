@@ -1,20 +1,17 @@
 export default function TextApproval() {
     return (
-        <section id="services" className="pt-10 pb-16 bg-white dark:from-slate-900 dark:to-blue-900/20 text-justify overflow-hidden">
+        <section id="services" className="pt-10 pb-16 bg-beige text-justify overflow-hidden">
             <div className="container mx-auto px-4 lg:px-8 ">
                 <div className="text-center mb-8 sm:mb-12">
                     <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold text-brown-dark mb-2">
                         Согласие на обработку персональных данных
                     </h2>
                 </div>
-                
 
-                {/* Основной текст */}
                 <p className="mb-4 sm:mb-6 text-xs sm:text-base leading-relaxed text-brown-dark">
                     Я, субъект персональных данных, в соответствии с Федеральным законом № 152-ФЗ «О персональных данных» свободно, в своей воле и в своем интересе, а также подтверждая свою дееспособность, даю согласие ООО «ПРОФ ИТ», расположенному по адресу: 350051, Краснодарский край, г Краснодар, Рашпилевская ул, д. 244 (далее – Оператор), на обработку на следующих условиях:
                 </p>
 
-                {/* Нумерованный список условий */}
                 <ol className="list-decimal list-inside space-y-3 sm:space-y-4 mb-6 sm:mb-8 text-xs sm:text-base text-brown-dark">
                     <li className="pl-2">
                         <span className="font-medium">Цель обработки персональных данных:</span> обработка запроса в форме обратной связи на сайте.
@@ -39,12 +36,10 @@ export default function TextApproval() {
                     </li>
                 </ol>
 
-            
-               
-                    <p className="text-xs sm:text-base font-medium text-brown-dark">
-                        Настоящее согласие действует все время до момента прекращения обработки персональных данных, указанных в п. 5 и п. 6 данного Согласия.
-                    </p>
-               
+                <p className="text-xs sm:text-base font-medium text-brown-dark">
+                    Настоящее согласие действует все время до момента прекращения обработки персональных данных, указанных в п. 5 и п. 6 данного Согласия.
+                </p>
+
             </div>
         </section>
     )

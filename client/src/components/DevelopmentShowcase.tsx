@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Database, Globe, Shield, Zap, Users } from "lucide-react";
+import { Code, Database, Globe, Shield } from "lucide-react";
 
 const solutions = [
   {
@@ -30,7 +30,7 @@ const solutions = [
 
 export default function DevelopmentShowcase() {
   return (
-    <section className="pt-16 pb-16 bg-beige-light dark:bg-brown-dark overflow-hidden">
+    <section className="pt-12 pb-16 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 ">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold dark:text-beige text-brown-dark mb-4 sm:mb-5 lg:mb-6">
@@ -51,7 +51,7 @@ export default function DevelopmentShowcase() {
             >
               <CardContent className="p-4 sm:p-6 relative z-10 flex flex-col h-full">
                 <div className="flex-1">
-                  {/* Обновленный блок иконки с новой анимацией */}
+
                   <div className="
             w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
             bg-brown-dark 
@@ -66,7 +66,7 @@ export default function DevelopmentShowcase() {
                   <h3 className="text-base sm:text-base lg:text-base font-bold text-brown-dark mb-2 sm:mb-3 leading-tight">
                     {solution.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-brown-dark mb-3 sm:mb-4 leading-relaxed">
+                  <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark mb-3 sm:mb-4 leading-relaxed">
                     {solution.description}
                   </p>
                 </div>
@@ -74,7 +74,7 @@ export default function DevelopmentShowcase() {
                   {solution.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center space-x-1 sm:space-x-2">
                       <div className="w-1.5 h-1.5 bg-brown-dark rounded-full flex-shrink-0"></div>
-                      <span className="text-xs sm:text-sm text-brown-dark leading-tight">{feature}</span>
+                      <span className="pl-2 text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-tight">{feature}</span>
                     </div>
                   ))}
                 </div>

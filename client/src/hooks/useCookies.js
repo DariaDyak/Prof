@@ -1,4 +1,3 @@
-// hooks/useCookies.js
 import { useState, useEffect } from 'react';
 
 export const useCookies = () => {
@@ -12,8 +11,7 @@ export const useCookies = () => {
   const acceptCookies = () => {
     localStorage.setItem('cookieConsent', 'accepted');
     setConsent('accepted');
-    
-    // Здесь можно инициализировать аналитику (Google Analytics и т.д.)
+
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'granted'
@@ -24,8 +22,7 @@ export const useCookies = () => {
   const declineCookies = () => {
     localStorage.setItem('cookieConsent', 'declined');
     setConsent('declined');
-    
-    // Блокируем аналитику
+
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'denied'
