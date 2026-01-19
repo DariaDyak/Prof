@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom'; 
 
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const cookieDecision = localStorage.getItem('cookieConsent');
 
-    // Если решения еще нет, показываем баннер
     if (!cookieDecision) {
-      // Небольшая задержка для лучшего UX
       const timer = setTimeout(() => {
         setIsVisible(true);
         setIsAnimating(true);
@@ -33,6 +34,7 @@ const CookieBanner = () => {
   };
 
   const handleDetails = () => {
+    
     window.open('/dataProcessing', '_blank');
   };
 
@@ -58,7 +60,7 @@ const CookieBanner = () => {
                   На нашем сайте используются cookie-файлы, в том числе сервисов веб-аналитики. Используя сайт, вы соглашаетесь на обработку персональных данных при помощи cookie-файлов. Подробнее об обработке персональных данных вы можете узнать в {' '}
                   <button
                     onClick={handleDetails}
-                    className="text-brown-dark hover:text-brown underline font-medium transition-colors"
+                    className="text-brown-dark hover:text-brown underline font-medium transition-colors cursor-pointer"
                   >
                     Политике конфиденциальности
                   </button>.
@@ -66,7 +68,6 @@ const CookieBanner = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
-
                 <button
                   onClick={handleAccept}
                   className="px-6 py-2.5 text-sm font-medium text-white bg-brown-dark hover:bg-brown rounded-lg transition-colors duration-200 shadow-sm"
@@ -75,8 +76,6 @@ const CookieBanner = () => {
                 </button>
               </div>
             </div>
-
-
           </div>
         </motion.div>
       )}

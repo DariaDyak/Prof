@@ -230,13 +230,13 @@ export default function ContactsSection() {
                 </div>
 
                 {/* Чекбокс политики обработки данных */}
-                <div className="flex items-start space-x-3 pt-2">
+                <div className="flex items-center space-x-3 pt-2">
                   <Checkbox
                     id="policy"
                     checked={isPolicyAccepted}
                     onCheckedChange={(checked) => setIsPolicyAccepted(checked as boolean)}
                     disabled={isLoading}
-                    className="mt-0.5 md:mt-1"
+                    
                   />
                   <div className="grid gap-1 leading-none">
                     <label
@@ -261,9 +261,7 @@ export default function ContactsSection() {
                         политикой обработки персональных данных
                       </Link>
                     </label>
-                    <p className="text-xs md:text-sm text-beige">
-                      Нажимая кнопку, вы даете согласие на обработку ваших персональных данных
-                    </p>
+                    
                   </div>
                 </div>
 

@@ -180,7 +180,7 @@ export default function AboutUs() {
                     rel="noopener noreferrer"
                     className="text-brown-dark hover:text-brown-dark hover:underline transition-colors"
                   >
-                    Прайс-лист на техническое сопровождение (PDF)
+                    Прайс-лист на услуги (PDF)
                   </a>
                 </ul>
               </div>
