@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import P1 from "@assets/generated_images/P1.png";
 import P2 from "@assets/generated_images/P2(2).png";
 import P3 from "@assets/generated_images/P3.png";
@@ -33,9 +34,19 @@ export default function PartnersSection() {
     }
   ];
 
-  return (
 
-    <section id="partners" className="py-8 sm:py-20 bg-beige/20">
+  const infinitePartnersRow1 = [
+    ...partners, ...partners, ...partners,
+    ...partners, ...partners, ...partners,
+    ...partners, ...partners, ...partners,
+    ...partners, ...partners, ...partners,
+    ...partners, ...partners, ...partners,
+    ...partners, ...partners, ...partners,
+    ...partners, ...partners, ...partners
+  ];
+
+  return (
+    <section id="partners" className="py-12 bg-beige/20 overflow-hidden">
       <div className="container mx-auto h-full px-4 lg:px-8">
         <div className="text-left mb-10 sm:mb-14 lg:mb-16">
           <h2 className="text-5xl font-bold text-brown-dark dark:text-beige mb-3">
@@ -46,62 +57,52 @@ export default function PartnersSection() {
             которые позволяют получать выгоду от совместной работы
           </p>
         </div>
+      </div>
 
-        <div className="
-  grid grid-cols-2 gap-6 sm:gap-8
-  lg:flex lg:flex-wrap lg:justify-center lg:items-center lg:gap-10 lg:gap-20
-">
-          {partners.map((partner, index) => (
-            <a
-              key={partner.name}
-              href={partner.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-        flex flex-col items-center group
-        lg:w-auto
-      "
+      {/* Контейнер для двух бегущих строк */}
+      <div className="relative w-full overflow-hidden bg-beige/10">
+        {/* Градиенты по краям */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-beige/20 via-beige/5 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-beige/20 via-beige/5 to-transparent z-10 pointer-events-none"></div>
+
+        <div
+          className="flex animate-marquee-fast md:animate-marquee whitespace-nowrap items-center mb-6 md:mb-8"
+        >
+          {infinitePartnersRow1.map((partner, index) => (
+            <div
+              key={`row1-${partner.name}-${index}`}
+              className="inline-flex items-center justify-center mx-4 md:mx-6 lg:mx-8 flex-shrink-0"
             >
-              <div className="
-        w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32
-        bg-white 
-        rounded-full 
-        shadow-lg 
-        hover:shadow-xl 
-        border border-gray-200
-        dark:border-beige/20
-        p-3 sm:p-4 lg:p-5 lg:p-6
-        flex items-center justify-center
-        mb-2 sm:mb-3 lg:mb-4
-        transition-all duration-300
-        lg:hover:scale-105
-        lg:hover:-translate-y-1
-      ">
-                <div className="w-full h-full flex items-center justify-center">
+              <a
+                href={partner.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group transition-all duration-300 block"
+              >
+                <div className="
+                  w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32
+                  bg-gradient-to-br from-white/40 to-white/10
+                  backdrop-blur-lg
+                  rounded-2xl
+                  flex items-center justify-center
+                  p-3 md:p-4
+                  shadow-lg shadow-black/10
+                  transition-all duration-300
+                  group-hover:shadow-lg group-hover:shadow-black/20
+                  border border-white/30
+                  group-hover:border-white/50
+                ">
                   <img
                     src={partner.image}
                     alt={`Логотип ${partner.name}`}
-                    className="max-w-full max-h-full object-contain p-1 sm:p-2"
+                    className="max-w-full max-h-full object-contain rounded-2xl"
+                    loading="lazy"
                   />
                 </div>
-              </div>
-
-              <div className="text-center max-w-[120px] sm:max-w-[140px] lg:max-w-[150px]">
-                <h3 className="
-          text-xs sm:text-sm lg:text-base 
-          font-medium text-brown-dark 
-          dark:text-beige
-          transition-colors duration-300
-          lg:group-hover:text-brown-dark/80
-          leading-tight
-        ">
-                  {partner.name}
-                </h3>
-              </div>
-            </a>
+              </a>
+            </div>
           ))}
         </div>
-
       </div>
     </section>
   );

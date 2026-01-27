@@ -133,9 +133,7 @@ export default function Footer() {
                 </div>
               </div>
               <p className="text-beige/80 leading-relaxed text-base">
-                <span className="font-semibold text-beige">ПРОФ ИТ</span> -
-                современная IT-компания, создающая инновационные решения для цифровой
-                трансформации бизнеса
+                Cовременная IT-компания, создающая инновационные решения для цифровой трансформации бизнеса
               </p>
             </div>
 

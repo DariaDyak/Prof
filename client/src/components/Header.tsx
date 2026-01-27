@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import Logo from "@assets/generated_images/lo.png";
+import Logo2 from "@assets/generated_images/lo2.png";
 interface HeaderProps {
   onNavigate?: (section: string) => void;
 }
@@ -200,10 +201,30 @@ export default function Header({ onNavigate }: HeaderProps) {
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && handleNavClick('home')}
           >
-            <div className="relative flex items-center h-full">
-              <span className="font-bold text-2xl lg:text-4xl transition-colors duration-300 text-brown-dark dark:text-beige">
-                ПРОФ ИТ
-              </span>
+            <div className="relative flex items-center h-full gap-3">
+              {/* Логотип компании */}
+              <div className="relative flex items-center justify-center">
+
+                <img
+                  src={isDark ? Logo : Logo2}
+                  alt="Логотип ПРОФ ИТ"
+                  className="h-10 w-auto md:h-12 transition-all duration-300"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
+              </div>
+
+              <div className="flex flex-col">
+  <span className="font-bold text-2xl lg:text-3xl transition-colors duration-100
+    text-brown-dark dark:text-beige-light">
+    ПРОФ ИТ
+  </span>
+</div>
+
+              <div className="h-8 w-px bg-gradient-to-b from-transparent via-brown/30 to-transparent dark:via-beige/30 ml-2 hidden md:block"></div>
+
             </div>
           </div>
 
@@ -312,7 +333,7 @@ export default function Header({ onNavigate }: HeaderProps) {
               
               shadow-xl"
             >
-              <div className="flex flex-col space-y-2 mt-4">
+              <div className="flex flex-col space-y-2">
                 {navigationItems.map((item) => {
                   const isActive = activeId === item.id && location.pathname === '/';
                   return (

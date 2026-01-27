@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Settings, Workflow, Wrench, Code } from "lucide-react";
 import U1 from "@assets/generated_images/U1.png";
 import U2 from "@assets/generated_images/U2.png";
-import U3 from "@assets/generated_images/U3.jpg";
-import U4 from "@assets/generated_images/U4.jpg";
+import U3 from "@assets/generated_images/U3.png";
+import U4 from "@assets/generated_images/U4.png";
 import { useNavigate } from "react-router-dom";
 
 export default function ServicesSection() {
@@ -92,7 +92,7 @@ export default function ServicesSection() {
                   <Button
                     variant="ghost"
                     className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
-                  bg-brown-dark border border-brown-dark
+bg-brown-dark border border-brown-dark
                   text-beige-light  font-medium
                   dark:bg-beige dark:text-brown-dark
                   hover:bg-white hover:text-brown-dark
@@ -114,7 +114,7 @@ export default function ServicesSection() {
                   </Button>
                 </div>
                 <div className="w-full lg:w-1/2">
-                  <div className="relative overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-2xl group">
+                  <div className="relative overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-xl group">
                     <img
                       src={service.image}
                       alt={service.title}

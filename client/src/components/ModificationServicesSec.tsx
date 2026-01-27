@@ -119,7 +119,7 @@ export default function ModificationServicesSec() {
                                 <div className="text-sm font-medium text-brown-dark">сертификата</div>
                                 <div className="text-xs text-brown-dark mt-1">1С:Специалист</div>
                             </div>
-                            <div className="flex-1 p-4 rounded-lg border transition-all duration-300 hover:shadow-md">
+                            <div className="flex-1 p-4 rounded-lg border transition-all duration-300">
                                 <div className="text-2xl sm:text-3xl font-bold text-brown-dark mb-1">7</div>
                                 <div className="text-sm font-medium text-brown-dark">сертификатов</div>
                                 <div className="text-xs text-brown-dark mt-1">1С:Профессионал</div>

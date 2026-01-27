@@ -37,6 +37,7 @@ export default function CSupportPage() {
           title="Превращаем вашу 1С в конкурентное преимущество"
           description="Мы обеспечиваем стабильность и надежность работы ИТ-систем, а также оказываем поддержку на всех этапах использования 1С системы"
           showBackButton={true}
+          backgroundImage="U3"
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали IT-решений')}
           titleSize="lg"

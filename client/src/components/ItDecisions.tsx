@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import U1 from '@assets/generated_images/U1.png';
 import U8 from '@assets/generated_images/U8.png';
-import U6 from '@assets/generated_images/U6.png';
-import U5 from '@assets/generated_images/U5.png';
+
+import U4 from '@assets/generated_images/U4.png';
 import { Button } from "@/components/ui/button";
 
 interface ItDecisionsProps {
@@ -22,8 +22,8 @@ interface ItDecisionsProps {
 const backgroundImages = {
   U1: U1,
   U2: U8,
-  U3: U6,
-  U4: U5
+  U3: U8,
+  U4: U4
 };
 
 export default function ItDecisions({

@@ -61,7 +61,7 @@ export default function BusinessImpactSection() {
             <div className="space-y-4 sm:space-y-6">
               <div className="group relative rounded-xl sm:rounded-2xl p-4 sm:p-6 transition-all duration-300 shadow-lg overflow-hidden flex-1">
 
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl duration-500 -z-10">
+               <div className="absolute inset-0 rounded-xl sm:rounded-2xl ">
                   <div className="absolute inset-[2px] rounded-xl sm:rounded-2xl bg-white"></div>
                 </div>
 

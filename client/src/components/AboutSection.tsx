@@ -370,25 +370,30 @@ export default function AboutSection() {
                 {slides.map((slide, index) => (
                   <div
                     key={index}
-                    className={`relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out flex-shrink-0 ${index === currentSlide
+                    className={`relative overflow-hidden cursor-pointer transition-all duration-300 ease-in-out flex-shrink-0 ${index === currentSlide
                       ? 'flex-grow rounded-2xl'
-                      : 'h-14 lg:h-16 rounded-xl'
+                      : 'h-14 lg:h-16 rounded-xl hover:flex-grow hover:rounded-2xl'
                       }`}
                     onClick={() => goToSlide(index)}
-                    onMouseEnter={() => index !== currentSlide && setIsAutoPlaying(false)}
+                    onMouseEnter={() => {
+                      if (index !== currentSlide) {
+                        setIsAutoPlaying(false);
+                        goToSlide(index);
+                      }
+                    }}
                     onMouseLeave={() => setIsAutoPlaying(true)}
                   >
                     <div className="absolute inset-0">
                       <img
-                        src={slide.image}
-                        className={`w-full h-full object-cover transition-all duration-700 ${index === currentSlide ? 'brightness-100' : 'scale-100 brightness-50'
+                        className={`w-full h-full object-cover transition-all duration-300 ${index === currentSlide ? 'brightness-100' : 'brightness-50 hover:brightness-75'
+
                           }`}
                         alt={slide.title}
                       />
 
-                      <div className={`absolute inset-0 transition-all duration-500 ${index === currentSlide
+                      <div className={`absolute inset-0 transition-all duration-300 ${index === currentSlide
                         ? 'bg-gradient-to-t from-black/80 via-black/40 to-transparent'
-                        : 'bg-black/70 hover:bg-black/60'
+                        : 'bg-black/70 hover:bg-black/50'
                         }`} />
                     </div>
 
