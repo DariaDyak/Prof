@@ -60,14 +60,11 @@ export default function BusinessImpactSection() {
           <div className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}>
             <div className="space-y-4 sm:space-y-6">
               <div className="group relative rounded-xl sm:rounded-2xl p-4 sm:p-6 transition-all duration-300 shadow-lg overflow-hidden flex-1">
-
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl duration-500 -z-10">
-                  <div className="absolute inset-[2px] rounded-xl sm:rounded-2xl bg-white"></div>
-                </div>
+                {/* Убрана обводка */}
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-white"></div>
 
                 <div className="space-y-4 sm:space-y-6 relative z-10">
-                  <div className="flex items-start gap-3 sm:gap-4 group mt-4 ">
-
+                  <div className="flex items-start gap-3 sm:gap-4 group mt-4">
                     <div className="flex-1">
                       <h3 className="text-base lg:text-base xl:text-base font-bold mb-2 text-brown-dark transition-colors leading-tight">
                         Комплексный подход к развитию
@@ -81,7 +78,6 @@ export default function BusinessImpactSection() {
                   </div>
 
                   <div className="flex items-start gap-3 sm:gap-4 group">
-
                     <div className="flex-1 mb-4">
                       <h4 className="text-base lg:text-base xl:text-base font-bold mb-2 text-brown-dark transition-colors leading-tight">
                         Измеримые результаты
@@ -250,7 +246,6 @@ export default function BusinessImpactSection() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }

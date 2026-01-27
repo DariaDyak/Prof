@@ -36,16 +36,16 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative py-2.5 pl-10
-          transition-all duration-300 ease-out
-          text-sm sm:text-base font-medium
-          select-none
-          ring-0 focus:ring-0 focus:ring-offset-0
-          outline-none focus:outline-none focus-visible:outline-none
-          active:outline-none active:ring-0
-          text-brown-dark dark:text-beige-light
-          hover:text-brown-dark dark:hover:text-beige-light
-          items-center gap-2 text-left
-          group inline-flex"
+                            transition-all duration-300 ease-out
+                            text-sm sm:text-base font-medium
+                            select-none
+                            ring-0 focus:ring-0 focus:ring-offset-0
+                            outline-none focus:outline-none focus-visible:outline-none
+                            active:outline-none active:ring-0
+                            text-brown-dark dark:text-beige-light
+                            hover:text-brown-dark dark:hover:text-beige-light
+                            items-center gap-2 text-left
+                            group inline-flex"
                 style={{
                   outline: 'none',
                   WebkitTapHighlightColor: 'transparent',
@@ -65,7 +65,7 @@ export default function AboutUs() {
               >
                 <svg
                   className="absolute left-0 w-4 h-4 sm:w-5 sm:h-5 text-brown-dark dark:text-beige-light
-                 transition-colors duration-300 group-hover:opacity-80"
+                             transition-colors duration-300 group-hover:opacity-80"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -75,9 +75,9 @@ export default function AboutUs() {
                 <span className="relative inline-block">
                   Официальная публикация приказа
                   <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-brown-dark dark:bg-beige-light rounded-full
-      transition-all duration-500 ease-out
-      opacity-0 transform -translate-x-1/2
-      group-hover:opacity-100 group-hover:w-full group-hover:left-0 group-hover:translate-x-0" />
+                                  transition-all duration-500 ease-out
+                                  opacity-0 transform -translate-x-1/2
+                                  group-hover:opacity-100 group-hover:w-full group-hover:left-0 group-hover:translate-x-0" />
                 </span>
               </a>
             </div>

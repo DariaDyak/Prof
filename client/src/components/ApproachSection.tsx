@@ -42,7 +42,7 @@ export default function ApproachSection() {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="group bg-white dark:bg-brown-dark/95 rounded-xl sm:rounded-2xl p-4 sm:p-6 border shadow-lg transition-all duration-300 "
+                className="bg-white dark:bg-brown-dark/95 rounded-xl sm:rounded-2xl p-4 sm:p-6 border shadow-lg "
               >
                 <div className="flex items-center gap-3 sm:gap-4">
                   <div className="flex-shrink-0">

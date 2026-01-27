@@ -1,6 +1,6 @@
 export default function AutomationBenefits() {
   return (
-    <section className="pt-8 overflow-hidden">
+    <section className="pt-12 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center sm:mb-10 lg:mb-12">
           <h2 className="text-2xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-foreground mb-6 sm:mb-5 lg:mb-6">

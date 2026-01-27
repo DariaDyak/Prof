@@ -36,7 +36,7 @@ export default function DevelopmentPage() {
           title="Индивидуальная разработка программного обеспечения"
           description="Команда опытных разработчиков создает решения, которые автоматизируют бизнес-процессы и повышают эффективность работы"
           showBackButton={true}
-          backgroundImage="U3"
+          backgroundImage="U4"
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали разработки')}
           titleSize="lg"
