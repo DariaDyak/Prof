@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronRight } from 'lucide-react';
-
 import S1 from "@assets/generated_images/slide_prez1.png";
 import S2 from "@assets/generated_images/slide_prez2.png";
 import S3 from "@assets/generated_images/slide_prez3.png";
@@ -18,6 +17,7 @@ export default function AboutSection() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [imageErrors, setImageErrors] = useState<boolean[]>([false, false, false]);
 
   const slides = [
     {
@@ -47,6 +47,12 @@ export default function AboutSection() {
     return () => clearInterval(interval);
   }, [isAutoPlaying, slides.length]);
 
+  const handleImageError = (index: number) => {
+    const newErrors = [...imageErrors];
+    newErrors[index] = true;
+    setImageErrors(newErrors);
+  };
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
@@ -71,6 +77,13 @@ export default function AboutSection() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const getImageSrc = (index: number) => {
+    if (imageErrors[index]) {
+      return `https://placehold.co/800x600/1e3a8a/ffffff?text=${encodeURIComponent(slides[index].title)}`;
+    }
+    return slides[index].image;
   };
 
   return (
@@ -161,12 +174,12 @@ export default function AboutSection() {
                       </svg>
 
                       <span className="relative inline-block 
-  text-xs sm:text-sm md:text-base">
+                                        text-xs sm:text-sm md:text-base">
                         Скачайте подробную презентацию о компании
                         <div className="absolute bottom-0 left-0 w-full h-0.5 bg-brown-dark dark:bg-brown-dark rounded-full
-                transition-all duration-300 ease-out
-                opacity-0 transform scale-x-0 group-hover:opacity-100 group-hover:transform group-hover:scale-x-100
-                origin-left" />
+                                        transition-all duration-300 ease-out
+                                        opacity-0 transform scale-x-0 group-hover:opacity-100 group-hover:transform group-hover:scale-x-100
+                                        origin-left" />
                       </span>
                     </button>
                   </div>
@@ -181,8 +194,8 @@ export default function AboutSection() {
               Отрасли специализации
             </h2>
             <p className="text-brown-dark/80 dark:text-beige-light/70 text-base text-sm 
-  sm:mt-3 lg:mt-8 
-  sm:text-lg dark:text-beige mb-6">
+                          sm:mt-3 lg:mt-8 
+                          sm:text-lg dark:text-beige mb-6">
               Направления, в которых мы имеем экспертизу
             </p>
 
@@ -201,10 +214,13 @@ export default function AboutSection() {
                   >
                     <div className="absolute inset-0">
                       <img
-                        src={slide.image}
+                        src={getImageSrc(index)}
+                        loading="lazy"
+                        decoding="async"
                         className={`w-full h-full object-cover transition-all duration-700 ${index === currentSlide ? 'scale-110 brightness-100' : 'scale-100 brightness-50'
                           }`}
                         alt={slide.title}
+                        onError={() => handleImageError(index)}
                       />
 
                       <div className={`absolute inset-0 transition-all duration-500 ${index === currentSlide
@@ -238,8 +254,6 @@ export default function AboutSection() {
                     {index === currentSlide && (
                       <div className="relative h-full flex flex-col justify-end p-6 lg:p-8">
                         <div className="mb-4">
-
-
                           <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
                             {slide.title}
                           </h3>
@@ -385,10 +399,13 @@ export default function AboutSection() {
                   >
                     <div className="absolute inset-0">
                       <img
+                        src={getImageSrc(index)}
+                        loading="lazy"
+                        decoding="async"
                         className={`w-full h-full object-cover transition-all duration-300 ${index === currentSlide ? 'brightness-100' : 'brightness-50 hover:brightness-75'
-
                           }`}
                         alt={slide.title}
+                        onError={() => handleImageError(index)}
                       />
 
                       <div className={`absolute inset-0 transition-all duration-300 ${index === currentSlide
@@ -422,8 +439,6 @@ export default function AboutSection() {
                     {index === currentSlide && (
                       <div className="relative h-full flex flex-col justify-end p-6 lg:p-8">
                         <div className="mb-4">
-
-
                           <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
                             {slide.title}
                           </h3>

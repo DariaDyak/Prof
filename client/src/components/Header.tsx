@@ -4,6 +4,7 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Logo from "@assets/generated_images/lo.png";
 import Logo2 from "@assets/generated_images/lo2.png";
+
 interface HeaderProps {
   onNavigate?: (section: string) => void;
 }
@@ -11,7 +12,8 @@ interface HeaderProps {
 export default function Header({ onNavigate }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState<boolean | null>(null); // Инициализируем null
+  const [isMounted, setIsMounted] = useState(false); // Флаг монтирования
   const location = useLocation();
   const navigate = useNavigate();
   const headerRef = useRef<HTMLElement>(null);
@@ -23,7 +25,10 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: 'Контакты', id: 'contacts' }
   ];
 
+  // Инициализация темы с учетом SSR
   useEffect(() => {
+    setIsMounted(true);
+    
     const savedTheme = localStorage.getItem('theme');
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const initialTheme = savedTheme || systemTheme;
@@ -33,6 +38,8 @@ export default function Header({ onNavigate }: HeaderProps) {
   }, []);
 
   const toggleTheme = () => {
+    if (!isMounted) return;
+    
     const newIsDark = !isDark;
     setIsDark(newIsDark);
     localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
@@ -95,6 +102,8 @@ export default function Header({ onNavigate }: HeaderProps) {
   };
 
   useEffect(() => {
+    if (!isMounted) return;
+    
     const shouldScrollImmediately = sessionStorage.getItem('shouldScrollImmediately') === 'true';
 
     if (location.pathname === '/') {
@@ -117,9 +126,11 @@ export default function Header({ onNavigate }: HeaderProps) {
         return () => clearTimeout(timer);
       }
     }
-  }, [location.pathname]);
+  }, [location.pathname, isMounted]);
 
   useEffect(() => {
+    if (!isMounted) return;
+    
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
       if (hash && navigationItems.some(item => item.id === hash)) {
@@ -138,9 +149,11 @@ export default function Header({ onNavigate }: HeaderProps) {
     }
 
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [location.pathname, navigate, navigationItems]);
+  }, [location.pathname, navigate, navigationItems, isMounted]);
 
   useEffect(() => {
+    if (!isMounted) return;
+    
     if (location.pathname !== '/') {
       setActiveId(null);
       return;
@@ -175,7 +188,32 @@ export default function Header({ onNavigate }: HeaderProps) {
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [navigationItems, location.pathname]);
+  }, [navigationItems, location.pathname, isMounted]);
+
+  // Не рендерим до полной инициализации на клиенте
+  if (!isMounted) {
+    return (
+      <header
+        ref={headerRef}
+        className="h-20 sticky top-0 z-50 
+          bg-gradient-to-b from-beige-light via-beige-light/95 to-beige/90 
+          backdrop-blur-lg backdrop-saturate-150
+          supports-[backdrop-filter]:bg-beige-light/80
+          shadow-lg"
+      >
+        <div className="container mx-auto px-4 lg:px-8 h-full">
+          <div className="flex items-center justify-between h-full">
+            <div className="relative flex items-center h-full gap-3">
+              <div className="relative flex items-center justify-center">
+                <div className="h-10 w-32 md:h-12 bg-gray-300 animate-pulse rounded" />
+              </div>
+            </div>
+            <div className="h-9 w-9 bg-gray-300 animate-pulse rounded" />
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header
@@ -204,7 +242,6 @@ export default function Header({ onNavigate }: HeaderProps) {
             <div className="relative flex items-center h-full gap-3">
               {/* Логотип компании */}
               <div className="relative flex items-center justify-center">
-
                 <img
                   src={isDark ? Logo : Logo2}
                   alt="Логотип ПРОФ ИТ"
@@ -217,11 +254,11 @@ export default function Header({ onNavigate }: HeaderProps) {
               </div>
 
               <div className="flex flex-col">
-  <span className="font-bold text-2xl lg:text-3xl transition-colors duration-100
-    text-brown-dark dark:text-beige-light">
-    ПРОФ ИТ
-  </span>
-</div>
+                <span className="font-bold text-2xl lg:text-3xl transition-colors duration-100
+                  text-brown-dark dark:text-beige">
+                  ПРОФ ИТ
+                </span>
+              </div>
 
               <div className="h-8 w-px bg-gradient-to-b from-transparent via-brown/30 to-transparent dark:via-beige/30 ml-2 hidden md:block"></div>
 

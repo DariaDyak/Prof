@@ -113,8 +113,12 @@ export default {
 
         "marquee": {
           "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
+    "100%": { transform: "translateX(-50%)" },
         },
+        "marquee-mobile": {
+    "0%": { transform: "translateX(0)" },
+    "100%": { transform: "translateX(-50%)" },
+  },
         "marquee-reverse": {
           "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0)" },
@@ -226,14 +230,16 @@ export default {
       },
       animation: {
         "highlight-pulse": "highlightPulse 2s ease-in-out infinite",
-        "marquee": "marquee 40s linear infinite",
+         "marquee": "marquee 40s linear infinite",
+  "marquee-fast": "marquee 20s linear infinite",
+  "marquee-mobile": "marquee-mobile 25s linear infinite",
         "marquee-reverse": "marquee-reverse 40s linear infinite",
         "marquee-vertical": "marquee-vertical 30s linear infinite",
         "marquee-vertical-reverse": "marquee-vertical-reverse 30s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "marquee-slow": "marquee-slow 60s linear infinite",
-        "marquee-fast": "marquee-fast 20s linear infinite",
+        
         "fade-in": "fade-in 0.5s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out",
         "fade-in-down": "fade-in-down 0.6s ease-out",

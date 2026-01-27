@@ -121,8 +121,8 @@ export default function Footer() {
                   <div className="relative">
                     <span
                       className={`font-bold text-2xl lg:text-4xl transition-all duration-300 flex items-center h-full ${theme === 'light'
-                          ? 'opacity-100 text-beige-light'
-                          : 'opacity-0 absolute'
+                        ? 'opacity-100 text-beige-light'
+                        : 'opacity-0 absolute'
                         }`}
                     >
                       ПРОФ ИТ

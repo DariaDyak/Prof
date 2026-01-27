@@ -26,7 +26,7 @@ const solutions = [
     description: "Внедрение систем безопасности и защита данных на всех уровнях приложения",
     features: ["Шифрование", "Аудит", "Защита от атак"]
   }
-];
+]
 
 export default function DevelopmentShowcase() {
   return (
@@ -47,7 +47,7 @@ export default function DevelopmentShowcase() {
           {solutions.map((solution, index) => (
             <Card
               key={index}
-              className="group bg-white  rounded-xl sm:rounded-2xl border  dark:hover:shadow-none  shadow-lg transition-all duration-300"
+              className=" bg-white  rounded-xl sm:rounded-2xl border  dark:hover:shadow-none  shadow-lg"
             >
               <CardContent className="p-4 sm:p-6 relative z-10 flex flex-col h-full">
                 <div className="flex-1">

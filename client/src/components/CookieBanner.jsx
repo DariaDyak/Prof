@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  
-  const navigate = useNavigate(); 
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const cookieDecision = localStorage.getItem('cookieConsent');
@@ -34,8 +34,7 @@ const CookieBanner = () => {
   };
 
   const handleDetails = () => {
-    
-    window.open('/dataProcessing', '_blank');
+    window.location.href = '/dataProcessing';
   };
 
   if (!isVisible) return null;

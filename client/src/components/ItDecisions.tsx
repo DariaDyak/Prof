@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import U1 from '@assets/generated_images/U1.png';
-import U8 from '@assets/generated_images/U8.png';
+import U3 from '@assets/generated_images/U3.png';
 
 import U4 from '@assets/generated_images/U4.png';
 import { Button } from "@/components/ui/button";
@@ -21,8 +21,8 @@ interface ItDecisionsProps {
 
 const backgroundImages = {
   U1: U1,
-  U2: U8,
-  U3: U8,
+  U2: U3,
+  U3: U3,
   U4: U4
 };
 
@@ -82,50 +82,18 @@ export default function ItDecisions({
       <div className="absolute inset-0 z-0">
         <img
           src={currentBackgroundImage}
+          loading="lazy"
+          decoding="async"
           alt="Фон"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 backdrop-blur-[4px] dark:backdrop-blur-[4px]"></div>
-
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-beige via-beige/60 to-transparent backdrop-blur-[1px] dark:from-brown dark:via-brown/40 dark:to-transparent"></div>
-
         <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-beige via-beige/60 to-transparent backdrop-blur-[1px] dark:from-brown dark:via-brown/40 dark:to-transparent"></div>
-
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-beige/30 dark:to-brown/30"></div>
       </div>
 
-      {showBackButton && (
-        <div className="container mx-auto lg:px-8 relative z-10">
-          <Link
-            to="/"
-            className={`
-              relative py-2
-              transition-all duration-300 ease-out
-              font-base
-              focus:outline-none focus:text-brown-dark
-              group
-              text-brown-dark hover:text-brown-dark
-              inline-block
-              ring-0 focus:ring-0 focus:ring-offset-0
-outline-none focus:outline-none focus-visible:outline-none
-active:outline-none active:ring-0
-              
-              pl-4 lg:pl-0
-            `}
-          >
-            <span className="relative inline-block">
-              ← {backButtonText}
-              <div className={`
-                absolute bottom-0 left-0 w-full h-0.5 bg-brown-dark rounded-full
-                transition-all duration-300 ease-out
-                opacity-0 transform scale-0 group-hover:opacity-100 group-hover:transform group-hover:scale-100
-              `} />
-            </span>
-          </Link>
-        </div>
-      )}
-
-      =      <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center relative z-10">
+      <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center relative z-10">
         <div className={`max-w-8xl mx-auto w-full ${alignmentClasses[alignment]}`}>
           {badgeText && (
             <Button
