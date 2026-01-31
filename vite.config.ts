@@ -5,7 +5,10 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
-  base: '/prof2/',
+  base: (() => {
+    const base = process.env.PUBLIC_BASE_PATH || "/";
+    return base.endsWith("/") ? base : `${base}/`;
+  })(),
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -64,9 +67,5 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     open: true,
-  },
-  // Переменные окружения для клиента
-  define: {
-    "process.env": process.env,
   },
 });
