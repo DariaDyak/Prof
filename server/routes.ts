@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import productsRouter from "../server/products"; // Исправленный путь
 import express from 'express'; // Добавьте этот импорт
 import path from 'path';
+import { requireAdminKey } from "./auth";
 
 dotenv.config();
 
@@ -274,7 +275,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Создать продукт
-  app.post("/api/products", async (req: Request, res: Response) => {
+  app.post("/api/products", requireAdminKey(), async (req: Request, res: Response) => {
     try {
       const productData: CreateProductDTO = req.body;
 
@@ -322,7 +323,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Обновить продукт
-  app.put("/api/products/:id", async (req: Request, res: Response) => {
+  app.put("/api/products/:id", requireAdminKey(), async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id);
       
@@ -390,7 +391,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Удалить продукт
-  app.delete("/api/products/:id", async (req: Request, res: Response) => {
+  app.delete("/api/products/:id", requireAdminKey(), async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id);
       
@@ -425,7 +426,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Тестовый маршрут для проверки работы базы данных
-  app.get("/api/test-db", async (_req: Request, res: Response) => {
+  app.get("/api/test-db", requireAdminKey(), async (_req: Request, res: Response) => {
     try {
       // Создаем тестовую таблицу, если она не существует
       await pool.query(`
@@ -460,7 +461,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Инициализация базы данных (для разработки)
-  app.post("/api/init-db", async (_req: Request, res: Response) => {
+  app.post("/api/init-db", requireAdminKey(), async (_req: Request, res: Response) => {
     try {
       // Создаем таблицу products, если она не существует
       await pool.query(`

@@ -1,8 +1,20 @@
+import fs from "node:fs";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import supertest from "supertest";
 import { GenericContainer, Wait } from "testcontainers";
 
-describe("API (integration)", () => {
+const dockerAvailable =
+  Boolean(process.env.DOCKER_HOST) || fs.existsSync("/var/run/docker.sock");
+
+if (!dockerAvailable && process.env.REQUIRE_DOCKER === "1") {
+  throw new Error(
+    "Docker is required for integration tests (set REQUIRE_DOCKER=0 to skip).",
+  );
+}
+
+const describeIfDocker = dockerAvailable ? describe : describe.skip;
+
+describeIfDocker("API (integration)", () => {
   let request: supertest.SuperTest<supertest.Test>;
   let stopPg: (() => Promise<void>) | undefined;
   let closePool: (() => Promise<void>) | undefined;
@@ -28,6 +40,7 @@ describe("API (integration)", () => {
     process.env.DB_NAME = "profit_db";
     process.env.DB_USER = "postgres";
     process.env.DB_PASSWORD = "postgres";
+    process.env.ADMIN_API_KEY = "test-admin";
 
     const { createApp } = await import("../app");
     const { registerRoutes, pool } = await import("../routes");
@@ -41,7 +54,7 @@ describe("API (integration)", () => {
     };
 
     // Ensure DB schema exists
-    await request.post("/api/init-db").expect(200);
+    await request.post("/api/init-db").set("X-Admin-Key", "test-admin").expect(200);
   });
 
   afterAll(async () => {
@@ -58,7 +71,11 @@ describe("API (integration)", () => {
   });
 
   it("POST /api/products validates required fields", async () => {
-    const res = await request.post("/api/products").send({ title: "x" }).expect(400);
+    const res = await request
+      .post("/api/products")
+      .set("X-Admin-Key", "test-admin")
+      .send({ title: "x" })
+      .expect(400);
     expect(res.body.success).toBe(false);
   });
 
@@ -70,7 +87,11 @@ describe("API (integration)", () => {
       platform: "web",
     };
 
-    const created = await request.post("/api/products").send(payload).expect(201);
+    const created = await request
+      .post("/api/products")
+      .set("X-Admin-Key", "test-admin")
+      .send(payload)
+      .expect(201);
     expect(created.body.success).toBe(true);
     expect(created.body.data.title).toBe(payload.title);
     const id = created.body.data.id as number;
@@ -87,12 +108,16 @@ describe("API (integration)", () => {
 
     const updated = await request
       .put(`/api/products/${id}`)
+      .set("X-Admin-Key", "test-admin")
       .send({ title: "Updated" })
       .expect(200);
     expect(updated.body.success).toBe(true);
     expect(updated.body.data.title).toBe("Updated");
 
-    const deleted = await request.delete(`/api/products/${id}`).expect(200);
+    const deleted = await request
+      .delete(`/api/products/${id}`)
+      .set("X-Admin-Key", "test-admin")
+      .expect(200);
     expect(deleted.body.success).toBe(true);
   });
 
@@ -104,7 +129,11 @@ describe("API (integration)", () => {
       platform: "mobile",
     };
 
-    const created = await request.post("/api/products").send(payload).expect(201);
+    const created = await request
+      .post("/api/products")
+      .set("X-Admin-Key", "test-admin")
+      .send(payload)
+      .expect(201);
     const id = created.body.data.id as number;
 
     const res = await request.get("/api/products/search?q=Searchable").expect(200);

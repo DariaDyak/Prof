@@ -26,4 +26,9 @@
 - `docker compose down -v`
 
 ## Тесты бэкенда
-- `npm test` (интеграционные тесты через Testcontainers, нужен Docker)
+- `npm test` (интеграционные тесты через Testcontainers; нужен Docker. Если Docker недоступен — тесты будут `skipped`. Чтобы падали, запускай с `REQUIRE_DOCKER=1`.)
+
+## Защита CRUD
+Сейчас write-ручки защищены `ADMIN_API_KEY`:
+- передавай ключ заголовком `X-Admin-Key: <key>` (или `Authorization: Bearer <key>`)
+- в `production` если `ADMIN_API_KEY` не задан — write-ручки выключены (ответ `503`)
