@@ -24,3 +24,6 @@
 
 Сброс (удалит данные БД):
 - `docker compose down -v`
+
+## Тесты бэкенда
+- `npm test` (интеграционные тесты через Testcontainers, нужен Docker)

@@ -3,6 +3,9 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
   base: (() => {

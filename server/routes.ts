@@ -9,7 +9,7 @@ import path from 'path';
 dotenv.config();
 
 // Подключение к PostgreSQL
-const pool = new Pool({
+export const pool = new Pool({
   host: process.env.DB_HOST || "localhost",
   port: parseInt(process.env.DB_PORT || "5433"),
   database: process.env.DB_NAME || "profit_db",
@@ -137,6 +137,104 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({
         success: false,
         message: "Ошибка при поиске продуктов",
+      });
+    }
+  });
+
+  // Получить статистику продуктов
+  app.get("/api/products/stats", async (req: Request, res: Response) => {
+    try {
+      const [totalResult, certificatesResult, registeredResult, platformResult] = await Promise.all([
+        pool.query("SELECT COUNT(*) as count FROM products"),
+        pool.query("SELECT COUNT(*) as count FROM products WHERE certificate_image IS NOT NULL"),
+        pool.query("SELECT COUNT(*) as count FROM products WHERE registration_num IS NOT NULL"),
+        pool.query("SELECT platform, COUNT(*) as count FROM products GROUP BY platform"),
+      ]);
+
+      const byPlatform: Record<string, number> = {};
+      platformResult.rows.forEach((row: any) => {
+        byPlatform[row.platform] = parseInt(row.count);
+      });
+
+      res.json({
+        success: true,
+        data: {
+          total: parseInt(totalResult.rows[0].count),
+          withCertificates: parseInt(certificatesResult.rows[0].count),
+          registered: parseInt(registeredResult.rows[0].count),
+          byPlatform,
+        },
+      });
+    } catch (error) {
+      console.error("Stats error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при получении статистики",
+      });
+    }
+  });
+
+  // Дополнительные маршруты для работы с таблицей products
+  app.get("/api/products/platform/:platform", async (req: Request, res: Response) => {
+    try {
+      const { platform } = req.params;
+      const result = await pool.query<Product>(
+        "SELECT * FROM products WHERE platform ILIKE $1 ORDER BY created_at DESC",
+        [`%${platform}%`]
+      );
+
+      res.json({
+        success: true,
+        data: result.rows,
+        count: result.rows.length,
+      });
+    } catch (error) {
+      console.error("Platform filter error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при фильтрации по платформе",
+      });
+    }
+  });
+
+  // Получить продукты с сертификатами
+  app.get("/api/products/with-certificates", async (req: Request, res: Response) => {
+    try {
+      const result = await pool.query<Product>(
+        "SELECT * FROM products WHERE certificate_image IS NOT NULL ORDER BY created_at DESC"
+      );
+
+      res.json({
+        success: true,
+        data: result.rows,
+        count: result.rows.length,
+      });
+    } catch (error) {
+      console.error("Certificates error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при получении продуктов с сертификатами",
+      });
+    }
+  });
+
+  // Получить зарегистрированные продукты
+  app.get("/api/products/registered", async (req: Request, res: Response) => {
+    try {
+      const result = await pool.query<Product>(
+        "SELECT * FROM products WHERE registration_num IS NOT NULL ORDER BY created_at DESC"
+      );
+
+      res.json({
+        success: true,
+        data: result.rows,
+        count: result.rows.length,
+      });
+    } catch (error) {
+      console.error("Registered products error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при получении зарегистрированных продуктов",
       });
     }
   });
@@ -326,39 +424,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Получить статистику продуктов
-  app.get("/api/products/stats", async (req: Request, res: Response) => {
-    try {
-      const [totalResult, certificatesResult, registeredResult, platformResult] = await Promise.all([
-        pool.query("SELECT COUNT(*) as count FROM products"),
-        pool.query("SELECT COUNT(*) as count FROM products WHERE certificate_image IS NOT NULL"),
-        pool.query("SELECT COUNT(*) as count FROM products WHERE registration_num IS NOT NULL"),
-        pool.query("SELECT platform, COUNT(*) as count FROM products GROUP BY platform"),
-      ]);
-
-      const byPlatform: Record<string, number> = {};
-      platformResult.rows.forEach((row: any) => {
-        byPlatform[row.platform] = parseInt(row.count);
-      });
-
-      res.json({
-        success: true,
-        data: {
-          total: parseInt(totalResult.rows[0].count),
-          withCertificates: parseInt(certificatesResult.rows[0].count),
-          registered: parseInt(registeredResult.rows[0].count),
-          byPlatform,
-        },
-      });
-    } catch (error) {
-      console.error("Stats error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при получении статистики",
-      });
-    }
-  });
-
   // Тестовый маршрут для проверки работы базы данных
   app.get("/api/test-db", async (_req: Request, res: Response) => {
     try {
@@ -390,71 +455,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false,
         message: "Ошибка при работе с базой данных",
         error: (error as Error).message,
-      });
-    }
-  });
-
-  // Дополнительные маршруты для работы с таблицей products
-  app.get("/api/products/platform/:platform", async (req: Request, res: Response) => {
-    try {
-      const { platform } = req.params;
-      const result = await pool.query<Product>(
-        "SELECT * FROM products WHERE platform ILIKE $1 ORDER BY created_at DESC",
-        [`%${platform}%`]
-      );
-
-      res.json({
-        success: true,
-        data: result.rows,
-        count: result.rows.length,
-      });
-    } catch (error) {
-      console.error("Platform filter error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при фильтрации по платформе",
-      });
-    }
-  });
-
-  // Получить продукты с сертификатами
-  app.get("/api/products/with-certificates", async (req: Request, res: Response) => {
-    try {
-      const result = await pool.query<Product>(
-        "SELECT * FROM products WHERE certificate_image IS NOT NULL ORDER BY created_at DESC"
-      );
-
-      res.json({
-        success: true,
-        data: result.rows,
-        count: result.rows.length,
-      });
-    } catch (error) {
-      console.error("Certificates error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при получении продуктов с сертификатами",
-      });
-    }
-  });
-
-  // Получить зарегистрированные продукты
-  app.get("/api/products/registered", async (req: Request, res: Response) => {
-    try {
-      const result = await pool.query<Product>(
-        "SELECT * FROM products WHERE registration_num IS NOT NULL ORDER BY created_at DESC"
-      );
-
-      res.json({
-        success: true,
-        data: result.rows,
-        count: result.rows.length,
-      });
-    } catch (error) {
-      console.error("Registered products error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при получении зарегистрированных продуктов",
       });
     }
   });
