@@ -123,7 +123,7 @@ function App() {
         <ThemeProvider>
           <Toaster />
           <Router />
-          <CookieBanner />
+          <CookieBanner canShow={!shouldShowLoader} />
           <LoadingScreen isLoading={shouldShowLoader} />
         </ThemeProvider>
       </TooltipProvider>
