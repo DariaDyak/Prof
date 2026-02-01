@@ -1,10 +1,10 @@
 import { Phone, Mail, Download, CheckCircle, FileText, Users, RefreshCw, Shield, Building, FileCheck, Settings, Lock, Database } from "lucide-react";
 import { useState } from "react";
-import { withBaseUrl } from "@/lib/utils";
+import presentationPdf from "@assets/generated_images/Презентация_API_Профит-УМО.pdf";
 export default function ProfitMoInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 
-  const doc1Url = withBaseUrl("/attached_assets/generated_images/Презентация_API_Профит-УМО.pdf");
+  const doc1Url = presentationPdf;
 
   const handleDownload = (url: string, filename: string) => {
     setDownloading(filename);
