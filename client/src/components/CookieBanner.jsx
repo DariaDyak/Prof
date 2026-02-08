@@ -2,13 +2,19 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-const CookieBanner = () => {
+const CookieBanner = ({ canShow = true }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!canShow) {
+      setIsVisible(false);
+      setIsAnimating(false);
+      return;
+    }
+
     const cookieDecision = localStorage.getItem('cookieConsent');
 
     if (!cookieDecision) {
@@ -19,7 +25,7 @@ const CookieBanner = () => {
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [canShow]);
 
   const handleAccept = () => {
     localStorage.setItem('cookieConsent', 'accepted');

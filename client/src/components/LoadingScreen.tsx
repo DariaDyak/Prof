@@ -48,63 +48,65 @@ const LoadingScreen = ({ isLoading = true }) => {
 
   return (
     <AnimatePresence>
-      <motion.div
-        className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-screen h-screen overflow-hidden"
-        style={{ backgroundColor: '#1E1915' }}
-        initial={{ opacity: 1 }}
-        exit={{
-          opacity: 0,
-          transition: {
-            duration: 1.2,
-            ease: "easeInOut"
-          }
-        }}
-      >
-        <div className="relative flex flex-col items-center justify-center gap-12">
+      {isLoading && (
+        <motion.div
+          className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-screen h-screen overflow-hidden"
+          style={{ backgroundColor: '#1E1915' }}
+          initial={{ opacity: 1 }}
+          exit={{
+            opacity: 0,
+            transition: {
+              duration: 1.2,
+              ease: "easeInOut"
+            }
+          }}
+        >
+          <div className="relative flex flex-col items-center justify-center gap-12">
 
-          <div className="relative overflow-hidden">
-            <motion.div
-              className="text-center"
-              variants={revealAnimation}
-              initial="initial"
-              animate={isVisible ? "animate" : "initial"}
-            >
-              <div
-                className="text-2xl md:text-2xl font-bold leading-tight tracking-wide relative"
-                style={{
-                  color: '#E7E3DB',
-                  textShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
-                }}
+            <div className="relative overflow-hidden">
+              <motion.div
+                className="text-center"
+                variants={revealAnimation}
+                initial="initial"
+                animate={isVisible ? "animate" : "initial"}
               >
-                ПРОФ ИТ
-
-                <motion.div
-                  className="absolute bottom-0 left-1/2 h-0.5"
+                <div
+                  className="text-2xl md:text-2xl font-bold leading-tight tracking-wide relative"
                   style={{
-                    backgroundColor: '#E7E3DB',
-                    width: 0,
-                    transform: 'translateX(-50%)'
+                    color: '#E7E3DB',
+                    textShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
                   }}
-                  initial={{
-                    width: 0,
-                    opacity: 0
-                  }}
-                  animate={{
-                    width: '100%',
-                    opacity: 1
-                  }}
-                  transition={{
-                    duration: 1.2,
-                    delay: 0.8,
-                    ease: "easeInOut"
-                  }}
-                />
-              </div>
-            </motion.div>
-          </div>
+                >
+                  ПРОФ ИТ
 
-        </div>
-      </motion.div>
+                  <motion.div
+                    className="absolute bottom-0 left-1/2 h-0.5"
+                    style={{
+                      backgroundColor: '#E7E3DB',
+                      width: 0,
+                      transform: 'translateX(-50%)'
+                    }}
+                    initial={{
+                      width: 0,
+                      opacity: 0
+                    }}
+                    animate={{
+                      width: '100%',
+                      opacity: 1
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      delay: 0.8,
+                      ease: "easeInOut"
+                    }}
+                  />
+                </div>
+              </motion.div>
+            </div>
+
+          </div>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 };

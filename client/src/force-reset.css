@@ -1,0 +1,76 @@
+/* client/src/styles/force-reset.css */
+/* АБСОЛЮТНЫЙ сброс для всех интерактивных элементов */
+
+/* 1. Убираем ВСЕ стили фокуса */
+*:focus {
+  outline: 0 !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+/* 2. Убираем стили для focus-visible */
+*:focus-visible {
+  outline: 0 !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+/* 3. Специально для кнопок - более агрессивно */
+button,
+button:focus,
+button:focus-visible,
+button:active,
+button:hover:focus {
+  outline: 0 !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-focus-ring-color: transparent !important;
+}
+
+/* 4. Для всех интерактивных элементов */
+a:focus,
+a:focus-visible,
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible,
+[role="button"]:focus,
+[role="button"]:focus-visible {
+  outline: 0 !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+/* 5. Для браузеров WebKit (Chrome, Safari, Edge) */
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
+button:-moz-focusring {
+  outline: 0 !important;
+}
+
+/* 6. Убираем все возможные состояния фокуса */
+button:-webkit-any(:focus, :focus-visible, :hover:focus, :active:focus) {
+  outline: 0 !important;
+  box-shadow: none !important;
+}

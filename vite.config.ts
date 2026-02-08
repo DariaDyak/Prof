@@ -2,8 +2,15 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
+  base: (() => {
+    const base = process.env.PUBLIC_BASE_PATH || "/";
+    return base.endsWith("/") ? base : `${base}/`;
+  })(),
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -32,7 +39,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom"],
-          ui: ["@/components/ui"],
         },
       },
     },
@@ -55,9 +61,5 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     open: true,
-  },
-  // Переменные окружения для клиента
-  define: {
-    "process.env": process.env,
   },
 });

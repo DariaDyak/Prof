@@ -5,11 +5,12 @@ import dotenv from "dotenv";
 import productsRouter from "../server/products"; // Исправленный путь
 import express from 'express'; // Добавьте этот импорт
 import path from 'path';
+import { requireAdminKey } from "./auth";
 
 dotenv.config();
 
 // Подключение к PostgreSQL
-const pool = new Pool({
+export const pool = new Pool({
   host: process.env.DB_HOST || "localhost",
   port: parseInt(process.env.DB_PORT || "5433"),
   database: process.env.DB_NAME || "profit_db",
@@ -141,191 +142,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Получить продукт по ID
-  app.get("/api/products/:id", async (req: Request, res: Response) => {
-    try {
-      const id = parseInt(req.params.id);
-      
-      if (isNaN(id)) {
-        return res.status(400).json({
-          success: false,
-          message: "Неверный ID продукта",
-        });
-      }
-
-      const result = await pool.query<Product>("SELECT * FROM products WHERE id = $1", [id]);
-
-      if (result.rows.length === 0) {
-        return res.status(404).json({
-          success: false,
-          message: "Продукт не найден",
-        });
-      }
-
-      res.json({
-        success: true,
-        data: result.rows[0],
-      });
-    } catch (error) {
-      console.error("Database error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при получении продукта",
-      });
-    }
-  });
-
-  // Создать продукт
-  app.post("/api/products", async (req: Request, res: Response) => {
-    try {
-      const productData: CreateProductDTO = req.body;
-
-      // Валидация
-      if (!productData.title || !productData.description || !productData.short_description || !productData.platform) {
-        return res.status(400).json({
-          success: false,
-          message: "Заполните все обязательные поля: title, description, short_description, platform",
-        });
-      }
-
-      const result = await pool.query<Product>(
-        `
-        INSERT INTO products (
-          title, description, short_description, 
-          certificate_image, registration_num, 
-          reg_program_num, platform
-        ) 
-        VALUES ($1, $2, $3, $4, $5, $6, $7) 
-        RETURNING *
-      `,
-        [
-          productData.title,
-          productData.description,
-          productData.short_description,
-          productData.certificate_image || null,
-          productData.registration_num || null,
-          productData.reg_program_num || null,
-          productData.platform,
-        ]
-      );
-
-      res.status(201).json({
-        success: true,
-        data: result.rows[0],
-        message: "Продукт успешно создан",
-      });
-    } catch (error) {
-      console.error("Database error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при создании продукта",
-      });
-    }
-  });
-
-  // Обновить продукт
-  app.put("/api/products/:id", async (req: Request, res: Response) => {
-    try {
-      const id = parseInt(req.params.id);
-      
-      if (isNaN(id)) {
-        return res.status(400).json({
-          success: false,
-          message: "Неверный ID продукта",
-        });
-      }
-
-      const updateData: UpdateProductDTO = req.body;
-
-      // Проверка существования продукта
-      const existingProduct = await pool.query<Product>("SELECT * FROM products WHERE id = $1", [id]);
-      if (existingProduct.rows.length === 0) {
-        return res.status(404).json({
-          success: false,
-          message: "Продукт не найден",
-        });
-      }
-
-      // Формирование запроса на обновление
-      const fields: string[] = [];
-      const values: any[] = [];
-      let paramIndex = 1;
-
-      Object.entries(updateData).forEach(([key, value]) => {
-        if (value !== undefined) {
-          fields.push(`${key} = $${paramIndex}`);
-          values.push(value);
-          paramIndex++;
-        }
-      });
-
-      if (fields.length === 0) {
-        return res.status(400).json({
-          success: false,
-          message: "Нет данных для обновления",
-        });
-      }
-
-      values.push(id);
-
-      const query = `
-        UPDATE products 
-        SET ${fields.join(", ")} 
-        WHERE id = $${paramIndex} 
-        RETURNING *
-      `;
-
-      const result = await pool.query<Product>(query, values);
-
-      res.json({
-        success: true,
-        data: result.rows[0],
-        message: "Продукт успешно обновлен",
-      });
-    } catch (error) {
-      console.error("Database error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при обновлении продукта",
-      });
-    }
-  });
-
-  // Удалить продукт
-  app.delete("/api/products/:id", async (req: Request, res: Response) => {
-    try {
-      const id = parseInt(req.params.id);
-      
-      if (isNaN(id)) {
-        return res.status(400).json({
-          success: false,
-          message: "Неверный ID продукта",
-        });
-      }
-
-      const result = await pool.query<Product>("DELETE FROM products WHERE id = $1 RETURNING *", [id]);
-
-      if (result.rows.length === 0) {
-        return res.status(404).json({
-          success: false,
-          message: "Продукт не найден",
-        });
-      }
-
-      res.json({
-        success: true,
-        message: "Продукт успешно удален",
-        data: result.rows[0],
-      });
-    } catch (error) {
-      console.error("Database error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при удалении продукта",
-      });
-    }
-  });
-
   // Получить статистику продуктов
   app.get("/api/products/stats", async (req: Request, res: Response) => {
     try {
@@ -355,41 +171,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({
         success: false,
         message: "Ошибка при получении статистики",
-      });
-    }
-  });
-
-  // Тестовый маршрут для проверки работы базы данных
-  app.get("/api/test-db", async (_req: Request, res: Response) => {
-    try {
-      // Создаем тестовую таблицу, если она не существует
-      await pool.query(`
-        CREATE TABLE IF NOT EXISTS test_table (
-          id SERIAL PRIMARY KEY,
-          message TEXT NOT NULL,
-          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-      `);
-
-      // Вставляем тестовые данные
-      await pool.query("INSERT INTO test_table (message) VALUES ($1)", [
-        "Тестовое подключение к PostgreSQL успешно!",
-      ]);
-
-      // Получаем данные
-      const result = await pool.query("SELECT * FROM test_table ORDER BY created_at DESC LIMIT 5");
-
-      res.json({
-        success: true,
-        message: "База данных работает корректно",
-        data: result.rows,
-      });
-    } catch (error) {
-      console.error("Test DB error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Ошибка при работе с базой данных",
-        error: (error as Error).message,
       });
     }
   });
@@ -459,8 +240,228 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Получить продукт по ID
+  app.get("/api/products/:id", async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      if (isNaN(id)) {
+        return res.status(400).json({
+          success: false,
+          message: "Неверный ID продукта",
+        });
+      }
+
+      const result = await pool.query<Product>("SELECT * FROM products WHERE id = $1", [id]);
+
+      if (result.rows.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Продукт не найден",
+        });
+      }
+
+      res.json({
+        success: true,
+        data: result.rows[0],
+      });
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при получении продукта",
+      });
+    }
+  });
+
+  // Создать продукт
+  app.post("/api/products", requireAdminKey(), async (req: Request, res: Response) => {
+    try {
+      const productData: CreateProductDTO = req.body;
+
+      // Валидация
+      if (!productData.title || !productData.description || !productData.short_description || !productData.platform) {
+        return res.status(400).json({
+          success: false,
+          message: "Заполните все обязательные поля: title, description, short_description, platform",
+        });
+      }
+
+      const result = await pool.query<Product>(
+        `
+        INSERT INTO products (
+          title, description, short_description, 
+          certificate_image, registration_num, 
+          reg_program_num, platform
+        ) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7) 
+        RETURNING *
+      `,
+        [
+          productData.title,
+          productData.description,
+          productData.short_description,
+          productData.certificate_image || null,
+          productData.registration_num || null,
+          productData.reg_program_num || null,
+          productData.platform,
+        ]
+      );
+
+      res.status(201).json({
+        success: true,
+        data: result.rows[0],
+        message: "Продукт успешно создан",
+      });
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при создании продукта",
+      });
+    }
+  });
+
+  // Обновить продукт
+  app.put("/api/products/:id", requireAdminKey(), async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      if (isNaN(id)) {
+        return res.status(400).json({
+          success: false,
+          message: "Неверный ID продукта",
+        });
+      }
+
+      const updateData: UpdateProductDTO = req.body;
+
+      // Проверка существования продукта
+      const existingProduct = await pool.query<Product>("SELECT * FROM products WHERE id = $1", [id]);
+      if (existingProduct.rows.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Продукт не найден",
+        });
+      }
+
+      // Формирование запроса на обновление
+      const fields: string[] = [];
+      const values: any[] = [];
+      let paramIndex = 1;
+
+      Object.entries(updateData).forEach(([key, value]) => {
+        if (value !== undefined) {
+          fields.push(`${key} = $${paramIndex}`);
+          values.push(value);
+          paramIndex++;
+        }
+      });
+
+      if (fields.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: "Нет данных для обновления",
+        });
+      }
+
+      values.push(id);
+
+      const query = `
+        UPDATE products 
+        SET ${fields.join(", ")} 
+        WHERE id = $${paramIndex} 
+        RETURNING *
+      `;
+
+      const result = await pool.query<Product>(query, values);
+
+      res.json({
+        success: true,
+        data: result.rows[0],
+        message: "Продукт успешно обновлен",
+      });
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при обновлении продукта",
+      });
+    }
+  });
+
+  // Удалить продукт
+  app.delete("/api/products/:id", requireAdminKey(), async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      if (isNaN(id)) {
+        return res.status(400).json({
+          success: false,
+          message: "Неверный ID продукта",
+        });
+      }
+
+      const result = await pool.query<Product>("DELETE FROM products WHERE id = $1 RETURNING *", [id]);
+
+      if (result.rows.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Продукт не найден",
+        });
+      }
+
+      res.json({
+        success: true,
+        message: "Продукт успешно удален",
+        data: result.rows[0],
+      });
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при удалении продукта",
+      });
+    }
+  });
+
+  // Тестовый маршрут для проверки работы базы данных
+  app.get("/api/test-db", requireAdminKey(), async (_req: Request, res: Response) => {
+    try {
+      // Создаем тестовую таблицу, если она не существует
+      await pool.query(`
+        CREATE TABLE IF NOT EXISTS test_table (
+          id SERIAL PRIMARY KEY,
+          message TEXT NOT NULL,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
+
+      // Вставляем тестовые данные
+      await pool.query("INSERT INTO test_table (message) VALUES ($1)", [
+        "Тестовое подключение к PostgreSQL успешно!",
+      ]);
+
+      // Получаем данные
+      const result = await pool.query("SELECT * FROM test_table ORDER BY created_at DESC LIMIT 5");
+
+      res.json({
+        success: true,
+        message: "База данных работает корректно",
+        data: result.rows,
+      });
+    } catch (error) {
+      console.error("Test DB error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Ошибка при работе с базой данных",
+        error: (error as Error).message,
+      });
+    }
+  });
+
   // Инициализация базы данных (для разработки)
-  app.post("/api/init-db", async (_req: Request, res: Response) => {
+  app.post("/api/init-db", requireAdminKey(), async (_req: Request, res: Response) => {
     try {
       // Создаем таблицу products, если она не существует
       await pool.query(`

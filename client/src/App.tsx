@@ -21,6 +21,7 @@ import CookieBanner from "@/components/CookieBanner";
 import PartnersPage from "@/pages/PartnersPage";
 
 import LoadingScreen from "@/components/LoadingScreen";
+import { waitForImages } from "@/lib/waitForImages";
 import { useState, useEffect, Suspense, lazy } from "react";
 
 const LazyHome = lazy(() => import("@/pages/Home"));
@@ -61,16 +62,10 @@ function Router() {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [showLogo, setShowLogo] = useState(true);
-  const [initialTheme, setInitialTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    if (savedTheme) {
-      setInitialTheme(savedTheme);
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setInitialTheme(prefersDark ? 'dark' : 'light');
-    }
+    let isMounted = true;
+    let logoTimer: ReturnType<typeof setTimeout> | null = null;
 
     const initializeApp = async () => {
       try {
@@ -79,9 +74,14 @@ function App() {
 
         const loadPromises = [
           new Promise(resolve => setTimeout(resolve, 1200)),
+          waitForImages({ root: document.getElementById('root') ?? document })
         ];
 
         await Promise.all(loadPromises);
+
+        if (!isMounted) {
+          return;
+        }
 
         if (isFirstVisit) {
           localStorage.setItem('app_has_visited', 'true');
@@ -90,31 +90,32 @@ function App() {
         setIsLoading(false);
 
         const logoDuration = isFirstVisit ? 3000 : 1000;
-        setTimeout(() => {
-          setShowLogo(false);
+        logoTimer = setTimeout(() => {
+          if (isMounted) {
+            setShowLogo(false);
+          }
         }, logoDuration);
 
       } catch (error) {
         console.error('Error during app initialization:', error);
-        setIsLoading(false);
-        setShowLogo(false);
+        if (isMounted) {
+          setIsLoading(false);
+          setShowLogo(false);
+        }
       }
     };
 
     initializeApp();
 
     return () => {
-      // Можно добавить отмену запросов если они используются
+      isMounted = false;
+      if (logoTimer) {
+        clearTimeout(logoTimer);
+      }
     };
   }, []);
 
-  if (showLogo) {
-    return (
-      <ThemeProvider>
-        <LoadingScreen isLoading={isLoading} />
-      </ThemeProvider>
-    );
-  }
+  const shouldShowLoader = isLoading || showLogo;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -122,7 +123,8 @@ function App() {
         <ThemeProvider>
           <Toaster />
           <Router />
-          <CookieBanner />
+          <CookieBanner canShow={!shouldShowLoader} />
+          <LoadingScreen isLoading={shouldShowLoader} />
         </ThemeProvider>
       </TooltipProvider>
     </QueryClientProvider>

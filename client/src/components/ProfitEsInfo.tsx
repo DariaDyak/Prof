@@ -1,11 +1,12 @@
 import { Download, Phone, Mail, FileText, Award, BarChart, Shield, Zap } from "lucide-react";
 import { useState } from "react";
-
+import descriptionPdf from "@assets/generated_images/Описание.pdf";
+import guidePdf from "@assets/generated_images/Руководство.pdf";
 export default function ProfitEsInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 
-  const doc1Url = "/attached_assets/generated_images/Описание.pdf";
-  const doc2Url = "/attached_assets/generated_images/Руководство.pdf";
+  const doc1Url = descriptionPdf;
+  const doc2Url = guidePdf;
 
   const handleDownload = (url: string, filename: string) => {
     setDownloading(filename);
