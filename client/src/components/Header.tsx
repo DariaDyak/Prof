@@ -153,10 +153,23 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   useEffect(() => {
     if (!isMounted) return;
+    // Предзагрузка логотипов
+    const preloadLogos = () => {
+        const logos = [Logo, Logo2];
+        logos.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+    };
     
+    preloadLogos();
+    
+   
     if (location.pathname !== '/') {
       setActiveId(null);
       return;
+
+    
     }
 
     const handleScroll = () => {
