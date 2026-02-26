@@ -10,7 +10,7 @@ import InputMask from 'react-input-mask';
 import { Link } from "react-router-dom";
 
 // URL API для бэкенда
-const API_URL = import.meta.env.VITE_API_URL || "/apiv2";
+const API_URL = import.meta.env.VITE_API_URL || "/api";
 
 export default function ContactsSection() {
   const [formData, setFormData] = useState({
