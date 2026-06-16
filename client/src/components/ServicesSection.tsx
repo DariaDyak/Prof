@@ -1,10 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import Service1 from "@assets/generated_images/Service1.jpg";
-import Service3 from "@assets/generated_images/Service2.jpg";
-import Service4 from "@assets/generated_images/Service3.jpg";
-import Service2 from "@assets/generated_images/Service4.jpg";
+import { ArrowRight, Settings, Workflow, Wrench, Code } from "lucide-react";
+import U1 from "@assets/generated_images/U1.png";
+import U2 from "@assets/generated_images/U2.png";
+import U3 from "@assets/generated_images/U3.png";
+import U4 from "@assets/generated_images/U4.png";
 import { useNavigate } from "react-router-dom";
 
 export default function ServicesSection() {
@@ -13,30 +12,34 @@ export default function ServicesSection() {
     {
       title: "Комплексные IT-решения для бизнеса",
       description:
-        "Предлагаем комплексный аудит текущей ИТ-инфраструктуры с последующей разработкой стратегии развития. Реализуем необходимые преобразования для оптимизации бизнес-процессов и укрепления позиций на рынке.",
-      image: Service1,
+        "Предлагаем комплексный аудит текущей ИТ-инфраструктуры с последующей разработкой стратегии развития. Реализуем необходимые преобразования для оптимизации бизнес-процессов и укрепления позиций на рынке",
+      image: U1,
       link: "/decisions",
+      icon: Settings
     },
     {
       title: "Автоматизация и оптимизация бизнес-процессов компании",
       description:
-        "Проводим детальный анализ ваших рабочих процессов и создаем индивидуальные решения, которые экономят время, снижают операционные расходы и предотвращают возможные ошибки.",
-      image: Service2,
+        "Проводим детальный анализ ваших рабочих процессов и создаем индивидуальные решения, которые экономят время, снижают операционные расходы и предотвращают возможные ошибки",
+      image: U2,
       link: "/automationpage",
+      icon: Workflow
     },
     {
       title: "1С сопровождение",
       description:
-        "Мы обеспечиваем бесперебойную работу вашей системы 1С, оптимизируем бизнес-процессы и поддерживаем актуальность конфигураций для максимальной эффективности.",
-      image: Service3,
+        "Мы обеспечиваем бесперебойную работу вашей системы 1С, оптимизируем бизнес-процессы и поддерживаем актуальность конфигураций для максимальной эффективности",
+      image: U3,
       link: "/cSupportPage",
+      icon: Wrench
     },
     {
       title: "Разработка ПО",
       description:
-        "Профессиональные разработчики реализуют кастомные программные решения, полностью адаптированные под специфические требования каждого клиента.",
-      image: Service4,
+        "Профессиональные разработчики реализуют кастомные программные решения, полностью адаптированные под специфические требования каждого клиента",
+      image: U4,
       link: "/developmentPage",
+      icon: Code
     },
   ];
 
@@ -47,70 +50,84 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 bg-muted/80">
-      <div className="container mx-auto px-4 lg:px-8 ">
-        <div className="text-center mb-16">
-          <h2 className="font-Montserrat text-3xl lg:text-4xl font-bold text-foreground mb-6">
+    <section id="services" className="py-12 sm:py-20 overflow-hidden">
+      <div className="container mx-auto h-full px-4 lg:px-8">
+        <div className="text-left mb-10 sm:mb-14 lg:mb-16">
+          <h2 className="text-5xl font-bold tracking-tight text-brown-dark dark:text-beige-light mb-3">
             Наши услуги
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Команда ООО «Проф ИТ» сделает все возможное, чтобы помочь Вам
-            достичь Ваших целей в области информационных технологий
-          </p>
+
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {services.map((service, index) => (
-            <Card
-              key={index}
-              className="group hover-elevate transition-all duration-300 overflow-hidden"
-            >
-              <div className="aspect-video relative overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-background/15 to-transparent" />
-                <div className="absolute bottom-4 right-4"></div>
+        <div className="space-y-16 sm:space-y-24 lg:space-y-32">
+          {services.map((service, index) => {
+            const IconComponent = service.icon;
+            const isEven = index % 2 === 0; // Четные индексы - текст слева, нечетные - текст справа
+
+            return (
+              <div
+                key={index}
+                className={`
+                  flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16
+                  ${isEven ? '' : 'lg:flex-row-reverse'}
+                `}
+              >
+                {/* Блок с текстом */}
+                <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6 lg:space-y-8">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    {IconComponent && (
+                      <div className="rounded-lg">
+                        <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-brown dark:text-beige-light" />
+                      </div>
+                    )}
+                    <h3 className="text-md sm:text-md lg:text-2xl xl:text-2xl font-bold text-brown-dark dark:text-beige-light">
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-sm  text-justify lg:text-lg text-brown-dark dark:text-beige-light sm:text-lg leading-relaxed sm:leading-loose">
+                    {service.description}
+                  </p>
+
+                  <Button
+                    variant="ghost"
+                    className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
+bg-brown-dark border border-brown-dark
+                  text-beige-light  font-medium
+                  dark:bg-beige dark:text-brown-dark
+                  hover:bg-white hover:text-brown-dark
+                  dark:hover:border-white
+                  dark:hover:text-brown-dark dark:hover:bg-white
+                  group
+                  px-6
+                  text-xs sm:text-sm
+                  transition-all duration-300"
+
+                    onClick={() => handleLearnMore(service.link)}
+                    disabled={!service.link || service.link === "#"}
+                    data-testid={`button-service-${index}`}
+                  >
+                    <span className="relative z-10">
+                      Узнать подробнее
+                    </span>
+                    <ArrowRight className="relative z-10 h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
+                </div>
+                <div className="w-full lg:w-1/2">
+                  <div className="relative overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-xl group">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-[250px] sm:h-[350px] lg:h-[400px] xl:h-[450px] object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute top-4 right-4 w-16 h-16 sm:w-20 sm:h-20 bg-blue-500/10 rounded-full blur-2xl transform group-hover:scale-125 transition-transform duration-700" />
+                    <div className="absolute bottom-4 left-4 w-24 h-24 sm:w-32 sm:h-32 bg-blue-400/10 rounded-full blur-2xl transform group-hover:scale-125 transition-transform duration-700" />
+                  </div>
+                </div>
               </div>
-
-              <CardHeader>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
-              </CardHeader>
-
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-
-                <Button
-  className="
-    relative 
-    overflow-hidden 
-    transition-all 
-    duration-300 
-    ease-in-out 
-    hover:scale-105 
-    hover:shadow-lg 
-    bg-gradient-to-r from-indigo-600 to-blue-600 
-    hover:from-indigo-700 hover:to-blue-700 
-    text-white 
-    group
-  "
-  onClick={() => handleLearnMore(service.link)}
-  disabled={!service.link || service.link === "#"}
-  data-testid={`button-service-${index}`}
->
-  {/* Бегущий луч */}
-  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-  
-  <span className="relative z-10 font-medium">Узнать больше</span>
-  <ArrowRight className="ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
-</Button>
-              </CardContent>
-            </Card>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

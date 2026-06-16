@@ -4,83 +4,96 @@ import { Zap, Clock, TrendingUp, Shield, Brain, Target } from "lucide-react";
 export default function AutomationSection() {
   const benefits = [
     {
-      icon: <Zap className="w-8 h-8" />,
+      icon: <Zap className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       title: "Повышение эффективности",
       description: "Сокращение времени выполнения операционных процессов до 70% за счет автоматизации рутинных задач",
       metrics: "Эффективность ↑ 70%",
-      color: "from-blue-500 to-cyan-500"
+      color: "bg-gradient-to-br from-blue-500 to-purple-600"
     },
     {
-      icon: <Clock className="w-8 h-8" />,
+      icon: <Clock className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       title: "Экономия времени",
       description: "Значительное сокращение временных затрат на выполнение повторяющихся бизнес-процессов",
       metrics: "Время ↓ 60%",
-      color: "from-green-500 to-emerald-500"
+      color: "bg-gradient-to-br from-blue-500 to-purple-600"
     },
     {
-      icon: <TrendingUp className="w-8 h-8" />,
+      icon: <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       title: "Снижение затрат",
       description: "Оптимизация расходов на выполнение операционных процессов и уменьшение операционных ошибок",
       metrics: "Затраты ↓ 45%",
-      color: "from-purple-500 to-pink-500"
+      color: "bg-gradient-to-br from-blue-500 to-purple-600"
     },
     {
-      icon: <Shield className="w-8 h-8" />,
+      icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       title: "Повышение качества",
       description: "Минимизация человеческого фактора и стандартизация процессов для стабильно высокого качества",
       metrics: "Качество ↑ 85%",
-      color: "from-orange-500 to-red-500"
+      color: "bg-gradient-to-br from-blue-500 to-purple-600"
     },
     {
-      icon: <Brain className="w-8 h-8" />,
+      icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       title: "Умная аналитика",
       description: "Мониторинг и анализ эффективности процессов с рекомендациями по дальнейшей оптимизации",
       metrics: "Аналитика ↑ 90%",
-      color: "from-indigo-500 to-purple-500"
+      color: "bg-gradient-to-br from-blue-500 to-purple-600"
     },
     {
-      icon: <Target className="w-8 h-8" />,
+      icon: <Target className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       title: "Конкурентное преимущество",
       description: "Ускорение бизнес-процессов дает значительное преимущество на рынке",
       metrics: "Продуктивность ↑ 65%",
-      color: "from-teal-500 to-blue-500"
+      color: "bg-gradient-to-br from-blue-500 to-purple-600"
     }
   ];
 
   return (
-    <section className="bg-background">
+    <section className="pt-10 pb-8 dark:bg-beige-light">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Оптимизация затрат и <span className="block text-blue-600 dark:text-blue-400">повышение качества </span>
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark  mb-4 sm:mb-5 lg:mb-6">
+            Оптимизация затрат и повышение качества
           </h2>
-          <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Результатом нашей работы будет повышение эффективности бизнес-процессов, увеличение производительности и сокращение затрат на их выполнение, что позволит вашей компании быть более конкурентоспособной на рынке
+          <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark max-w-3xl mx-auto leading-relaxed">
+            Результатом нашей работы будет повышение эффективности бизнес-процессов, увеличение производительности и сокращение затрат на их выполнение
           </p>
-          
-        </div> 
-
+        </div>
 
         {/* Основные преимущества */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-14">
           {benefits.map((benefit, index) => (
-            <Card 
-              key={index} 
-              className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm"
+            <Card
+              key={index}
+              className="group bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-              <CardContent className="p-8 relative">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${benefit.color} flex items-center justify-center text-white mb-6 shadow-lg`}>
+
+              <CardContent className="p-4 sm:p-6 lg:p-8 relative flex flex-col h-full">
+                <div className="
+                  w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
+                  bg-brown-dark
+                  rounded-lg sm:rounded-xl 
+                  flex items-center justify-center
+                  shadow-lg 
+                  
+                  transition-all duration-300
+                  mb-4 sm:mb-6
+                ">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
+
+
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-brown-dark mb-2 sm:mb-3 leading-tight">
                   {benefit.title}
                 </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
+
+
+                <p className="text-xs sm:text-sm text-brown-dark mb-4 sm:mb-6 leading-relaxed flex-1">
                   {benefit.description}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-foreground/70">
+
+
+                <div className="flex items-center justify-start mt-auto pt-3 sm:pt-4">
+                  <span className="text-xs sm:text-sm font-semibold text-brown-dark">
                     {benefit.metrics}
                   </span>
                 </div>

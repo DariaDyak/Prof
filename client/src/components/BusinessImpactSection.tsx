@@ -1,9 +1,7 @@
-// components/BusinessImpactSection.jsx
 "use client";
-
-import { Card, CardContent } from "@/components/ui/card";
 import { Target, Zap, Shield, DollarSign, ArrowRight, TrendingUp, Users, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function BusinessImpactSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,6 +10,8 @@ export default function BusinessImpactSection() {
     setIsVisible(true);
   }, []);
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const metrics = [
     { icon: TrendingUp, value: "40%", label: "Рост эффективности" },
     { icon: Users, value: "50%", label: "Снижение затрат" },
@@ -23,7 +23,7 @@ export default function BusinessImpactSection() {
     {
       icon: Target,
       title: "Стратегическое планирование",
-      description: "Разрабатываем индивидуальную стратегию развития ИТ-инфраструктуры"
+      description: "Разрабатываем стратегию развития ИТ-инфраструктуры"
     },
     {
       icon: Shield,
@@ -33,147 +33,215 @@ export default function BusinessImpactSection() {
     {
       icon: DollarSign,
       title: "Экономическая эффективность",
-      description: "Оптимизируем затраты и повышаем ROI от ИТ-инвестиций"
+      description: "ИТ-эффективность: больше результатов, меньше расходов"
     },
     {
       icon: Zap,
       title: "Технологическое превосходство",
-      description: "Внедряем передовые решения для конкурентного преимущества"
+      description: "Внедряем передовые решения"
     }
   ];
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900/20 overflow-hidden">
+    <section className="dark:bg-[#1E1915] overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
-        {/* Заголовок */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mb-6">
-            <Zap className="w-4 h-4" />
-            <span className="text-sm font-medium">Бизнес-трансформация</span>
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Стратегическое <span className="text-blue-600">преимущество</span>
+
+        <div className="text-center mb-6 mt-8 sm:mb-6 lg:mb-8">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark dark:text-beige-light ">
+            Стратегическое преимущество
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark dark:text-beige-light leading-relaxed mt-2">
             Превращаем ИТ-инфраструктуру в мощный инструмент роста вашего бизнеса
           </p>
         </div>
 
-      <div className="grid lg:grid-cols-2 gap-8 mb-16">
-  {/* Основной текстовый блок с анимацией */}
-  <div className={`space-y-6 transition-all duration-700 ${
-    isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
-  }`}>
-    <div className="group relative bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer overflow-hidden">
-      {/* Эффект градиентной границы при наведении */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10">
-        <div className="absolute inset-[2px] rounded-2xl bg-white dark:bg-slate-800"></div>
-      </div>
-      
-      <div className="space-y-6 relative z-10">
-        <div className="flex items-start gap-4 group">
-          <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-            <Target className="w-6 h-6 text-white" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold mb-2 text-blue-600 transition-colors duration-300">
-              Комплексный подход к развитию
-            </h3>
-            <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-              Наша команда специалистов помогает компании сформулировать стратегию развития 
-              ИТ-инфраструктуры, которая позволит улучшить работу бизнес-процессов и повысить 
-              эффективность использования информационных технологий.
-            </p>
-          </div>
-        </div>
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16 items-end items-stretch">
+          {/* Левый столбец */}
+          <div className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}>
+            <div className="space-y-4 sm:space-y-6">
+              <div className="group relative rounded-xl sm:rounded-2xl p-4 sm:p-6 transition-all duration-300 shadow-lg overflow-hidden flex-1">
+                {/* Убрана обводка */}
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-white"></div>
 
-        <div className="flex items-start gap-4 group">
-          <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-            <TrendingUp className="w-6 h-6 text-white" />
-          </div>
-          <div className="flex-1">
-            <h4 className="text-lg font-bold mb-2 text-green-600 transition-colors duration-300">
-              Измеримые результаты
-            </h4>
-            <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-              Комплексный ИТ-аудит является важным инструментом для повышения эффективности 
-              работы компании и обеспечения ее конкурентоспособности.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Блок с метриками */}
-    <div className="grid grid-cols-2 gap-4">
-  {metrics.map((metric, index) => (
-    <div 
-      key={metric.label}
-      className="group bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 text-center hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
-    >
-      <metric.icon className="w-6 h-6 text-blue-600 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
-      <div className="text-2xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300">{metric.value}</div>
-      <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">{metric.label}</div>
-    </div>
-  ))}
-</div>
-  </div>
-
-          {/* Блок с преимуществами */}
-          <div className={`space-y-6 transition-all duration-700 delay-300 ${
-            isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
-          }`}>
-            {features.map((feature, index) => (
-              <div 
-                key={feature.title}
-                className="group bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg cursor-pointer"
-                
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <feature.icon className="w-6 h-6 text-white" />
+                <div className="space-y-4 sm:space-y-6 relative z-10">
+                  <div className="flex items-start gap-3 sm:gap-4 group mt-4">
+                    <div className="flex-1">
+                      <h3 className="text-base lg:text-base xl:text-base font-bold mb-2 text-brown-dark transition-colors leading-tight">
+                        Комплексный подход к развитию
+                      </h3>
+                      <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-relaxed text-justify duration-300">
+                        Наша команда специалистов помогает компании сформулировать стратегию развития
+                        ИТ-инфраструктуры, которая позволит улучшить работу бизнес-процессов и повысить
+                        эффективность использования информационных технологий
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {feature.description}
-                    </p>
+
+                  <div className="flex items-start gap-3 sm:gap-4 group">
+                    <div className="flex-1 mb-4">
+                      <h4 className="text-base lg:text-base xl:text-base font-bold mb-2 text-brown-dark transition-colors leading-tight">
+                        Измеримые результаты
+                      </h4>
+                      <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-relaxed text-justify transition-colors duration-300">
+                        Комплексный ИТ-аудит является важным инструментом для повышения эффективности
+                        работы компании и обеспечения ее конкурентоспособности на рынке
+                      </p>
+                    </div>
                   </div>
-    
                 </div>
               </div>
-            ))}
+
+              {/* Блок с метриками */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {metrics.map((metric, index) => (
+                  <div
+                    key={metric.label}
+                    className="group bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-lg transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
+                      <div className="flex-1 pl-2 sm:pl-3 lg:pl-4">
+                        <div className="text-lg sm:text-xl lg:text-2xl  font-bold text-brown-dark transition-colors">
+                          {metric.value}
+                        </div>
+                        <div className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark transition-colors leading-tight">
+                          {metric.label}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Правый столбец - Блок с преимуществами */}
+          <div className={`transition-all duration-700 delay-300 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-100"} h-full`}>
+            <div className="flex flex-col h-full">
+              <div className="space-y-4 sm:space-y-6 flex-1 h-full">
+                {features.map((feature, index) => (
+                  <div
+                    key={feature.title}
+                    className="group bg-white rounded-xl sm:rounded-2xl p-4 sm:mt-1 sm:mb-1 mt-2 mb-2 lg:mt-1 lg:mb-1 shadow-lg transition-all duration-300 h-[calc(24%-13px)] sm:min-h-[60px]"
+                  >
+                    <div className="flex items-center gap-3 sm:gap-4 h-full ">
+                      <div className="flex-shrink-0">
+                        <div className="
+                w-10 h-10 sm:w-12 sm:h-12 lg:w-10 lg:h-14 
+                flex items-center justify-center
+                transition-all duration-300
+              ">
+                          <feature.icon className="w-6 h-6 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-brown-dark" />
+                        </div>
+                      </div>
+
+                      <div className="flex-1 pt-2 sm:pt-1 /* Отступ сверху для текстового блока */">
+                        <div className="mb-3 sm:mb-4 lg:mb-5 /* Отступ после заголовка */">
+                          <h3 className="text-base lg:text-base xl:text-base font-bold text-brown-dark transition-colors duration-300 leading-tight">
+                            {feature.title}
+                          </h3>
+                        </div>
+                        <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-relaxed line-clamp-2">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+      {/* CTA блок */}
+      <div className={`w-full transition-all duration-700 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
+        <div className="relative dark:bg-beige-light p-8 text-center overflow-hidden ">
 
-        {/* CTA блок */}
-        <div className={`max-w-4xl mx-auto transition-all duration-700 delay-500 ${
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-        }`}>
-          <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 rounded-3xl p-8 lg:p-12 text-white text-center overflow-hidden">
-            {/* Декоративные элементы */}
-            <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-x-16 -translate-y-16"></div>
-            <div className="absolute bottom-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-24 translate-y-24"></div>
-            
-            <div className="relative z-10">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-                Готовы к цифровой трансформации?
-              </h3>
-              <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-                Начните свой путь к повышению эффективности и снижению затрат уже сегодня. 
-                Наши эксперты готовы провести комплексный аудит и предложить оптимальные решения.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button className="group bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2">
-                  Запросить консультацию
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
-                <button className="group border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
-                  Изучить кейсы
-                </button>
-              </div>
+          <div className="relative z-10 text-center mb-4 sm:mb-6 lg:mb-8 ">
+            <h3 className="text-xl sm:text-2xl lg:text-2xl xl:text-2xl font-bold mb-4 text-brown-dark">
+              Готовы к цифровой трансформации?
+            </h3>
+            <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark mb-8 max-w-2xl mx-auto">
+              Начните свой путь к повышению эффективности и снижению затрат уже сегодня.
+              Наши эксперты готовы провести комплексный аудит и предложить оптимальные решения
+            </p>
+            <div className="flex flex-col lg:flex-row gap-4 justify-center items-stretch w-full max-w-2xl mx-auto">
+
+              <button
+                className="group border-2 border-brown-dark text-brown-dark px-8 py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 flex-1 hover:bg-brown-dark hover:text-beige-light"
+                onClick={() => {
+                  if (location.pathname !== '/') {
+                    navigate('/');
+                    setTimeout(() => {
+                      const element = document.getElementById('contacts');
+                      if (element) {
+                        const header = document.querySelector('header');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerHeight;
+
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: 'smooth'
+                        });
+                      }
+                    }, 100);
+                  } else {
+                    const element = document.getElementById('contacts');
+                    if (element) {
+                      const header = document.querySelector('header');
+                      const headerHeight = header ? header.offsetHeight : 0;
+                      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                      const offsetPosition = elementPosition - headerHeight;
+
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }
+                }}
+              >
+                <span className="truncate text-sm md:text-base lg:text-lg">Запросить консультацию</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 flex-shrink-0" />
+              </button>
+
+              <button
+                className="group border-2 border-brown-dark text-beige-light px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 flex-1 min-w-0 bg-brown-dark hover:bg-beige-light hover:text-brown-dark"
+                onClick={() => {
+                  if (location.pathname !== '/') {
+                    navigate('/');
+                    setTimeout(() => {
+                      const element = document.getElementById('cases');
+                      if (element) {
+                        const header = document.querySelector('header');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerHeight;
+
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: 'smooth'
+                        });
+                      }
+                    }, 100);
+                  } else {
+                    const element = document.getElementById('cases');
+                    if (element) {
+                      const header = document.querySelector('header');
+                      const headerHeight = header ? header.offsetHeight : 0;
+                      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                      const offsetPosition = elementPosition - headerHeight;
+
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }
+                }}
+              >
+                <span className="truncate text-sm md:text-base lg:text-lg">Изучить кейсы</span>
+              </button>
             </div>
           </div>
         </div>

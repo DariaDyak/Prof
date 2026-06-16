@@ -1,43 +1,26 @@
-import { Card, CardContent } from "@/components/ui/card";
-
 export default function ResultsSection() {
   return (
-    <section className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800">
+    <section className="pt-8 pb-2 dark:bg-beige-light">
       <div className="container mx-auto px-4 lg:px-8">
-        <Card className="border-0 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/10 dark:to-purple-900/10 mb-20">
-          <CardContent className="p-8">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Результат нашего сотрудничества
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Результатом нашей работы будет повышение эффективности работы бизнес-процессов, увеличение производительности и конкурентоспособности вашей компании. Мы обеспечиваем стабильность и надежность работы ИТ-систем, а также оказываем поддержку на всех этапах использования 1С системы.
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-xl sm:text-2xl  lg:text-3xl xl:text-3xl font-bold text-brown-dark mb-6 sm:mb-5 lg:mb-6">
+            Результат <span>нашего сотрудничества</span>
+          </h2>
+          <div className="items-center">
+            <div>
+              <p className="text-brown-dark  text-justify leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
+                Результатом нашей работы будет повышение эффективности работы бизнес-процессов, увеличение производительности и конкурентоспособности вашей компании. Мы обеспечиваем стабильность и надежность работы ИТ-систем,
+                а также оказываем поддержку на всех этапах использования 1С системы.
+              </p>
+              <div className="mt-8 pt-6 sm:pb-0">
+                <p className="text-sm sm:text-base text-center text-brown-dark italic">
+                  Наш подход основан на принципах прозрачности, ответственности и ориентации на результат.
+                  Мы измеряем успех не только выполнением задач, но и реальным вкладом в развитие вашего бизнеса
                 </p>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-blue-200 dark:border-blue-700">
-                <ul className="space-y-3">
-                  <li className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-foreground">Бесперебойная работа системы</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-foreground">Сокращение времени выполнения задач</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-foreground">Повышение качества обслуживания</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-foreground">Адаптация под индивидуальные потребности</span>
-                  </li>
-                </ul>
-              </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,26 +1,22 @@
 import ProcessWorkflow from "./ProcessWorkflow";
 import ServicesSec from "./ServicesSec";
-import ResultsSection from "./ResultsSection";
+
 
 export default function InteractiveSupportSection() {
   return (
     <>
-      <section className="bg-white via-blue-50/20 to-purple-50/10 dark:from-slate-900 dark:via-blue-900/10 dark:to-purple-900/5">
+      <section className="pt-16 pb-16 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          
-          {/* Заголовок */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-              Надежное сопровождение
-              <span className="block text-blue-600 dark:text-blue-400">вашей системы 1С</span>
+          <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold text-brown-dark mb-4 sm:mb-5 lg:mb-6">
+              Надежное сопровождение вашей системы 1С
             </h2>
-            <p className="text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              1С сопровождение — это услуга, которая позволяет компаниям поддерживать работоспособность и эффективность системы управления и автоматизации бизнес-процессов в 1С
+            <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark max-w-3xl mx-auto leading-relaxed">
+              1C сопровождение представляет собой комплексную поддержку информационных систем на платформе 1С:Предприятие
             </p>
           </div>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
-            
             {/* Левая колонка - Процесс работы */}
             <div className="space-y-8">
               <ProcessWorkflow />
@@ -33,9 +29,6 @@ export default function InteractiveSupportSection() {
           </div>
         </div>
       </section>
-
-      {/* Отдельная секция с итоговым блоком */}
-      <ResultsSection />
     </>
   );
 }

@@ -1,152 +1,205 @@
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Shield } from 'lucide-react';
-//import heroImage from '@/assets/generated_images/background-B09EPi58.jpg';
+import { Shield, ArrowDown, Zap, Code, TrendingUp } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import logoDark from '@assets/generated_images/slide3.jpg';
+import Photo from '@assets/generated_images/slide4.jpg';
 
 interface HeroSectionProps {
   onLearnMore?: () => void;
+  onServiceClick?: () => void;
 }
 
 export default function HeroSection({ onLearnMore }: HeroSectionProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [showBadge, setShowBadge] = useState(false);
+  const [showFirstLine, setShowFirstLine] = useState(false);
+  const [showSecondLine, setShowSecondLine] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const [showImage, setShowImage] = useState(false);
+  const [showFeatures, setShowFeatures] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, []);
+    const timer1 = setTimeout(() => {
+      setShowBadge(true);
+    }, 200);
 
-  const handleLearnMore = () => {
-    console.log('Learn more button clicked');
-    onLearnMore?.();
+    const timer2 = setTimeout(() => {
+      setShowFirstLine(true);
+    }, 500);
+
+    const timer3 = setTimeout(() => {
+      setShowDescription(true);
+    }, 800);
+
+    const timer4 = setTimeout(() => {
+      setShowImage(true);
+    }, 1100);
+
+    const timer5 = setTimeout(() => {
+      setShowFeatures(true);
+    }, 1300);
+
+    const timer6 = setTimeout(() => {
+      setShowButton(true);
+    }, 1500);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+      clearTimeout(timer5);
+      clearTimeout(timer6);
+    };
+  }, []);
+ // Функция для скролла к секции services
+  const handleScrollToServices = () => {
+    const servicesElement = document.getElementById('services');
+    if (servicesElement) {
+      servicesElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      console.warn('Элемент с id="services" не найден');
+    }
   };
+  const features = [
+    {
+      icon: Zap,
+      title: 'Автоматизация процессов',
+      description: 'Сокращаем издержки на 30%',
+    },
+    {
+      icon: Code,
+      title: 'Разработка ПО',
+      description: 'Полный цикл от идеи до запуска',
+    },
+    {
+      icon: TrendingUp,
+      title: 'Масштабируем',
+      description: 'Решения, которые растут вместе с бизнесом',
+    }
+  ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Enhanced Overlay */}
+    <section className="pt-12 pb-16 lg:pt-10 lg:pb-20 relative min-h-[92vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img 
-          //src={heroImage} 
-          alt="IT Solutions Background"
-          className="w-full h-full object-cover scale-80 group-hover:scale-100 transition-transform duration-3000 ease-out"
+        <img
+          src={logoDark}
+          loading="lazy"
+          decoding="async"
+          alt="ИТ-решения для бизнеса"
+          className="w-full h-full object-cover transform transition-transform duration-1000
+                    blur-[4px] lg:blur-[12px] brightness-90"
+          style={{
+            transform: showImage ? 'scale(1)' : 'scale(1.05)',
+            objectPosition: 'center'
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
-        
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-beige via-beige/85 to-beige/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-beige/50"></div>
+
+        {/* Наложения для улучшения видимости контента */}
+        <div className="absolute inset-0 bg-gradient-to-t from-beige/80 via-beige/70 to-beige/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-beige/30"></div>
       </div>
 
-      {/* Floating Elements */}
-      <div className="absolute inset-0 z-5 overflow-hidden">
-        <div className="absolute top-1/4 left-10 w-6 h-6 bg-blue-500/20 rounded-full blur-xl animate-float"></div>
-        <div className="absolute top-1/3 right-20 w-8 h-8 bg-indigo-500/15 rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-1/4 left-1/4 w-10 h-10 bg-cyan-500/10 rounded-full blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
-      </div>
+      <div className="container mx-auto px-4 lg:px-8 relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 h-full">
 
-      {/* Центрированный контент */}
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          
-          {/* Badge с анимацией появления */}
-          <div className={`
-            inline-flex items-center gap-2 px-4 py-2 rounded-full 
-            bg-blue-500/10 border border-blue-500/20 
-            text-blue-600 dark:text-blue-400 text-sm font-medium mb-8 
-            backdrop-blur-sm
-            transition-all duration-1000 ease-out
-            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-          `}>
-            <Shield className="h-4 w-4 transition-transform duration-500 delay-300 ${isVisible ? 'scale-100' : 'scale-50'}" />
-            <span className="transition-all duration-700 delay-100 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-              Ваш надежный ИТ-партнер
-            </span>
-          </div>
+          {/* Левая колонка - информация о компании */}
+          <div className="order-1 lg:order-1 text-center lg:text-left flex flex-col justify-center">
+            <div className="max-w-xl mx-auto lg:mx-0">
 
-          {/* Main Heading с последовательной анимацией */}
-          <div className="mb-8">
-            <h1 className={`
-              font-Montserrat text-4xl sm:text-5xl lg:text-6xl 
-              font-bold text-foreground mb-4 leading-tight
-              transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-            `}>
-              <span className="transition-all duration-800 delay-200 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-                ООО
-              </span>
-              {' '}
-              <span className={`
-                
-                transition-all duration-800 delay-400
-                ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-              `}>
-                «ПРОФ ИТ»
-              </span>
-            </h1>
-            
-            <div className={`
-              flex items-center justify-center gap-3 mb-4
-              transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-            `}>
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-border transition-all duration-800 delay-600 ${isVisible ? 'opacity-100 w-12' : 'opacity-0 w-0'}" />
-              <span className="font-Montserrat text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground/80 transition-all duration-800 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-                Эффективность через автоматизацию
-              </span>
-              <div className="h-px w-12 bg-gradient-to-r from-border to-transparent transition-all duration-800 delay-600 ${isVisible ? 'opacity-100 w-12' : 'opacity-0 w-0'}" />
+              {/* Бейдж */}
+              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full
+                bg-brown-dark/10 border border-brown-dark
+                text-brown-dark font-medium mb-6 sm:mb-8
+                backdrop-blur-sm
+                text-xs sm:text-sm
+                transform transition-all duration-700 ease-out
+                ${showBadge ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}`}
+                style={{ transitionDelay: '50ms' }}>
+                <Shield className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span>Ваш надежный ИТ-партнер</span>
+              </div>
+
+              {/* Новый заголовок */}
+              <div className="mb-8 sm:mb-10">
+                <h1 className="font-bold">
+                  <div className={`transform transition-all duration-700 ease-out
+                    ${showFirstLine ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}`}
+                    style={{ transitionDelay: '100ms' }}>
+                    <span className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl text-brown-dark leading-tight block">
+                      Цифровая трансформация вашего бизнеса: от автоматизации до разработки под ключ
+                    </span>
+                  </div>
+                </h1>
+              </div>
+
+              {/* Иконки с преимуществами */}
+              <div className={`grid grid-cols-1 sm:grid-cols-3 gap-2 mb-10 sm:mb-12`}
+                style={{ transitionDelay: '200ms' }}>
+                {features.map((feature, index) => {
+                  const Icon = feature.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="flex flex-col items-center lg:items-start gap-4 p-5 rounded-2xl 
+                   bg-brown-dark/90 backdrop-blur-sm shadow-lg"
+                    >
+                      <div className="p-3 rounded-xl">
+                        <Icon className="h-8 w-8 text-brown-dark" strokeWidth={1.5} />
+                      </div>
+                      <div className="text-center lg:text-left">
+                        <h3 className="font-semibold text-brown-dark text-base sm:text-lg mb-1">
+                          {feature.title}
+                        </h3>
+                        <p className="text-brown-dark text-sm sm:text-base leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <button
+                onClick={handleScrollToServices}
+                className="relative overflow-hidden inline-flex items-center gap-2 rounded-full 
+                         bg-brown-dark border border-brown-dark
+                         text-beige-light font-medium
+                         hover:bg-beige hover:text-brown-dark
+                         group
+                         px-6 py-3.5
+                         text-sm sm:text-base
+                         transition-all duration-300"
+              >
+                <span className="relative z-10 font-semibold">
+                  Изучить кейсы
+                </span>
+                <ArrowDown className="relative z-10 h-4 w-4 sm:h-5 sm:w-5" />
+              </button>
+
             </div>
           </div>
 
-          {/* Description с анимацией */}
-          <p className={`
-            font-Montserrat text-lg sm:text-xl lg:text-xl 
-            text-muted-foreground mb-12 leading-relaxed 
-            max-w-3xl mx-auto
-            transition-all duration-1000 ease-out
-            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-          `}>
-            <span className="transition-all duration-700 delay-800 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-              Комплексные{' '}
-              <span className="text-foreground font-semibold transition-all duration-500 delay-900 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-                ИТ-решения
-              </span>
-              {' '}для цифровой трансформации вашего бизнеса.{' '}
-            </span>
-            <span className="transition-all duration-700 delay-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-              От автоматизации процессов до полного цикла разработки — повышаем эффективность{' '}
-            </span>
-            <span className="transition-all duration-700 delay-1200 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-              и создаем конкурентные преимущества.
-            </span>
-          </p>
-
-           {/* CTA Button */}
-          <div className="flex justify-center">
-            <Button
-  onClick={handleLearnMore}
-  className="
-    relative
-    overflow-hidden
-    inline-flex items-center gap-2 px-4 py-2 rounded-full
-    bg-gradient-to-r from-blue-800 to-blue-900
-    text-white
-    transition-all duration-300 ease-in-out
-    hover:scale-105 hover:shadow-xl
-    whitespace-nowrap
-    group
-    outline-none focus:outline-none
-  "
->
-  {/* Бегущий луч */}
-  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-  
-  <span className="relative z-10 font-medium transition-all duration-300 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}">
-    О компании
-  </span>
-  <ArrowRight className="ml-2 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110 delay-1400 ${isVisible ? 'opacity-100' : 'opacity-0'}" />
-</Button>
+          {/* Правая колонка - изображение */}
+          <div className="order-2 lg:order-2 mt-8 lg:mt-0 h-full min-h-[400px] lg:min-h-[500px] xl:min-h-[600px] hidden lg:block">
+            <div
+              className="relative w-full h-full rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-1000 ease-out backdrop-blur-sm"
+              style={{
+                opacity: showImage ? 1 : 0,
+                transform: showImage ? 'translateX(0) scale(1)' : 'translateX(40px) scale(0.95)',
+                transitionDelay: '250ms',
+                background: `linear-gradient(135deg, rgba(245, 245, 220, 0.2) 0%, rgba(210, 180, 140, 0.1) 100%), url(${Photo})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                filter: 'brightness(1.1) contrast(1.1)'
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-tl from-brown-dark/5 via-transparent to-beige-light/10"></div>
+            </div>
           </div>
         </div>
       </div>

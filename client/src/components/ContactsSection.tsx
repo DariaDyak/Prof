@@ -1,215 +1,112 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from "lucide-react";
 
 export default function ContactsSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
-
   const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Адрес",
-      content: "г. Краснодар, ул. Рашпилевская, д. 244, этаж 3",
-    },
     {
       icon: Phone,
       title: "Телефон",
       content: "+7 (800) 200-29-70",
+      type: "phone",
+      href: "tel:+78002002970"
     },
     {
       icon: Mail,
-      title: "Email",
+      title: "Электронная почта",
       content: "info@it4prof.ru",
+      type: "email",
+      href: "mailto:info@it4prof.ru"
+    },
+    {
+      icon: MapPin,
+      title: "Адрес",
+      content: "г. Краснодар, ул. Рашпилевская, 244",
+      type: "address"
     },
     {
       icon: Clock,
       title: "Часы работы",
-      content: "Пн-Пт: 8:00 - 17:00",
-    },
+      content: "Пн-Пт: 8:00-17:00",
+      type: "hours"
+    }
   ];
 
   return (
-    <section id="contacts" className="py-20">
-      <div className="container mx-auto px-4 lg:px-8">
-        
-
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+    <section id="contacts" className=" bg-beige/20 dark:bg-beige">
+      <div className="container mx-auto h-full px-4 lg:px-8">
+        <div className="pt-6 text-left">
+          <h2 className="text-5xl font-bold text-brown-dark mb-6">
             Контакты
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Готовы обсудить ваш проект? Свяжитесь с нами любым удобным способом
-          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10 mb-16 ">
-          {/* Contact Form */}
-          <Card className="h-fit min-h-[200px]">
-            {" "}
-            {/* Добавлены классы высоты */}
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MessageSquare className="h-5 w-5 text-primary" />
-                Обратная связь
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col">
-              {" "}
-              {/* Добавлен flex */}
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-3 flex-grow flex flex-col"
-              >
-                {" "}
-                {/* Flex для формы */}
-                <div className="grid sm:grid-cols-2 gap-2">
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">
-                      Имя *
-                    </label>
-                    <Input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) =>
-                        handleInputChange("name", e.target.value)
-                      }
-                      placeholder="Ваше имя"
-                      required
-                      data-testid="input-name"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">
-                      Телефон
-                    </label>
-                    <Input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) =>
-                        handleInputChange("phone", e.target.value)
-                      }
-                      placeholder="+7 (000) 000-00-00"
-                      data-testid="input-phone"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-1 block">
-                    Email *
-                  </label>
-                  <Input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    placeholder="your@email.com"
-                    required
-                    data-testid="input-email"
-                  />
-                </div>
-                <div className="flex-grow">
-                  {" "}
-                  {/* Textarea занимает доступное пространство */}
-                  <label className="text-sm font-medium text-foreground mb-1 block">
-                    Сообщение *
-                  </label>
-                  <Textarea
-                    value={formData.message}
-                    onChange={(e) =>
-                      handleInputChange("message", e.target.value)
-                    }
-                    placeholder="Расскажите о вашем проекте..."
-                    rows={5}
-                    className="h-[5px]" /* Высота textarea */
-                    required
-                    data-testid="textarea-message"
-                  />
-                </div>
-                <div className="flex gap-4 mt-auto">
-                  {" "}
-                  <Button
-                    type="submit"
-                    className="flex-1 relative overflow-hidden group"
-                    data-testid="button-submit"
-                  >
-                    <Send className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    Отправить заявку
-                    {/* Бегущий луч */}
-  <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+        {/* Две колонки */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 lg:mb-16">
+          {/* Левая колонка: контакты */}
+          <div className="flex flex-col space-y-4">
+            <div className="grid grid-cols-1 gap-4">
+              {contactInfo.map((info, index) => {
+                const isLink = info.type === "phone" || info.type === "email";
+                const Element = isLink ? "a" : "div";
 
-          {/* Contact Information */}
-          <div className="space-y-6">
-            {/* Contact Cards */}
-            <div className="grid gap-4">
-              {contactInfo.map((info, index) => (
-                <Card key={index} className="hover-elevate">
-                  <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 bg-primary/10 rounded-lg">
-                        <info.icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">
-                          {info.title}
-                        </h3>
-                        <p className="text-muted-foreground">{info.content}</p>
-                      </div>
+                return (
+                  <Element
+                    key={index}
+                    href={isLink ? info.href : undefined}
+                    className={`
+                      flex items-center gap-3 md:gap-4 p-4 md:p-5
+                      rounded-xl 
+                      bg-brown-dark
+                      shadow-lg transition-all duration-300
+                      hover:shadow-2xl
+                      ${isLink ? 'cursor-pointer hover:bg-brown-dark/90' : ''}
+                      w-full 
+                    `}
+                  >
+                    <div className={`
+                      flex items-center justify-center 
+                      h-10 w-10 md:h-12 md:w-12
+                      flex-shrink-0 rounded-full
+                      bg-brown-dark/10 
+                    `}>
+                      <info.icon className="h-5 w-5 md:h-6 md:w-6 text-beige" />
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    <div className="flex-grow min-w-0">
+                      <h4 className="font-bold text-beige mb-1 text-sm md:text-base">
+                        {info.title}
+                      </h4>
+                      <p className="text-beige text-sm md:text-sm">
+                        {info.content}
+                      </p>
+                    </div>
+                  </Element>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Правая колонка: карта */}
+          <div className="rounded-2xl overflow-hidden shadow-2xl flex">
+            <div className="w-full h-full" style={{ minHeight: '400px' }}>
+              <YMaps>
+                <Map
+                  defaultState={{
+                    center: [45.061325, 38.972744],
+                    zoom: 15,
+                    controls: ["zoomControl", "fullscreenControl"],
+                  }}
+                  modules={["control.ZoomControl", "control.FullscreenControl"]}
+                  style={{ width: '100%', height: '100%' }}
+                >
+                  <Placemark
+                    geometry={[45.061325, 38.972744]}
+                    options={{ preset: "islands#businessIcon" }}
+                  />
+                </Map>
+              </YMaps>
             </div>
           </div>
         </div>
-        {/* Map */}
-        <Card className="overflow-hidden">
-          <div className="aspect-video ">
-            <YMaps>
-              <Map
-                defaultState={{
-                  center: [45.061325, 38.972744],
-                  zoom: 15,
-                  controls: ["zoomControl", "fullscreenControl"],
-                }}
-                width="100%"
-                height="100%"
-                modules={["control.ZoomControl", "control.FullscreenControl"]}
-              >
-                <Placemark
-                  geometry={[45.061325, 38.972744]}
-                  options={{
-                    preset: "islands#blueBusinessIcon",
-                  }}
-                />
-              </Map>
-            </YMaps>
-          </div>
-        </Card>
       </div>
     </section>
   );

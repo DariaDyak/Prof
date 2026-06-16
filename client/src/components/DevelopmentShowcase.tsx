@@ -1,69 +1,80 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Database, Globe, Shield, Zap, Users } from "lucide-react";
+import { Code, Database, Globe, Shield } from "lucide-react";
 
 const solutions = [
   {
-    icon: <Globe className="w-8 h-8" />,
+    icon: <Globe className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
     title: "Веб-приложения",
     description: "Современные веб-решения с адаптивным дизайном и высокой производительностью",
-    features: ["SPA/MPA приложения", "PWA", "Админ панели", "Дашборды"]
+    features: ["Сайты", "Админ панели", "Дашборды"]
   },
   {
-    icon: <Database className="w-8 h-8" />,
+    icon: <Database className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
     title: "Базы данных",
     description: "Проектирование и оптимизация баз данных для эффективного хранения и обработки информации",
-    features: ["SQL/NoSQL", "Миграции", "Репликация", "Бэкапы"]
+    features: ["SQL/Postgres", "Миграции", "Бэкапы"]
   },
   {
-    icon: <Code className="w-8 h-8" />,
+    icon: <Code className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
     title: "Десктоп приложения",
     description: "Кроссплатформенные настольные приложения для решения бизнес-задач",
-    features: ["Windows/Mac/Linux", "Нативный UI", "Оффлайн работа", "Интеграции"]
+    features: ["Windows/Linux", "Нативный UI", "Интеграции"]
   },
   {
-    icon: <Shield className="w-8 h-8" />,
+    icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
     title: "Безопасность",
     description: "Внедрение систем безопасности и защита данных на всех уровнях приложения",
-    features: ["Шифрование", "Auth/ACL", "Аудит", "Защита от атак"]
+    features: ["Шифрование", "Аудит", "Защита от атак"]
   }
-];
+]
 
 export default function DevelopmentShowcase() {
   return (
-    <section className="bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+    <section className="pt-12 pb-16 overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-8 ">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3xl font-bold dark:text-beige text-brown-dark mb-4 sm:mb-5 lg:mb-6">
             Комплексные решения
-            <span className="block text-blue-600 dark:text-blue-400">для вашего бизнеса</span>
+            <span> для вашего бизнеса</span>
           </h2>
-          <p className="text-base text-muted-foreground max-w-3xl mx-auto">
-            Разрабатываем программное обеспечение любой сложности и масштаба, 
+          <p className="text-sm sm:text-base lg:text-base xl:text-base dark:text-beige text-brown-dark max-w-3xl mx-auto leading-relaxed">
+            Разрабатываем программное обеспечение любой сложности и масштаба,
             становясь надежным технологическим партнером для вашего бизнеса
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {solutions.map((solution, index) => (
-            <Card 
-              key={index} 
-              className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm"
+            <Card
+              key={index}
+              className=" bg-white  rounded-xl sm:rounded-2xl border  dark:hover:shadow-none  shadow-lg"
             >
-              <CardContent className="p-6 relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  {solution.icon}
+              <CardContent className="p-4 sm:p-6 relative z-10 flex flex-col h-full">
+                <div className="flex-1">
+
+                  <div className="
+            w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 
+            bg-brown-dark 
+            rounded-lg sm:rounded-xl 
+            flex items-center justify-center text-white
+            transition-all duration-300
+            mb-3 sm:mb-4
+          ">
+                    {solution.icon}
+                  </div>
+
+                  <h3 className="text-base sm:text-base lg:text-base font-bold text-brown-dark mb-2 sm:mb-3 leading-tight">
+                    {solution.title}
+                  </h3>
+                  <p className="text-sm sm:text-base lg:text-base xl:text-base text-brown-dark mb-3 sm:mb-4 leading-relaxed">
+                    {solution.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
-                  {solution.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                  {solution.description}
-                </p>
-                <div className="space-y-2">
+                <div className="space-y-1 sm:space-y-2 mt-auto pt-3 sm:pt-4 border-t">
                   {solution.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center space-x-2">
-                      <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                      <span className="text-sm text-foreground/80">{feature}</span>
+                    <div key={idx} className="flex items-center space-x-1 sm:space-x-2">
+                      <div className="w-1.5 h-1.5 bg-brown-dark rounded-full flex-shrink-0"></div>
+                      <span className="pl-2 text-sm sm:text-base lg:text-base xl:text-base text-brown-dark leading-tight">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -71,6 +82,7 @@ export default function DevelopmentShowcase() {
             </Card>
           ))}
         </div>
+
       </div>
     </section>
   );
