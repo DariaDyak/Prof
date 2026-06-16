@@ -1,0 +1,539 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LIGHT MODE */
+:root {
+
+  --button-outline: rgba(0, 0, 0, .10);
+  --badge-outline: rgba(0, 0, 0, .05);
+
+  --opaque-button-border-intensity: -8;
+
+  --elevate-1: rgba(0, 0, 0, .03);
+  --elevate-2: rgba(0, 0, 0, .08);
+
+  --color-beige-light: #E7E3DB;
+  --color-beige: #E2D8CE;
+  --color-tan: #B6A593;
+  --color-brown: #473c32;
+  --color-brown-dark: #382E25;
+
+  /* Основные переменные */
+  --background: 40 20% 90%;
+  /* #E7E3DB - светло-бежевый */
+  --foreground: 28 20% 18%;
+  /* #382E25 - темно-коричневый */
+
+  /* Границы */
+  --border: 33 27% 84%;
+  /* #E2D8CE - бежевый */
+
+  /* Карточки */
+  --card: 28 20% 18%;
+  /* #E7E3DB - светло-бежевый */
+  --card-foreground: 28 20% 18%;
+  /* #382E25 - темно-коричневый */
+  --card-border: 33 19% 84%;
+  /* немного темнее border */
+
+  /* Сайдбар */
+  --sidebar: 33 27% 84%;
+  /* #E2D8CE - бежевый */
+  --sidebar-foreground: 28 20% 18%;
+  /* #382E25 */
+  --sidebar-border: 33 19% 78%;
+  /* немного темнее sidebar */
+  --sidebar-primary: 28 18% 36%;
+  /* #6B5B4C - коричневый */
+  --sidebar-primary-foreground: 40 20% 90%;
+  /* #E7E3DB */
+  --sidebar-accent: 33 19% 65%;
+  /* #B6A593 - тан */
+  --sidebar-accent-foreground: 28 20% 18%;
+  /* #382E25 */
+  --sidebar-ring: 28 18% 36%;
+  /* #6B5B4C */
+
+  /* Всплывающие элементы */
+  --popover: 33 27% 84%;
+  /* #E2D8CE */
+  --popover-foreground: 28 20% 18%;
+  /* #382E25 */
+  --popover-border: 33 19% 78%;
+  /* немного темнее */
+
+  /* Основные цвета */
+  --primary: 28 18% 36%;
+  /* #6B5B4C - коричневый */
+  --primary-foreground: 40 20% 90%;
+  /* #E7E3DB */
+
+  /* Вторичные цвета */
+  --secondary: 33 19% 65%;
+  /* #B6A593 - тан */
+  --secondary-foreground: 28 20% 18%;
+  /* #382E25 */
+
+  /* Приглушенные цвета */
+  --muted: 33 27% 84%;
+  /* #E2D8CE */
+  --muted-foreground: 33 19% 65%;
+  /* #B6A593 */
+
+  /* Акцентные цвета */
+  --accent: 33 19% 65%;
+  /* #B6A593 */
+  --accent-foreground: 28 20% 18%;
+  /* #382E25 */
+
+  /* Деструктивные действия */
+  --destructive: 10 60% 45%;
+  /* Темно-красный (не из палитры) */
+  --destructive-foreground: 40 20% 90%;
+  /* #E7E3DB */
+
+  --input: 220 25% 75%;
+  --ring: 220 85% 25%;
+  --chart-1: 220 85% 25%;
+  --chart-2: 142 76% 36%;
+  --chart-3: 260 70% 45%;
+  --chart-4: 30 80% 50%;
+  --chart-5: 340 75% 55%;
+
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: .5rem;
+  --shadow-2xs: 0px 1px 2px 0px hsl(220 13% 69% / 0.05);
+  --shadow-xs: 0px 1px 2px 0px hsl(220 13% 69% / 0.10);
+  --shadow-sm: 0px 1px 2px 0px hsl(220 13% 69% / 0.10), 0px 1px 3px 0px hsl(220 13% 69% / 0.10);
+  --shadow: 0px 1px 3px 0px hsl(220 13% 69% / 0.10), 0px 1px 2px 0px hsl(220 13% 69% / 0.06);
+  --shadow-md: 0px 4px 6px -1px hsl(220 13% 69% / 0.10), 0px 2px 4px -1px hsl(220 13% 69% / 0.06);
+  --shadow-lg: 0px 10px 15px -3px hsl(220 13% 69% / 0.10), 0px 4px 6px -2px hsl(220 13% 69% / 0.05);
+  --shadow-xl: 0px 20px 25px -5px hsl(220 13% 69% / 0.10), 0px 10px 10px -5px hsl(220 13% 69% / 0.04);
+  --shadow-2xl: 0px 25px 50px -12px hsl(220 13% 69% / 0.25);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+.dark .transition-none,
+.transition-none {
+  transition: none !important;
+}
+
+.dark {
+  --button-outline: 33 27% 84%;
+  --badge-outline: rgba(255, 255, 255, .04);
+
+  --opaque-button-border-intensity: 9;
+
+  --elevate-1: rgba(255, 255, 255, .03);
+  --elevate-2: rgba(255, 255, 255, .07);
+
+  --color-beige-light: #E7E3DB;
+  /* или светлее для темной темы */
+  --color-beige: #E2D8CE;
+  --color-tan: #B6A593;
+  --color-brown: #6B5B4C;
+  --color-brown-dark: #382E25;
+  /* Светлый для текста */
+
+  /* Основные переменные */
+  --background: 28 18% 10%;
+  /* Темный коричневый фон */
+  --foreground: 33 27% 84%;
+  /* #E2D8CE - светлый бежевый */
+
+  /* Границы */
+  --border: 28 18% 18%;
+  /* Темный коричневый */
+
+  /* Карточки */
+  --card: 28 18% 14%;
+  /* Темный коричневый */
+  --card-foreground: 33 27% 84%;
+  /* #E2D8CE - светлый бежевый */
+  --card-border: 28 18% 20%;
+  /* Темный коричневый граница */
+
+  /* Сайдбар */
+  --sidebar: 28 18% 12%;
+  /* Темный коричневый */
+  --sidebar-foreground: 33 27% 84%;
+  /* #E2D8CE */
+  --sidebar-border: 28 18% 20%;
+  /* Темный коричневый граница */
+  --sidebar-primary: 33 19% 65%;
+  /* #B6A593 - как акцент */
+  --sidebar-primary-foreground: 28 18% 14%;
+  /* Темный текст */
+  --sidebar-accent: 28 18% 20%;
+  /* Темный акцент */
+  --sidebar-accent-foreground: 33 27% 84%;
+  /* Светлый текст */
+  --sidebar-ring: 33 19% 65%;
+  /* #B6A593 */
+
+  /* Всплывающие элементы */
+  --popover: 28 18% 12%;
+  /* Темный коричневый */
+  --popover-foreground: 33 27% 84%;
+  /* #E2D8CE */
+  --popover-border: 28 18% 20%;
+  /* Темный коричневый граница */
+
+  /* Основные цвета */
+  --primary: 33 19% 65%;
+  /* #B6A593 - светлый акцент */
+  --primary-foreground: 28 18% 14%;
+  /* Темный текст */
+
+  /* Вторичные цвета */
+  --secondary: 28 18% 20%;
+  /* Темный */
+  --secondary-foreground: 33 27% 84%;
+  /* Светлый текст */
+
+  /* Приглушенные цвета */
+  --muted: 28 18% 16%;
+  /* Темный приглушенный */
+  --muted-foreground: 33 19% 65%;
+  /* #B6A593 */
+
+  /* Акцентные цвета */
+  --accent: 28 18% 20%;
+  /* Темный акцент */
+  --accent-foreground: 33 27% 84%;
+  /* Светлый текст */
+
+  /* Деструктивные действия */
+  --destructive: 0 70% 45%;
+  /* Красный */
+  --destructive-foreground: 33 27% 84%;
+  /* Светлый текст */
+
+
+  --sidebar: 220 14% 13%;
+
+  --sidebar-foreground: 220 15% 85%;
+
+  --sidebar-border: 220 13% 22%;
+
+  --sidebar-primary: 220 70% 85%;
+
+  --sidebar-primary-foreground: 220 20% 15%;
+
+  --sidebar-accent: 220 18% 24%;
+
+  --sidebar-accent-foreground: 220 15% 85%;
+
+  --sidebar-ring: 220 70% 85%;
+
+  --popover: 220 15% 15%;
+
+  --popover-foreground: 220 15% 85%;
+
+  --popover-border: 220 13% 25%;
+
+  --primary: 220 70% 85%;
+
+  --primary-foreground: 220 20% 15%;
+
+  --secondary: 220 15% 18%;
+
+  --secondary-foreground: 220 15% 85%;
+
+  --muted: 220 12% 16%;
+
+  --muted-foreground: 220 15% 65%;
+
+  --accent: 220 18% 20%;
+
+  --accent-foreground: 220 15% 85%;
+
+  --destructive: 0 84% 60%;
+
+  --destructive-foreground: 0 10% 98%;
+
+  --input: 220 25% 35%;
+  --ring: 220 70% 85%;
+  --chart-1: 220 70% 85%;
+  --chart-2: 142 76% 65%;
+  --chart-3: 260 70% 75%;
+  --chart-4: 30 80% 70%;
+  --chart-5: 340 75% 75%;
+
+  --shadow-2xs: 0px 1px 2px 0px hsl(220 13% 4% / 0.05);
+  --shadow-xs: 0px 1px 2px 0px hsl(220 13% 4% / 0.10);
+  --shadow-sm: 0px 1px 2px 0px hsl(220 13% 4% / 0.10), 0px 1px 3px 0px hsl(220 13% 4% / 0.10);
+  --shadow: 0px 1px 3px 0px hsl(220 13% 4% / 0.10), 0px 1px 2px 0px hsl(220 13% 4% / 0.06);
+  --shadow-md: 0px 4px 6px -1px hsl(220 13% 4% / 0.10), 0px 2px 4px -1px hsl(220 13% 4% / 0.06);
+  --shadow-lg: 0px 10px 15px -3px hsl(220 13% 4% / 0.10), 0px 4px 6px -2px hsl(220 13% 4% / 0.05);
+  --shadow-xl: 0px 20px 25px -5px hsl(220 13% 4% / 0.10), 0px 10px 10px -5px hsl(220 13% 4% / 0.04);
+  --shadow-2xl: 0px 25px 50px -12px hsl(220 13% 4% / 0.25);
+
+}
+
+:focus,
+:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+button:focus-visible {
+  outline-color: transparent;
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  .no-default-hover-elevate {}
+
+  .no-default-active-elevate {}
+
+
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: 999;
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+#about,
+#services,
+#directions,
+#contacts {
+  scroll-margin-top: 80px;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  header img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .overflow-x-hidden {
+    overflow-x: hidden !important;
+  }
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #B6A593;
+  box-shadow: 0 0 0 2px rgba(182, 165, 147, 0.2);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  border-color: #B6A593 !important;
+  box-shadow: 0 0 0 3px rgba(182, 165, 147, 0.15) !important;
+  outline: 2px solid transparent !important;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+/* globals.css или index.css */
+.fab-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  background-color: #3b82f6;
+  color: white;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.fab-button:hover {
+  transform: scale(1.1);
+  background-color: #2563eb;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* index.css или globals.css */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+}
+
+.fab-enter {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.fab-exit {
+  animation: fadeOutDown 0.3s ease forwards;
+}
