@@ -1,12 +1,11 @@
 import { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ThemeToggle from "@/components/ThemeToggle";
 import ItDecisions from "@/components/ItDecisions";
 import DevelopmentShowcase from "@/components/DevelopmentShowcase";
-
 import DevelopmentProcess from "@/components/DevelopmentProcess";
 import { useEffect } from "react";
+import ProjectDevelopmentSection from "@/components/ProjectDevelopmentSection";
 
 export default function DevelopmentPage() {
   useEffect(() => {
@@ -28,28 +27,25 @@ export default function DevelopmentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-
+    <div className="min-h-screen bg-background text-foreground font-Montserrat">
       <Header onNavigate={scrollToSection} />
 
-      <main className="space-y-20">
-        <ItDecisions 
+      <main>
+        <ItDecisions
           badgeText="Разработка ПО"
           title="Индивидуальная разработка программного обеспечения"
           description="Команда опытных разработчиков создает решения, которые автоматизируют бизнес-процессы и повышают эффективность работы"
           showBackButton={true}
+          backgroundImage="U4"
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали разработки')}
-          titleSize="xl"
+          titleSize="lg"
           alignment="left"
           minHeight="lg"
         />
-        
+
         <DevelopmentShowcase />
-        
+        <ProjectDevelopmentSection />
         <DevelopmentProcess />
       </main>
 

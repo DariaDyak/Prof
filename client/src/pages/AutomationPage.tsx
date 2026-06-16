@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ThemeToggle from "@/components/ThemeToggle";
 import ItDecisions from "@/components/ItDecisions";
 import AutomationSection from "@/components/AutomationSection";
 import { useEffect } from "react";
+import AutomationBenefits from "@/components/AutomationBenefits";
+
 
 export default function AutomationPage() {
   useEffect(() => {
@@ -26,29 +27,24 @@ export default function AutomationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-
+    <div className="min-h-screen bg-background text-foreground font-Montserrat">
       <Header onNavigate={scrollToSection} />
 
-      <main className="space-y-20"> {/* Добавлено равномерное расстояние */}
-        {/* ItDecisions с кастомным контентом для страницы решений */}
+      <main> 
         <ItDecisions 
           badgeText="Автоматизация процессов"
           title="Профессиональная автоматизация процессов"
           description="Анализируем бизнес-процессы и создаем индивидуальные решения для их автоматизации с использованием современных технологий"
           showBackButton={true}
+          backgroundImage="U1"
           backButtonText="Назад к главной"
           onLearnMore={() => console.log('Детали IT-решений')}
-          titleSize="xl"
+          titleSize="lg"
           alignment="left"
           minHeight="lg"
         />
-        
+        <AutomationBenefits/>
         <AutomationSection/>
-      
       </main>
 
       <Footer />
