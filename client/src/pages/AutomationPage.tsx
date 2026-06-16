@@ -2,9 +2,9 @@ import { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ItDecisions from "@/components/ItDecisions";
-import AutomationSection from "@/components/AutomationSection";
+import AutomationSection from "@/components/ProcessAutomation/CostOptimization";
 import { useEffect } from "react";
-import AutomationBenefits from "@/components/AutomationBenefits";
+import AutomationBenefits from "@/components/ProcessAutomation/AutomationBenefits ";
 
 
 export default function AutomationPage() {

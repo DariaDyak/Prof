@@ -4,25 +4,34 @@ import { MessageCircle } from 'lucide-react';
 interface ScrollToContactFabProps {
   onContactClick: () => void;
   showAfter?: number;
+  showFab: boolean; 
 }
 
 export default function ScrollToContactFab({ 
   onContactClick, 
-  showAfter = 0
+  showAfter = 0,
+  showFab
 }: ScrollToContactFabProps) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (!showFab) {
+      setIsVisible(false); // скрываем FAB полностью
+      return; 
+    }
+
     const handleScroll = () => {
       const shouldShow = window.scrollY > showAfter;
       setIsVisible(shouldShow);
     };
 
-    handleScroll();
+    handleScroll(); 
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [showAfter]);
+  }, [showAfter, showFab]);
+
+  if (!showFab) return null;
 
   return (
     <div
@@ -34,9 +43,7 @@ export default function ScrollToContactFab({
           : 'opacity-0 translate-y-5 scale-95 invisible'
         }
       `}
-      style={{
-        pointerEvents: isVisible ? 'auto' : 'none',
-      }}
+      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
     >
       <button
         onClick={onContactClick}
@@ -51,11 +58,8 @@ export default function ScrollToContactFab({
           cursor: 'pointer',
         }}
       >
-        {/* Пульсирующий эффект */}
         <span className="absolute inset-0 rounded-full animate-ping bg-blue-400 opacity-75"></span>
         <span className="absolute inset-0 rounded-full animate-pulse bg-blue-500"></span>
-        
-        {/* Иконка */}
         <MessageCircle className="w-6 h-6 relative z-10" />
       </button>
     </div>

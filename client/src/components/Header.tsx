@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Logo from "@assets/generated_images/lo.png";
-import Logo2 from "@assets/generated_images/lo2.png";
+import Logo from "@assets/images/logo_l.png";
+import Logo2 from "@assets/images/logo_d.png";
 
 interface HeaderProps {
   onNavigate?: (section: string) => void;
@@ -21,7 +21,8 @@ export default function Header({ onNavigate }: HeaderProps) {
   const navigationItems = [
     { label: 'О компании', id: 'about' },
     { label: 'Услуги', id: 'services' },
-    { label: 'Проекты', id: 'cases' },
+    { label: 'Собственная разработка', id: 'cases' },
+    { label: 'Кейсы', id: 'cases_all' },
     { label: 'Контакты', id: 'contacts' }
   ];
 
@@ -80,6 +81,22 @@ export default function Header({ onNavigate }: HeaderProps) {
   const handleNavClick = (id: string) => {
     setActiveId(id);
 
+    // Переход на страницу кейсов
+    if (id === 'cases_all') {
+      navigate('/ProjectsPage');
+
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }, 100);
+
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    // Работа с секциями главной страницы
     if (location.pathname !== '/') {
       sessionStorage.setItem('scrollToSection', id);
       sessionStorage.setItem('shouldScrollImmediately', 'true');
@@ -260,7 +277,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                 </span>
               </div>
 
-              <div className="h-8 w-px bg-gradient-to-b from-transparent via-brown/30 to-transparent dark:via-beige/30 ml-2 hidden md:block"></div>
 
             </div>
           </div>
@@ -268,12 +284,13 @@ export default function Header({ onNavigate }: HeaderProps) {
           <div className="hidden lg:flex items-center space-x-6 h-full">
             <nav className="flex items-center space-x-8 h-full">
               {navigationItems.map((item) => {
-                const isActive = activeId === item.id && location.pathname === '/';
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.id)}
-                    className={`
+                const isActive =
+                  (activeId === item.id && location.pathname === '/') ||
+                  (item.id === 'cases_all' && location.pathname === '/ProjectsPage'); return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`
                       text-sm lg:text-base
                       relative px-2
                       transition-all duration-300 ease-out
@@ -281,27 +298,27 @@ export default function Header({ onNavigate }: HeaderProps) {
                       outline-none focus:outline-none
                       flex items-center h-full
                       ${isActive
-                        ? 'text-brown-dark dark:text-beige-light font-bold'
-                        : 'text-brown-dark/90 dark:text-beige-light/80 hover:text-brown-dark dark:hover:text-beige-light hover:font-semibold'
-                      }
+                          ? 'text-brown-dark dark:text-beige-light font-bold'
+                          : 'text-brown-dark/90 dark:text-beige-light/80 hover:text-brown-dark dark:hover:text-beige-light hover:font-semibold'
+                        }
                     `}
-                    data-testid={`nav-${item.id}`}
-                    type="button"
-                  >
-                    {item.label}
-                    <div className={`
+                      data-testid={`nav-${item.id}`}
+                      type="button"
+                    >
+                      {item.label}
+                      <div className={`
                       absolute bottom-0 left-1/2 w-0 h-0.5
                       bg-brown-dark
                       dark:bg-beige-light
                       transition-all duration-300 ease-out
                       transform -translate-x-1/2
                       ${isActive
-                        ? 'w-full opacity-100'
-                        : 'opacity-0 group-hover:w-full group-hover:opacity-100 dark:group-hover:opacity-70'
-                      }
+                          ? 'w-full opacity-100'
+                          : 'opacity-0 group-hover:w-full group-hover:opacity-100 dark:group-hover:opacity-70'
+                        }
                     `} />
-                  </button>
-                );
+                    </button>
+                  );
               })}
             </nav>
 

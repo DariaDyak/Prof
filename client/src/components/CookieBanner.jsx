@@ -1,43 +1,17 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { saveCookieConsent } from '@/lib/api';
-
-const COOKIE_CONSENT_KEY = 'cookieConsent';
-const COOKIE_CONSENT_SYNC_KEY = 'cookieConsentSynced';
-const COOKIE_CONSENT_CLIENT_ID_KEY = 'cookieConsentClientId';
-
-const getCookieConsentClientId = () => {
-  const existingClientId = localStorage.getItem(COOKIE_CONSENT_CLIENT_ID_KEY);
-  if (existingClientId) {
-    return existingClientId;
-  }
-
-  const generatedClientId =
-    globalThis.crypto?.randomUUID?.() ||
-    `cookie-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
-
-  localStorage.setItem(COOKIE_CONSENT_CLIENT_ID_KEY, generatedClientId);
-  return generatedClientId;
-};
+import {
+  applyAnalyticsConsent,
+  getCookieConsent,
+  persistCookieConsent,
+} from '@/lib/cookieConsent';
 
 const CookieBanner = ({ canShow = true }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  const persistConsent = async (status) => {
-    try {
-      await saveCookieConsent({
-        clientId: getCookieConsentClientId(),
-        status,
-        sourcePage: window.location.pathname,
-      });
-      localStorage.setItem(COOKIE_CONSENT_SYNC_KEY, 'true');
-    } catch (error) {
-      console.error('Не удалось сохранить cookie consent в БД', error);
-      localStorage.removeItem(COOKIE_CONSENT_SYNC_KEY);
-    }
-  };
+  const [isSaving, setIsSaving] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (!canShow) {
@@ -46,8 +20,7 @@ const CookieBanner = ({ canShow = true }) => {
       return;
     }
 
-    const cookieDecision = localStorage.getItem(COOKIE_CONSENT_KEY);
-    const isSynced = localStorage.getItem(COOKIE_CONSENT_SYNC_KEY) === 'true';
+    const cookieDecision = getCookieConsent();
 
     if (!cookieDecision) {
       const timer = setTimeout(() => {
@@ -57,26 +30,27 @@ const CookieBanner = ({ canShow = true }) => {
 
       return () => clearTimeout(timer);
     }
-
-    if (!isSynced && (cookieDecision === 'accepted' || cookieDecision === 'declined')) {
-      void persistConsent(cookieDecision);
-    }
   }, [canShow]);
 
-  const handleAccept = () => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
-    localStorage.removeItem(COOKIE_CONSENT_SYNC_KEY);
-    setIsAnimating(false);
-    setTimeout(() => setIsVisible(false), 300);
-    void persistConsent('accepted');
-  };
+  const handleAccept = async () => {
+    setIsSaving(true);
+    setErrorMessage('');
 
-  const handleDecline = () => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, 'declined');
-    localStorage.removeItem(COOKIE_CONSENT_SYNC_KEY);
-    setIsAnimating(false);
-    setTimeout(() => setIsVisible(false), 300);
-    void persistConsent('declined');
+    try {
+      await persistCookieConsent('accepted');
+      applyAnalyticsConsent('accepted');
+      setIsAnimating(false);
+      setTimeout(() => setIsVisible(false), 300);
+    } catch (error) {
+      console.error('Не удалось сохранить согласие на cookie', error);
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Не удалось сохранить согласие. Попробуйте ещё раз.',
+      );
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   if (!isVisible) return null;
@@ -106,14 +80,20 @@ const CookieBanner = ({ canShow = true }) => {
                     Политике конфиденциальности
                   </Link>.
                 </p>
+                {errorMessage && (
+                  <p className="mt-3 text-sm text-red-600">
+                    {errorMessage}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={handleAccept}
+                  disabled={isSaving}
                   className="px-6 py-2.5 text-sm font-medium text-white bg-brown-dark hover:bg-brown rounded-lg transition-colors duration-200 shadow-sm"
                 >
-                  Принять и продолжить
+                  {isSaving ? 'Сохраняем...' : 'Принять и продолжить'}
                 </button>
               </div>
             </div>

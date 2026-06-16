@@ -5,11 +5,7 @@ import { NoOutlineButton } from "@/components/NoOutlineButton";
 import { useState } from 'react';
 
 import {
-  Mail,
-  Phone,
-  MapPin,
   ArrowUp,
-  Clock,
 } from "lucide-react";
 
 export default function Footer() {
@@ -21,13 +17,28 @@ export default function Footer() {
   const handleNavigation = (link: { href: string; type?: string }) => {
     if (link.href.startsWith('/')) {
       navigate(link.href);
+
+      // Скролл вверх для отдельных страниц
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }, 100);
+
     } else if (link.type === 'anchor') {
+
+      // Если не на главной — сначала переход на главную
       if (location.pathname !== '/') {
         navigate('/');
+
         setTimeout(() => {
           scrollToElement(link.href);
         }, 100);
+
       } else {
+
+        // Скролл к секции на главной
         scrollToElement(link.href);
       }
     }
@@ -91,8 +102,13 @@ export default function Footer() {
         type: "anchor"
       },
       {
-        name: "Проекты",
+        name: "Собственная разработка",
         href: "cases",
+        type: "anchor"
+      },
+      {
+        name: "Кейсы",
+        href: "/ProjectsPage",
         type: "anchor"
       },
       {

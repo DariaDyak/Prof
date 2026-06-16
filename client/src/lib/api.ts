@@ -1,4 +1,23 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
+function normalizeApiBaseUrl(value: string | undefined): string {
+  const trimmedValue = value?.trim();
+
+  if (!trimmedValue || trimmedValue === "/") {
+    return "/api";
+  }
+
+  if (/^https?:\/\//i.test(trimmedValue)) {
+    return trimmedValue.replace(/\/+$/, "");
+  }
+
+  return `/${trimmedValue.replace(/^\/+|\/+$/g, "")}`;
+}
+
+function buildApiUrl(path: string): string {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${API_BASE_URL}${normalizedPath}`;
+}
+
+const API_BASE_URL = normalizeApiBaseUrl(import.meta.env.VITE_API_URL);
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -51,23 +70,31 @@ export interface ContactRequestPayload {
   email: string;
   phone?: string;
   message: string;
-  policyAccepted: boolean;
-  sourcePage?: string;
+  consentAccepted: boolean;
+  pageUrl?: string;
+  userLanguage?: string;
+  userTimezone?: string;
 }
 
 export interface ContactRequest {
   id: number;
   name: string;
   email: string;
-  phone: string | null;
+  phone?: string | null;
   message: string;
-  policy_accepted: boolean;
-  source_page: string | null;
-  user_agent: string | null;
-  ip_address: string | null;
-  email_sent_at: string | null;
-  email_error: string | null;
-  created_at: string;
+  consentAccepted: boolean;
+  consentAcceptedAt: string | null;
+  ipAddress: string | null;
+  userAgent: string | null;
+  referer: string | null;
+  origin: string | null;
+  pageUrl: string | null;
+  userLanguage: string | null;
+  userTimezone: string | null;
+  emailDeliveryStatus: string;
+  emailMessageId: string | null;
+  emailDeliveryError: string | null;
+  createdAt: string;
 }
 
 export interface CookieConsentPayload {
@@ -78,13 +105,13 @@ export interface CookieConsentPayload {
 
 export interface CookieConsent {
   id: number;
-  client_id: string;
-  consent_status: "accepted" | "declined";
-  source_page: string | null;
-  user_agent: string | null;
-  ip_address: string | null;
-  created_at: string;
-  updated_at: string;
+  clientId: string;
+  consentStatus: "accepted" | "declined";
+  sourcePage: string | null;
+  userAgent: string | null;
+  ipAddress: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 async function handleResponse<T>(response: Response): Promise<ApiResponse<T>> {
@@ -119,7 +146,7 @@ function getHeaders(): HeadersInit {
 
 export async function checkHealth(): Promise<boolean> {
   try {
-    const response = await fetch(`${API_BASE_URL}/health`, {
+    const response = await fetch(buildApiUrl("/health"), {
       method: 'GET',
       headers: getHeaders(),
     });
@@ -136,7 +163,7 @@ export async function checkHealth(): Promise<boolean> {
 
 // Получить все продукты
 export async function fetchProducts(): Promise<Product[]> {
-  const response = await fetch(`${API_BASE_URL}/products`, {
+  const response = await fetch(buildApiUrl("/products"), {
     headers: getHeaders(),
   });
 
@@ -147,7 +174,7 @@ export async function fetchProducts(): Promise<Product[]> {
 // Поиск продуктов
 export async function searchProducts(query: string): Promise<Product[]> {
   const response = await fetch(
-    `${API_BASE_URL}/products/search?q=${encodeURIComponent(query)}`,
+    `${buildApiUrl("/products/search")}?q=${encodeURIComponent(query)}`,
     { headers: getHeaders() }
   );
 
@@ -157,7 +184,7 @@ export async function searchProducts(query: string): Promise<Product[]> {
 
 // Получить статистику
 export async function getProductStats(): Promise<ProductStats> {
-  const response = await fetch(`${API_BASE_URL}/products/stats`, {
+  const response = await fetch(buildApiUrl("/products/stats"), {
     headers: getHeaders(),
   });
 
@@ -167,7 +194,7 @@ export async function getProductStats(): Promise<ProductStats> {
 
 // Получить продукт по ID
 export async function getProductById(id: number): Promise<Product> {
-  const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+  const response = await fetch(buildApiUrl(`/products/${id}`), {
     headers: getHeaders(),
   });
 
@@ -177,7 +204,7 @@ export async function getProductById(id: number): Promise<Product> {
 
 // Создать новый продукт
 export async function createProduct(productData: CreateProductDTO): Promise<Product> {
-  const response = await fetch(`${API_BASE_URL}/products`, {
+  const response = await fetch(buildApiUrl("/products"), {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify(productData),
@@ -189,7 +216,7 @@ export async function createProduct(productData: CreateProductDTO): Promise<Prod
 
 // Обновить продукт
 export async function updateProduct(id: number, productData: UpdateProductDTO): Promise<Product> {
-  const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+  const response = await fetch(buildApiUrl(`/products/${id}`), {
     method: 'PUT',
     headers: getHeaders(),
     body: JSON.stringify(productData),
@@ -201,7 +228,7 @@ export async function updateProduct(id: number, productData: UpdateProductDTO): 
 
 // Удалить продукт
 export async function deleteProduct(id: number): Promise<boolean> {
-  const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+  const response = await fetch(buildApiUrl(`/products/${id}`), {
     method: 'DELETE',
     headers: getHeaders(),
   });
@@ -213,7 +240,7 @@ export async function deleteProduct(id: number): Promise<boolean> {
 // Получить продукты по платформе
 export async function getProductsByPlatform(platform: string): Promise<Product[]> {
   const response = await fetch(
-    `${API_BASE_URL}/products/platform/${encodeURIComponent(platform)}`,
+    buildApiUrl(`/products/platform/${encodeURIComponent(platform)}`),
     { headers: getHeaders() }
   );
 
@@ -223,7 +250,7 @@ export async function getProductsByPlatform(platform: string): Promise<Product[]
 
 // Получить продукты с сертификатами
 export async function getProductsWithCertificates(): Promise<Product[]> {
-  const response = await fetch(`${API_BASE_URL}/products/with-certificates`, {
+  const response = await fetch(buildApiUrl("/products/with-certificates"), {
     headers: getHeaders(),
   });
 
@@ -233,7 +260,7 @@ export async function getProductsWithCertificates(): Promise<Product[]> {
 
 // Получить зарегистрированные продукты
 export async function getRegisteredProducts(): Promise<Product[]> {
-  const response = await fetch(`${API_BASE_URL}/products/registered`, {
+  const response = await fetch(buildApiUrl("/products/registered"), {
     headers: getHeaders(),
   });
 
@@ -243,7 +270,7 @@ export async function getRegisteredProducts(): Promise<Product[]> {
 
 // Инициализация базы данных (для разработки)
 export async function initializeDatabase(): Promise<boolean> {
-  const response = await fetch(`${API_BASE_URL}/init-db`, {
+  const response = await fetch(buildApiUrl("/init-db"), {
     method: 'POST',
     headers: getHeaders(),
   });
@@ -254,7 +281,7 @@ export async function initializeDatabase(): Promise<boolean> {
 
 // Тест подключения к базе данных
 export async function testDatabaseConnection(): Promise<any> {
-  const response = await fetch(`${API_BASE_URL}/test-db`, {
+  const response = await fetch(buildApiUrl("/test-db"), {
     headers: getHeaders(),
   });
 
@@ -265,7 +292,7 @@ export async function testDatabaseConnection(): Promise<any> {
 export async function submitContactRequest(
   payload: ContactRequestPayload,
 ): Promise<ContactRequest> {
-  const response = await fetch(`${API_BASE_URL}/contact`, {
+  const response = await fetch(buildApiUrl("/contact"), {
     method: "POST",
     headers: getHeaders(),
     body: JSON.stringify(payload),
@@ -278,7 +305,7 @@ export async function submitContactRequest(
 export async function saveCookieConsent(
   payload: CookieConsentPayload,
 ): Promise<CookieConsent> {
-  const response = await fetch(`${API_BASE_URL}/cookie-consent`, {
+  const response = await fetch(buildApiUrl("/cookie-consent"), {
     method: "POST",
     headers: getHeaders(),
     body: JSON.stringify(payload),

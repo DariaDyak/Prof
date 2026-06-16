@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import Header from '@/components/Header';
-import AboutUs from '@/components/Requirements/AboutUs';
+import TextApproval from '@/components/Approval/TextApproval';
 import Footer from '@/components/Footer';
 
-export default function DataProcessing() {
+export default function Approval() {
   const sectionRefs = {
     home: useRef<HTMLDivElement>(null),
     about: useRef<HTMLDivElement>(null),
@@ -11,7 +11,6 @@ export default function DataProcessing() {
     directions: useRef<HTMLDivElement>(null),
     contacts: useRef<HTMLDivElement>(null)
   };
-
 
   const scrollToSection = (sectionId: string) => {
     const section = sectionRefs[sectionId as keyof typeof sectionRefs]?.current;
@@ -25,15 +24,15 @@ export default function DataProcessing() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-Montserrat">
+    <div className="min-h-screen bg-background text-foreground text-brown-dark font-Montserrat">
       <Header onNavigate={scrollToSection} />
-
-      <main>
+      
+      <main> 
         <div ref={sectionRefs.home}>
-          <AboutUs />
+          <TextApproval />
         </div>
       </main>
-
+      
       <Footer />
     </div>
   );

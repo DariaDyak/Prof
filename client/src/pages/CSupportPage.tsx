@@ -2,10 +2,10 @@ import { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ItDecisions from "@/components/ItDecisions";
-import HexagonServices from "@/components/HexagonServices";
+import HexagonServices from "@/components/OneSupport/Support";
 import { useEffect } from "react";
-import ModificationServicesSec from "@/components/ModificationServicesSec";
-import ResultsSection from "@/components/ResultsSection";
+import ModificationServicesSec from "@/components/OneSupport/Modification";
+import ResultsSection from "@/components/OneSupport/Results";
 
 export default function CSupportPage() {
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function CSupportPage() {
           showBackButton={true}
           backgroundImage="U3"
           backButtonText="Назад к главной"
-          onLearnMore={() => console.log("Детали IT-решений")}
+          onLearnMore={() => console.log('Детали IT-решений')}
           titleSize="lg"
           alignment="left"
           minHeight="lg"

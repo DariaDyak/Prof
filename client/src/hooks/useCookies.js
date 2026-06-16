@@ -1,37 +1,33 @@
 import { useState, useEffect } from 'react';
+import {
+  applyAnalyticsConsent,
+  clearCookieConsent,
+  getCookieConsent,
+  persistCookieConsent,
+} from '@/lib/cookieConsent';
 
 export const useCookies = () => {
   const [consent, setConsent] = useState(null);
 
   useEffect(() => {
-    const savedConsent = localStorage.getItem('cookieConsent');
+    const savedConsent = getCookieConsent();
     setConsent(savedConsent);
   }, []);
 
-  const acceptCookies = () => {
-    localStorage.setItem('cookieConsent', 'accepted');
+  const acceptCookies = async () => {
+    await persistCookieConsent('accepted');
     setConsent('accepted');
-
-    if (window.gtag) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': 'granted'
-      });
-    }
+    applyAnalyticsConsent('accepted');
   };
 
-  const declineCookies = () => {
-    localStorage.setItem('cookieConsent', 'declined');
+  const declineCookies = async () => {
+    await persistCookieConsent('declined');
     setConsent('declined');
-
-    if (window.gtag) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': 'denied'
-      });
-    }
+    applyAnalyticsConsent('declined');
   };
 
   const resetConsent = () => {
-    localStorage.removeItem('cookieConsent');
+    clearCookieConsent();
     setConsent(null);
   };
 

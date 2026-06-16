@@ -1,7 +1,7 @@
 import { Download, Phone, Mail, FileText, Award, BarChart, Shield, Zap } from "lucide-react";
 import { useState } from "react";
-import descriptionPdf from "@assets/generated_images/profit-es-description.pdf";
-import guidePdf from "@assets/generated_images/profit-es-guide.pdf";
+import descriptionPdf from "@assets/images/Описание.pdf";
+import guidePdf from "@assets/images/Руководство.pdf";
 export default function ProfitEsInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 

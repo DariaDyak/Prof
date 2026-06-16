@@ -2,12 +2,11 @@ import { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ItDecisions from "@/components/ItDecisions";
-import DevelopmentShowcase from "@/components/Development/ComplexSolutions";
-import DevelopmentProcess from "@/components/Development/DevelopmentProcess";
+import ApproachSection from "@/components/ITConsalting/Methodology";
+import BusinessImpactSection from "@/components/ITConsalting/StrategicAdvantage";
 import { useEffect } from "react";
-import ProjectDevelopmentSection from "@/components/Development/ProjectDevelopmentSection";
 
-export default function DevelopmentPage() {
+export default function Decisions() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -28,26 +27,26 @@ export default function DevelopmentPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-Montserrat">
+
       <Header onNavigate={scrollToSection} />
 
       <main>
         <ItDecisions
-          badgeText="Разработка ПО"
-          title="Индивидуальная разработка программного обеспечения"
-          description="Команда опытных разработчиков создает решения, которые автоматизируют бизнес-процессы и повышают эффективность работы"
+          badgeText="IT-консалтинг"
+          title="Трансформация бизнеса через инновационные технологии"
+          description="Мы создаем масштабируемые, надежные и безопасные IT-решения, которые помогают компаниям автоматизировать процессы, снижать издержки и достигать стратегических целей"
           showBackButton={true}
-          backgroundImage="U4"
+          backgroundImage="U2"
           backButtonText="Назад к главной"
-          onLearnMore={() => console.log('Детали разработки')}
+          onLearnMore={() => console.log('Детали IT-решений')}
           titleSize="lg"
           alignment="left"
           minHeight="lg"
         />
 
-        <DevelopmentShowcase />
-        <ProjectDevelopmentSection />
-        <DevelopmentProcess />
+        <ApproachSection />
       </main>
+      <BusinessImpactSection />
 
       <Footer />
     </div>

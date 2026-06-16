@@ -1,6 +1,6 @@
 import { Phone, Mail, Download, CheckCircle, FileText, Users, RefreshCw, Shield, Building, FileCheck, Settings, Lock, Database } from "lucide-react";
 import { useState } from "react";
-import presentationPdf from "@assets/generated_images/profit-umo-presentation.pdf";
+import presentationPdf from "@assets/images/Презентация_API_Профит-УМО.pdf";
 export default function ProfitMoInfo() {
   const [downloading, setDownloading] = useState<string | null>(null);
 

@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
-import U1 from '@assets/generated_images/U1.png';
-import U3 from '@assets/generated_images/U3.png';
+import U1 from '@assets/images/U1.png';
+import U3 from '@assets/images/U3.png';
 
-import U4 from '@assets/generated_images/U4.png';
+import U4 from '@assets/images/U4.png';
 import { Button } from "@/components/ui/button";
 
 interface ItDecisionsProps {
@@ -30,10 +29,7 @@ export default function ItDecisions({
   badgeText = "IT-решения для бизнеса",
   title,
   description,
-  showBackButton = true,
-  backButtonText = "Назад на главную",
   backgroundImage = "U1",
-  onLearnMore,
   onBadgeClick,
   titleSize = "xl",
   alignment = "left",
@@ -48,11 +44,6 @@ export default function ItDecisions({
   };
 
   const currentBackgroundImage = getBackgroundImage();
-
-  const handleLearnMore = () => {
-    console.log('Learn more button clicked');
-    onLearnMore?.();
-  };
 
   const handleBadgeClick = () => {
     onBadgeClick?.();

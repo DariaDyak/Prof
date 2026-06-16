@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import Header from '@/components/Header';
-import PartnersSection from '@/components/PartnersSection';
+import PartnersSection from '@/components/Home/Partners';
 import Footer from '@/components/Footer';
 
 export default function PartnersPage() {

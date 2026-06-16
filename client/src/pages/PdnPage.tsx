@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import Header from '@/components/Header';
-import AboutUs from '@/components/Requirements/AboutUs';
+import TextPolicy from '@/components/Pdn/TextPolicy';
 import Footer from '@/components/Footer';
 
 export default function DataProcessing() {
@@ -12,7 +12,6 @@ export default function DataProcessing() {
     contacts: useRef<HTMLDivElement>(null)
   };
 
-
   const scrollToSection = (sectionId: string) => {
     const section = sectionRefs[sectionId as keyof typeof sectionRefs]?.current;
     if (section) {
@@ -20,17 +19,13 @@ export default function DataProcessing() {
     }
   };
 
-  const handleGoHome = () => {
-    scrollToSection('home');
-  };
-
   return (
-    <div className="min-h-screen bg-background text-foreground font-Montserrat">
+    <div className="min-h-screen bg-background text-foreground text-foreground font-Montserrat">
       <Header onNavigate={scrollToSection} />
 
       <main>
         <div ref={sectionRefs.home}>
-          <AboutUs />
+          <TextPolicy />
         </div>
       </main>
 
