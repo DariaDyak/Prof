@@ -1,61 +1,98 @@
-import express, { type Request, Response, NextFunction } from "express";
+import fs from "node:fs";
+import { createServer as createHttpServer, type Server as HttpServer } from "node:http";
+import { createServer as createHttpsServer, type ServerOptions as HttpsServerOptions, type Server as HttpsServer } from "node:https";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { setupVite, serveStatic } from "./vite";
+import { createApp, registerErrorHandler } from "./app";
+import 'dotenv-flow/config';
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const app = createApp();
 
-app.use((req, res, next) => {
-  const start = Date.now();
-  const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+type AppServer = HttpServer | HttpsServer;
+type ServerProtocol = "http" | "https";
 
-  const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
-    capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
-  };
-
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
-      }
-
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
-      }
-
-      log(logLine);
-    }
-  });
-
-  next();
-});
-
-(async () => {
-  const server = await registerRoutes(app);
-
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    res.status(status).json({ message });
-    throw err;
-  });
-
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
+function isEnabled(value: string | undefined): boolean {
+  if (!value) {
+    return false;
   }
 
-  const port = parseInt(process.env.PORT || "3000", 10);
+  return ["1", "true", "yes", "on"].includes(value.toLowerCase());
+}
 
-  server.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
+function readTlsFile(envName: "TLS_KEY_PATH" | "TLS_CERT_PATH" | "TLS_CA_PATH"): Buffer {
+  const filePath = process.env[envName];
+  if (!filePath) {
+    throw new Error(`TLS включен, но не задана переменная окружения ${envName}`);
+  }
+
+  try {
+    return fs.readFileSync(filePath);
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    throw new Error(`Не удалось прочитать ${envName} (${filePath}): ${reason}`);
+  }
+}
+
+function createProductionServer(): { server: AppServer; protocol: ServerProtocol } {
+  const tlsEnabled = isEnabled(process.env.TLS_ENABLED);
+  if (!tlsEnabled) {
+    return { server: createHttpServer(app), protocol: "http" };
+  }
+
+  const options: HttpsServerOptions = {
+    key: readTlsFile("TLS_KEY_PATH"),
+    cert: readTlsFile("TLS_CERT_PATH"),
+    minVersion: "TLSv1.2",
+  };
+
+  if (process.env.TLS_CA_PATH) {
+    options.ca = readTlsFile("TLS_CA_PATH");
+  }
+
+  if (process.env.TLS_PASSPHRASE) {
+    options.passphrase = process.env.TLS_PASSPHRASE;
+  }
+
+  return { server: createHttpsServer(options, app), protocol: "https" };
+}
+
+(async () => {
+  try {
+    await registerRoutes(app);
+    let server: AppServer;
+    let protocol: ServerProtocol;
+
+    if (app.get("env") === "development") {
+      // В режиме разработки используем Vite middleware
+      server = createHttpServer(app);
+      protocol = "http";
+      
+      // Настраиваем Vite для разработки
+      await setupVite(app, server);
+    } else {
+      // В продакшене раздаем статику
+      serveStatic(app);
+      ({ server, protocol } = createProductionServer());
+    }
+
+    registerErrorHandler(app);
+
+    const port = parseInt(process.env.PORT || "3000", 10);
+    const publicPort = process.env.APP_PORT || String(port);
+
+    server.listen(port, () => {
+      console.log(`🚀 Сервер запущен на ${protocol}://localhost:${publicPort}`);
+      console.log(`📊 API продуктов: ${protocol}://localhost:${publicPort}/api/products`);
+      console.log(`🔍 Health check: ${protocol}://localhost:${publicPort}/api/health`);
+      console.log(`🔄 Инициализация БД: ${protocol}://localhost:${publicPort}/api/init-db (POST)`);
+      
+      if (app.get("env") === "development") {
+        console.log(`✨ Режим разработки с Vite: ${protocol}://localhost:${publicPort}`);
+      }
+    });
+
+  } catch (error) {
+    console.error("❌ Ошибка запуска сервера:", error);
+    process.exit(1);
+  }
 })();
